@@ -1,16 +1,13 @@
-## Hi there 👋
+# SiliconValueIndex
 
-<!--
-**SiliconValueIndex/siliconvalueindex** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## Objective
+Build a data-driven performance-per-dollar index for GPUs using live pricing data and normalized benchmark performance.
 
-Here are some ideas to get you started:
+## Phase 0 Scope
+- GPU value ranking (1440p primary)
+- New vs Used pricing comparison
+- Composite Value Score (70% cost-per-FPS, 20% efficiency, 10% used delta)
+- Weekly public ranking publication
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Long-Term Vision
+Become a quantitative hardware market intelligence layer for PC builders.
