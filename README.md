@@ -3,11 +3,15 @@
 ## Objective
 Build a data-driven performance-per-dollar index for GPUs using live pricing data and normalized benchmark performance.
 
-## Phase 0 Scope
-- GPU value ranking (1440p primary)
-- New vs Used pricing comparison
-- Composite Value Score (70% cost-per-FPS, 20% efficiency, 10% used delta)
-- Weekly public ranking publication
+## Phase 0 Scope & Progress
+- [x] Repo setup
+- [x] Dataset schema
+- [x] Benchmark dataset (1440p)
+- [x] Cost-per-FPS scoring pipeline
+- [ ] Pricing ingestion
+- [ ] Composite Value Score (70/20/10)
+- [ ] Visualization
+- [ ] Reddit publication
 
 ## Long-Term Vision
 Become a quantitative hardware market intelligence layer for PC builders.

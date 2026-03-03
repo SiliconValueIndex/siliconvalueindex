@@ -1,0 +1,57 @@
+gpu_model,benchmark_group,raw_fps_1440p,normalized_fps_1440p,source,last_updated
+GTX 1080 Ti,legacy,50.2,35.0,Toms_GPU_Hierarchy_2022,2026-03-03
+Intel Arc A580,modern,27.8,27.8,Toms_GPU_Hierarchy_2026,2026-03-03
+Intel Arc A750,modern,30.9,30.9,Toms_GPU_Hierarchy_2026,2026-03-03
+Intel Arc A770,modern,36.7,36.7,Toms_GPU_Hierarchy_2026,2026-03-03
+Intel Arc B570,modern,35.3,35.3,Toms_GPU_Hierarchy_2026,2026-03-03
+Intel Arc B580,modern,42.6,42.6,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 2060,legacy,40.1,27.9,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 2060 Super,legacy,48.3,33.6,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 2070,legacy,51.8,36.1,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 2070 Super,legacy,59.8,41.7,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 2080,legacy,63.2,44.0,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 2080 Super,legacy,66.1,46.0,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 2080 Ti,legacy,75.6,52.7,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3060,modern,34.9,34.9,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 3060 Ti,legacy,70.0,48.8,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3070,legacy,77.7,54.1,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3070 Ti,legacy,82.8,57.7,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3080,legacy,96.4,67.2,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3080 12GB,legacy,102.3,71.3,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3080 Ti,legacy,103.9,72.4,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3090,legacy,106.0,73.8,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 3090 Ti,legacy,112.7,78.5,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 4060,modern,38.9,38.9,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4060 Ti 16GB,modern,52.5,52.5,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4060 Ti 8GB,modern,49.3,49.3,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4070,modern,68.3,68.3,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4070 Super,modern,79.7,79.7,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4070 Ti,modern,85.5,85.5,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4070 Ti Super,legacy,122.0,85.0,Toms_GPU_Hierarchy_2022,2026-03-03
+RTX 4080,modern,103.7,103.7,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4080 Super,modern,105.8,105.8,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 4090,modern,126.6,126.6,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5060,modern,45.7,45.7,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5060 Ti 16GB,modern,62.3,62.3,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5060 Ti 8GB,modern,39.2,39.2,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5070,modern,81.2,81.2,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5070 Ti,modern,101.2,101.2,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5080,modern,111.7,111.7,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5090,modern,143.0,143.0,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 6600,modern,24.1,24.1,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 6700 10GB,legacy,62.8,43.7,Toms_GPU_Hierarchy_2022,2026-03-03
+RX 6700 XT,legacy,73.4,51.1,Toms_GPU_Hierarchy_2022,2026-03-03
+RX 6750 XT,legacy,77.2,53.8,Toms_GPU_Hierarchy_2022,2026-03-03
+RX 6800,legacy,89.2,62.1,Toms_GPU_Hierarchy_2022,2026-03-03
+RX 6800 XT,legacy,99.0,69.0,Toms_GPU_Hierarchy_2022,2026-03-03
+RX 6900 Xt,legacy,102.1,71.1,Toms_GPU_Hierarchy_2022,2026-03-03
+RX 6950 XT,legacy,110.1,76.7,Toms_GPU_Hierarchy_2022,2026-03-03
+RX 7600,modern,27.9,27.9,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 7600 XT,modern,41.7,41.7,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 7700 XT,modern,60.6,60.6,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 7800 XT,modern,69.0,69.0,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 7900 GRE,modern,77.5,77.5,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 7900 XT,modern,92.0,92.0,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 7900 XTX,modern,102.6,102.6,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 9060 XT,modern,59.4,59.4,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 9070 XT,modern,98.3,98.3,Toms_GPU_Hierarchy_2026,2026-03-03
