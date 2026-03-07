@@ -434,7 +434,7 @@ footer a:hover { color: var(--accent); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.hero-tag  { animation: fadeUp 0.5s ease both; }
+canvas { -webkit-tap-highlight-color: transparent; }
 .hero h1   { animation: fadeUp 0.5s 0.1s ease both; }
 .hero-sub  { animation: fadeUp 0.5s 0.2s ease both; }
 .stat-bar  { animation: fadeUp 0.5s 0.3s ease both; }
@@ -461,9 +461,10 @@ footer a:hover { color: var(--accent); }
     -webkit-overflow-scrolling: touch;
     margin: 0 -16px;
     padding: 0;
+    touch-action: pan-x; /* single finger scrolls horizontally, vertical goes to page */
   }
   .chart-panel {
-    min-width: 800px;
+    min-width: 960px;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -615,22 +616,29 @@ function barColor(cpf, vendor) {
 }
 const colors = values.map((v, i) => barColor(v, vendors[i]));
 
-const dpr = window.devicePixelRatio || 1;
-const ROW_HEIGHT   = 22;
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
+const isMobile = window.innerWidth < 768;
+const ROW_HEIGHT   = 26;
 const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
 const canvas  = document.getElementById('chart');
 const wrapper = canvas.parentElement;
 
-const MOBILE_MIN = 800;
+// Set dimensions via CSS only — Chart.js reads these and owns the canvas pixel dimensions
+const MOBILE_MIN = window.innerWidth < 768 ? 700 : 960;
 const logicalWidth = Math.max(wrapper.clientWidth, MOBILE_MIN);
 canvas.style.width   = logicalWidth + 'px';
 canvas.style.height  = CHART_HEIGHT + 'px';
 wrapper.style.paddingBottom = '24px';
 
-canvas.width  = logicalWidth * dpr;
-canvas.height = CHART_HEIGHT * dpr;
+// DO NOT set canvas.width/height manually — let Chart.js do it via responsive sizing
 const ctx = canvas.getContext('2d');
-ctx.scale(dpr, dpr);
+const fps    = [59.4,54.7,60.6,56.0,42.6,69.7,62.8,86.9,92.0,98.3,45.7,69.0,81.2,116.9,35.3,60.6,56.0,32.1,82.7,76.6,47.4,43.9,51.6,35.0,55.6,58.7,109.3,101.2,88.1,68.5,34.5,41.9,73.1,111.7,47.2,64.4,41.7,103.7,55.3,47.9,37.1,103.8,39.7,40.9,40.5,50.9,62.6,19.5,40.8,42.5,38.9,38.5,37.4,36.2,34.7,28.7,14.3,28.5,26.5];
+const prices = [345.99,325.00,399.99,379.99,289.99,499.00,449.99,629.99,679.99,729.99,349.99,549.99,649.99,943.77,299.00,519.99,494.99,289.99,762.99,735.00,459.99,429.99,512.99,349.99,562.99,603.99,1135.49,1059.99,937.99,733.99,372.99,452.55,813.04,1249.99,533.25,729.99,499.99,1283.31,722.99,638.99,506.86,1499.99,594.00,616.13,615.99,775.49,980.63,306.73,644.99,693.96,647.52,662.91,646.59,624.55,641.99,579.99,359.99,504.99,719.99];
+
+// Tooltip appears where user taps, not at bar end
+Chart.Tooltip.positioners.tap = function(elements, eventPosition) {
+  return { x: eventPosition.x, y: eventPosition.y };
+};
 
 const zonePlugin = {
   id: 'zones',
@@ -661,12 +669,12 @@ const chart = new Chart(ctx, {
     indexAxis: 'y',
     responsive: false,
     maintainAspectRatio: false,
-    devicePixelRatio: dpr,
     animation: { duration: 700, easing: 'easeOutQuart' },
-    layout: { padding: { left: 8, right: 36, top: 4, bottom: 4 } },
+    layout: { padding: { left: 8, right: 48, top: 4, bottom: 4 } },
     plugins: {
       legend: { display: false },
       tooltip: {
+        position: 'tap',
         backgroundColor: '#161b22', borderColor: '#21262d', borderWidth: 1,
         titleColor: '#e6edf3', bodyColor: '#8b949e',
         titleFont: { family: 'JetBrains Mono', size: 13, weight: '600' },
@@ -675,9 +683,16 @@ const chart = new Chart(ctx, {
         callbacks: {
           title: ctx => ctx[0].label,
           label: ctx => {
+            const i   = ctx.dataIndex;
             const cpf = ctx.parsed.x;
             const zone = cpf < 8 ? '✓ GREAT VALUE' : cpf < 12 ? '~ FAIR VALUE' : '✗ POOR VALUE';
-            return [`$${cpf.toFixed(2)} per FPS  ·  ${zone}`, 'Click to view on Newegg →'];
+            return [
+              `${zone}`,
+              `$/FPS:  $${cpf.toFixed(2)}`,
+              `FPS:    ${fps[i]}`,
+              `Price:  $${prices[i].toFixed(0)}`,
+              `→ Tap again to open Newegg`
+            ];
           }
         }
       }
@@ -686,21 +701,15 @@ const chart = new Chart(ctx, {
       x: {
         min: 0, max: 29,
         grid: { color: '#21262d', lineWidth: 0.8 },
-        ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 }, callback: v => `$${v}` },
-        title: { display: true, text: 'Cost Per FPS ($/FPS) — Lower is Better', color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 }, padding: { top: 10 } },
+        ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 13 }, callback: v => `$${v}` },
+        title: { display: true, text: 'Cost Per FPS ($/FPS) — Lower is Better', color: '#8b949e', font: { family: 'JetBrains Mono', size: 12 }, padding: { top: 10 } },
         border: { color: '#21262d' }
       },
       y: {
         grid: { display: false },
         border: { color: '#21262d' },
-        afterFit(scale) { scale.width = 155; },
-        ticks: { color: '#58a6ff', font: { family: 'JetBrains Mono', size: 11 }, autoSkip: false, maxRotation: 0, padding: 8 }
-      }
-    },
-    onClick(event, elements) {
-      if (elements.length > 0) {
-        const idx = elements[0].index;
-        if (links[idx]) window.open(links[idx], '_blank');
+        afterFit(scale) { scale.width = 170; },
+        ticks: { color: '#58a6ff', font: { family: 'JetBrains Mono', size: 13 }, autoSkip: false, maxRotation: 0, padding: 8 }
       }
     },
     onHover(event, elements) {
@@ -710,18 +719,35 @@ const chart = new Chart(ctx, {
   plugins: [zonePlugin]
 });
 
+// Desktop: click navigates directly
+// Mobile: first tap = tooltip, second tap = navigate
+// Track touch separately as pointerType can be unreliable on some Android versions
+let recentTouch = false;
+canvas.addEventListener('touchend', () => { recentTouch = true; setTimeout(() => { recentTouch = false; }, 500); }, { passive: true });
+
+let lastTappedIndex = -1;
+let lastTapTime = 0;
+
 canvas.addEventListener('click', function(e) {
-  const rect = this.getBoundingClientRect();
-  const clickX = e.clientX - rect.left;
-  const yAxis = chart.scales.y;
-  if (clickX < yAxis.right) {
-    const clickY = e.clientY - rect.top;
-    for (let i = 0; i < labels.length; i++) {
-      const tickY = yAxis.getPixelForValue(i);
-      if (Math.abs(clickY - tickY) < 11 && links[i]) {
-        window.open(links[i], '_blank');
-        break;
-      }
+  const isTouch = e.pointerType === 'touch' || e.pointerType === 'pen' || recentTouch;
+
+  // Chart.js owns the coordinate system so getElementsAtEventForMode is accurate
+  const elements = chart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, false);
+  if (elements.length === 0) return;
+  const idx = elements[0].index;
+
+  if (!isTouch) {
+    // Desktop — single click navigates
+    if (links[idx]) window.open(links[idx], '_blank');
+  } else {
+    // Mobile — first tap shows tooltip, second tap within 2s navigates
+    const now = Date.now();
+    if (idx === lastTappedIndex && now - lastTapTime < 2000) {
+      if (links[idx]) window.open(links[idx], '_blank');
+      lastTappedIndex = -1;
+    } else {
+      lastTappedIndex = idx;
+      lastTapTime = now;
     }
   }
 });
