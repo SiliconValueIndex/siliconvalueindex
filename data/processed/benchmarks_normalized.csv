@@ -33,12 +33,14 @@ RTX 4080 Super,modern,105.8,105.8,Toms_GPU_Hierarchy_2026,2026-03-03
 RTX 4090,modern,126.6,126.6,Toms_GPU_Hierarchy_2026,2026-03-03
 RTX 5060,modern,45.7,45.7,Toms_GPU_Hierarchy_2026,2026-03-03
 RTX 5060 Ti 16GB,modern,62.3,62.3,Toms_GPU_Hierarchy_2026,2026-03-03
-RTX 5060 Ti 8GB,modern,39.2,39.2,Toms_GPU_Hierarchy_2026,2026-03-03
+RTX 5060 Ti 8GB,modern,56.0,56.0,Toms_GPU_Hierarchy_2026,2026-03-03
 RTX 5070,modern,81.2,81.2,Toms_GPU_Hierarchy_2026,2026-03-03
 RTX 5070 Ti,modern,101.2,101.2,Toms_GPU_Hierarchy_2026,2026-03-03
 RTX 5080,modern,111.7,111.7,Toms_GPU_Hierarchy_2026,2026-03-03
 RTX 5090,modern,143.0,143.0,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 6500 XT,legacy,18.0,12.7,Toms_GPU_Hierarchy_2022,2026-03-06
 RX 6600,modern,24.1,24.1,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 6600 XT,legacy,52.2,36.7,Toms_GPU_Hierarchy_2022,2026-03-06
 RX 6700 10GB,legacy,62.8,44.2,Toms_GPU_Hierarchy_2022,2026-03-03
 RX 6700 XT,legacy,73.4,51.7,Toms_GPU_Hierarchy_2022,2026-03-03
 RX 6750 XT,legacy,77.2,54.3,Toms_GPU_Hierarchy_2022,2026-03-03
@@ -54,4 +56,5 @@ RX 7900 GRE,modern,77.5,77.5,Toms_GPU_Hierarchy_2026,2026-03-03
 RX 7900 XT,modern,92.0,92.0,Toms_GPU_Hierarchy_2026,2026-03-03
 RX 7900 XTX,modern,102.6,102.6,Toms_GPU_Hierarchy_2026,2026-03-03
 RX 9060 XT,modern,59.4,59.4,Toms_GPU_Hierarchy_2026,2026-03-03
+RX 9070,modern,86.9,86.9,Toms_GPU_Hierarchy_2026,2026-03-06
 RX 9070 XT,modern,98.3,98.3,Toms_GPU_Hierarchy_2026,2026-03-03

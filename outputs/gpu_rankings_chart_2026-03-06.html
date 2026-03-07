@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SiliconValueIndex — GPU Value Rankings MARCH 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #21262d;
+    --text: #e6edf3; --muted: #8b949e;
+    --good: #2ea043; --fair: #d29922; --poor: #f85149; --accent: #58a6ff;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 28px 24px; }
+  .header { text-align: center; margin-bottom: 24px; }
+  .header h1 { font-family: 'JetBrains Mono', monospace; font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .header h1 span { color: var(--accent); }
+  .header p { font-size: 0.82rem; color: var(--muted); }
+  .stats { display: flex; justify-content: center; gap: 28px; margin-bottom: 20px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .legend { display: flex; justify-content: center; gap: 20px; margin-bottom: 14px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .legend-dot { width: 11px; height: 11px; border-radius: 3px; }
+  .zones { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .zone { padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; font-weight: 600; letter-spacing: 0.04em; }
+  .zone-good { background: rgba(46,160,67,0.15); color: var(--good); border: 1px solid rgba(46,160,67,0.3); }
+  .zone-fair { background: rgba(210,153,34,0.15); color: var(--fair); border: 1px solid rgba(210,153,34,0.3); }
+  .zone-poor { background: rgba(248,81,73,0.15); color: var(--poor); border: 1px solid rgba(248,81,73,0.3); }
+  .chart-wrapper { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; max-width: 1100px; margin: 0 auto; position: relative; }
+  .click-hint { text-align: center; font-size: 0.76rem; color: var(--muted); margin-bottom: 12px; }
+  .click-hint span { color: var(--accent); }
+  .footer { text-align: center; margin-top: 16px; font-size: 0.72rem; color: #484f58; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>GPU VALUE INDEX — <span>MARCH 2026</span></h1>
+  <p>Cost per Normalized FPS · 59 GPUs · 1440p Ultra · Prices via Newegg</p>
+</div>
+<div class="stats">
+  <div class="stat"><div class="stat-value">$5.83</div><div class="stat-label">Best Value (RX 9060 XT)</div></div>
+  <div class="stat"><div class="stat-value">$26.82</div><div class="stat-label">Worst Value (RTX 4090)</div></div>
+  <div class="stat"><div class="stat-value">59</div><div class="stat-label">GPUs Ranked</div></div>
+  <div class="stat"><div class="stat-value">4.6×</div><div class="stat-label">Value Spread</div></div>
+</div>
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#76b900"></div>NVIDIA</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ED1C24"></div>AMD</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#0071C5"></div>Intel</div>
+</div>
+<div class="zones">
+  <div class="zone zone-good">● GREAT VALUE &lt;$8/FPS</div>
+  <div class="zone zone-fair">● FAIR VALUE $8–$12/FPS</div>
+  <div class="zone zone-poor">● POOR VALUE &gt;$12/FPS</div>
+</div>
+<div class="click-hint">Click a <span>GPU name</span> or bar to open its Newegg listing</div>
+<div class="chart-wrapper">
+  <canvas id="chart"></canvas>
+</div>
+<div class="footer">Benchmarks via Tom&#39;s Hardware GPU Hierarchy &middot; Normalized &amp; scored by SiliconValueIndex &middot; siliconvalueindex.com</div>
+
+<script>
+const labels  = ["RX 9060 XT", "RTX 3070", "RX 7700 XT", "RTX 5060 Ti 8GB", "Intel Arc B580", "RX 6800 XT", "RX 6800", "RX 9070", "RX 7900 XT", "RX 9070 XT", "RTX 5060", "RX 7800 XT", "RTX 5070", "RTX 4070 Ti Super", "Intel Arc B570", "RX 7900 GRE", "RTX 5060 Ti 16GB", "Intel Arc A750", "RTX 4070 Super", "RTX 4070", "RTX 3060", "Intel Arc A770", "RTX 4060 Ti 8GB", "RX 7600", "RTX 3060 Ti", "RTX 3070 Ti", "RX 7900 XTX", "RTX 5070 Ti", "RTX 4070 Ti", "RX 6950 XT", "Intel Arc A580", "RTX 4060", "RX 6900 XT", "RTX 5080", "GTX 1080 Ti", "RTX 3080", "RX 7600 XT", "RTX 4080", "RTX 2080 Ti", "RTX 4060 Ti 16GB", "RX 6600", "RTX 4080 Super", "RX 6600 XT", "RX 6700 XT", "RX 6750 XT", "RTX 3080 12GB", "RTX 3080 Ti", "RX 6500 XT", "RX 6700 10GB", "RTX 2080", "RTX 2060", "RTX 2080 Super", "RTX 2060 Super", "RTX 2070 Super", "RTX 2070", "RTX 3090", "RTX 5090", "RTX 3090 Ti", "RTX 4090"];
+const values  = [5.825, 5.941, 6.6, 6.786, 6.807, 7.159, 7.165, 7.25, 7.391, 7.426, 7.658, 7.971, 8.005, 8.073, 8.47, 8.574, 8.828, 9.029, 9.222, 9.59, 9.713, 9.782, 9.919, 10.0, 10.122, 10.274, 10.39, 10.474, 10.642, 10.71, 10.791, 10.797, 11.128, 11.191, 11.303, 11.313, 11.99, 12.375, 13.064, 13.314, 13.651, 14.178, 14.959, 15.062, 15.203, 15.208, 15.663, 15.718, 15.814, 16.292, 16.631, 17.183, 17.294, 17.696, 18.493, 20.244, 25.175, 25.195, 26.817];
+const vendors = ["AMD", "NVIDIA", "AMD", "NVIDIA", "Intel", "AMD", "AMD", "AMD", "AMD", "AMD", "NVIDIA", "AMD", "NVIDIA", "NVIDIA", "Intel", "AMD", "NVIDIA", "Intel", "NVIDIA", "NVIDIA", "NVIDIA", "Intel", "NVIDIA", "AMD", "NVIDIA", "NVIDIA", "AMD", "NVIDIA", "NVIDIA", "AMD", "Intel", "NVIDIA", "AMD", "NVIDIA", "NVIDIA", "NVIDIA", "AMD", "NVIDIA", "NVIDIA", "NVIDIA", "AMD", "NVIDIA", "AMD", "AMD", "AMD", "NVIDIA", "NVIDIA", "AMD", "AMD", "NVIDIA", "NVIDIA", "NVIDIA", "NVIDIA", "NVIDIA", "NVIDIA", "NVIDIA", "NVIDIA", "NVIDIA", "NVIDIA"];
+const links   = ["https://www.newegg.com/xfx-swift-rx-9060-xt-oc-triple-fan-radeon-rx-9060-xt-8gb-graphics-card-triple-fans/p/N82E16814150918?Item=9SIA2W0KPW0442", "https://www.newegg.com/peladn-geforce-rtx-3070-8gb-graphics-card-double-fans/p/1FT-00EY-00033?Item=9SIBF3CKGM8878", "https://www.newegg.com/asrock-challenger-rx7700xt-cl-12go-radeon-rx-7700-xt-12gb-graphics-card-double-fans/p/N82E16814930109?Item=N82E16814930109", "https://www.newegg.com/msi-rtx-5060-ti-8g-ventus-2x-oc-plus-geforce-rtx-5060-ti-8gb-graphics-card-double-fans/p/N82E16814137965?Item=N82E16814137965", "https://www.newegg.com/onix-lumi-8346-00278-arc-b580-12gb-graphics-card-double-fans/p/N82E16814987002?Item=N82E16814987002", "https://www.newegg.com/yeston-rx6800xt-16gb-video-cards/p/27N-0042-000K2?Item=9SIC1B6KJ72422", "https://www.newegg.com/xfx-speedster-swft319-radeon-rx-6800-16gb-graphics-card-air-cooler/p/N82E16814150896?Item=9SIADFRKK95516", "https://www.newegg.com/asrock-challenger-rx9070-cl-16g-radeon-rx-9070-16gb-graphics-card-triple-fans/p/N82E16814930138?Item=N82E16814930138", "https://www.newegg.com/xfx-gaming-rx-79tmbabf9-radeon-rx-7900-xt-20gb-graphics-card-triple-fans/p/N82E16814150876?Item=9SIAD2CJS91325", "https://www.newegg.com/asrock-challenger-rx9070xt-cl-16g-radeon-rx-9070-xt-16gb-graphics-card-triple-fans/p/N82E16814930145?Item=N82E16814930145", "https://www.newegg.com/gigabyte-windforce-gv-n5060wf2oc-8gd-geforce-rtx-5060-8gb-graphics-card-double-fans/p/N82E16814932804?Item=N82E16814932804", "https://www.newegg.com/powercolor-amd-rx-7800-xt-16gb-gddr6-video-cards/p/27N-000F-00127?Item=9SIADFRKT71845", "https://www.newegg.com/msi-rtx-5070-12g-shadow-2x-oc-geforce-rtx-5070-12gb-graphics-card-double-fans/p/N82E16814137944?Item=N82E16814137944", "https://www.newegg.com/pny-technologies-inc-verto-vcg4070ts16tfxxpb1-o-geforce-rtx-4070-ti-super-16gb-graphics-card-triple-fans/p/N82E16814133866?Item=9SIBZW0KPC0012", "https://www.newegg.com/p/3GM-0001-00026?Item=9SIBM9SKJJ1953", "https://www.newegg.com/sapphire-tech-pure-7900gre-radeon-rx-7900-gre-16gb-graphics-card/p/27N-0005-00249?Item=9SIBTK0KED2286", "https://www.newegg.com/gigabyte-gv-n506tgaming-oc-16gd-geforce-rtx-5060-ti-16gb-graphics-card-triple-fans/p/N82E16814932787?Item=N82E16814932787", "https://www.newegg.com/p/3GM-0001-00020?Item=9SIBEWBKFH6662", "https://www.newegg.com/gigabyte-windforce-gv-n407swf3oc-12gd-geforce-rtx-4070-super-12gb-graphics-card/p/N82E16814932683?Item=9SIAYB7KNK8783", "https://www.newegg.com/gigabyte-windforce-gv-n4070wf3oc-12gd-geforce-rtx-4070-12gb-graphics-card-triple-fans/p/N82E16814932611?Item=9SIAYB7KNV1732", "https://www.newegg.com/gigabyte-windforce-oc-gv-n3060wf2oc-12gd-rev2-0-geforce-rtx-3060-12gb-graphics-card-double-fans/p/N82E16814932658?Item=N82E16814932658", "https://www.newegg.com/p/3GM-0001-00014?Item=9SIBEWBKEX2361", "https://www.newegg.com/asus-dual-rtx4060ti-o8g-evo-geforce-rtx-4060-ti-8gb-graphics-card-double-fans/p/1FT-000Y-00BP9?Item=9SIBP4YKF12912", "https://www.newegg.com/asrock-challenger-rx7600-cl-8go-radeon-rx-7600-8gb-graphics-card-double-fans/p/N82E16814930093?Item=N82E16814930093", "https://www.newegg.com/p/1FT-000A-00689?Item=9SIBW8HKC16375", "https://www.newegg.com/maxsun-icraft-geforce-rtx-3070-ti-8gb-graphics-card-triple-fans/p/1FT-009J-000C0?Item=9SIBTK0KEC0483", "https://www.newegg.com/sapphire-tech-pulse-11322-02-20g-radeon-rx-7900-xtx-24gb-graphics-card-triple-fans/p/N82E16814202429?Item=9SIBTK0KE62195", "https://www.newegg.com/gigabyte-gv-n507teagleoc-ice-16gd-geforce-rtx-5070-ti-16gb-graphics-card-triple-fans/p/N82E16814932769?Item=N82E16814932769", "https://www.newegg.com/asus-rog-strix-rtx4070ti-o12g-gaming-geforce-rtx-4070-ti-12gb-graphics-card-triple-fans/p/N82E16814126604?Item=9SIBTK0KEA5129", "https://www.newegg.com/asrock-oc-formula-rx6950xt-ocf-16g-radeon-rx-6950-xt-16gb-graphics-card-triple-fans/p/N82E16814930073?Item=9SIA4REKGJ9521", "https://www.newegg.com/asrock-challenger-b580-cl-12go-arc-b580-12gb-graphics-card-double-fans/p/N82E16814930131?Item=N82E16814930131", "https://www.newegg.com/msi-rtx-4060-ventus-2x-black-8g-oc-geforce-rtx-4060-8gb-graphics-card-double-fans/p/N82E16814137804?Item=9SIC1CZKK34982", "https://www.newegg.com/asrock-phantom-gaming-d-rx6900xt-pgd-16go-radeon-rx-6900-xt-16gb-graphics-card-triple-fans/p/N82E16814930052?Item=9SIAM3PKS99198", "https://www.newegg.com/zotac-gaming-geforce-rtx-5080-solid-core-oc-16gb-graphics-card-triple-fans/p/N82E16814500604?Item=N82E16814500604", "https://www.newegg.com/p/1FT-0009-000T9?Item=9SIB4VJKBJ4020", "https://www.newegg.com/nvidia-900-1g133-2530-rf2-geforce-rtx-3080-10gb-graphics-card/p/N82E16814132098?Item=9SIBTK0KFV5256", "https://www.newegg.com/xfx-speedster-rx-76tswftfp-radeon-rx-7600-xt-16gb-graphics-card-double-fans/p/N82E16814150889?Item=9SIADFRKFS4159", "https://www.newegg.com/asus-proart-rtx4080-o16g-geforce-rtx-4080-16gb-graphics-card-triple-fans/p/N82E16814126664?Item=9SIBTK0KEH7223", "https://www.newegg.com/zotac-zt-t20810a-10p-geforce-rtx-2080-ti-11gb-graphics-card-blower/p/N82E16814500451?Item=9SIB1PGFBY3314", "https://www.newegg.com/gigabyte-windforce-gv-n406twf2oc-16gd-geforce-rtx-4060-ti-16gb-graphics-card-double-fans/p/N82E16814932659?Item=9SIBTK0KD87787", "https://www.newegg.com/p/27N-0005-001X6?Item=9SIBTK0KEF3427", "https://www.newegg.com/asus-proart-rtx4080-16g-geforce-rtx-4080-16gb-video-cards-triple-fans/p/1FT-000Y-00C62?Item=9SIBP4YKN82567", "https://www.newegg.com/p/27N-000F-000K8?Item=9SIB4VJKN82370", "https://www.newegg.com/asrock-challenger-d-rx6700xt-cld-12g-radeon-rx-6700-xt-12gb-graphics-card-double-fans/p/N82E16814930056?Item=9SIBTK0KP53780", "https://www.newegg.com/asrock-phantom-gaming-d-rx6750xt-pgd-12go-radeon-rx-6750-xt-12gb-graphics-card-triple-fans/p/N82E16814930072?Item=9SIBTK0KP53782", "https://www.newegg.com/msi-rtx-3080-ventus-3x-plus-12g-lhr-geforce-rtx-3080-12gb-graphics-card-triple-fans/p/N82E16814137764?Item=9SIB4VJKC38253", "https://www.newegg.com/p/1FT-000M-003C4?Item=9SIB4VJKBY1610", "https://www.newegg.com/gigabyte-gv-r65xteagle-4gd-radeon-rx-6500-xt-4gb-graphics-card-windforce-2x/p/N82E16814932492?Item=9SIBTK0KF15218", "https://www.newegg.com/sapphire-tech-pulse-11321-02-20g-radeon-rx-6700-10gb-graphics-card-double-fans/p/N82E16814202424?Item=9SIB4VJKFK5654", "https://www.newegg.com/asus-dual-rtx2080-8g-evo-geforce-rtx-2080-8gb-graphics-card-double-fans/p/N82E16814126340?Item=9SIB4VJKBM6266", "https://www.newegg.com/gigabyte-gv-n2060wf2oc-6gd-r2-geforce-rtx-2060-6gb-graphics-card-windforce-2x/p/N82E16814932157?Item=9SIBW8HKBY1760", "https://www.newegg.com/msi-rtx-2080-super-ventus-oc-geforce-rtx-2080-super-8gb-graphics-card-double-fans/p/N82E16814137443?Item=9SIB4VJKBM6279", "https://www.newegg.com/pny-technologies-inc-geforce-rtx-2060-8gb-graphics-card/p/1FT-000P-003P0?Item=9SIB4VJKP93706", "https://www.newegg.com/msi-rtx-2070-super-gaming-z-trio-geforce-rtx-2070-super-8gb-graphics-card-triple-fans/p/N82E16814137487?Item=9SIB4VJKMG7528", "https://www.newegg.com/gigabyte-gv-n2070aorus-8gc-geforce-rtx-2070-8gb-graphics-card-windforce-stack/p/N82E16814932088?Item=9SIB4VJKP93808", "https://www.newegg.com/nvidia-900-1g1362-5100-00-geforce-rtx-3090-24gb-graphics-card/p/1FT-0004-00842?Item=9SIBTK0KFV5254", "https://www.newegg.com/zotac-rtx-5090-solid-oc-geforce-rtx-5090-32gb-graphics-card-triple-fans/p/N82E16814500639?Item=N82E16814500639", "https://www.newegg.com/p/1FT-001K-00FE5?Item=9SIB4VJKBN8280", "https://www.newegg.com/p/1FT-000A-00695?Item=9SIB4VJKFX4642"];
+
+const vendorColors = { NVIDIA: "#76b900", AMD: "#ED1C24", Intel: "#0071C5" };
+function barColor(cpf, vendor) {
+  const base = vendorColors[vendor] || "#888";
+  if (cpf < 8)  return base;
+  if (cpf < 12) return base + "cc";
+  return base + "88";
+}
+const colors = values.map((v, i) => barColor(v, vendors[i]));
+
+const dpr = window.devicePixelRatio || 1;
+const ROW_HEIGHT   = 22;
+const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
+const canvas  = document.getElementById('chart');
+const wrapper = canvas.parentElement;
+
+canvas.style.width   = '100%';
+canvas.style.height  = CHART_HEIGHT + 'px';
+wrapper.style.height = (CHART_HEIGHT + 40) + 'px';
+
+const logicalWidth = wrapper.clientWidth - 40;
+canvas.width  = logicalWidth * dpr;
+canvas.height = CHART_HEIGHT * dpr;
+const ctx = canvas.getContext('2d');
+ctx.scale(dpr, dpr);
+
+const zonePlugin = {
+  id: 'zones',
+  beforeDraw(chart) {
+    const { ctx, chartArea: { left, right, top, bottom }, scales: { x } } = chart;
+    [{from:0,to:8,color:'rgba(46,160,67,0.07)'},{from:8,to:12,color:'rgba(210,153,34,0.06)'},{from:12,to:30,color:'rgba(248,81,73,0.06)'}]
+    .forEach(z => {
+      const x1 = Math.max(x.getPixelForValue(z.from), left);
+      const x2 = Math.min(x.getPixelForValue(z.to), right);
+      ctx.fillStyle = z.color;
+      ctx.fillRect(x1, top, x2 - x1, bottom - top);
+    });
+    [8,12].forEach(v => {
+      const px = x.getPixelForValue(v);
+      ctx.strokeStyle = 'rgba(33,38,45,0.9)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5,4]);
+      ctx.beginPath(); ctx.moveTo(px, top); ctx.lineTo(px, bottom); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+};
+
+const chart = new Chart(ctx, {
+  type: 'bar',
+  data: { labels, datasets: [{ data: values, backgroundColor: colors, borderRadius: 3, borderSkipped: false }] },
+  options: {
+    indexAxis: 'y',
+    responsive: false,
+    maintainAspectRatio: false,
+    devicePixelRatio: dpr,
+    animation: { duration: 700, easing: 'easeOutQuart' },
+    layout: { padding: { left: 8, right: 36, top: 4, bottom: 4 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#161b22', borderColor: '#21262d', borderWidth: 1,
+        titleColor: '#e6edf3', bodyColor: '#8b949e',
+        titleFont: { family: 'JetBrains Mono', size: 13, weight: '600' },
+        bodyFont: { family: 'Inter', size: 12 },
+        padding: 12,
+        callbacks: {
+          title: ctx => ctx[0].label,
+          label: ctx => {
+            const cpf = ctx.parsed.x;
+            const zone = cpf < 8 ? '✓ GREAT VALUE' : cpf < 12 ? '~ FAIR VALUE' : '✗ POOR VALUE';
+            return [`$${cpf.toFixed(2)} per FPS  ·  ${zone}`, 'Click to view on Newegg →'];
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        min: 0, max: 29,
+        grid: { color: '#21262d', lineWidth: 0.8 },
+        ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 }, callback: v => `$${v}` },
+        title: { display: true, text: 'Cost Per FPS ($/FPS) — Lower is Better', color: '#8b949e', font: { family: 'Inter', size: 12 }, padding: { top: 10 } },
+        border: { color: '#21262d' }
+      },
+      y: {
+        grid: { display: false },
+        border: { color: '#21262d' },
+        afterFit(scale) { scale.width = 155; },
+        ticks: { color: '#58a6ff', font: { family: 'Inter', size: 12 }, autoSkip: false, maxRotation: 0, padding: 8 }
+      }
+    },
+    onClick(event, elements) {
+      if (elements.length > 0) {
+        const idx = elements[0].index;
+        if (links[idx]) window.open(links[idx], '_blank');
+      }
+    },
+    onHover(event, elements) {
+      event.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
+    }
+  },
+  plugins: [zonePlugin]
+});
+
+canvas.addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const yAxis = chart.scales.y;
+  if (clickX < yAxis.right) {
+    const clickY = e.clientY - rect.top;
+    for (let i = 0; i < labels.length; i++) {
+      const tickY = yAxis.getPixelForValue(i);
+      if (Math.abs(clickY - tickY) < 11 && links[i]) {
+        window.open(links[i], '_blank');
+        break;
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
