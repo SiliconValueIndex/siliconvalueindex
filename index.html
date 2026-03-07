@@ -706,12 +706,6 @@ const chart = new Chart(ctx, {
         ticks: { color: '#58a6ff', font: { family: 'JetBrains Mono', size: 13 }, autoSkip: false, maxRotation: 0, padding: 8 }
       }
     },
-    onClick(event, elements) {
-      if (elements.length > 0) {
-        const idx = elements[0].index;
-        if (links[idx]) window.open(links[idx], '_blank');
-      }
-    },
     onHover(event, elements) {
       event.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
     }
@@ -721,45 +715,51 @@ const chart = new Chart(ctx, {
 
 // Desktop: click navigates directly
 // Mobile: first tap = tooltip, second tap = navigate
-// Detect if last interaction was touch (reliable across DevTools + real devices)
-let lastInteractionWasTouch = false;
-canvas.addEventListener('touchstart', () => { lastInteractionWasTouch = true; }, { passive: true });
-canvas.addEventListener('mousemove', () => { lastInteractionWasTouch = false; }, { passive: true });
-
-const isTouchDevice = () => lastInteractionWasTouch;
+// Reliable touch vs mouse detection using pointerType
+// Remove old touchstart/mousemove listeners — pointerType handles it natively
 let lastTappedIndex = -1;
 let lastTapTime = 0;
 
 canvas.addEventListener('click', function(e) {
+  const isTouch = e.pointerType === 'touch' || e.pointerType === 'pen';
+
+  // For hit detection, account for canvas scroll offset and DPR scaling
+  const scrollWrap = canvas.closest('.chart-scroll-wrap') || canvas.parentElement;
+  const rect = canvas.getBoundingClientRect();
+  
+  // Canvas logical coordinates (accounting for scrolled container)
+  const scaleX = (logicalWidth * dpr) / rect.width;
+  const scaleY = (CHART_HEIGHT * dpr) / rect.height;
+  const canvasX = (e.clientX - rect.left) * scaleX / dpr;
+  const canvasY = (e.clientY - rect.top)  * scaleY / dpr;
+
+  // Get elements using corrected coordinates
   const elements = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
 
-  // Label area click (desktop only)
-  if (elements.length === 0 && !isTouchDevice()) {
-    const rect = this.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const clickY = e.clientY - rect.top;
-    const yAxis = chart.scales.y;
-    if (clickX < yAxis.right) {
-      for (let i = 0; i < labels.length; i++) {
-        const tickY = yAxis.getPixelForValue(i);
-        if (Math.abs(clickY - tickY) < 11 && links[i]) {
-          window.open(links[i], '_blank');
-          return;
+  if (elements.length === 0) {
+    // Label area — desktop only
+    if (!isTouch) {
+      const yAxis = chart.scales.y;
+      if (canvasX < yAxis.right) {
+        for (let i = 0; i < labels.length; i++) {
+          const tickY = yAxis.getPixelForValue(i);
+          if (Math.abs(canvasY - tickY) < 11 && links[i]) {
+            window.open(links[i], '_blank');
+            return;
+          }
         }
       }
     }
     return;
   }
 
-  if (elements.length === 0) return;
   const idx = elements[0].index;
 
-  if (!isTouchDevice()) {
-    // Desktop — navigate immediately
+  if (!isTouch) {
+    // Desktop — single click navigates
     if (links[idx]) window.open(links[idx], '_blank');
   } else {
-    // Mobile — first tap shows tooltip (Chart.js handles that),
-    // second tap on same bar within 2s navigates
+    // Mobile — first tap shows tooltip, second tap navigates
     const now = Date.now();
     if (idx === lastTappedIndex && now - lastTapTime < 2000) {
       if (links[idx]) window.open(links[idx], '_blank');
