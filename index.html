@@ -463,7 +463,7 @@ footer a:hover { color: var(--accent); }
     padding: 0;
   }
   .chart-panel {
-    min-width: 540px;
+    min-width: 800px;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -621,7 +621,7 @@ const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
 const canvas  = document.getElementById('chart');
 const wrapper = canvas.parentElement;
 
-const MOBILE_MIN = 580;
+const MOBILE_MIN = 800;
 const logicalWidth = Math.max(wrapper.clientWidth, MOBILE_MIN);
 canvas.style.width   = logicalWidth + 'px';
 canvas.style.height  = CHART_HEIGHT + 'px';
