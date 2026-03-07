@@ -726,11 +726,12 @@ canvas.addEventListener('click', function(e) {
   const isTouch = e.pointerType === 'touch' || e.pointerType === 'pen' || recentTouch;
   const rect = this.getBoundingClientRect();
 
-  // Convert click to logical canvas coordinates
-  const canvasY = (e.clientY - rect.top) * (CHART_HEIGHT / rect.height);
-  const canvasX = (e.clientX - rect.left) * (logicalWidth / rect.width);
+  // Use raw viewport-relative coordinates — no scaling needed since
+  // Chart.js getPixelForValue() also returns viewport-relative CSS pixels
+  const canvasY = e.clientY - rect.top;
+  const canvasX = e.clientX - rect.left;
 
-  // Find which GPU row was tapped using y-axis scale
+  // Find which GPU row was tapped by matching Y to each row's pixel position
   const yAxis = chart.scales.y;
   let tappedIdx = -1;
   for (let i = 0; i < labels.length; i++) {
@@ -753,7 +754,6 @@ canvas.addEventListener('click', function(e) {
       if (links[tappedIdx]) window.open(links[tappedIdx], '_blank');
       lastTappedIndex = -1;
     } else {
-      // Manually trigger tooltip at this position
       chart.tooltip.setActiveElements([{ datasetIndex: 0, index: tappedIdx }], { x: canvasX, y: canvasY });
       chart.update();
       lastTappedIndex = tappedIdx;
