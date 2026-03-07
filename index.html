@@ -438,6 +438,47 @@ footer a:hover { color: var(--accent); }
 .hero h1   { animation: fadeUp 0.5s 0.1s ease both; }
 .hero-sub  { animation: fadeUp 0.5s 0.2s ease both; }
 .stat-bar  { animation: fadeUp 0.5s 0.3s ease both; }
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  nav { padding: 0 16px; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 0.68rem; }
+
+  .hero { padding: 48px 16px 40px; }
+  .hero-sub { font-size: 0.85rem; }
+
+  .stat-bar { gap: 2px; }
+  .stat-block { min-width: calc(50% - 2px); flex: none; }
+  .stat-block:first-child { border-radius: 8px 0 0 0; }
+  .stat-block:last-child  { border-radius: 0 0 8px 0; flex: 1 1 100%; }
+  .stat-num { font-size: 1.25rem; }
+
+  .section { padding: 0 16px 48px; }
+
+  .chart-scroll-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -16px;
+    padding: 0;
+  }
+  .chart-panel {
+    min-width: 540px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .chart-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  .method-grid { grid-template-columns: 1fr; gap: 2px; }
+  .method-card:first-child { border-radius: 8px 8px 0 0; }
+  .method-card:last-child  { border-radius: 0 0 8px 8px; }
+
+  .cta-bar { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+  .btn-github { width: 100%; justify-content: center; }
+
+  footer { padding: 20px 16px; flex-direction: column; align-items: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -488,6 +529,7 @@ footer a:hover { color: var(--accent); }
   <div class="section-label">01 — Live Rankings</div>
   <div class="section-title">Cost Per FPS — March 2026</div>
 
+  <div class="chart-scroll-wrap">
   <div class="chart-panel">
     <div class="chart-meta">
       <div class="chart-meta-left">
@@ -507,10 +549,8 @@ footer a:hover { color: var(--accent); }
     </div>
     <div class="click-hint">Click a <span>GPU name</span> or bar to open its Newegg listing</div>
     <canvas id="chart"></canvas>
-  </div>
-</div>
-
-<!-- ── Methodology ── -->
+  </div><!-- /chart-panel -->
+  </div><!-- /chart-scroll-wrap -->
 <div class="section" id="methodology">
   <div class="section-label">02 — How It Works</div>
   <div class="section-title">The Methodology</div>
