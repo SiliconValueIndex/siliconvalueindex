@@ -8,8 +8,6 @@
 <meta property="og:title" content="SiliconValueIndex — GPU Value Rankings">
 <meta property="og:description" content="59 GPUs ranked by cost per FPS at 1440p Ultra. Find the best value GPU for your build.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -463,6 +461,7 @@ canvas { -webkit-tap-highlight-color: transparent; }
     -webkit-overflow-scrolling: touch;
     margin: 0 -16px;
     padding: 0;
+    touch-action: pan-x; /* single finger scrolls horizontally, vertical goes to page */
   }
   .chart-panel {
     min-width: 960px;
@@ -549,7 +548,7 @@ canvas { -webkit-tap-highlight-color: transparent; }
         <div class="vleg"><div class="vdot" style="background:#0071C5"></div>Intel</div>
       </div>
     </div>
-    <div class="click-hint">Click a <span>GPU name</span> or bar to open its Newegg listing &nbsp;·&nbsp; <span style="color:#58a6ff;cursor:pointer" onclick="chart.resetZoom()">Reset zoom ↺</span></div>
+    <div class="click-hint">Click a <span>GPU name</span> or bar to open its Newegg listing</div>
     <canvas id="chart"></canvas>
   </div><!-- /chart-panel -->
   </div><!-- /chart-scroll-wrap -->
@@ -674,14 +673,6 @@ const chart = new Chart(ctx, {
     layout: { padding: { left: 8, right: 48, top: 4, bottom: 4 } },
     plugins: {
       legend: { display: false },
-      zoom: {
-        zoom: {
-          pinch: { enabled: true },
-          wheel: { enabled: false },
-          mode: 'y',
-        },
-        pan: { enabled: false }, // keep native single-finger scroll
-      },
       tooltip: {
         position: 'tap',
         backgroundColor: '#161b22', borderColor: '#21262d', borderWidth: 1,
