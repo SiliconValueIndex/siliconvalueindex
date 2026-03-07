@@ -621,11 +621,12 @@ const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
 const canvas  = document.getElementById('chart');
 const wrapper = canvas.parentElement;
 
-canvas.style.width   = '100%';
+const MOBILE_MIN = 580;
+const logicalWidth = Math.max(wrapper.clientWidth, MOBILE_MIN);
+canvas.style.width   = logicalWidth + 'px';
 canvas.style.height  = CHART_HEIGHT + 'px';
 wrapper.style.paddingBottom = '24px';
 
-const logicalWidth = wrapper.clientWidth;
 canvas.width  = logicalWidth * dpr;
 canvas.height = CHART_HEIGHT * dpr;
 const ctx = canvas.getContext('2d');
