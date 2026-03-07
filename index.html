@@ -8,6 +8,8 @@
 <meta property="og:title" content="SiliconValueIndex — GPU Value Rankings">
 <meta property="og:description" content="59 GPUs ranked by cost per FPS at 1440p Ultra. Find the best value GPU for your build.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -547,7 +549,7 @@ canvas { -webkit-tap-highlight-color: transparent; }
         <div class="vleg"><div class="vdot" style="background:#0071C5"></div>Intel</div>
       </div>
     </div>
-    <div class="click-hint">Click a <span>GPU name</span> or bar to open its Newegg listing</div>
+    <div class="click-hint">Click a <span>GPU name</span> or bar to open its Newegg listing &nbsp;·&nbsp; <span style="cursor:pointer" onclick="chart.resetZoom()">Reset zoom ↺</span></div>
     <canvas id="chart"></canvas>
   </div><!-- /chart-panel -->
   </div><!-- /chart-scroll-wrap -->
@@ -665,6 +667,20 @@ const chart = new Chart(ctx, {
     animation: { duration: 700, easing: 'easeOutQuart' },
     layout: { padding: { left: 8, right: 48, top: 4, bottom: 4 } },
     plugins: {
+      zoom: {
+          zoom: {
+            wheel: { enabled: true },
+            pinch: { enabled: true },
+            mode: 'y',
+          },
+          pan: {
+            enabled: true,
+            mode: 'y',
+          },
+          limits: {
+            y: { min: 'original', max: 'original', minRange: 5 }
+          }
+        },
       legend: { display: false },
       tooltip: {
         backgroundColor: '#161b22', borderColor: '#21262d', borderWidth: 1,
