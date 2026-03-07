@@ -615,22 +615,21 @@ function barColor(cpf, vendor) {
 }
 const colors = values.map((v, i) => barColor(v, vendors[i]));
 
-const dpr = Math.min(window.devicePixelRatio || 1, 2); // cap at 2x — 3x crashes mobile
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
 const ROW_HEIGHT   = 26;
 const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
 const canvas  = document.getElementById('chart');
 const wrapper = canvas.parentElement;
 
+// Set dimensions via CSS only — Chart.js reads these and owns the canvas pixel dimensions
 const MOBILE_MIN = window.innerWidth < 768 ? 700 : 960;
 const logicalWidth = Math.max(wrapper.clientWidth, MOBILE_MIN);
 canvas.style.width   = logicalWidth + 'px';
 canvas.style.height  = CHART_HEIGHT + 'px';
 wrapper.style.paddingBottom = '24px';
 
-canvas.width  = logicalWidth * dpr;
-canvas.height = CHART_HEIGHT * dpr;
+// DO NOT set canvas.width/height manually — let Chart.js do it via responsive sizing
 const ctx = canvas.getContext('2d');
-// Do NOT ctx.scale() here — Chart.js handles DPR via devicePixelRatio option below
 const fps    = [59.4,54.7,60.6,56.0,42.6,69.7,62.8,86.9,92.0,98.3,45.7,69.0,81.2,116.9,35.3,60.6,56.0,32.1,82.7,76.6,47.4,43.9,51.6,35.0,55.6,58.7,109.3,101.2,88.1,68.5,34.5,41.9,73.1,111.7,47.2,64.4,41.7,103.7,55.3,47.9,37.1,103.8,39.7,40.9,40.5,50.9,62.6,19.5,40.8,42.5,38.9,38.5,37.4,36.2,34.7,28.7,14.3,28.5,26.5];
 const prices = [345.99,325.00,399.99,379.99,289.99,499.00,449.99,629.99,679.99,729.99,349.99,549.99,649.99,943.77,299.00,519.99,494.99,289.99,762.99,735.00,459.99,429.99,512.99,349.99,562.99,603.99,1135.49,1059.99,937.99,733.99,372.99,452.55,813.04,1249.99,533.25,729.99,499.99,1283.31,722.99,638.99,506.86,1499.99,594.00,616.13,615.99,775.49,980.63,306.73,644.99,693.96,647.52,662.91,646.59,624.55,641.99,579.99,359.99,504.99,719.99];
 
@@ -663,7 +662,6 @@ const chart = new Chart(ctx, {
     indexAxis: 'y',
     responsive: false,
     maintainAspectRatio: false,
-    devicePixelRatio: dpr,
     animation: { duration: 700, easing: 'easeOutQuart' },
     layout: { padding: { left: 8, right: 48, top: 4, bottom: 4 } },
     plugins: {
@@ -724,30 +722,23 @@ let lastTapTime = 0;
 
 canvas.addEventListener('click', function(e) {
   const isTouch = e.pointerType === 'touch' || e.pointerType === 'pen' || recentTouch;
-  const rect = this.getBoundingClientRect();
 
-  const canvasY = e.clientY - rect.top;
-  const canvasX = e.clientX - rect.left;
-
-  // Calculate row index directly from chart area — no scale API, pure math
-  const chartTop    = chart.chartArea.top;
-  const chartBottom = chart.chartArea.bottom;
-  const rowH        = (chartBottom - chartTop) / labels.length;
-  const tappedIdx   = Math.floor((canvasY - chartTop) / rowH);
-
-  if (tappedIdx < 0 || tappedIdx >= labels.length) return;
+  // Chart.js owns the coordinate system so getElementsAtEventForMode is accurate
+  const elements = chart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, false);
+  if (elements.length === 0) return;
+  const idx = elements[0].index;
 
   if (!isTouch) {
-    if (links[tappedIdx]) window.open(links[tappedIdx], '_blank');
+    // Desktop — single click navigates
+    if (links[idx]) window.open(links[idx], '_blank');
   } else {
+    // Mobile — first tap shows tooltip, second tap within 2s navigates
     const now = Date.now();
-    if (tappedIdx === lastTappedIndex && now - lastTapTime < 2000) {
-      if (links[tappedIdx]) window.open(links[tappedIdx], '_blank');
+    if (idx === lastTappedIndex && now - lastTapTime < 2000) {
+      if (links[idx]) window.open(links[idx], '_blank');
       lastTappedIndex = -1;
     } else {
-      chart.tooltip.setActiveElements([{ datasetIndex: 0, index: tappedIdx }], { x: canvasX, y: canvasY });
-      chart.update();
-      lastTappedIndex = tappedIdx;
+      lastTappedIndex = idx;
       lastTapTime = now;
     }
   }
