@@ -724,50 +724,39 @@ let lastTapTime = 0;
 
 canvas.addEventListener('click', function(e) {
   const isTouch = e.pointerType === 'touch' || e.pointerType === 'pen' || recentTouch;
+  const rect = this.getBoundingClientRect();
 
-  // For hit detection, account for canvas scroll offset and DPR scaling
-  const scrollWrap = canvas.closest('.chart-scroll-wrap') || canvas.parentElement;
-  const rect = canvas.getBoundingClientRect();
-  
-  // Canvas logical coordinates (accounting for scrolled container)
-  const scaleX = (logicalWidth * dpr) / rect.width;
-  const scaleY = (CHART_HEIGHT * dpr) / rect.height;
-  const canvasX = (e.clientX - rect.left) * scaleX / dpr;
-  const canvasY = (e.clientY - rect.top)  * scaleY / dpr;
+  // Convert click to logical canvas coordinates
+  const canvasY = (e.clientY - rect.top) * (CHART_HEIGHT / rect.height);
+  const canvasX = (e.clientX - rect.left) * (logicalWidth / rect.width);
 
-  // Get elements using corrected coordinates
-  const elements = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
-
-  if (elements.length === 0) {
-    // Label area — desktop only
-    if (!isTouch) {
-      const yAxis = chart.scales.y;
-      if (canvasX < yAxis.right) {
-        for (let i = 0; i < labels.length; i++) {
-          const tickY = yAxis.getPixelForValue(i);
-          if (Math.abs(canvasY - tickY) < 11 && links[i]) {
-            window.open(links[i], '_blank');
-            return;
-          }
-        }
-      }
+  // Find which GPU row was tapped using y-axis scale
+  const yAxis = chart.scales.y;
+  let tappedIdx = -1;
+  for (let i = 0; i < labels.length; i++) {
+    const tickY = yAxis.getPixelForValue(i);
+    if (Math.abs(canvasY - tickY) < ROW_HEIGHT / 2) {
+      tappedIdx = i;
+      break;
     }
-    return;
   }
 
-  const idx = elements[0].index;
+  if (tappedIdx === -1) return;
 
   if (!isTouch) {
     // Desktop — single click navigates
-    if (links[idx]) window.open(links[idx], '_blank');
+    if (links[tappedIdx]) window.open(links[tappedIdx], '_blank');
   } else {
     // Mobile — first tap shows tooltip, second tap navigates
     const now = Date.now();
-    if (idx === lastTappedIndex && now - lastTapTime < 2000) {
-      if (links[idx]) window.open(links[idx], '_blank');
+    if (tappedIdx === lastTappedIndex && now - lastTapTime < 2000) {
+      if (links[tappedIdx]) window.open(links[tappedIdx], '_blank');
       lastTappedIndex = -1;
     } else {
-      lastTappedIndex = idx;
+      // Manually trigger tooltip at this position
+      chart.tooltip.setActiveElements([{ datasetIndex: 0, index: tappedIdx }], { x: canvasX, y: canvasY });
+      chart.update();
+      lastTappedIndex = tappedIdx;
       lastTapTime = now;
     }
   }
