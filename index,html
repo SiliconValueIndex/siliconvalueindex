@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SiliconValueIndex — GPU Value Rankings</title>
+<meta name="description" content="Data-driven GPU value rankings. Cost per normalized FPS across 59 GPUs at 1440p. Updated monthly.">
+<meta property="og:title" content="SiliconValueIndex — GPU Value Rankings">
+<meta property="og:description" content="59 GPUs ranked by cost per FPS at 1440p Ultra. Find the best value GPU for your build.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0d12;
+  --bg2: #0d1117;
+  --panel: #161b22;
+  --panel2: #1c2128;
+  --border: #21262d;
+  --border2: #30363d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --dim: #484f58;
+  --accent: #58a6ff;
+  --accent2: #1f6feb;
+  --good: #2ea043;
+  --fair: #d29922;
+  --poor: #f85149;
+  --nvidia: #76b900;
+  --amd: #ED1C24;
+  --intel: #0071C5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Noise texture overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ── Nav ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,13,18,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-brand span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 80px 32px 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-tag::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #58a6ff, #2ea043);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+/* ── Stat bar ── */
+.stat-bar {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+
+.stat-block {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 16px 24px;
+  flex: 1;
+  min-width: 130px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.stat-block:first-child { border-radius: 8px 0 0 8px; }
+.stat-block:last-child  { border-radius: 0 8px 8px 0; }
+.stat-block:hover { border-color: var(--border2); }
+
+.stat-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.stat-block:nth-child(1)::before { background: var(--good); }
+.stat-block:nth-child(2)::before { background: var(--poor); }
+.stat-block:nth-child(3)::before { background: var(--accent); }
+.stat-block:nth-child(4)::before { background: var(--fair); }
+
+.stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Section headers ── */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px 72px;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Chart panel ── */
+.chart-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 24px 24px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--good), var(--fair), var(--poor));
+}
+
+.chart-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0 24px 20px 24px;
+}
+
+.chart-meta-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.chart-meta-left strong { color: var(--text); display: block; font-size: 0.95rem; margin-bottom: 2px; }
+
+.zone-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.pill {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.pill-good { background: rgba(46,160,67,0.15); color: var(--good); border: 1px solid rgba(46,160,67,0.3); }
+.pill-fair { background: rgba(210,153,34,0.15); color: var(--fair); border: 1px solid rgba(210,153,34,0.3); }
+.pill-poor { background: rgba(248,81,73,0.15); color: var(--poor); border: 1px solid rgba(248,81,73,0.3); }
+
+.vendor-legend { display: flex; gap: 16px; align-items: center; }
+.vleg { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+.vdot { width: 10px; height: 10px; border-radius: 2px; }
+
+.click-hint {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--dim);
+  padding: 0 0 12px 24px;
+}
+.click-hint span { color: var(--accent); }
+
+/* ── Methodology ── */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+}
+
+.method-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 28px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.method-card:first-child { border-radius: 8px 0 0 8px; }
+.method-card:last-child  { border-radius: 0 8px 8px 0; }
+.method-card:hover { background: var(--panel2); border-color: var(--border2); }
+
+.method-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.method-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.method-card p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.method-card code {
+  background: var(--bg2);
+  color: var(--accent);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+}
+
+/* ── GitHub CTA ── */
+.cta-bar {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cta-text h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.cta-text p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.btn-github {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-github:hover {
+  background: var(--accent2);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-github svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* ── Footer ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--dim);
+}
+
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-tag  { animation: fadeUp 0.5s ease both; }
+.hero h1   { animation: fadeUp 0.5s 0.1s ease both; }
+.hero-sub  { animation: fadeUp 0.5s 0.2s ease both; }
+.stat-bar  { animation: fadeUp 0.5s 0.3s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">SILICON<span>VALUE</span>INDEX</a>
+  <ul class="nav-links">
+    <li><a href="#rankings">RANKINGS</a></li>
+    <li><a href="#methodology">METHODOLOGY</a></li>
+    <li><a href="https://github.com/SiliconValueIndex/siliconvalueindex" target="_blank">GITHUB</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">GPU Market Intelligence · March 2026</div>
+  <h1>Stop guessing.<br><em>Start scoring.</em></h1>
+  <p class="hero-sub">
+    Every GPU ranked by cost per normalized FPS — combining real Newegg prices
+    with benchmarks normalized across generations. No opinion, just math.
+  </p>
+
+  <div class="stat-bar">
+    <div class="stat-block">
+      <div class="stat-num">$5.82</div>
+      <div class="stat-desc">Best value · RX 9060 XT</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">$26.82</div>
+      <div class="stat-desc">Worst value · RTX 4090</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">59</div>
+      <div class="stat-desc">GPUs ranked</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">4.6×</div>
+      <div class="stat-desc">Value spread</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">1440p</div>
+      <div class="stat-desc">Ultra · primary tier</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Rankings ── -->
+<div class="section" id="rankings">
+  <div class="section-label">01 — Live Rankings</div>
+  <div class="section-title">Cost Per FPS — March 2026</div>
+
+  <div class="chart-panel">
+    <div class="chart-meta">
+      <div class="chart-meta-left">
+        <strong>GPU Value Index</strong>
+        59 GPUs · 1440p Ultra · Prices via Newegg · Updated 2026-03-06
+      </div>
+      <div class="zone-pills">
+        <span class="pill pill-good">GREAT &lt;$8</span>
+        <span class="pill pill-fair">FAIR $8–$12</span>
+        <span class="pill pill-poor">POOR &gt;$12</span>
+      </div>
+      <div class="vendor-legend">
+        <div class="vleg"><div class="vdot" style="background:#76b900"></div>NVIDIA</div>
+        <div class="vleg"><div class="vdot" style="background:#ED1C24"></div>AMD</div>
+        <div class="vleg"><div class="vdot" style="background:#0071C5"></div>Intel</div>
+      </div>
+    </div>
+    <div class="click-hint">Click a <span>GPU name</span> or bar to open its Newegg listing</div>
+    <canvas id="chart"></canvas>
+  </div>
+</div>
+
+<!-- ── Methodology ── -->
+<div class="section" id="methodology">
+  <div class="section-label">02 — How It Works</div>
+  <div class="section-title">The Methodology</div>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="method-num">STEP 01</div>
+      <h3>Benchmark Collection</h3>
+      <p>Raw FPS data sourced from Tom's Hardware GPU Hierarchy at <code>1440p Ultra</code> settings — the same test suite, the same games, every GPU.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">STEP 02</div>
+      <h3>Cross-Generation Normalization</h3>
+      <p>Older benchmarks used a lighter test suite. We compute a <code>scale factor (~0.703)</code> from 20+ GPUs that appear in both suites, then normalize legacy scores to modern equivalents.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">STEP 03</div>
+      <h3>Live Pricing</h3>
+      <p>Prices pulled from Newegg monthly — lowest available non-OC model from a reputable AIB, <code>new condition</code> only. No gray market. No cherry-picked sales.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">STEP 04</div>
+      <h3>Cost Per FPS</h3>
+      <p>Simple division: <code>price ÷ normalized FPS</code>. Lower is better. No black-box weighting — the number means exactly what it says.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── GitHub CTA ── -->
+<div class="section">
+  <div class="cta-bar">
+    <div class="cta-text">
+      <h3>Fully open source</h3>
+      <p>Pipeline, data, and methodology — all public on GitHub. See exactly how the numbers are made.</p>
+    </div>
+    <a href="https://github.com/SiliconValueIndex/siliconvalueindex" target="_blank" class="btn-github">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      View on GitHub
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 SiliconValueIndex · Benchmarks via <a href="https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html" target="_blank">Tom's Hardware GPU Hierarchy</a></p>
+  <p>Prices updated monthly · <a href="https://github.com/SiliconValueIndex/siliconvalueindex" target="_blank">github.com/SiliconValueIndex</a></p>
+</footer>
+
+<script>
+const labels = ["RX 9060 XT","RTX 3070","RX 7700 XT","RTX 5060 Ti 8GB","Intel Arc B580","RX 6800 XT","RX 6800","RX 9070","RX 7900 XT","RX 9070 XT","RTX 5060","RX 7800 XT","RTX 5070","RTX 4070 Ti Super","Intel Arc B570","RX 7900 GRE","RTX 5060 Ti 16GB","Intel Arc A750","RTX 4070 Super","RTX 4070","RTX 3060","Intel Arc A770","RTX 4060 Ti 8GB","RX 7600","RTX 3060 Ti","RTX 3070 Ti","RX 7900 XTX","RTX 5070 Ti","RTX 4070 Ti","RX 6950 XT","Intel Arc A580","RTX 4060","RX 6900 XT","RTX 5080","GTX 1080 Ti","RTX 3080","RX 7600 XT","RTX 4080","RTX 2080 Ti","RTX 4060 Ti 16GB","RX 6600","RTX 4080 Super","RX 6600 XT","RX 6700 XT","RX 6750 XT","RTX 3080 12GB","RTX 3080 Ti","RX 6500 XT","RX 6700 10GB","RTX 2080","RTX 2060","RTX 2080 Super","RTX 2060 Super","RTX 2070 Super","RTX 2070","RTX 3090","RTX 5090","RTX 3090 Ti","RTX 4090"];
+const values = [5.825,5.941,6.6,6.786,6.807,7.159,7.165,7.25,7.391,7.426,7.658,7.971,8.005,8.073,8.47,8.574,8.828,9.029,9.222,9.59,9.713,9.782,9.919,10.0,10.122,10.274,10.39,10.474,10.642,10.71,10.791,10.797,11.128,11.191,11.303,11.313,11.99,12.375,13.064,13.314,13.651,14.178,14.959,15.062,15.203,15.208,15.663,15.718,15.814,16.292,16.631,17.183,17.294,17.696,18.493,20.244,25.175,25.195,26.817];
+const vendors = ["AMD","NVIDIA","AMD","NVIDIA","Intel","AMD","AMD","AMD","AMD","AMD","NVIDIA","AMD","NVIDIA","NVIDIA","Intel","AMD","NVIDIA","Intel","NVIDIA","NVIDIA","NVIDIA","Intel","NVIDIA","AMD","NVIDIA","NVIDIA","AMD","NVIDIA","NVIDIA","AMD","Intel","NVIDIA","AMD","NVIDIA","NVIDIA","NVIDIA","AMD","NVIDIA","NVIDIA","NVIDIA","AMD","NVIDIA","AMD","AMD","AMD","NVIDIA","NVIDIA","AMD","AMD","NVIDIA","NVIDIA","NVIDIA","NVIDIA","NVIDIA","NVIDIA","NVIDIA","NVIDIA","NVIDIA","NVIDIA"];
+const links = ["https://www.newegg.com/xfx-swift-rx-9060-xt-oc-triple-fan-radeon-rx-9060-xt-8gb-graphics-card-triple-fans/p/N82E16814150918","https://www.newegg.com/peladn-geforce-rtx-3070-8gb-graphics-card-double-fans/p/1FT-00EY-00033","https://www.newegg.com/asrock-challenger-rx7700xt-cl-12go-radeon-rx-7700-xt-12gb-graphics-card-double-fans/p/N82E16814930109","https://www.newegg.com/msi-rtx-5060-ti-8g-ventus-2x-oc-plus-geforce-rtx-5060-ti-8gb-graphics-card-double-fans/p/N82E16814137965","https://www.newegg.com/onix-lumi-8346-00278-arc-b580-12gb-graphics-card-double-fans/p/N82E16814987002","https://www.newegg.com/yeston-rx6800xt-16gb-video-cards/p/27N-0042-000K2","https://www.newegg.com/xfx-speedster-swft319-radeon-rx-6800-16gb-graphics-card-air-cooler/p/N82E16814150896","https://www.newegg.com/asrock-challenger-rx9070-cl-16g-radeon-rx-9070-16gb-graphics-card-triple-fans/p/N82E16814930138","https://www.newegg.com/xfx-gaming-rx-79tmbabf9-radeon-rx-7900-xt-20gb-graphics-card-triple-fans/p/N82E16814150876","https://www.newegg.com/asrock-challenger-rx9070xt-cl-16g-radeon-rx-9070-xt-16gb-graphics-card-triple-fans/p/N82E16814930145","https://www.newegg.com/gigabyte-windforce-gv-n5060wf2oc-8gd-geforce-rtx-5060-8gb-graphics-card-double-fans/p/N82E16814932804","https://www.newegg.com/powercolor-amd-rx-7800-xt-16gb-gddr6-video-cards/p/27N-000F-00127","https://www.newegg.com/msi-rtx-5070-12g-shadow-2x-oc-geforce-rtx-5070-12gb-graphics-card-double-fans/p/N82E16814137944","https://www.newegg.com/pny-technologies-inc-verto-vcg4070ts16tfxxpb1-o-geforce-rtx-4070-ti-super-16gb-graphics-card-triple-fans/p/N82E16814133866","https://www.newegg.com/p/3GM-0001-00026","https://www.newegg.com/sapphire-tech-pure-7900gre-radeon-rx-7900-gre-16gb-graphics-card/p/27N-0005-00249","https://www.newegg.com/gigabyte-gv-n506tgaming-oc-16gd-geforce-rtx-5060-ti-16gb-graphics-card-triple-fans/p/N82E16814932787","https://www.newegg.com/p/3GM-0001-00020","https://www.newegg.com/gigabyte-windforce-gv-n407swf3oc-12gd-geforce-rtx-4070-super-12gb-graphics-card/p/N82E16814932683","https://www.newegg.com/gigabyte-windforce-gv-n4070wf3oc-12gd-geforce-rtx-4070-12gb-graphics-card-triple-fans/p/N82E16814932611","https://www.newegg.com/gigabyte-windforce-oc-gv-n3060wf2oc-12gd-rev2-0-geforce-rtx-3060-12gb-graphics-card-double-fans/p/N82E16814932658","https://www.newegg.com/p/3GM-0001-00014","https://www.newegg.com/asus-dual-rtx4060ti-o8g-evo-geforce-rtx-4060-ti-8gb-graphics-card-double-fans/p/1FT-000Y-00BP9","https://www.newegg.com/asrock-challenger-rx7600-cl-8go-radeon-rx-7600-8gb-graphics-card-double-fans/p/N82E16814930093","https://www.newegg.com/p/1FT-000A-00689","https://www.newegg.com/maxsun-icraft-geforce-rtx-3070-ti-8gb-graphics-card-triple-fans/p/1FT-009J-000C0","https://www.newegg.com/sapphire-tech-pulse-11322-02-20g-radeon-rx-7900-xtx-24gb-graphics-card-triple-fans/p/N82E16814202429","https://www.newegg.com/gigabyte-gv-n507teagleoc-ice-16gd-geforce-rtx-5070-ti-16gb-graphics-card-triple-fans/p/N82E16814932769","https://www.newegg.com/asus-rog-strix-rtx4070ti-o12g-gaming-geforce-rtx-4070-ti-12gb-graphics-card-triple-fans/p/N82E16814126604","https://www.newegg.com/asrock-oc-formula-rx6950xt-ocf-16g-radeon-rx-6950-xt-16gb-graphics-card-triple-fans/p/N82E16814930073","https://www.newegg.com/asrock-challenger-b580-cl-12go-arc-b580-12gb-graphics-card-double-fans/p/N82E16814930131","https://www.newegg.com/msi-rtx-4060-ventus-2x-black-8g-oc-geforce-rtx-4060-8gb-graphics-card-double-fans/p/N82E16814137804","https://www.newegg.com/asrock-phantom-gaming-d-rx6900xt-pgd-16go-radeon-rx-6900-xt-16gb-graphics-card-triple-fans/p/N82E16814930052","https://www.newegg.com/zotac-gaming-geforce-rtx-5080-solid-core-oc-16gb-graphics-card-triple-fans/p/N82E16814500604","https://www.newegg.com/p/1FT-0009-000T9","https://www.newegg.com/nvidia-900-1g133-2530-rf2-geforce-rtx-3080-10gb-graphics-card/p/N82E16814132098","https://www.newegg.com/xfx-speedster-rx-76tswftfp-radeon-rx-7600-xt-16gb-graphics-card-double-fans/p/N82E16814150889","https://www.newegg.com/asus-proart-rtx4080-o16g-geforce-rtx-4080-16gb-graphics-card-triple-fans/p/N82E16814126664","https://www.newegg.com/zotac-zt-t20810a-10p-geforce-rtx-2080-ti-11gb-graphics-card-blower/p/N82E16814500451","https://www.newegg.com/gigabyte-windforce-gv-n406twf2oc-16gd-geforce-rtx-4060-ti-16gb-graphics-card-double-fans/p/N82E16814932659","https://www.newegg.com/p/27N-0005-001X6","https://www.newegg.com/asus-proart-rtx4080-16g-geforce-rtx-4080-16gb-video-cards-triple-fans/p/1FT-000Y-00C62","https://www.newegg.com/p/27N-000F-000K8","https://www.newegg.com/asrock-challenger-d-rx6700xt-cld-12g-radeon-rx-6700-xt-12gb-graphics-card-double-fans/p/N82E16814930056","https://www.newegg.com/asrock-phantom-gaming-d-rx6750xt-pgd-12go-radeon-rx-6750-xt-12gb-graphics-card-triple-fans/p/N82E16814930072","https://www.newegg.com/msi-rtx-3080-ventus-3x-plus-12g-lhr-geforce-rtx-3080-12gb-graphics-card-triple-fans/p/N82E16814137764","https://www.newegg.com/p/1FT-000M-003C4","https://www.newegg.com/gigabyte-gv-r65xteagle-4gd-radeon-rx-6500-xt-4gb-graphics-card-windforce-2x/p/N82E16814932492","https://www.newegg.com/sapphire-tech-pulse-11321-02-20g-radeon-rx-6700-10gb-graphics-card-double-fins/p/N82E16814202424","https://www.newegg.com/asus-dual-rtx2080-8g-evo-geforce-rtx-2080-8gb-graphics-card-double-fans/p/N82E16814126340","https://www.newegg.com/gigabyte-gv-n2060wf2oc-6gd-r2-geforce-rtx-2060-6gb-graphics-card-windforce-2x/p/N82E16814932157","https://www.newegg.com/msi-rtx-2080-super-ventus-oc-geforce-rtx-2080-super-8gb-graphics-card-double-fans/p/N82E16814137443","https://www.newegg.com/pny-technologies-inc-geforce-rtx-2060-8gb-graphics-card/p/1FT-000P-003P0","https://www.newegg.com/msi-rtx-2070-super-gaming-z-trio-geforce-rtx-2070-super-8gb-graphics-card-triple-fans/p/N82E16814137487","https://www.newegg.com/gigabyte-gv-n2070aorus-8gc-geforce-rtx-2070-8gb-graphics-card-windforce-stack/p/N82E16814932088","https://www.newegg.com/nvidia-900-1g1362-5100-00-geforce-rtx-3090-24gb-graphics-card/p/1FT-0004-00842","https://www.newegg.com/zotac-rtx-5090-solid-oc-geforce-rtx-5090-32gb-graphics-card-triple-fans/p/N82E16814500639","https://www.newegg.com/p/1FT-001K-00FE5","https://www.newegg.com/p/1FT-000A-00695"];
+
+const vendorColors = { NVIDIA: "#76b900", AMD: "#ED1C24", Intel: "#0071C5" };
+function barColor(cpf, vendor) {
+  const base = vendorColors[vendor] || "#888";
+  if (cpf < 8)  return base;
+  if (cpf < 12) return base + "cc";
+  return base + "88";
+}
+const colors = values.map((v, i) => barColor(v, vendors[i]));
+
+const dpr = window.devicePixelRatio || 1;
+const ROW_HEIGHT   = 22;
+const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
+const canvas  = document.getElementById('chart');
+const wrapper = canvas.parentElement;
+
+canvas.style.width   = '100%';
+canvas.style.height  = CHART_HEIGHT + 'px';
+wrapper.style.paddingBottom = '24px';
+
+const logicalWidth = wrapper.clientWidth;
+canvas.width  = logicalWidth * dpr;
+canvas.height = CHART_HEIGHT * dpr;
+const ctx = canvas.getContext('2d');
+ctx.scale(dpr, dpr);
+
+const zonePlugin = {
+  id: 'zones',
+  beforeDraw(chart) {
+    const { ctx, chartArea: { left, right, top, bottom }, scales: { x } } = chart;
+    [{from:0,to:8,color:'rgba(46,160,67,0.07)'},{from:8,to:12,color:'rgba(210,153,34,0.06)'},{from:12,to:30,color:'rgba(248,81,73,0.06)'}]
+    .forEach(z => {
+      const x1 = Math.max(x.getPixelForValue(z.from), left);
+      const x2 = Math.min(x.getPixelForValue(z.to), right);
+      ctx.fillStyle = z.color;
+      ctx.fillRect(x1, top, x2 - x1, bottom - top);
+    });
+    [8,12].forEach(v => {
+      const px = x.getPixelForValue(v);
+      ctx.strokeStyle = 'rgba(33,38,45,0.9)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5,4]);
+      ctx.beginPath(); ctx.moveTo(px, top); ctx.lineTo(px, bottom); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+};
+
+const chart = new Chart(ctx, {
+  type: 'bar',
+  data: { labels, datasets: [{ data: values, backgroundColor: colors, borderRadius: 3, borderSkipped: false }] },
+  options: {
+    indexAxis: 'y',
+    responsive: false,
+    maintainAspectRatio: false,
+    devicePixelRatio: dpr,
+    animation: { duration: 700, easing: 'easeOutQuart' },
+    layout: { padding: { left: 8, right: 36, top: 4, bottom: 4 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#161b22', borderColor: '#21262d', borderWidth: 1,
+        titleColor: '#e6edf3', bodyColor: '#8b949e',
+        titleFont: { family: 'JetBrains Mono', size: 13, weight: '600' },
+        bodyFont: { family: 'JetBrains Mono', size: 11 },
+        padding: 12,
+        callbacks: {
+          title: ctx => ctx[0].label,
+          label: ctx => {
+            const cpf = ctx.parsed.x;
+            const zone = cpf < 8 ? '✓ GREAT VALUE' : cpf < 12 ? '~ FAIR VALUE' : '✗ POOR VALUE';
+            return [`$${cpf.toFixed(2)} per FPS  ·  ${zone}`, 'Click to view on Newegg →'];
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        min: 0, max: 29,
+        grid: { color: '#21262d', lineWidth: 0.8 },
+        ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 }, callback: v => `$${v}` },
+        title: { display: true, text: 'Cost Per FPS ($/FPS) — Lower is Better', color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 }, padding: { top: 10 } },
+        border: { color: '#21262d' }
+      },
+      y: {
+        grid: { display: false },
+        border: { color: '#21262d' },
+        afterFit(scale) { scale.width = 155; },
+        ticks: { color: '#58a6ff', font: { family: 'JetBrains Mono', size: 11 }, autoSkip: false, maxRotation: 0, padding: 8 }
+      }
+    },
+    onClick(event, elements) {
+      if (elements.length > 0) {
+        const idx = elements[0].index;
+        if (links[idx]) window.open(links[idx], '_blank');
+      }
+    },
+    onHover(event, elements) {
+      event.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
+    }
+  },
+  plugins: [zonePlugin]
+});
+
+canvas.addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const yAxis = chart.scales.y;
+  if (clickX < yAxis.right) {
+    const clickY = e.clientY - rect.top;
+    for (let i = 0; i < labels.length; i++) {
+      const tickY = yAxis.getPixelForValue(i);
+      if (Math.abs(clickY - tickY) < 11 && links[i]) {
+        window.open(links[i], '_blank');
+        break;
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
