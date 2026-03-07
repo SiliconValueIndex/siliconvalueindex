@@ -726,29 +726,20 @@ canvas.addEventListener('click', function(e) {
   const isTouch = e.pointerType === 'touch' || e.pointerType === 'pen' || recentTouch;
   const rect = this.getBoundingClientRect();
 
-  // Use raw viewport-relative coordinates — no scaling needed since
-  // Chart.js getPixelForValue() also returns viewport-relative CSS pixels
   const canvasY = e.clientY - rect.top;
   const canvasX = e.clientX - rect.left;
 
-  // Find which GPU row was tapped by matching Y to each row's pixel position
-  const yAxis = chart.scales.y;
-  let tappedIdx = -1;
-  for (let i = 0; i < labels.length; i++) {
-    const tickY = yAxis.getPixelForValue(i);
-    if (Math.abs(canvasY - tickY) < ROW_HEIGHT / 2) {
-      tappedIdx = i;
-      break;
-    }
-  }
+  // Calculate row index directly from chart area — no scale API, pure math
+  const chartTop    = chart.chartArea.top;
+  const chartBottom = chart.chartArea.bottom;
+  const rowH        = (chartBottom - chartTop) / labels.length;
+  const tappedIdx   = Math.floor((canvasY - chartTop) / rowH);
 
-  if (tappedIdx === -1) return;
+  if (tappedIdx < 0 || tappedIdx >= labels.length) return;
 
   if (!isTouch) {
-    // Desktop — single click navigates
     if (links[tappedIdx]) window.open(links[tappedIdx], '_blank');
   } else {
-    // Mobile — first tap shows tooltip, second tap navigates
     const now = Date.now();
     if (tappedIdx === lastTappedIndex && now - lastTapTime < 2000) {
       if (links[tappedIdx]) window.open(links[tappedIdx], '_blank');
