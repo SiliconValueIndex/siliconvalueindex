@@ -615,13 +615,13 @@ function barColor(cpf, vendor) {
 }
 const colors = values.map((v, i) => barColor(v, vendors[i]));
 
-const dpr = window.devicePixelRatio || 1;
+const dpr = Math.min(window.devicePixelRatio || 1, 2); // cap at 2x — 3x crashes mobile
 const ROW_HEIGHT   = 26;
 const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
 const canvas  = document.getElementById('chart');
 const wrapper = canvas.parentElement;
 
-const MOBILE_MIN = 960;
+const MOBILE_MIN = window.innerWidth < 768 ? 700 : 960;
 const logicalWidth = Math.max(wrapper.clientWidth, MOBILE_MIN);
 canvas.style.width   = logicalWidth + 'px';
 canvas.style.height  = CHART_HEIGHT + 'px';
