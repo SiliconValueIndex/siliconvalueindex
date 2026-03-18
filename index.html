@@ -434,7 +434,10 @@ footer a:hover { color: var(--accent); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-canvas { -webkit-tap-highlight-color: transparent; }
+canvas { 
+    -webkit-tap-highlight-color: transparent;
+    touch-action: pan-x;
+  }
 .hero h1   { animation: fadeUp 0.5s 0.1s ease both; }
 .hero-sub  { animation: fadeUp 0.5s 0.2s ease both; }
 .stat-bar  { animation: fadeUp 0.5s 0.3s ease both; }
@@ -619,7 +622,7 @@ const colors = values.map((v, i) => barColor(v, vendors[i]));
 const dpr = Math.min(window.devicePixelRatio || 1, 2);
 const isMobile = window.innerWidth < 768;
 const ROW_HEIGHT   = 26;
-const CHART_HEIGHT = labels.length * ROW_HEIGHT + 60;
+const CHART_HEIGHT = labels.length * ROW_HEIGHT + 100;
 const canvas  = document.getElementById('chart');
 const wrapper = canvas.parentElement;
 
@@ -670,7 +673,7 @@ const chart = new Chart(ctx, {
     responsive: false,
     maintainAspectRatio: false,
     animation: { duration: 700, easing: 'easeOutQuart' },
-    layout: { padding: { left: 8, right: 48, top: 4, bottom: 4 } },
+    layout: { padding: { left: 8, right: 48, top: 4, bottom: 24 } },
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -732,7 +735,7 @@ canvas.addEventListener('click', function(e) {
   const isTouch = e.pointerType === 'touch' || e.pointerType === 'pen' || recentTouch;
 
   // Chart.js owns the coordinate system so getElementsAtEventForMode is accurate
-  const elements = chart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, false);
+  const elements = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
   if (elements.length === 0) return;
   const idx = elements[0].index;
 
