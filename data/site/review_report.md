@@ -1,7 +1,5 @@
-# Refresh report `scrape-2026-09-16`
+# Refresh report `floor-2026-09-16`
 **Needs review: YES**
-- GPU set changed
-- benchmark suite version changed
 - 2 benchmark anomaly(ies)
 
 ## Fetch failures
@@ -29,10 +27,10 @@ _none_
 | overlap_residual | nvidia-rtx-4090 | 1440p | raster | 14.5 | 2022->2026-09-16 fit residual exceeds 2.5 sd (3.9) |
 
 ## Changes this run
-- Added GPUs: amd-rx-6650-xt, nvidia-rtx-3050, nvidia-rtx-5050
+- Added GPUs: none
 - Removed GPUs: none
 - Price changes >= 5%: 0
-- Benchmark suite changed: True
+- Benchmark suite changed: False
 
 ## Ranked counts
 - `1080p_raster`: 43
@@ -41,6 +39,3 @@ _none_
 - `1440p_rt`: 43
 - `4k_raster`: 43
 - `4k_rt`: 43
-
-## Notes
-- Tom's Hardware: 288 cells parsed, suite 2026-09-16 (94% of overlapping cards moved > 3% vs 2026-03)

@@ -136,7 +136,9 @@ def run_build(
     effective = effective[effective["gpu_id"].isin(active_ids)]
     current = select_current_prices(history, cfg.pricing, now=now)
     current = current[current["gpu_id"].isin(active_ids)]
-    rankings, zone_meta = score_all_views(effective, current, cfg.zones, cfg.views)
+    rankings, zone_meta = score_all_views(
+        effective, current, cfg.zones, cfg.views, playability=cfg.playability
+    )
 
     ctx = BuildContext(
         cfg=cfg,

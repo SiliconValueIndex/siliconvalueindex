@@ -24,9 +24,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 39,
+    "rank": 52,
     "cost_per_fps": 11.735,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -72,9 +72,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 56,
+    "rank": 59,
     "cost_per_fps": 19.542,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -120,9 +120,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 54,
+    "rank": 57,
     "cost_per_fps": 18.318,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -168,9 +168,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 55,
+    "rank": 58,
     "cost_per_fps": 18.961,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -216,9 +216,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 53,
+    "rank": 56,
     "cost_per_fps": 17.126,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -264,7 +264,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 49,
+    "rank": 42,
     "cost_per_fps": 15.491,
     "zone": "poor"
    }
@@ -312,7 +312,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 50,
+    "rank": 43,
     "cost_per_fps": 16.076,
     "zone": "poor"
    }
@@ -360,7 +360,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 40,
+    "rank": 35,
     "cost_per_fps": 11.76,
     "zone": "fair"
    }
@@ -391,7 +391,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3060",
   "release_year": 2021,
-  "msrp_usd": 329.99,
+  "msrp_usd": null,
   "tdp_w": 170,
   "vram_gb": 12,
   "is_active": true,
@@ -452,29 +452,29 @@
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 15,
+    "rank": 31,
     "cost_per_fps": 11.151,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 21,
+    "rank": 50,
     "cost_per_fps": 8.091,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_rt": {
-    "rank": 12,
+    "rank": 23,
     "cost_per_fps": 16.377,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 17,
+    "rank": 32,
     "cost_per_fps": 15.27,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 12,
+    "rank": 15,
     "cost_per_fps": 35.684,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -503,7 +503,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3060 Ti",
   "release_year": 2020,
-  "msrp_usd": 399.99,
+  "msrp_usd": null,
   "tdp_w": 200,
   "vram_gb": 8,
   "is_active": true,
@@ -559,34 +559,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 26,
+    "rank": 25,
     "cost_per_fps": 6.725,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 27,
+    "rank": 36,
     "cost_per_fps": 15.03,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 35,
+    "rank": 31,
     "cost_per_fps": 9.784,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 29,
+    "rank": 34,
     "cost_per_fps": 22.377,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 36,
+    "rank": 40,
     "cost_per_fps": 25.722,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 34,
     "cost_per_fps": 67.432,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -615,7 +615,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3070",
   "release_year": 2020,
-  "msrp_usd": 499.99,
+  "msrp_usd": null,
   "tdp_w": 220,
   "vram_gb": 8,
   "is_active": true,
@@ -676,9 +676,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 1,
+    "rank": 26,
     "cost_per_fps": 8.186,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "1440p_raster": {
     "rank": 4,
@@ -686,19 +686,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 1,
+    "rank": 17,
     "cost_per_fps": 12.405,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 9,
+    "rank": 28,
     "cost_per_fps": 12.405,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 17,
+    "rank": 19,
     "cost_per_fps": 39.157,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -727,7 +727,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3070 Ti",
   "release_year": 2021,
-  "msrp_usd": 599.99,
+  "msrp_usd": null,
   "tdp_w": 290,
   "vram_gb": 8,
   "is_active": true,
@@ -788,29 +788,29 @@
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 24,
+    "rank": 35,
     "cost_per_fps": 14.228,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 27,
+    "rank": 23,
     "cost_per_fps": 8.954,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 27,
+    "rank": 32,
     "cost_per_fps": 21.625,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 34,
+    "rank": 38,
     "cost_per_fps": 23.038,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 37,
     "cost_per_fps": 68.068,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -839,7 +839,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3080",
   "release_year": 2020,
-  "msrp_usd": 699.99,
+  "msrp_usd": null,
   "tdp_w": 320,
   "vram_gb": 10,
   "is_active": true,
@@ -895,34 +895,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 31,
+    "rank": 30,
     "cost_per_fps": 6.873,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 26,
+    "rank": 16,
     "cost_per_fps": 14.952,
     "zone": "fair"
    },
    "1440p_raster": {
-    "rank": 32,
+    "rank": 28,
     "cost_per_fps": 9.354,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 28,
+    "rank": 33,
     "cost_per_fps": 22.105,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 25,
+    "rank": 16,
     "cost_per_fps": 17.472,
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 26,
+    "rank": 28,
     "cost_per_fps": 55.583,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -968,7 +968,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 42,
+    "rank": 37,
     "cost_per_fps": 12.807,
     "zone": "poor"
    }
@@ -999,7 +999,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3080 Ti",
   "release_year": 2021,
-  "msrp_usd": 1199.99,
+  "msrp_usd": null,
   "tdp_w": 350,
   "vram_gb": 12,
   "is_active": true,
@@ -1055,34 +1055,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 37,
+    "rank": 36,
     "cost_per_fps": 9.574,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 34,
+    "rank": 21,
     "cost_per_fps": 17.724,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 43,
+    "rank": 38,
     "cost_per_fps": 12.851,
     "zone": "poor"
    },
    "1440p_rt": {
-    "rank": 31,
+    "rank": 12,
     "cost_per_fps": 24.784,
     "zone": "poor"
    },
    "4k_raster": {
-    "rank": 32,
+    "rank": 20,
     "cost_per_fps": 22.451,
     "zone": "poor"
    },
    "4k_rt": {
-    "rank": 32,
+    "rank": 33,
     "cost_per_fps": 63.611,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1111,7 +1111,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3090",
   "release_year": 2020,
-  "msrp_usd": 1499.99,
+  "msrp_usd": null,
   "tdp_w": 350,
   "vram_gb": 24,
   "is_active": true,
@@ -1167,34 +1167,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 40,
+    "rank": 39,
     "cost_per_fps": 12.288,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 36,
+    "rank": 22,
     "cost_per_fps": 22.71,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 52,
+    "rank": 44,
     "cost_per_fps": 16.505,
     "zone": "poor"
    },
    "1440p_rt": {
-    "rank": 36,
+    "rank": 13,
     "cost_per_fps": 31.861,
     "zone": "poor"
    },
    "4k_raster": {
-    "rank": 39,
+    "rank": 21,
     "cost_per_fps": 28.441,
     "zone": "poor"
    },
    "4k_rt": {
-    "rank": 28,
+    "rank": 29,
     "cost_per_fps": 57.422,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1223,7 +1223,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3090 Ti",
   "release_year": 2022,
-  "msrp_usd": 1999.99,
+  "msrp_usd": null,
   "tdp_w": 450,
   "vram_gb": 24,
   "is_active": true,
@@ -1279,34 +1279,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 41,
+    "rank": 40,
     "cost_per_fps": 15.171,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 38,
+    "rank": 23,
     "cost_per_fps": 27.635,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 57,
+    "rank": 45,
     "cost_per_fps": 20.0,
     "zone": "poor"
    },
    "1440p_rt": {
-    "rank": 38,
+    "rank": 15,
     "cost_per_fps": 38.276,
     "zone": "poor"
    },
    "4k_raster": {
-    "rank": 42,
+    "rank": 23,
     "cost_per_fps": 33.693,
     "zone": "poor"
    },
    "4k_rt": {
     "rank": 35,
     "cost_per_fps": 67.959,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1335,7 +1335,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4060",
   "release_year": 2023,
-  "msrp_usd": 299.99,
+  "msrp_usd": null,
   "tdp_w": 115,
   "vram_gb": 8,
   "is_active": true,
@@ -1391,34 +1391,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 20,
+    "rank": 21,
     "cost_per_fps": 5.874,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 21,
+    "rank": 34,
     "cost_per_fps": 12.5,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 26,
+    "rank": 22,
     "cost_per_fps": 8.823,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 23,
+    "rank": 30,
     "cost_per_fps": 19.718,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 35,
+    "rank": 39,
     "cost_per_fps": 24.137,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 31,
+    "rank": 32,
     "cost_per_fps": 61.763,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1447,7 +1447,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4060 Ti 8GB",
   "release_year": 2023,
-  "msrp_usd": 399.99,
+  "msrp_usd": null,
   "tdp_w": 160,
   "vram_gb": 8,
   "is_active": true,
@@ -1508,29 +1508,29 @@
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 20,
+    "rank": 33,
     "cost_per_fps": 11.985,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 22,
+    "rank": 19,
     "cost_per_fps": 8.302,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 22,
+    "rank": 29,
     "cost_per_fps": 19.027,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 29,
+    "rank": 35,
     "cost_per_fps": 20.46,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 30,
+    "rank": 31,
     "cost_per_fps": 60.37,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1559,7 +1559,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4060 Ti 16GB",
   "release_year": 2023,
-  "msrp_usd": 499.99,
+  "msrp_usd": null,
   "tdp_w": 165,
   "vram_gb": 16,
   "is_active": true,
@@ -1615,34 +1615,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 33,
+    "rank": 32,
     "cost_per_fps": 7.828,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 25,
+    "rank": 15,
     "cost_per_fps": 14.472,
     "zone": "fair"
    },
    "1440p_raster": {
-    "rank": 38,
+    "rank": 34,
     "cost_per_fps": 11.554,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 25,
+    "rank": 31,
     "cost_per_fps": 21.376,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 31,
+    "rank": 36,
     "cost_per_fps": 22.332,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 20,
+    "rank": 22,
     "cost_per_fps": 41.607,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1671,7 +1671,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4070",
   "release_year": 2023,
-  "msrp_usd": 549.99,
+  "msrp_usd": null,
   "tdp_w": 200,
   "vram_gb": 12,
   "is_active": true,
@@ -1727,34 +1727,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 21,
+    "rank": 20,
     "cost_per_fps": 5.874,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 10,
+    "rank": 6,
     "cost_per_fps": 10.266,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 23,
+    "rank": 20,
     "cost_per_fps": 8.419,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 19,
+    "rank": 27,
     "cost_per_fps": 16.969,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 19,
+    "rank": 11,
     "cost_per_fps": 15.86,
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 9,
+    "rank": 13,
     "cost_per_fps": 33.938,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1783,7 +1783,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4070 Super",
   "release_year": 2024,
-  "msrp_usd": 599.99,
+  "msrp_usd": null,
   "tdp_w": 220,
   "vram_gb": 12,
   "is_active": true,
@@ -1844,29 +1844,29 @@
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 9,
+    "rank": 5,
     "cost_per_fps": 10.138,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 20,
+    "rank": 18,
     "cost_per_fps": 8.059,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 15,
+    "rank": 7,
     "cost_per_fps": 16.858,
     "zone": "fair"
    },
    "4k_raster": {
-    "rank": 13,
+    "rank": 8,
     "cost_per_fps": 14.939,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 8,
+    "rank": 12,
     "cost_per_fps": 33.258,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -1895,7 +1895,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4070 Ti",
   "release_year": 2023,
-  "msrp_usd": 799.99,
+  "msrp_usd": null,
   "tdp_w": 285,
   "vram_gb": 12,
   "is_active": true,
@@ -1951,34 +1951,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 28,
+    "rank": 27,
     "cost_per_fps": 6.735,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 17,
+    "rank": 11,
     "cost_per_fps": 11.591,
     "zone": "fair"
    },
    "1440p_raster": {
-    "rank": 31,
+    "rank": 27,
     "cost_per_fps": 9.294,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 14,
+    "rank": 6,
     "cost_per_fps": 16.453,
-    "zone": "great"
+    "zone": "fair"
    },
    "4k_raster": {
-    "rank": 23,
+    "rank": 14,
     "cost_per_fps": 16.881,
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 14,
+    "rank": 17,
     "cost_per_fps": 38.069,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -2007,7 +2007,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4070 Ti Super",
   "release_year": 2024,
-  "msrp_usd": 799.99,
+  "msrp_usd": null,
   "tdp_w": 285,
   "vram_gb": 16,
   "is_active": true,
@@ -2063,32 +2063,32 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 25,
+    "rank": 24,
     "cost_per_fps": 6.684,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 12,
+    "rank": 7,
     "cost_per_fps": 10.737,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 28,
+    "rank": 25,
     "cost_per_fps": 9.075,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 9,
+    "rank": 4,
     "cost_per_fps": 15.73,
     "zone": "great"
    },
    "4k_raster": {
-    "rank": 21,
+    "rank": 12,
     "cost_per_fps": 16.133,
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 5,
+    "rank": 3,
     "cost_per_fps": 29.31,
     "zone": "great"
    }
@@ -2119,7 +2119,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4080",
   "release_year": 2022,
-  "msrp_usd": 1199.99,
+  "msrp_usd": null,
   "tdp_w": 320,
   "vram_gb": 16,
   "is_active": true,
@@ -2175,34 +2175,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 34,
+    "rank": 33,
     "cost_per_fps": 8.158,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 23,
+    "rank": 14,
     "cost_per_fps": 13.829,
     "zone": "fair"
    },
    "1440p_raster": {
-    "rank": 37,
+    "rank": 33,
     "cost_per_fps": 10.922,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 21,
+    "rank": 9,
     "cost_per_fps": 18.762,
     "zone": "fair"
    },
    "4k_raster": {
-    "rank": 27,
+    "rank": 18,
     "cost_per_fps": 19.012,
-    "zone": "fair"
+    "zone": "poor"
    },
    "4k_rt": {
-    "rank": 10,
+    "rank": 5,
     "cost_per_fps": 34.313,
-    "zone": "great"
+    "zone": "fair"
    }
   },
   "current_price": {
@@ -2231,7 +2231,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4080 Super",
   "release_year": 2024,
-  "msrp_usd": 999.99,
+  "msrp_usd": null,
   "tdp_w": 320,
   "vram_gb": 16,
   "is_active": true,
@@ -2287,34 +2287,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 36,
+    "rank": 35,
     "cost_per_fps": 9.44,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 30,
+    "rank": 18,
     "cost_per_fps": 15.907,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 41,
+    "rank": 36,
     "cost_per_fps": 12.647,
     "zone": "poor"
    },
    "1440p_rt": {
-    "rank": 26,
+    "rank": 11,
     "cost_per_fps": 21.583,
-    "zone": "fair"
+    "zone": "poor"
    },
    "4k_raster": {
-    "rank": 30,
+    "rank": 19,
     "cost_per_fps": 21.614,
     "zone": "poor"
    },
    "4k_rt": {
-    "rank": 15,
+    "rank": 6,
     "cost_per_fps": 38.961,
-    "zone": "fair"
+    "zone": "poor"
    }
   },
   "current_price": {
@@ -2343,7 +2343,7 @@
   "series": "RTX 40",
   "display_name": "RTX 4090",
   "release_year": 2022,
-  "msrp_usd": 1599.99,
+  "msrp_usd": null,
   "tdp_w": 450,
   "vram_gb": 24,
   "is_active": true,
@@ -2399,32 +2399,32 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 43,
+    "rank": 42,
     "cost_per_fps": 18.491,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 42,
+    "rank": 25,
     "cost_per_fps": 30.232,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 59,
+    "rank": 47,
     "cost_per_fps": 23.675,
     "zone": "poor"
    },
    "1440p_rt": {
-    "rank": 39,
+    "rank": 16,
     "cost_per_fps": 38.712,
     "zone": "poor"
    },
    "4k_raster": {
-    "rank": 43,
+    "rank": 24,
     "cost_per_fps": 38.103,
     "zone": "poor"
    },
    "4k_rt": {
-    "rank": 33,
+    "rank": 8,
     "cost_per_fps": 65.038,
     "zone": "poor"
    }
@@ -2455,7 +2455,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5060",
   "release_year": 2025,
-  "msrp_usd": 299.99,
+  "msrp_usd": null,
   "tdp_w": 150,
   "vram_gb": 8,
   "is_active": true,
@@ -2516,9 +2516,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 4,
+    "rank": 28,
     "cost_per_fps": 8.557,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "1440p_raster": {
     "rank": 6,
@@ -2526,19 +2526,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 6,
+    "rank": 20,
     "cost_per_fps": 14.227,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 20,
+    "rank": 33,
     "cost_per_fps": 16.055,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 22,
+    "rank": 24,
     "cost_per_fps": 51.469,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -2567,7 +2567,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5060 Ti 8GB",
   "release_year": 2025,
-  "msrp_usd": 379.99,
+  "msrp_usd": null,
   "tdp_w": 180,
   "vram_gb": 8,
   "is_active": true,
@@ -2628,7 +2628,7 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 2,
+    "rank": 1,
     "cost_per_fps": 8.261,
     "zone": "great"
    },
@@ -2638,19 +2638,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 7,
+    "rank": 21,
     "cost_per_fps": 14.285,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 10,
+    "rank": 29,
     "cost_per_fps": 13.523,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 23,
+    "rank": 25,
     "cost_per_fps": 52.776,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -2679,7 +2679,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5060 Ti 16GB",
   "release_year": 2025,
-  "msrp_usd": 429.99,
+  "msrp_usd": null,
   "tdp_w": 185,
   "vram_gb": 16,
   "is_active": true,
@@ -2740,29 +2740,29 @@
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 8,
+    "rank": 4,
     "cost_per_fps": 9.786,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 18,
+    "rank": 16,
     "cost_per_fps": 7.493,
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 5,
+    "rank": 19,
     "cost_per_fps": 14.139,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 12,
+    "rank": 7,
     "cost_per_fps": 13.681,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 2,
+    "rank": 9,
     "cost_per_fps": 26.699,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -2791,7 +2791,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5070",
   "release_year": 2025,
-  "msrp_usd": 549.99,
+  "msrp_usd": null,
   "tdp_w": 220,
   "vram_gb": 12,
   "is_active": true,
@@ -2852,7 +2852,7 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 5,
+    "rank": 2,
     "cost_per_fps": 8.772,
     "zone": "great"
    },
@@ -2862,19 +2862,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 3,
+    "rank": 1,
     "cost_per_fps": 12.621,
     "zone": "great"
    },
    "4k_raster": {
-    "rank": 7,
+    "rank": 4,
     "cost_per_fps": 11.97,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 3,
+    "rank": 10,
     "cost_per_fps": 28.634,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -2903,7 +2903,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5070 Ti",
   "release_year": 2025,
-  "msrp_usd": 749.99,
+  "msrp_usd": null,
   "tdp_w": 285,
   "vram_gb": 16,
   "is_active": true,
@@ -2959,32 +2959,32 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 29,
+    "rank": 28,
     "cost_per_fps": 6.821,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 18,
+    "rank": 12,
     "cost_per_fps": 11.726,
     "zone": "fair"
    },
    "1440p_raster": {
-    "rank": 29,
+    "rank": 24,
     "cost_per_fps": 9.075,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 11,
+    "rank": 5,
     "cost_per_fps": 16.012,
     "zone": "great"
    },
    "4k_raster": {
-    "rank": 18,
+    "rank": 10,
     "cost_per_fps": 15.452,
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 4,
+    "rank": 2,
     "cost_per_fps": 28.883,
     "zone": "great"
    }
@@ -3015,7 +3015,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5080",
   "release_year": 2025,
-  "msrp_usd": 999.99,
+  "msrp_usd": null,
   "tdp_w": 360,
   "vram_gb": 16,
   "is_active": true,
@@ -3071,34 +3071,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 32,
+    "rank": 31,
     "cost_per_fps": 7.489,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 22,
+    "rank": 13,
     "cost_per_fps": 12.716,
     "zone": "fair"
    },
    "1440p_raster": {
-    "rank": 34,
+    "rank": 30,
     "cost_per_fps": 9.743,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 18,
+    "rank": 8,
     "cost_per_fps": 16.892,
     "zone": "fair"
    },
    "4k_raster": {
-    "rank": 22,
+    "rank": 13,
     "cost_per_fps": 16.15,
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 7,
+    "rank": 4,
     "cost_per_fps": 29.691,
-    "zone": "great"
+    "zone": "fair"
    }
   },
   "current_price": {
@@ -3127,7 +3127,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5090",
   "release_year": 2025,
-  "msrp_usd": 1999.99,
+  "msrp_usd": null,
   "tdp_w": 575,
   "vram_gb": 32,
   "is_active": true,
@@ -3183,34 +3183,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 42,
+    "rank": 41,
     "cost_per_fps": 17.664,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 39,
+    "rank": 24,
     "cost_per_fps": 28.64,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 58,
+    "rank": 46,
     "cost_per_fps": 21.518,
     "zone": "poor"
    },
    "1440p_rt": {
-    "rank": 37,
+    "rank": 14,
     "cost_per_fps": 35.714,
     "zone": "poor"
    },
    "4k_raster": {
-    "rank": 41,
+    "rank": 22,
     "cost_per_fps": 32.491,
     "zone": "poor"
    },
    "4k_rt": {
-    "rank": 27,
+    "rank": 7,
     "cost_per_fps": 56.162,
-    "zone": "fair"
+    "zone": "poor"
    }
   },
   "current_price": {
@@ -3256,9 +3256,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 51,
+    "rank": 55,
     "cost_per_fps": 16.098,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -3287,7 +3287,7 @@
   "series": "RX 6000",
   "display_name": "RX 6600",
   "release_year": 2021,
-  "msrp_usd": 329.99,
+  "msrp_usd": null,
   "tdp_w": 132,
   "vram_gb": 8,
   "is_active": true,
@@ -3343,34 +3343,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 23,
+    "rank": 43,
     "cost_per_fps": 6.339,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1080p_rt": {
-    "rank": 37,
+    "rank": 40,
     "cost_per_fps": 25.703,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 44,
+    "rank": 53,
     "cost_per_fps": 13.266,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_rt": {
     "rank": 40,
     "cost_per_fps": 42.727,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 33,
+    "rank": 37,
     "cost_per_fps": 22.69,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 42,
     "cost_per_fps": 106.129,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -3399,7 +3399,7 @@
   "series": "RX 6000",
   "display_name": "RX 6600 XT",
   "release_year": 2021,
-  "msrp_usd": 379.99,
+  "msrp_usd": null,
   "tdp_w": 160,
   "vram_gb": 8,
   "is_active": true,
@@ -3455,34 +3455,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 35,
+    "rank": 34,
     "cost_per_fps": 8.756,
     "zone": "poor"
    },
    "1080p_rt": {
     "rank": 43,
     "cost_per_fps": 31.919,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 45,
+    "rank": 54,
     "cost_per_fps": 13.489,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_rt": {
     "rank": 43,
     "cost_per_fps": 60.33,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 40,
+    "rank": 43,
     "cost_per_fps": 31.734,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 43,
     "cost_per_fps": 161.471,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -3528,7 +3528,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 48,
+    "rank": 41,
     "cost_per_fps": 15.065,
     "zone": "poor"
    }
@@ -3559,7 +3559,7 @@
   "series": "RX 6000",
   "display_name": "RX 6700 XT",
   "release_year": 2021,
-  "msrp_usd": 479.99,
+  "msrp_usd": null,
   "tdp_w": 230,
   "vram_gb": 12,
   "is_active": true,
@@ -3615,34 +3615,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 38,
+    "rank": 37,
     "cost_per_fps": 9.832,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 40,
+    "rank": 41,
     "cost_per_fps": 28.734,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 47,
+    "rank": 40,
     "cost_per_fps": 14.341,
     "zone": "poor"
    },
    "1440p_rt": {
     "rank": 42,
     "cost_per_fps": 43.261,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 37,
+    "rank": 41,
     "cost_per_fps": 27.811,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 40,
     "cost_per_fps": 98.57,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -3671,7 +3671,7 @@
   "series": "RX 6000",
   "display_name": "RX 6750 XT",
   "release_year": 2022,
-  "msrp_usd": 549.99,
+  "msrp_usd": null,
   "tdp_w": 250,
   "vram_gb": 12,
   "is_active": true,
@@ -3727,34 +3727,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 39,
+    "rank": 38,
     "cost_per_fps": 9.922,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 41,
+    "rank": 42,
     "cost_per_fps": 28.967,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 46,
+    "rank": 39,
     "cost_per_fps": 14.332,
     "zone": "poor"
    },
    "1440p_rt": {
     "rank": 41,
     "cost_per_fps": 43.223,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 38,
+    "rank": 42,
     "cost_per_fps": 27.89,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 41,
     "cost_per_fps": 101.92,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -3831,7 +3831,7 @@
   "series": "RX 6000",
   "display_name": "RX 6800 XT",
   "release_year": 2020,
-  "msrp_usd": 649.99,
+  "msrp_usd": null,
   "tdp_w": 300,
   "vram_gb": 16,
   "is_active": true,
@@ -3892,9 +3892,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 19,
+    "rank": 32,
     "cost_per_fps": 11.881,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_raster": {
     "rank": 10,
@@ -3902,19 +3902,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 16,
+    "rank": 25,
     "cost_per_fps": 16.858,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 6,
+    "rank": 3,
     "cost_per_fps": 11.825,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 11,
+    "rank": 14,
     "cost_per_fps": 35.39,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -3943,7 +3943,7 @@
   "series": "RX 6000",
   "display_name": "RX 6900 XT",
   "release_year": 2020,
-  "msrp_usd": 999.99,
+  "msrp_usd": null,
   "tdp_w": 300,
   "vram_gb": 16,
   "is_active": true,
@@ -3999,34 +3999,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 30,
+    "rank": 29,
     "cost_per_fps": 6.823,
     "zone": "poor"
    },
    "1080p_rt": {
-    "rank": 32,
+    "rank": 19,
     "cost_per_fps": 17.677,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 33,
+    "rank": 29,
     "cost_per_fps": 9.523,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 32,
+    "rank": 36,
     "cost_per_fps": 24.891,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 26,
+    "rank": 17,
     "cost_per_fps": 17.795,
-    "zone": "fair"
+    "zone": "poor"
    },
    "4k_rt": {
-    "rank": 24,
+    "rank": 26,
     "cost_per_fps": 52.914,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4055,7 +4055,7 @@
   "series": "RX 6000",
   "display_name": "RX 6950 XT",
   "release_year": 2022,
-  "msrp_usd": 1099.99,
+  "msrp_usd": null,
   "tdp_w": 335,
   "vram_gb": 16,
   "is_active": true,
@@ -4111,34 +4111,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 27,
+    "rank": 26,
     "cost_per_fps": 6.731,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 33,
+    "rank": 20,
     "cost_per_fps": 17.697,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 30,
+    "rank": 26,
     "cost_per_fps": 9.274,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 33,
+    "rank": 37,
     "cost_per_fps": 25.305,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 24,
+    "rank": 15,
     "cost_per_fps": 17.184,
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 25,
+    "rank": 27,
     "cost_per_fps": 53.204,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4167,7 +4167,7 @@
   "series": "RX 7000",
   "display_name": "RX 7600",
   "release_year": 2023,
-  "msrp_usd": 269.99,
+  "msrp_usd": null,
   "tdp_w": 165,
   "vram_gb": 8,
   "is_active": true,
@@ -4228,9 +4228,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 31,
+    "rank": 38,
     "cost_per_fps": 17.438,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_raster": {
     "rank": 7,
@@ -4238,19 +4238,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 35,
+    "rank": 39,
     "cost_per_fps": 30.0,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 15,
+    "rank": 30,
     "cost_per_fps": 15.163,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 36,
     "cost_per_fps": 68.049,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4279,7 +4279,7 @@
   "series": "RX 7000",
   "display_name": "RX 7600 XT",
   "release_year": 2024,
-  "msrp_usd": 329.99,
+  "msrp_usd": null,
   "tdp_w": 190,
   "vram_gb": 16,
   "is_active": true,
@@ -4340,29 +4340,29 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 35,
+    "rank": 39,
     "cost_per_fps": 18.518,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 36,
+    "rank": 32,
     "cost_per_fps": 9.96,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 34,
+    "rank": 38,
     "cost_per_fps": 27.624,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 28,
+    "rank": 34,
     "cost_per_fps": 19.607,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 29,
+    "rank": 30,
     "cost_per_fps": 58.822,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4391,7 +4391,7 @@
   "series": "RX 7000",
   "display_name": "RX 7700 XT",
   "release_year": 2023,
-  "msrp_usd": 449.99,
+  "msrp_usd": null,
   "tdp_w": 245,
   "vram_gb": 12,
   "is_active": true,
@@ -4452,9 +4452,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 7,
+    "rank": 29,
     "cost_per_fps": 9.615,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "1440p_raster": {
     "rank": 1,
@@ -4462,19 +4462,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 10,
+    "rank": 22,
     "cost_per_fps": 15.81,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 2,
+    "rank": 26,
     "cost_per_fps": 10.526,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 19,
+    "rank": 21,
     "cost_per_fps": 40.815,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4503,7 +4503,7 @@
   "series": "RX 7000",
   "display_name": "RX 7800 XT",
   "release_year": 2023,
-  "msrp_usd": 499.99,
+  "msrp_usd": null,
   "tdp_w": 263,
   "vram_gb": 16,
   "is_active": true,
@@ -4564,7 +4564,7 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 16,
+    "rank": 10,
     "cost_per_fps": 11.363,
     "zone": "fair"
    },
@@ -4574,19 +4574,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 13,
+    "rank": 24,
     "cost_per_fps": 16.418,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 8,
+    "rank": 5,
     "cost_per_fps": 12.195,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 13,
+    "rank": 16,
     "cost_per_fps": 36.423,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4632,7 +4632,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 17,
+    "rank": 15,
     "cost_per_fps": 7.334,
     "zone": "great"
    }
@@ -4663,7 +4663,7 @@
   "series": "RX 7000",
   "display_name": "RX 7900 XT",
   "release_year": 2022,
-  "msrp_usd": 899.99,
+  "msrp_usd": null,
   "tdp_w": 315,
   "vram_gb": 20,
   "is_active": true,
@@ -4724,9 +4724,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 14,
+    "rank": 9,
     "cost_per_fps": 11.021,
-    "zone": "great"
+    "zone": "fair"
    },
    "1440p_raster": {
     "rank": 11,
@@ -4734,19 +4734,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 8,
+    "rank": 3,
     "cost_per_fps": 15.632,
     "zone": "great"
    },
    "4k_raster": {
-    "rank": 4,
+    "rank": 2,
     "cost_per_fps": 11.371,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 6,
+    "rank": 11,
     "cost_per_fps": 29.437,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4775,7 +4775,7 @@
   "series": "RX 7000",
   "display_name": "RX 7900 XTX",
   "release_year": 2022,
-  "msrp_usd": 999.99,
+  "msrp_usd": null,
   "tdp_w": 355,
   "vram_gb": 24,
   "is_active": true,
@@ -4831,34 +4831,34 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 24,
+    "rank": 23,
     "cost_per_fps": 6.601,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 29,
+    "rank": 17,
     "cost_per_fps": 15.142,
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 25,
+    "rank": 21,
     "cost_per_fps": 8.717,
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 24,
+    "rank": 10,
     "cost_per_fps": 21.11,
     "zone": "fair"
    },
    "4k_raster": {
-    "rank": 14,
+    "rank": 9,
     "cost_per_fps": 15.1,
-    "zone": "great"
+    "zone": "fair"
    },
    "4k_rt": {
-    "rank": 16,
+    "rank": 18,
     "cost_per_fps": 39.049,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4887,7 +4887,7 @@
   "series": "RX 9000",
   "display_name": "RX 9060 XT",
   "release_year": 2025,
-  "msrp_usd": 349.99,
+  "msrp_usd": null,
   "tdp_w": 150,
   "vram_gb": 8,
   "is_active": true,
@@ -4948,9 +4948,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 11,
+    "rank": 30,
     "cost_per_fps": 10.485,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "1440p_raster": {
     "rank": 2,
@@ -4958,19 +4958,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 20,
+    "rank": 28,
     "cost_per_fps": 17.128,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 5,
+    "rank": 27,
     "cost_per_fps": 11.649,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 21,
+    "rank": 23,
     "cost_per_fps": 47.396,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -4999,7 +4999,7 @@
   "series": "RX 9000",
   "display_name": "RX 9070",
   "release_year": 2025,
-  "msrp_usd": 549.99,
+  "msrp_usd": null,
   "tdp_w": 220,
   "vram_gb": 16,
   "is_active": true,
@@ -5060,29 +5060,29 @@
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 13,
+    "rank": 8,
     "cost_per_fps": 10.788,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 16,
+    "rank": 14,
     "cost_per_fps": 7.275,
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 17,
+    "rank": 26,
     "cost_per_fps": 16.89,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 11,
+    "rank": 6,
     "cost_per_fps": 13.607,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 18,
+    "rank": 20,
     "cost_per_fps": 40.645,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -5111,7 +5111,7 @@
   "series": "RX 9000",
   "display_name": "RX 9070 XT",
   "release_year": 2025,
-  "msrp_usd": 599.99,
+  "msrp_usd": null,
   "tdp_w": 250,
   "vram_gb": 16,
   "is_active": true,
@@ -5172,7 +5172,7 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 6,
+    "rank": 3,
     "cost_per_fps": 9.383,
     "zone": "great"
    },
@@ -5182,12 +5182,12 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 4,
+    "rank": 2,
     "cost_per_fps": 13.153,
     "zone": "great"
    },
    "4k_raster": {
-    "rank": 3,
+    "rank": 1,
     "cost_per_fps": 11.094,
     "zone": "great"
    },
@@ -5240,9 +5240,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 24,
+    "rank": 51,
     "cost_per_fps": 8.522,
-    "zone": "fair"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -5288,9 +5288,9 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 15,
+    "rank": 49,
     "cost_per_fps": 7.228,
-    "zone": "great"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -5336,7 +5336,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 19,
+    "rank": 17,
     "cost_per_fps": 7.96,
     "zone": "great"
    }
@@ -5367,7 +5367,7 @@
   "series": "Arc B",
   "display_name": "Intel Arc B570",
   "release_year": 2024,
-  "msrp_usd": 219.99,
+  "msrp_usd": null,
   "tdp_w": 120,
   "vram_gb": 10,
   "is_active": true,
@@ -5428,29 +5428,29 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 28,
+    "rank": 37,
     "cost_per_fps": 15.101,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 14,
+    "rank": 48,
     "cost_per_fps": 6.749,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "1440p_rt": {
-    "rank": 30,
+    "rank": 35,
     "cost_per_fps": 22.824,
-    "zone": "poor"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 16,
+    "rank": 31,
     "cost_per_fps": 15.255,
-    "zone": "fair"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 39,
     "cost_per_fps": 90.606,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -5479,7 +5479,7 @@
   "series": "Arc B",
   "display_name": "Intel Arc B580",
   "release_year": 2024,
-  "msrp_usd": 249.99,
+  "msrp_usd": null,
   "tdp_w": 190,
   "vram_gb": 12,
   "is_active": true,
@@ -5540,9 +5540,9 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 3,
+    "rank": 27,
     "cost_per_fps": 8.309,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "1440p_raster": {
     "rank": 5,
@@ -5550,19 +5550,19 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 2,
+    "rank": 18,
     "cost_per_fps": 12.554,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 1,
+    "rank": 25,
     "cost_per_fps": 10.507,
-    "zone": "great"
+    "zone": "unplayable"
    },
    "4k_rt": {
     "rank": 38,
     "cost_per_fps": 76.313,
-    "zone": "poor"
+    "zone": "unplayable"
    }
   },
   "current_price": {
@@ -5591,7 +5591,7 @@
   "series": "RTX 30",
   "display_name": "RTX 3050",
   "release_year": 2022,
-  "msrp_usd": 249.99,
+  "msrp_usd": null,
   "tdp_w": 130,
   "vram_gb": 8,
   "is_active": true,
@@ -5666,7 +5666,7 @@
   "series": "RTX 50",
   "display_name": "RTX 5050",
   "release_year": 2025,
-  "msrp_usd": 249.99,
+  "msrp_usd": null,
   "tdp_w": 130,
   "vram_gb": 8,
   "is_active": true,
@@ -5741,7 +5741,7 @@
   "series": "RX 6000",
   "display_name": "RX 6650 XT",
   "release_year": 2022,
-  "msrp_usd": 399.99,
+  "msrp_usd": null,
   "tdp_w": 180,
   "vram_gb": 8,
   "is_active": true,

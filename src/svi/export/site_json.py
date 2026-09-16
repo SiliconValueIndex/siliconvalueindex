@@ -144,6 +144,7 @@ def build_rankings(ctx: BuildContext) -> dict[str, list[dict]]:
                 "cost_per_fps": float(r.cost_per_fps),
                 "zone": str(r.zone),
                 "normalized": bool(r.normalized),
+                "playable": bool(r.playable),
             }
             for r in df.itertuples(index=False)
         ]
@@ -176,6 +177,7 @@ def build_manifest(
             "mode": m["mode"],
             "great_max": float(m["great_max"]),
             "fair_max": float(m["fair_max"]),
+            "min_fps": float(m["min_fps"]),
         }
         for view, m in ctx.zone_meta.items()
         if view in rankings

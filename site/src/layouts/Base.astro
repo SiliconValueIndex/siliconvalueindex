@@ -9,7 +9,9 @@ interface Props {
 const { title, description } = Astro.props;
 const path = Astro.url.pathname;
 const nav = [
-  { href: '/', label: 'Rankings' },
+  { href: '/', label: 'Overview' },
+  { href: '/find/', label: 'Find a card' },
+  { href: '/rankings/', label: 'Rankings' },
   { href: '/compare/', label: 'Compare' },
   { href: '/methodology/', label: 'Methodology' },
   { href: '/data/', label: 'Data' },
@@ -34,7 +36,7 @@ const generated = manifest.generated_at.slice(0, 10);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>

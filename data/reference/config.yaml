@@ -37,6 +37,19 @@ zones:
   per_view:
     1440p_raster: absolute
 
+playability:
+  # Cards below the view's minimum FPS are shown but not scored: a cheap card at
+  # 21 FPS has a great-looking $/FPS and is unusable. They rank after playable
+  # cards and are excluded from percentile zone thresholds.
+  default_min_fps: 40
+  min_fps:
+    1080p_raster: 60
+    1440p_raster: 45
+    4k_raster: 40
+    1080p_rt: 45
+    1440p_rt: 40
+    4k_rt: 30
+
 pricing:
   retailers: [bestbuy, manual]
   currency: USD

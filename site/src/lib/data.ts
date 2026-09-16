@@ -7,7 +7,7 @@ import priceHistoryJson from '../../../data/site/price_history.json';
 import changelogJson from '../../../data/site/changelog.json';
 
 export type Vendor = 'NVIDIA' | 'AMD' | 'Intel';
-export type Zone = 'great' | 'fair' | 'poor';
+export type Zone = 'great' | 'fair' | 'poor' | 'unplayable';
 
 export interface BenchCell {
   fps: number;
@@ -54,11 +54,13 @@ export interface RankingRow {
   cost_per_fps: number;
   zone: Zone;
   normalized: boolean;
+  playable: boolean;
 }
 export interface ZoneMeta {
   mode: 'absolute' | 'percentile';
   great_max: number;
   fair_max: number;
+  min_fps: number;
 }
 export interface Transform {
   resolution: string;
@@ -134,8 +136,15 @@ export const money = (n: number, digits = 0) =>
 export const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 
+export const ZONE_WORD: Record<Zone, string> = {
+  great: 'great value',
+  fair: 'fair value',
+  poor: 'poor value',
+  unplayable: 'below playable',
+};
+
 export function primaryStats() {
-  const rows = rankings[manifest.primary_view] ?? [];
+  const rows = (rankings[manifest.primary_view] ?? []).filter((r) => r.playable);
   if (!rows.length) return null;
   const best = rows[0];
   const worst = rows[rows.length - 1];

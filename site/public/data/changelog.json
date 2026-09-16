@@ -1,5 +1,15 @@
 [
  {
+  "run_id": "floor-2026-09-16",
+  "generated_at": "2026-09-16T17:20:47Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 0,
+  "notes": []
+ },
+ {
   "run_id": "scrape-2026-09-16",
   "generated_at": "2026-09-16T15:56:09Z",
   "added_gpus": [

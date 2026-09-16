@@ -68,6 +68,14 @@ class ZonesConfig(BaseModel):
         return self.per_view.get(view, self.default_mode)
 
 
+class PlayabilityConfig(BaseModel):
+    default_min_fps: float = 40.0
+    min_fps: dict[str, float] = Field(default_factory=dict)
+
+    def floor_for(self, view: str) -> float:
+        return self.min_fps.get(view, self.default_min_fps)
+
+
 class PricingConfig(BaseModel):
     retailers: list[str]
     currency: str = "USD"
@@ -88,6 +96,7 @@ class Config(BaseModel):
     benchmarks: BenchmarksConfig
     normalization: NormalizationConfig
     zones: ZonesConfig
+    playability: PlayabilityConfig = Field(default_factory=PlayabilityConfig)
     pricing: PricingConfig
     guards: GuardsConfig
 
