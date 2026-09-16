@@ -1,0 +1,2834 @@
+[
+ {
+  "gpu_id": "nvidia-gtx-1080-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Pascal",
+  "series": "GTX 10",
+  "display_name": "GTX 1080 Ti",
+  "release_year": 2017,
+  "msrp_usd": null,
+  "tdp_w": 250,
+  "vram_gb": 11,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 26.1,
+     "raw_fps": 50.2,
+     "pct_of_top": 18.3,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 44,
+    "cost_per_fps": 15.287,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 399.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/1FT-0009-000T9?Item=9SIB4VJKBJ4020",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+GTX+1080+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+GTX+1080+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+GTX+1080+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-2060",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Turing",
+  "series": "RTX 20",
+  "display_name": "RTX 2060",
+  "release_year": 2019,
+  "msrp_usd": null,
+  "tdp_w": 160,
+  "vram_gb": 6,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 22.0,
+     "raw_fps": 40.1,
+     "pct_of_top": 15.4,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 53,
+    "cost_per_fps": 21.318,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 469.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-gv-n2060wf2oc-6gd-r2-geforce-rtx-2060-6gb-graphics-card-windforce-2x/p/N82E16814932157?Item=9SIBW8HKBY1760",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2060&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+2060&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+2060"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-2060-super",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Turing",
+  "series": "RTX 20",
+  "display_name": "RTX 2060 Super",
+  "release_year": 2019,
+  "msrp_usd": null,
+  "tdp_w": 175,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 24.3,
+     "raw_fps": 48.3,
+     "pct_of_top": 17.0,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 56,
+    "cost_per_fps": 24.198,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 588.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/pny-technologies-inc-geforce-rtx-2060-8gb-graphics-card/p/1FT-000P-003P0?Item=9SIB4VJKP93706",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2060+Super&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+2060+Super&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+2060+Super"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-2070",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Turing",
+  "series": "RTX 20",
+  "display_name": "RTX 2070",
+  "release_year": 2018,
+  "msrp_usd": null,
+  "tdp_w": 185,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 27.5,
+     "raw_fps": 51.8,
+     "pct_of_top": 19.2,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 57,
+    "cost_per_fps": 24.545,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 675.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-gv-n2070aorus-8gc-geforce-rtx-2070-8gb-graphics-card-windforce-stack/p/N82E16814932088?Item=9SIB4VJKP93808",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2070&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+2070&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+2070"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-2070-super",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Turing",
+  "series": "RTX 20",
+  "display_name": "RTX 2070 Super",
+  "release_year": 2019,
+  "msrp_usd": null,
+  "tdp_w": 215,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 34.9,
+     "raw_fps": 59.8,
+     "pct_of_top": 24.4,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 54,
+    "cost_per_fps": 21.347,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 745.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/msi-rtx-2070-super-gaming-z-trio-geforce-rtx-2070-super-8gb-graphics-card-triple-fans/p/N82E16814137487?Item=9SIB4VJKMG7528",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2070+Super&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+2070+Super&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+2070+Super"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-2080",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Turing",
+  "series": "RTX 20",
+  "display_name": "RTX 2080",
+  "release_year": 2018,
+  "msrp_usd": null,
+  "tdp_w": 215,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 38.1,
+     "raw_fps": 63.2,
+     "pct_of_top": 26.6,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 48,
+    "cost_per_fps": 19.029,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 725.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asus-dual-rtx2080-8g-evo-geforce-rtx-2080-8gb-graphics-card-double-fans/p/N82E16814126340?Item=9SIB4VJKBM6266",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2080&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+2080&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+2080"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-2080-super",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Turing",
+  "series": "RTX 20",
+  "display_name": "RTX 2080 Super",
+  "release_year": 2019,
+  "msrp_usd": null,
+  "tdp_w": 250,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 40.7,
+     "raw_fps": 66.1,
+     "pct_of_top": 28.5,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 50,
+    "cost_per_fps": 19.631,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 799.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/msi-rtx-2080-super-ventus-oc-geforce-rtx-2080-super-8gb-graphics-card-double-fans/p/N82E16814137443?Item=9SIB4VJKBM6279",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2080+Super&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+2080+Super&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+2080+Super"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-2080-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Turing",
+  "series": "RTX 20",
+  "display_name": "RTX 2080 Ti",
+  "release_year": 2018,
+  "msrp_usd": null,
+  "tdp_w": 250,
+  "vram_gb": 11,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 49.5,
+     "raw_fps": 75.6,
+     "pct_of_top": 34.6,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 40,
+    "cost_per_fps": 14.04,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 695.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/zotac-zt-t20810a-10p-geforce-rtx-2080-ti-11gb-graphics-card-blower/p/N82E16814500451?Item=9SIB1PGFBY3314",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2080+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+2080+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+2080+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3060",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3060",
+  "release_year": 2021,
+  "msrp_usd": null,
+  "tdp_w": 170,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 34.9,
+     "raw_fps": 34.9,
+     "pct_of_top": 24.4,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 21,
+    "cost_per_fps": 9.713,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 339.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-windforce-oc-gv-n3060wf2oc-12gd-rev2-0-geforce-rtx-3060-12gb-graphics-card-double-fans/p/N82E16814932658?Item=N82E16814932658",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3060&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3060&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3060"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3060-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3060 Ti",
+  "release_year": 2020,
+  "msrp_usd": null,
+  "tdp_w": 200,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 44.3,
+     "raw_fps": 70.0,
+     "pct_of_top": 31.0,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 35,
+    "cost_per_fps": 11.264,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 499.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/1FT-000A-00689?Item=9SIBW8HKC16375",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3060+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3060+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3060+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3070",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3070",
+  "release_year": 2020,
+  "msrp_usd": null,
+  "tdp_w": 220,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 51.4,
+     "raw_fps": 77.7,
+     "pct_of_top": 35.9,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 2,
+    "cost_per_fps": 6.323,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 325.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/peladn-geforce-rtx-3070-8gb-graphics-card-double-fans/p/1FT-00EY-00033?Item=9SIBF3CKGM8878",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3070&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3070&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3070"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3070-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3070 Ti",
+  "release_year": 2021,
+  "msrp_usd": null,
+  "tdp_w": 290,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 56.1,
+     "raw_fps": 82.8,
+     "pct_of_top": 39.2,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 29,
+    "cost_per_fps": 10.677,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 599.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/maxsun-icraft-geforce-rtx-3070-ti-8gb-graphics-card-triple-fans/p/1FT-009J-000C0?Item=9SIBTK0KEC0483",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3070+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3070+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3070+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3080",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3080",
+  "release_year": 2020,
+  "msrp_usd": null,
+  "tdp_w": 320,
+  "vram_gb": 10,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 68.7,
+     "raw_fps": 96.4,
+     "pct_of_top": 48.0,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 33,
+    "cost_per_fps": 11.165,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 767.04,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/nvidia-900-1g133-2530-rf2-geforce-rtx-3080-10gb-graphics-card/p/N82E16814132098?Item=9SIBTK0KFV5256",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3080&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3080&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3080"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3080-12gb",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3080 12GB",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 350,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 74.1,
+     "raw_fps": 102.3,
+     "pct_of_top": 51.8,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 42,
+    "cost_per_fps": 14.777,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 1095.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/msi-rtx-3080-ventus-3x-plus-12g-lhr-geforce-rtx-3080-12gb-graphics-card-triple-fans/p/N82E16814137764?Item=9SIB4VJKC38253",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3080+12GB&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3080+12GB&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3080+12GB"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3080-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3080 Ti",
+  "release_year": 2021,
+  "msrp_usd": null,
+  "tdp_w": 350,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 75.6,
+     "raw_fps": 103.9,
+     "pct_of_top": 52.9,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 43,
+    "cost_per_fps": 15.146,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 1145.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/1FT-000M-003C4?Item=9SIB4VJKBY1610",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3080+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3080+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3080+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3090",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3090",
+  "release_year": 2020,
+  "msrp_usd": null,
+  "tdp_w": 350,
+  "vram_gb": 24,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 77.5,
+     "raw_fps": 106.0,
+     "pct_of_top": 54.2,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 49,
+    "cost_per_fps": 19.486,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 1510.2,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/nvidia-900-1g1362-5100-00-geforce-rtx-3090-24gb-graphics-card/p/1FT-0004-00842?Item=9SIBTK0KFV5254",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3090&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3090&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3090"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-3090-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ampere",
+  "series": "RTX 30",
+  "display_name": "RTX 3090 Ti",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 450,
+  "vram_gb": 24,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 83.7,
+     "raw_fps": 112.7,
+     "pct_of_top": 58.5,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 55,
+    "cost_per_fps": 23.871,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 1998.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/1FT-001K-00FE5?Item=9SIB4VJKBN8280",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3090+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+3090+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+3090+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4060",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4060",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 115,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 38.9,
+     "raw_fps": 38.9,
+     "pct_of_top": 27.2,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 31,
+    "cost_per_fps": 10.797,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 419.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/msi-rtx-4060-ventus-2x-black-8g-oc-geforce-rtx-4060-8gb-graphics-card-double-fans/p/N82E16814137804?Item=9SIC1CZKK34982",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4060&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4060&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4060"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4060-ti-8gb",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4060 Ti 8GB",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 160,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 49.3,
+     "raw_fps": 49.3,
+     "pct_of_top": 34.5,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 23,
+    "cost_per_fps": 9.919,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 489.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asus-dual-rtx4060ti-o8g-evo-geforce-rtx-4060-ti-8gb-graphics-card-double-fans/p/1FT-000Y-00BP9?Item=9SIBP4YKF12912",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4060+Ti+8GB&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4060+Ti+8GB&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4060+Ti+8GB"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4060-ti-16gb",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4060 Ti 16GB",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 165,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 52.5,
+     "raw_fps": 52.5,
+     "pct_of_top": 36.7,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 38,
+    "cost_per_fps": 13.314,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 699.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-windforce-gv-n406twf2oc-16gd-geforce-rtx-4060-ti-16gb-graphics-card-double-fans/p/N82E16814932659?Item=9SIBTK0KD87787",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4060+Ti+16GB&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4060+Ti+16GB&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4060+Ti+16GB"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4070",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4070",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 200,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 68.3,
+     "raw_fps": 68.3,
+     "pct_of_top": 47.8,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 20,
+    "cost_per_fps": 9.59,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 655.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-windforce-gv-n4070wf3oc-12gd-geforce-rtx-4070-12gb-graphics-card-triple-fans/p/N82E16814932611?Item=9SIAYB7KNV1732",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4070&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4070&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4070"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4070-super",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4070 Super",
+  "release_year": 2024,
+  "msrp_usd": null,
+  "tdp_w": 220,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 79.7,
+     "raw_fps": 79.7,
+     "pct_of_top": 55.7,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 19,
+    "cost_per_fps": 9.222,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 735.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-windforce-gv-n407swf3oc-12gd-geforce-rtx-4070-super-12gb-graphics-card/p/N82E16814932683?Item=9SIAYB7KNK8783",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4070+Super&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4070+Super&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4070+Super"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4070-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4070 Ti",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 285,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 85.5,
+     "raw_fps": 85.5,
+     "pct_of_top": 59.8,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 28,
+    "cost_per_fps": 10.642,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 909.86,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asus-rog-strix-rtx4070ti-o12g-gaming-geforce-rtx-4070-ti-12gb-graphics-card-triple-fans/p/N82E16814126604?Item=9SIBTK0KEA5129",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4070+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4070+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4070+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4070-ti-super",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4070 Ti Super",
+  "release_year": 2024,
+  "msrp_usd": null,
+  "tdp_w": 285,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 116.9,
+     "raw_fps": 116.9,
+     "pct_of_top": 81.7,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 14,
+    "cost_per_fps": 8.073,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 943.77,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/pny-technologies-inc-verto-vcg4070ts16tfxxpb1-o-geforce-rtx-4070-ti-super-16gb-graphics-card-triple-fans/p/N82E16814133866?Item=9SIBZW0KPC0012",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4070+Ti+Super&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4070+Ti+Super&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4070+Ti+Super"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4080",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4080",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 320,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 103.7,
+     "raw_fps": 103.7,
+     "pct_of_top": 72.5,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 37,
+    "cost_per_fps": 12.375,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 1283.31,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asus-proart-rtx4080-o16g-geforce-rtx-4080-16gb-graphics-card-triple-fans/p/N82E16814126664?Item=9SIBTK0KEH7223",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4080&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4080&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4080"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4080-super",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4080 Super",
+  "release_year": 2024,
+  "msrp_usd": null,
+  "tdp_w": 320,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 105.8,
+     "raw_fps": 105.8,
+     "pct_of_top": 74.0,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 41,
+    "cost_per_fps": 14.178,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 1499.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asus-proart-rtx4080-16g-geforce-rtx-4080-16gb-video-cards-triple-fans/p/1FT-000Y-00C62?Item=9SIBP4YKN82567",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4080+Super&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4080+Super&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4080+Super"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-4090",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Ada Lovelace",
+  "series": "RTX 40",
+  "display_name": "RTX 4090",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 450,
+  "vram_gb": 24,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 126.6,
+     "raw_fps": 126.6,
+     "pct_of_top": 88.5,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 59,
+    "cost_per_fps": 26.817,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 3395.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/1FT-000A-00695?Item=9SIB4VJKFX4642",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4090&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+4090&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+4090"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-5060",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Blackwell",
+  "series": "RTX 50",
+  "display_name": "RTX 5060",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 150,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 45.7,
+     "raw_fps": 45.7,
+     "pct_of_top": 32.0,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 11,
+    "cost_per_fps": 7.658,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 349.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-windforce-gv-n5060wf2oc-8gd-geforce-rtx-5060-8gb-graphics-card-double-fans/p/N82E16814932804?Item=N82E16814932804",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5060&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+5060&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5060"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-5060-ti-8gb",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Blackwell",
+  "series": "RTX 50",
+  "display_name": "RTX 5060 Ti 8GB",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 180,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 56.0,
+     "raw_fps": 56.0,
+     "pct_of_top": 39.2,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 4,
+    "cost_per_fps": 6.786,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 379.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/msi-rtx-5060-ti-8g-ventus-2x-oc-plus-geforce-rtx-5060-ti-8gb-graphics-card-double-fans/p/N82E16814137965?Item=N82E16814137965",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5060+Ti+8GB&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+5060+Ti+8GB&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5060+Ti+8GB"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-5060-ti-16gb",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Blackwell",
+  "series": "RTX 50",
+  "display_name": "RTX 5060 Ti 16GB",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 185,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 62.3,
+     "raw_fps": 62.3,
+     "pct_of_top": 43.6,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 17,
+    "cost_per_fps": 8.828,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 549.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-gv-n506tgaming-oc-16gd-geforce-rtx-5060-ti-16gb-graphics-card-triple-fans/p/N82E16814932787?Item=N82E16814932787",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5060+Ti+16GB&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+5060+Ti+16GB&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5060+Ti+16GB"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-5070",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Blackwell",
+  "series": "RTX 50",
+  "display_name": "RTX 5070",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 220,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 81.2,
+     "raw_fps": 81.2,
+     "pct_of_top": 56.8,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 13,
+    "cost_per_fps": 8.005,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 649.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/msi-rtx-5070-12g-shadow-2x-oc-geforce-rtx-5070-12gb-graphics-card-double-fans/p/N82E16814137944?Item=N82E16814137944",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5070&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+5070&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5070"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-5070-ti",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Blackwell",
+  "series": "RTX 50",
+  "display_name": "RTX 5070 Ti",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 285,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 101.2,
+     "raw_fps": 101.2,
+     "pct_of_top": 70.8,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 27,
+    "cost_per_fps": 10.474,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 1059.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-gv-n507teagleoc-ice-16gd-geforce-rtx-5070-ti-16gb-graphics-card-triple-fans/p/N82E16814932769?Item=N82E16814932769",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5070+Ti&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+5070+Ti&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5070+Ti"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-5080",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Blackwell",
+  "series": "RTX 50",
+  "display_name": "RTX 5080",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 360,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 111.7,
+     "raw_fps": 111.7,
+     "pct_of_top": 78.1,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 34,
+    "cost_per_fps": 11.191,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 1249.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/zotac-gaming-geforce-rtx-5080-solid-core-oc-16gb-graphics-card-triple-fans/p/N82E16814500604?Item=N82E16814500604",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5080&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+5080&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5080"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "nvidia-rtx-5090",
+  "component_type": "gpu",
+  "vendor": "NVIDIA",
+  "architecture": "Blackwell",
+  "series": "RTX 50",
+  "display_name": "RTX 5090",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 575,
+  "vram_gb": 32,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 143.0,
+     "raw_fps": 143.0,
+     "pct_of_top": 100.0,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 58,
+    "cost_per_fps": 25.175,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 3599.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/zotac-rtx-5090-solid-oc-geforce-rtx-5090-32gb-graphics-card-triple-fans/p/N82E16814500639?Item=N82E16814500639",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5090&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=GeForce+RTX+5090&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5090"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6500-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6500 XT",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 107,
+  "vram_gb": 4,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 9.9,
+     "raw_fps": 18.0,
+     "pct_of_top": 6.9,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 52,
+    "cost_per_fps": 20.164,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 199.62,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/gigabyte-gv-r65xteagle-4gd-radeon-rx-6500-xt-4gb-graphics-card-windforce-2x/p/N82E16814932492?Item=9SIBTK0KF15218",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6500+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6500+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6500+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6600",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6600",
+  "release_year": 2021,
+  "msrp_usd": null,
+  "tdp_w": 132,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 24.1,
+     "raw_fps": 24.1,
+     "pct_of_top": 16.9,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 39,
+    "cost_per_fps": 13.651,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 329.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/27N-0005-001X6?Item=9SIBTK0KEF3427",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6600&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6600&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6600"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6600-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6600 XT",
+  "release_year": 2021,
+  "msrp_usd": null,
+  "tdp_w": 160,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 27.9,
+     "raw_fps": 52.2,
+     "pct_of_top": 19.5,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 51,
+    "cost_per_fps": 19.677,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 549.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/27N-000F-000K8?Item=9SIB4VJKN82370",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6600+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6600+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6600+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6700-10gb",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6700 10GB",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 135,
+  "vram_gb": 10,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 37.7,
+     "raw_fps": 62.8,
+     "pct_of_top": 26.4,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 47,
+    "cost_per_fps": 18.541,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 699.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/sapphire-tech-pulse-11321-02-20g-radeon-rx-6700-10gb-graphics-card-double-fans/p/N82E16814202424?Item=9SIB4VJKFK5654",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6700+10GB&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6700+10GB&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6700+10GB"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6700-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6700 XT",
+  "release_year": 2021,
+  "msrp_usd": null,
+  "tdp_w": 230,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 47.5,
+     "raw_fps": 73.4,
+     "pct_of_top": 33.2,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 46,
+    "cost_per_fps": 16.394,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 778.7,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-challenger-d-rx6700xt-cld-12g-radeon-rx-6700-xt-12gb-graphics-card-double-fans/p/N82E16814930056?Item=9SIBTK0KP53780",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6700+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6700+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6700+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6750-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6750 XT",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 250,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 51.0,
+     "raw_fps": 77.2,
+     "pct_of_top": 35.7,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 45,
+    "cost_per_fps": 16.187,
+    "zone": "poor"
+   }
+  },
+  "current_price": {
+   "price": 825.55,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-phantom-gaming-d-rx6750xt-pgd-12go-radeon-rx-6750-xt-12gb-graphics-card-triple-fans/p/N82E16814930072?Item=9SIBTK0KP53782",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6750+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6750+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6750+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6800",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6800",
+  "release_year": 2020,
+  "msrp_usd": null,
+  "tdp_w": 250,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 62.0,
+     "raw_fps": 89.2,
+     "pct_of_top": 43.4,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 8,
+    "cost_per_fps": 7.258,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 449.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/xfx-speedster-swft319-radeon-rx-6800-16gb-graphics-card-air-cooler/p/N82E16814150896?Item=9SIADFRKK95516",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6800&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6800&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6800"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6800-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6800 XT",
+  "release_year": 2020,
+  "msrp_usd": null,
+  "tdp_w": 300,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 71.1,
+     "raw_fps": 99.0,
+     "pct_of_top": 49.7,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 6,
+    "cost_per_fps": 7.018,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 499.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/yeston-rx6800xt-16gb-video-cards/p/27N-0042-000K2?Item=9SIC1B6KJ72422",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6800+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6800+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6800+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6900-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6900 XT",
+  "release_year": 2020,
+  "msrp_usd": null,
+  "tdp_w": 300,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 73.9,
+     "raw_fps": 102.1,
+     "pct_of_top": 51.7,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 32,
+    "cost_per_fps": 10.812,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 799.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-phantom-gaming-d-rx6900xt-pgd-16go-radeon-rx-6900-xt-16gb-graphics-card-triple-fans/p/N82E16814930052?Item=9SIAM3PKS99198",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6900+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6900+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6900+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-6950-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA2",
+  "series": "RX 6000",
+  "display_name": "RX 6950 XT",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 335,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 81.3,
+     "raw_fps": 110.1,
+     "pct_of_top": 56.9,
+     "suite_version": "2022",
+     "normalized": true
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 25,
+    "cost_per_fps": 10.209,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 829.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-oc-formula-rx6950xt-ocf-16g-radeon-rx-6950-xt-16gb-graphics-card-triple-fans/p/N82E16814930073?Item=9SIA4REKGJ9521",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+6950+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+6950+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+6950+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-7600",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA3",
+  "series": "RX 7000",
+  "display_name": "RX 7600",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 165,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 27.9,
+     "raw_fps": 27.9,
+     "pct_of_top": 19.5,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 24,
+    "cost_per_fps": 10.0,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 279.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-challenger-rx7600-cl-8go-radeon-rx-7600-8gb-graphics-card-double-fans/p/N82E16814930093?Item=N82E16814930093",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7600&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+7600&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+7600"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-7600-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA3",
+  "series": "RX 7000",
+  "display_name": "RX 7600 XT",
+  "release_year": 2024,
+  "msrp_usd": null,
+  "tdp_w": 190,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 41.7,
+     "raw_fps": 41.7,
+     "pct_of_top": 29.2,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 36,
+    "cost_per_fps": 11.99,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 499.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/xfx-speedster-rx-76tswftfp-radeon-rx-7600-xt-16gb-graphics-card-double-fans/p/N82E16814150889?Item=9SIADFRKFS4159",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7600+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+7600+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+7600+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-7700-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA3",
+  "series": "RX 7000",
+  "display_name": "RX 7700 XT",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 245,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 60.6,
+     "raw_fps": 60.6,
+     "pct_of_top": 42.4,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 3,
+    "cost_per_fps": 6.6,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 399.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-challenger-rx7700xt-cl-12go-radeon-rx-7700-xt-12gb-graphics-card-double-fans/p/N82E16814930109?Item=N82E16814930109",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7700+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+7700+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+7700+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-7800-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA3",
+  "series": "RX 7000",
+  "display_name": "RX 7800 XT",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 263,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 69.0,
+     "raw_fps": 69.0,
+     "pct_of_top": 48.3,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 12,
+    "cost_per_fps": 7.971,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 549.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/powercolor-amd-rx-7800-xt-16gb-gddr6-video-cards/p/27N-000F-00127?Item=9SIADFRKT71845",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7800+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+7800+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+7800+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-7900-gre",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA3",
+  "series": "RX 7000",
+  "display_name": "RX 7900 GRE",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 260,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 77.5,
+     "raw_fps": 77.5,
+     "pct_of_top": 54.2,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 16,
+    "cost_per_fps": 8.574,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 664.45,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/sapphire-tech-pure-7900gre-radeon-rx-7900-gre-16gb-graphics-card/p/27N-0005-00249?Item=9SIBTK0KED2286",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7900+GRE&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+7900+GRE&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+7900+GRE"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-7900-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA3",
+  "series": "RX 7000",
+  "display_name": "RX 7900 XT",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 315,
+  "vram_gb": 20,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 92.0,
+     "raw_fps": 92.0,
+     "pct_of_top": 64.3,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 9,
+    "cost_per_fps": 7.391,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 679.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/xfx-gaming-rx-79tmbabf9-radeon-rx-7900-xt-20gb-graphics-card-triple-fans/p/N82E16814150876?Item=9SIAD2CJS91325",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7900+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+7900+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+7900+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-7900-xtx",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA3",
+  "series": "RX 7000",
+  "display_name": "RX 7900 XTX",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 355,
+  "vram_gb": 24,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 102.6,
+     "raw_fps": 102.6,
+     "pct_of_top": 71.7,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 26,
+    "cost_per_fps": 10.39,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 1066.03,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/sapphire-tech-pulse-11322-02-20g-radeon-rx-7900-xtx-24gb-graphics-card-triple-fans/p/N82E16814202429?Item=9SIBTK0KE62195",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7900+XTX&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+7900+XTX&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+7900+XTX"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-9060-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA4",
+  "series": "RX 9000",
+  "display_name": "RX 9060 XT",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 150,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 59.4,
+     "raw_fps": 59.4,
+     "pct_of_top": 41.5,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 1,
+    "cost_per_fps": 5.825,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 345.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/xfx-swift-rx-9060-xt-oc-triple-fan-radeon-rx-9060-xt-8gb-graphics-card-triple-fans/p/N82E16814150918?Item=9SIA2W0KPW0442",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+9060+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+9060+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+9060+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-9070",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA4",
+  "series": "RX 9000",
+  "display_name": "RX 9070",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 220,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 86.9,
+     "raw_fps": 86.9,
+     "pct_of_top": 60.8,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 7,
+    "cost_per_fps": 7.25,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 629.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-challenger-rx9070-cl-16g-radeon-rx-9070-16gb-graphics-card-triple-fans/p/N82E16814930138?Item=N82E16814930138",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+9070&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+9070&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+9070"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "amd-rx-9070-xt",
+  "component_type": "gpu",
+  "vendor": "AMD",
+  "architecture": "RDNA4",
+  "series": "RX 9000",
+  "display_name": "RX 9070 XT",
+  "release_year": 2025,
+  "msrp_usd": null,
+  "tdp_w": 250,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 98.3,
+     "raw_fps": 98.3,
+     "pct_of_top": 68.7,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 10,
+    "cost_per_fps": 7.426,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 729.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-challenger-rx9070xt-cl-16g-radeon-rx-9070-xt-16gb-graphics-card-triple-fans/p/N82E16814930145?Item=N82E16814930145",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+9070+XT&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Radeon+RX+9070+XT&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Radeon+RX+9070+XT"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "intel-arc-a580",
+  "component_type": "gpu",
+  "vendor": "Intel",
+  "architecture": "Alchemist",
+  "series": "Arc A",
+  "display_name": "Intel Arc A580",
+  "release_year": 2023,
+  "msrp_usd": null,
+  "tdp_w": 185,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 27.8,
+     "raw_fps": 27.8,
+     "pct_of_top": 19.4,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 30,
+    "cost_per_fps": 10.791,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 299.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/asrock-challenger-b580-cl-12go-arc-b580-12gb-graphics-card-double-fans/p/N82E16814930131?Item=N82E16814930131",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+A580&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Intel+Intel+Arc+A580&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Intel+Intel+Arc+A580"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "intel-arc-a750",
+  "component_type": "gpu",
+  "vendor": "Intel",
+  "architecture": "Alchemist",
+  "series": "Arc A",
+  "display_name": "Intel Arc A750",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 225,
+  "vram_gb": 8,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 30.9,
+     "raw_fps": 30.9,
+     "pct_of_top": 21.6,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 18,
+    "cost_per_fps": 9.029,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 279.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/3GM-0001-00020?Item=9SIBEWBKFH6662",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+A750&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Intel+Intel+Arc+A750&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Intel+Intel+Arc+A750"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "intel-arc-a770",
+  "component_type": "gpu",
+  "vendor": "Intel",
+  "architecture": "Alchemist",
+  "series": "Arc A",
+  "display_name": "Intel Arc A770",
+  "release_year": 2022,
+  "msrp_usd": null,
+  "tdp_w": 225,
+  "vram_gb": 16,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 36.7,
+     "raw_fps": 36.7,
+     "pct_of_top": 25.7,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 22,
+    "cost_per_fps": 9.782,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 359.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/3GM-0001-00014?Item=9SIBEWBKEX2361",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+A770&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Intel+Intel+Arc+A770&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Intel+Intel+Arc+A770"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "intel-arc-b570",
+  "component_type": "gpu",
+  "vendor": "Intel",
+  "architecture": "Battlemage",
+  "series": "Arc B",
+  "display_name": "Intel Arc B570",
+  "release_year": 2024,
+  "msrp_usd": null,
+  "tdp_w": 120,
+  "vram_gb": 10,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 35.3,
+     "raw_fps": 35.3,
+     "pct_of_top": 24.7,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 15,
+    "cost_per_fps": 8.47,
+    "zone": "fair"
+   }
+  },
+  "current_price": {
+   "price": 299.0,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/p/3GM-0001-00026?Item=9SIBM9SKJJ1953",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+B570&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Intel+Intel+Arc+B570&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Intel+Intel+Arc+B570"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ },
+ {
+  "gpu_id": "intel-arc-b580",
+  "component_type": "gpu",
+  "vendor": "Intel",
+  "architecture": "Battlemage",
+  "series": "Arc B",
+  "display_name": "Intel Arc B580",
+  "release_year": 2024,
+  "msrp_usd": null,
+  "tdp_w": 190,
+  "vram_gb": 12,
+  "is_active": true,
+  "benchmarks": {
+   "1440p": {
+    "raster": {
+     "fps": 42.6,
+     "raw_fps": 42.6,
+     "pct_of_top": 29.8,
+     "suite_version": "2026-03",
+     "normalized": false
+    }
+   }
+  },
+  "rankings": {
+   "1440p_raster": {
+    "rank": 5,
+    "cost_per_fps": 6.807,
+    "zone": "great"
+   }
+  },
+  "current_price": {
+   "price": 289.99,
+   "retailer": "newegg",
+   "url": "https://www.newegg.com/onix-lumi-8346-00278-arc-b580-12gb-graphics-card-double-fans/p/N82E16814987002?Item=N82E16814987002",
+   "condition": "new",
+   "fetched_at": "2026-03-06T00:00:00Z"
+  },
+  "retailer_links": {
+   "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+B580&N=100007709",
+   "amazon": "https://www.amazon.com/s?k=Intel+Intel+Arc+B580&i=computers",
+   "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=Intel+Intel+Arc+B580"
+  },
+  "price_stats": {
+   "min_90d": null,
+   "median_90d": null,
+   "n_points": 0
+  }
+ }
+]

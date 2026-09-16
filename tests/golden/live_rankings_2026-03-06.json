@@ -1,0 +1,243 @@
+{
+ "source": "index.html live site 2026-03-06, values array",
+ "view": "1440p_raster",
+ "method": "ratio_trimmed",
+ "rows": [
+  {
+   "gpu_model": "RX 9060 XT",
+   "cost_per_fps": 5.825
+  },
+  {
+   "gpu_model": "RTX 3070",
+   "cost_per_fps": 5.941
+  },
+  {
+   "gpu_model": "RX 7700 XT",
+   "cost_per_fps": 6.6
+  },
+  {
+   "gpu_model": "RTX 5060 Ti 8GB",
+   "cost_per_fps": 6.786
+  },
+  {
+   "gpu_model": "Intel Arc B580",
+   "cost_per_fps": 6.807
+  },
+  {
+   "gpu_model": "RX 6800 XT",
+   "cost_per_fps": 7.159
+  },
+  {
+   "gpu_model": "RX 6800",
+   "cost_per_fps": 7.165
+  },
+  {
+   "gpu_model": "RX 9070",
+   "cost_per_fps": 7.25
+  },
+  {
+   "gpu_model": "RX 7900 XT",
+   "cost_per_fps": 7.391
+  },
+  {
+   "gpu_model": "RX 9070 XT",
+   "cost_per_fps": 7.426
+  },
+  {
+   "gpu_model": "RTX 5060",
+   "cost_per_fps": 7.658
+  },
+  {
+   "gpu_model": "RX 7800 XT",
+   "cost_per_fps": 7.971
+  },
+  {
+   "gpu_model": "RTX 5070",
+   "cost_per_fps": 8.005
+  },
+  {
+   "gpu_model": "RTX 4070 Ti Super",
+   "cost_per_fps": 8.073
+  },
+  {
+   "gpu_model": "Intel Arc B570",
+   "cost_per_fps": 8.47
+  },
+  {
+   "gpu_model": "RX 7900 GRE",
+   "cost_per_fps": 8.574
+  },
+  {
+   "gpu_model": "RTX 5060 Ti 16GB",
+   "cost_per_fps": 8.828
+  },
+  {
+   "gpu_model": "Intel Arc A750",
+   "cost_per_fps": 9.029
+  },
+  {
+   "gpu_model": "RTX 4070 Super",
+   "cost_per_fps": 9.222
+  },
+  {
+   "gpu_model": "RTX 4070",
+   "cost_per_fps": 9.59
+  },
+  {
+   "gpu_model": "RTX 3060",
+   "cost_per_fps": 9.713
+  },
+  {
+   "gpu_model": "Intel Arc A770",
+   "cost_per_fps": 9.782
+  },
+  {
+   "gpu_model": "RTX 4060 Ti 8GB",
+   "cost_per_fps": 9.919
+  },
+  {
+   "gpu_model": "RX 7600",
+   "cost_per_fps": 10.0
+  },
+  {
+   "gpu_model": "RTX 3060 Ti",
+   "cost_per_fps": 10.122
+  },
+  {
+   "gpu_model": "RTX 3070 Ti",
+   "cost_per_fps": 10.274
+  },
+  {
+   "gpu_model": "RX 7900 XTX",
+   "cost_per_fps": 10.39
+  },
+  {
+   "gpu_model": "RTX 5070 Ti",
+   "cost_per_fps": 10.474
+  },
+  {
+   "gpu_model": "RTX 4070 Ti",
+   "cost_per_fps": 10.642
+  },
+  {
+   "gpu_model": "RX 6950 XT",
+   "cost_per_fps": 10.71
+  },
+  {
+   "gpu_model": "Intel Arc A580",
+   "cost_per_fps": 10.791
+  },
+  {
+   "gpu_model": "RTX 4060",
+   "cost_per_fps": 10.797
+  },
+  {
+   "gpu_model": "RX 6900 XT",
+   "cost_per_fps": 11.128
+  },
+  {
+   "gpu_model": "RTX 5080",
+   "cost_per_fps": 11.191
+  },
+  {
+   "gpu_model": "GTX 1080 Ti",
+   "cost_per_fps": 11.303
+  },
+  {
+   "gpu_model": "RTX 3080",
+   "cost_per_fps": 11.313
+  },
+  {
+   "gpu_model": "RX 7600 XT",
+   "cost_per_fps": 11.99
+  },
+  {
+   "gpu_model": "RTX 4080",
+   "cost_per_fps": 12.375
+  },
+  {
+   "gpu_model": "RTX 2080 Ti",
+   "cost_per_fps": 13.064
+  },
+  {
+   "gpu_model": "RTX 4060 Ti 16GB",
+   "cost_per_fps": 13.314
+  },
+  {
+   "gpu_model": "RX 6600",
+   "cost_per_fps": 13.651
+  },
+  {
+   "gpu_model": "RTX 4080 Super",
+   "cost_per_fps": 14.178
+  },
+  {
+   "gpu_model": "RX 6600 XT",
+   "cost_per_fps": 14.959
+  },
+  {
+   "gpu_model": "RX 6700 XT",
+   "cost_per_fps": 15.062
+  },
+  {
+   "gpu_model": "RX 6750 XT",
+   "cost_per_fps": 15.203
+  },
+  {
+   "gpu_model": "RTX 3080 12GB",
+   "cost_per_fps": 15.208
+  },
+  {
+   "gpu_model": "RTX 3080 Ti",
+   "cost_per_fps": 15.663
+  },
+  {
+   "gpu_model": "RX 6500 XT",
+   "cost_per_fps": 15.718
+  },
+  {
+   "gpu_model": "RX 6700 10GB",
+   "cost_per_fps": 15.814
+  },
+  {
+   "gpu_model": "RTX 2080",
+   "cost_per_fps": 16.292
+  },
+  {
+   "gpu_model": "RTX 2060",
+   "cost_per_fps": 16.631
+  },
+  {
+   "gpu_model": "RTX 2080 Super",
+   "cost_per_fps": 17.183
+  },
+  {
+   "gpu_model": "RTX 2060 Super",
+   "cost_per_fps": 17.294
+  },
+  {
+   "gpu_model": "RTX 2070 Super",
+   "cost_per_fps": 17.696
+  },
+  {
+   "gpu_model": "RTX 2070",
+   "cost_per_fps": 18.493
+  },
+  {
+   "gpu_model": "RTX 3090",
+   "cost_per_fps": 20.244
+  },
+  {
+   "gpu_model": "RTX 5090",
+   "cost_per_fps": 25.175
+  },
+  {
+   "gpu_model": "RTX 3090 Ti",
+   "cost_per_fps": 25.195
+  },
+  {
+   "gpu_model": "RTX 4090",
+   "cost_per_fps": 26.817
+  }
+ ]
+}

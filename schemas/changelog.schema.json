@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "changelog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "run_id",
+      "generated_at",
+      "added_gpus",
+      "removed_gpus",
+      "price_changes"
+    ],
+    "properties": {
+      "run_id": {
+        "type": "string"
+      },
+      "generated_at": {
+        "type": "string"
+      },
+      "added_gpus": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z]+-[a-z0-9-]+$"
+        }
+      },
+      "removed_gpus": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z]+-[a-z0-9-]+$"
+        }
+      },
+      "price_changes": {
+        "type": "array"
+      },
+      "benchmark_suite_changed": {
+        "type": "boolean"
+      },
+      "unresolved_count": {
+        "type": "integer"
+      },
+      "notes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

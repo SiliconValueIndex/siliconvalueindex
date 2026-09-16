@@ -1,0 +1,100 @@
+{
+ "generated_at": "2026-09-16T15:40:09Z",
+ "run_id": "seed-parity",
+ "primary_view": "1440p_raster",
+ "views": [
+  "1440p_raster"
+ ],
+ "gpu_count": 59,
+ "ranked_counts": {
+  "1440p_raster": 59
+ },
+ "zones": {
+  "1440p_raster": {
+   "mode": "absolute",
+   "great_max": 8.0,
+   "fair_max": 12.0
+  }
+ },
+ "normalization": {
+  "method": "linear",
+  "transforms": [
+   {
+    "resolution": "1440p",
+    "mode": "raster",
+    "from_suite": "2022",
+    "to_suite": "2026-03",
+    "method": "linear",
+    "params": {
+     "a": 0.92239,
+     "b": -20.23399
+    },
+    "overlap_ids": [
+     "amd-rx-7600-xt",
+     "amd-rx-7700-xt",
+     "amd-rx-7800-xt",
+     "amd-rx-7900-gre",
+     "amd-rx-7900-xt",
+     "amd-rx-7900-xtx",
+     "nvidia-rtx-3060",
+     "nvidia-rtx-4060",
+     "nvidia-rtx-4060-ti-16gb",
+     "nvidia-rtx-4060-ti-8gb",
+     "nvidia-rtx-4070",
+     "nvidia-rtx-4070-super",
+     "nvidia-rtx-4070-ti",
+     "nvidia-rtx-4070-ti-super",
+     "nvidia-rtx-4080",
+     "nvidia-rtx-4080-super",
+     "nvidia-rtx-4090"
+    ],
+    "n_overlap": 17,
+    "n_used": 16,
+    "r2": 0.9224,
+    "residual_sd": 7.735,
+    "legacy_range": [
+     54.0,
+     146.1
+    ],
+    "dropped_outliers": [
+     "nvidia-rtx-4070-ti-super"
+    ]
+   }
+  ]
+ },
+ "benchmark_suites": {
+  "1440p_raster": "2026-03"
+ },
+ "sources": [
+  {
+   "name": "Tom's Hardware GPU Hierarchy",
+   "url": "https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html",
+   "kind": "benchmarks",
+   "fetched_at": null
+  },
+  {
+   "name": "Best Buy Products API",
+   "url": "https://www.bestbuy.com",
+   "kind": "prices",
+   "fetched_at": null
+  },
+  {
+   "name": "Manual price overrides",
+   "url": "https://github.com/SiliconValueIndex/siliconvalueindex/blob/main/data/reference/price_overrides.csv",
+   "kind": "prices",
+   "fetched_at": null
+  }
+ ],
+ "anomalies": [
+  {
+   "type": "overlap_residual",
+   "gpu_id": "nvidia-rtx-4070-ti-super",
+   "resolution": "1440p",
+   "mode": "raster",
+   "residual": 24.6,
+   "detail": "2022->2026-03 fit residual exceeds 2.5 sd (7.7)"
+  }
+ ],
+ "unresolved": [],
+ "needs_review": true
+}

@@ -1,0 +1,535 @@
+{
+ "1440p_raster": [
+  {
+   "gpu_id": "amd-rx-9060-xt",
+   "rank": 1,
+   "fps": 59.4,
+   "price": 345.99,
+   "cost_per_fps": 5.825,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-3070",
+   "rank": 2,
+   "fps": 51.4,
+   "price": 325.0,
+   "cost_per_fps": 6.323,
+   "zone": "great",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-7700-xt",
+   "rank": 3,
+   "fps": 60.6,
+   "price": 399.99,
+   "cost_per_fps": 6.6,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-5060-ti-8gb",
+   "rank": 4,
+   "fps": 56.0,
+   "price": 379.99,
+   "cost_per_fps": 6.786,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "intel-arc-b580",
+   "rank": 5,
+   "fps": 42.6,
+   "price": 289.99,
+   "cost_per_fps": 6.807,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-6800-xt",
+   "rank": 6,
+   "fps": 71.1,
+   "price": 499.0,
+   "cost_per_fps": 7.018,
+   "zone": "great",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-9070",
+   "rank": 7,
+   "fps": 86.9,
+   "price": 629.99,
+   "cost_per_fps": 7.25,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-6800",
+   "rank": 8,
+   "fps": 62.0,
+   "price": 449.99,
+   "cost_per_fps": 7.258,
+   "zone": "great",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-7900-xt",
+   "rank": 9,
+   "fps": 92.0,
+   "price": 679.99,
+   "cost_per_fps": 7.391,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-9070-xt",
+   "rank": 10,
+   "fps": 98.3,
+   "price": 729.99,
+   "cost_per_fps": 7.426,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-5060",
+   "rank": 11,
+   "fps": 45.7,
+   "price": 349.99,
+   "cost_per_fps": 7.658,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-7800-xt",
+   "rank": 12,
+   "fps": 69.0,
+   "price": 549.99,
+   "cost_per_fps": 7.971,
+   "zone": "great",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-5070",
+   "rank": 13,
+   "fps": 81.2,
+   "price": 649.99,
+   "cost_per_fps": 8.005,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4070-ti-super",
+   "rank": 14,
+   "fps": 116.9,
+   "price": 943.77,
+   "cost_per_fps": 8.073,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "intel-arc-b570",
+   "rank": 15,
+   "fps": 35.3,
+   "price": 299.0,
+   "cost_per_fps": 8.47,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-7900-gre",
+   "rank": 16,
+   "fps": 77.5,
+   "price": 664.45,
+   "cost_per_fps": 8.574,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-5060-ti-16gb",
+   "rank": 17,
+   "fps": 62.3,
+   "price": 549.99,
+   "cost_per_fps": 8.828,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "intel-arc-a750",
+   "rank": 18,
+   "fps": 30.9,
+   "price": 279.0,
+   "cost_per_fps": 9.029,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4070-super",
+   "rank": 19,
+   "fps": 79.7,
+   "price": 735.0,
+   "cost_per_fps": 9.222,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4070",
+   "rank": 20,
+   "fps": 68.3,
+   "price": 655.0,
+   "cost_per_fps": 9.59,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-3060",
+   "rank": 21,
+   "fps": 34.9,
+   "price": 339.0,
+   "cost_per_fps": 9.713,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "intel-arc-a770",
+   "rank": 22,
+   "fps": 36.7,
+   "price": 359.0,
+   "cost_per_fps": 9.782,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4060-ti-8gb",
+   "rank": 23,
+   "fps": 49.3,
+   "price": 489.0,
+   "cost_per_fps": 9.919,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-7600",
+   "rank": 24,
+   "fps": 27.9,
+   "price": 279.0,
+   "cost_per_fps": 10.0,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-6950-xt",
+   "rank": 25,
+   "fps": 81.3,
+   "price": 829.99,
+   "cost_per_fps": 10.209,
+   "zone": "fair",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-7900-xtx",
+   "rank": 26,
+   "fps": 102.6,
+   "price": 1066.03,
+   "cost_per_fps": 10.39,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-5070-ti",
+   "rank": 27,
+   "fps": 101.2,
+   "price": 1059.99,
+   "cost_per_fps": 10.474,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4070-ti",
+   "rank": 28,
+   "fps": 85.5,
+   "price": 909.86,
+   "cost_per_fps": 10.642,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-3070-ti",
+   "rank": 29,
+   "fps": 56.1,
+   "price": 599.0,
+   "cost_per_fps": 10.677,
+   "zone": "fair",
+   "normalized": true
+  },
+  {
+   "gpu_id": "intel-arc-a580",
+   "rank": 30,
+   "fps": 27.8,
+   "price": 299.99,
+   "cost_per_fps": 10.791,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4060",
+   "rank": 31,
+   "fps": 38.9,
+   "price": 419.99,
+   "cost_per_fps": 10.797,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-6900-xt",
+   "rank": 32,
+   "fps": 73.9,
+   "price": 799.0,
+   "cost_per_fps": 10.812,
+   "zone": "fair",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-3080",
+   "rank": 33,
+   "fps": 68.7,
+   "price": 767.04,
+   "cost_per_fps": 11.165,
+   "zone": "fair",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-5080",
+   "rank": 34,
+   "fps": 111.7,
+   "price": 1249.99,
+   "cost_per_fps": 11.191,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-3060-ti",
+   "rank": 35,
+   "fps": 44.3,
+   "price": 499.0,
+   "cost_per_fps": 11.264,
+   "zone": "fair",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-7600-xt",
+   "rank": 36,
+   "fps": 41.7,
+   "price": 499.99,
+   "cost_per_fps": 11.99,
+   "zone": "fair",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4080",
+   "rank": 37,
+   "fps": 103.7,
+   "price": 1283.31,
+   "cost_per_fps": 12.375,
+   "zone": "poor",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4060-ti-16gb",
+   "rank": 38,
+   "fps": 52.5,
+   "price": 699.0,
+   "cost_per_fps": 13.314,
+   "zone": "poor",
+   "normalized": false
+  },
+  {
+   "gpu_id": "amd-rx-6600",
+   "rank": 39,
+   "fps": 24.1,
+   "price": 329.0,
+   "cost_per_fps": 13.651,
+   "zone": "poor",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-2080-ti",
+   "rank": 40,
+   "fps": 49.5,
+   "price": 695.0,
+   "cost_per_fps": 14.04,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-4080-super",
+   "rank": 41,
+   "fps": 105.8,
+   "price": 1499.99,
+   "cost_per_fps": 14.178,
+   "zone": "poor",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-3080-12gb",
+   "rank": 42,
+   "fps": 74.1,
+   "price": 1095.0,
+   "cost_per_fps": 14.777,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-3080-ti",
+   "rank": 43,
+   "fps": 75.6,
+   "price": 1145.0,
+   "cost_per_fps": 15.146,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-gtx-1080-ti",
+   "rank": 44,
+   "fps": 26.1,
+   "price": 399.0,
+   "cost_per_fps": 15.287,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-6750-xt",
+   "rank": 45,
+   "fps": 51.0,
+   "price": 825.55,
+   "cost_per_fps": 16.187,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-6700-xt",
+   "rank": 46,
+   "fps": 47.5,
+   "price": 778.7,
+   "cost_per_fps": 16.394,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-6700-10gb",
+   "rank": 47,
+   "fps": 37.7,
+   "price": 699.0,
+   "cost_per_fps": 18.541,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-2080",
+   "rank": 48,
+   "fps": 38.1,
+   "price": 725.0,
+   "cost_per_fps": 19.029,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-3090",
+   "rank": 49,
+   "fps": 77.5,
+   "price": 1510.2,
+   "cost_per_fps": 19.486,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-2080-super",
+   "rank": 50,
+   "fps": 40.7,
+   "price": 799.0,
+   "cost_per_fps": 19.631,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-6600-xt",
+   "rank": 51,
+   "fps": 27.9,
+   "price": 549.0,
+   "cost_per_fps": 19.677,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "amd-rx-6500-xt",
+   "rank": 52,
+   "fps": 9.9,
+   "price": 199.62,
+   "cost_per_fps": 20.164,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-2060",
+   "rank": 53,
+   "fps": 22.0,
+   "price": 469.0,
+   "cost_per_fps": 21.318,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-2070-super",
+   "rank": 54,
+   "fps": 34.9,
+   "price": 745.0,
+   "cost_per_fps": 21.347,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-3090-ti",
+   "rank": 55,
+   "fps": 83.7,
+   "price": 1998.0,
+   "cost_per_fps": 23.871,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-2060-super",
+   "rank": 56,
+   "fps": 24.3,
+   "price": 588.0,
+   "cost_per_fps": 24.198,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-2070",
+   "rank": 57,
+   "fps": 27.5,
+   "price": 675.0,
+   "cost_per_fps": 24.545,
+   "zone": "poor",
+   "normalized": true
+  },
+  {
+   "gpu_id": "nvidia-rtx-5090",
+   "rank": 58,
+   "fps": 143.0,
+   "price": 3599.99,
+   "cost_per_fps": 25.175,
+   "zone": "poor",
+   "normalized": false
+  },
+  {
+   "gpu_id": "nvidia-rtx-4090",
+   "rank": 59,
+   "fps": 126.6,
+   "price": 3395.0,
+   "cost_per_fps": 26.817,
+   "zone": "poor",
+   "normalized": false
+  }
+ ]
+}
