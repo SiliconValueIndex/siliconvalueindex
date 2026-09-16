@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+import { manifest, gpuById, money, viewLabel } from '../lib/data';
+
+const primary = manifest.primary_view;
+const zones = manifest.zones[primary];
+const t = manifest.normalization.transforms.find((x) => `${x.resolution}_${x.mode}` === primary) ?? manifest.normalization.transforms[0];
+const names = Object.fromEntries(Object.values(gpuById).map((g) => [g.gpu_id, g.display_name]));
+// The constant-ratio method for comparison on the same overlap set.
+let constantRatio: number | undefined;
+if (t) {
+  const ratios = t.overlap_points.map((p) => p[2] / p[1]).sort((a, b) => a - b);
+  const lo = Math.floor(ratios.length * 0.1);
+  const hi = Math.floor(ratios.length * 0.9);
+  const trimmed = hi > lo ? ratios.slice(lo, hi) : ratios;
+  constantRatio = trimmed.reduce((a, b) => a + b, 0) / trimmed.length;
+}
+const normalizedIds = Object.values(gpuById).filter((g) => Object.values(g.benchmarks).some((m) => Object.values(m).some((c) => c.normalized)));
+const chartInput = t && {
+  points: t.overlap_points,
+  names,
+  method: t.method,
+  params: t.params,
+  dropped: t.dropped_outliers,
+  legacyRange: t.legacy_range,
+  constantRatio,
+};
+---
+
+<Base title="Methodology" description="How SiliconValueIndex turns benchmark FPS and retail prices into a cost-per-frame ranking, including cross-suite normalization.">
+  <div class="prose">
+    <h1>How the numbers are made.</h1>
+    <p class="lede">
+      Review sites rank graphics cards by raw performance. A card that is 20% faster but 60% more expensive is not a better buy,
+      just a more expensive one. This index ranks by what a frame costs.
+    </p>
+
+    <h2 id="score">The score</h2>
+    <p>
+      For each card and each view (a resolution and a rendering mode), <strong>cost per FPS = current price ÷ average FPS</strong>.
+      Lower is better. There is no weighting and no opinion in the number. The default view is {viewLabel(primary)}.
+    </p>
+    <p>
+      Value zones on the {viewLabel(primary)} board are fixed dollar thresholds: great under {money(zones.great_max, 0)},
+      fair up to {money(zones.fair_max, 0)}, poor above that. Other views use percentile bands (the cheapest third, the middle third, the rest),
+      because a frame at 4K costs more than a frame at 1080p and fixed thresholds would not mean the same thing.
+    </p>
+
+    <h2 id="benchmarks">Benchmarks</h2>
+    <p>
+      FPS comes from <a href="https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html">Tom's Hardware's GPU benchmarks hierarchy</a>,
+      which tests every card with the same games at the same settings. We use their rasterization and ray-tracing averages at
+      1080p, 1440p and 4K "ultra". Upscaling and frame generation are not included.
+    </p>
+
+    <h2 id="normalization">Cards from an older test suite</h2>
+    <p>
+      Tom's replaces its game suite every couple of years and does not retest every old card. Newer games are heavier, so an
+      older card's FPS from the old suite would look inflated next to a current card's FPS from the new suite.
+    </p>
+    <p>
+      To compare them we look at the cards that were tested in both suites and fit a straight line from old-suite FPS to
+      current-suite FPS. Cards that only exist in the old suite are translated along that line and marked <span class="badge">est.</span>
+      on every page. Cards present in the current suite always use their measured number.
+    </p>
+    {t && (
+      <>
+        <p>
+          Current fit for {viewLabel(primary)}, {t.from_suite} to {t.to_suite}:
+          {t.method === 'linear' ? (
+            <>
+              <code>current = {(t.params.a as number).toFixed(3)} × older {(t.params.b as number) < 0 ? '−' : '+'} {Math.abs(t.params.b as number).toFixed(1)}</code>
+            </>
+          ) : (
+            <code>current = {(t.params.scale as number).toFixed(3)} × older</code>
+          )}
+          , fitted on {t.n_used} of {t.n_overlap} overlapping cards{t.r2 != null && <>, R² {t.r2.toFixed(2)}</>}.
+          {t.dropped_outliers.length > 0 && (
+            <> Excluded as outliers: {t.dropped_outliers.map((id) => names[id] ?? id).join(', ')}.</>
+          )}
+        </p>
+        <figure>
+          <canvas id="overlap" height="360" aria-label="Scatter of overlapping cards with the fitted line"></canvas>
+          <figcaption>
+            Each point is a card tested in both suites. The solid line is the transform in use; the dashed line is the single
+            ratio ({constantRatio?.toFixed(3)}) the index used before, which over-credited slower cards and under-credited faster ones.
+          </figcaption>
+        </figure>
+      </>
+    )}
+    <p>
+      Cards currently shown with estimated FPS ({normalizedIds.length}):
+      {normalizedIds.map((g, i) => (
+        <>
+          <a href={`/gpu/${g.gpu_id}/`}>{g.display_name}</a>{i < normalizedIds.length - 1 ? ', ' : '.'}
+        </>
+      ))}
+    </p>
+
+    <h2 id="prices">Prices</h2>
+    <p>
+      Each card's price is the lowest valid retail price we can find for a new, in-stock unit. A price is rejected when it is for a
+      bundle, a laptop part, an open-box or refurbished unit, or when it falls outside 35% to 300% of that card's recent median
+      (a sign of a mislabelled listing). Every price shows its retailer and the date it was checked. Prices are stored as history,
+      so each card page shows how it has moved.
+    </p>
+
+    <h2 id="limits">What this does not tell you</h2>
+    <ul>
+      <li>Averages hide game-specific behaviour. A card can be great value on average and weak in the one game you play.</li>
+      <li>Memory matters beyond FPS. An 8 GB card can post a good average today and struggle in newer titles.</li>
+      <li>Power draw, noise, size and features (encoders, upscaling quality) are not in the score. They are listed on each card's page.</li>
+    </ul>
+    <p>
+      The pipeline, data and this site are open source: <a href="https://github.com/SiliconValueIndex/siliconvalueindex">github.com/SiliconValueIndex/siliconvalueindex</a>.
+    </p>
+  </div>
+
+  <script is:inline type="application/json" id="svi-overlap" set:html={JSON.stringify(chartInput ?? null)} />
+</Base>
+
+<script>
+  import { drawOverlapChart } from '../lib/charts';
+  const el = document.getElementById('svi-overlap');
+  const canvas = document.getElementById('overlap') as HTMLCanvasElement | null;
+  const input = el && JSON.parse(el.textContent || 'null');
+  if (input && canvas) drawOverlapChart(canvas, input);
+</script>
+
+<style>
+  .lede {
+    font-size: var(--t1);
+    color: var(--muted);
+  }
+</style>

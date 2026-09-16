@@ -1,0 +1,232 @@
+---
+import Base from '../../layouts/Base.astro';
+import { gpus, manifest, priceHistory, money, fmtDate, viewLabel, splitView, VIEW_LABELS } from '../../lib/data';
+
+export function getStaticPaths() {
+  return gpus.map((g) => ({ params: { gpu_id: g.gpu_id }, props: { gpu: g } }));
+}
+const { gpu } = Astro.props;
+const history = priceHistory[gpu.gpu_id] ?? [];
+const price = gpu.current_price;
+const rankEntries = Object.entries(gpu.rankings);
+const primary = gpu.rankings[manifest.primary_view];
+const total = manifest.ranked_counts[manifest.primary_view] ?? 0;
+const zoneWord = { great: 'great value', fair: 'fair value', poor: 'poor value' } as const;
+const transformFor = (resolution: string, mode: string) =>
+  manifest.normalization.transforms.find((t) => t.resolution === resolution && t.mode === mode);
+const benchRows = Object.entries(gpu.benchmarks).flatMap(([res, modes]) =>
+  Object.entries(modes).map(([mode, cell]) => ({ res, mode, cell })),
+);
+const retailerNames: Record<string, string> = { bestbuy: 'Best Buy', newegg: 'Newegg', amazon: 'Amazon', manual: 'listed retailer' };
+const description = primary
+  ? `${gpu.display_name}: ${money(primary.cost_per_fps, 2)} per frame at ${viewLabel(manifest.primary_view)}, rank ${primary.rank} of ${total}.`
+  : `${gpu.display_name} specs, benchmarks and price history.`;
+---
+
+<Base title={gpu.display_name} description={description}>
+  <article class="gpu">
+    <header class="top">
+      <p class="crumbs small"><a href="/">Rankings</a> / {gpu.vendor} {gpu.series}</p>
+      <h1><i class="vendor-tick" data-vendor={gpu.vendor}></i>{gpu.display_name}</h1>
+      {primary ? (
+        <p class="lede">
+          Ranked <strong class="num">{primary.rank}</strong> of {total} at {viewLabel(manifest.primary_view)}:{' '}
+          <strong class={`num zone-${primary.zone}`}>{money(primary.cost_per_fps, 2)}</strong> per frame, {zoneWord[primary.zone]}.
+        </p>
+      ) : (
+        <p class="lede muted">Not ranked right now because there is no valid current price.</p>
+      )}
+    </header>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Price</h2>
+        {price ? (
+          <>
+            <p class="big num">{money(price.price, 2)}</p>
+            <p class="muted small">
+              {retailerNames[price.retailer] ?? price.retailer}, {price.condition}, checked {fmtDate(price.fetched_at)}.
+              {gpu.price_stats.n_points > 1 && <> 90-day low {money(gpu.price_stats.min_90d ?? 0, 0)}, median {money(gpu.price_stats.median_90d ?? 0, 0)}.</>}
+            </p>
+            <div class="actions">
+              {price.url && <a class="btn btn-primary" href={price.url} rel="nofollow noopener" target="_blank">Open this listing</a>}
+              {Object.entries(gpu.retailer_links).map(([k, url]) => (
+                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerNames[k] ?? k}</a>
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <p class="muted">No current price on file.</p>
+            <div class="actions">
+              {Object.entries(gpu.retailer_links).map(([k, url]) => (
+                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerNames[k] ?? k}</a>
+              ))}
+            </div>
+          </>
+        )}
+        {history.length > 1 ? (
+          <figure>
+            <canvas id="spark" height="120" aria-label="Price history"></canvas>
+            <figcaption>Lowest valid price seen each day, {history.length} points.</figcaption>
+          </figure>
+        ) : (
+          <p class="muted small">Price history will appear after the next refresh.</p>
+        )}
+      </section>
+
+      <section class="panel">
+        <h2>Specifications</h2>
+        <dl class="specs">
+          <dt>Architecture</dt><dd>{gpu.architecture}</dd>
+          <dt>Series</dt><dd>{gpu.series}</dd>
+          <dt>Released</dt><dd class="num">{gpu.release_year}</dd>
+          <dt>Memory</dt><dd class="num">{gpu.vram_gb ?? '?'} GB</dd>
+          <dt>Board power</dt><dd class="num">{gpu.tdp_w ?? '?'} W</dd>
+          {gpu.msrp_usd != null && <><dt>Launch price</dt><dd class="num">{money(gpu.msrp_usd, 0)}</dd></>}
+        </dl>
+      </section>
+    </div>
+
+    <section>
+      <h2>Value by view</h2>
+      {rankEntries.length ? (
+        <div class="table-scroll">
+          <table class="table">
+            <thead><tr><th>View</th><th class="n">Rank</th><th class="n">$/FPS</th><th class="n">FPS</th><th>Zone</th></tr></thead>
+            <tbody>
+              {rankEntries.map(([view, r]) => {
+                const { resolution, mode } = splitView(view);
+                const cell = gpu.benchmarks[resolution]?.[mode];
+                return (
+                  <tr>
+                    <td><a href={`/?view=${view}`}>{viewLabel(view)}</a></td>
+                    <td class="n">{r.rank} / {manifest.ranked_counts[view]}</td>
+                    <td class={`n zone-${r.zone}`}>{money(r.cost_per_fps, 2)}</td>
+                    <td class="n">{cell?.fps.toFixed(1)}</td>
+                    <td>{zoneWord[r.zone]}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p class="muted">No rankings without a price.</p>
+      )}
+    </section>
+
+    <section>
+      <h2>Benchmarks</h2>
+      <div class="table-scroll">
+        <table class="table">
+          <thead><tr><th>Resolution</th><th>Mode</th><th class="n">FPS used</th><th class="n">Of the top card</th><th>Source suite</th></tr></thead>
+          <tbody>
+            {benchRows.map(({ res, mode, cell }) => (
+              <tr>
+                <td>{VIEW_LABELS[res] ?? res}</td>
+                <td>{VIEW_LABELS[mode] ?? mode}</td>
+                <td class="n">{cell.fps.toFixed(1)}{cell.normalized && <span class="badge">est.</span>}</td>
+                <td class="n">{cell.pct_of_top != null ? `${cell.pct_of_top.toFixed(0)}%` : ''}</td>
+                <td>{cell.suite_version}{cell.normalized && <span class="muted small"> (measured {cell.raw_fps.toFixed(1)} in the older suite)</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {benchRows.some((b) => b.cell.normalized) && (
+        <p class="muted small">
+          This card was last tested in an older Tom's Hardware suite. Its FPS here is an estimate translated into the current suite's scale using the
+          {benchRows
+            .filter((b) => b.cell.normalized)
+            .map((b) => transformFor(b.res, b.mode))
+            .filter(Boolean)
+            .map((t) => ` ${t!.method === 'linear' ? `line current = ${(t!.params.a as number).toFixed(3)} × older ${(t!.params.b as number) < 0 ? '−' : '+'} ${Math.abs(t!.params.b as number).toFixed(1)}` : `ratio ${(t!.params.scale as number).toFixed(3)}`} fitted on ${t!.n_used} cards present in both suites`)
+            .join('; ')}. <a href="/methodology/#normalization">How normalization works</a>.
+        </p>
+      )}
+    </section>
+  </article>
+
+  <script is:inline type="application/json" id="svi-history" set:html={JSON.stringify(history)} />
+</Base>
+
+<script>
+  import { drawSparkline } from '../../lib/charts';
+  const el = document.getElementById('svi-history');
+  const canvas = document.getElementById('spark') as HTMLCanvasElement | null;
+  if (el && canvas) drawSparkline(canvas, JSON.parse(el.textContent || '[]'));
+</script>
+
+<style>
+  .crumbs {
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .top h1 .vendor-tick {
+    height: 0.8em;
+    width: 5px;
+    margin-right: 14px;
+  }
+  .lede {
+    font-size: var(--t1);
+    color: var(--muted);
+  }
+  .lede strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+    margin: 24px 0 36px;
+  }
+  .panel {
+    background: var(--raised);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .panel h2 {
+    font-size: var(--t0);
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .big {
+    font-size: var(--t4);
+    font-weight: 600;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 4px;
+  }
+  .specs {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    margin: 0;
+  }
+  .specs dt {
+    color: var(--muted);
+  }
+  .specs dd {
+    margin: 0;
+  }
+  section {
+    margin-bottom: 36px;
+  }
+  .table .badge {
+    margin-left: 6px;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

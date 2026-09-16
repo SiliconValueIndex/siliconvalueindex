@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "gpus",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "gpu_id",
+      "vendor",
+      "architecture",
+      "series",
+      "display_name",
+      "release_year",
+      "tdp_w",
+      "vram_gb",
+      "is_active",
+      "benchmarks",
+      "rankings",
+      "current_price",
+      "retailer_links",
+      "price_stats"
+    ],
+    "properties": {
+      "gpu_id": {
+        "type": "string",
+        "pattern": "^[a-z]+-[a-z0-9-]+$"
+      },
+      "component_type": {
+        "type": "string"
+      },
+      "vendor": {
+        "enum": [
+          "NVIDIA",
+          "AMD",
+          "Intel"
+        ]
+      },
+      "architecture": {
+        "type": "string"
+      },
+      "series": {
+        "type": "string"
+      },
+      "display_name": {
+        "type": "string"
+      },
+      "release_year": {
+        "type": "integer"
+      },
+      "msrp_usd": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "tdp_w": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "vram_gb": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "is_active": {
+        "type": "boolean"
+      },
+      "benchmarks": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "fps",
+              "raw_fps",
+              "pct_of_top",
+              "suite_version",
+              "normalized"
+            ],
+            "properties": {
+              "fps": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "raw_fps": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "pct_of_top": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "suite_version": {
+                "type": "string"
+              },
+              "normalized": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "rankings": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "required": [
+            "rank",
+            "cost_per_fps",
+            "zone"
+          ],
+          "properties": {
+            "rank": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "cost_per_fps": {
+              "type": "number"
+            },
+            "zone": {
+              "enum": [
+                "great",
+                "fair",
+                "poor"
+              ]
+            }
+          }
+        }
+      },
+      "current_price": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "price",
+          "retailer",
+          "url",
+          "condition",
+          "fetched_at"
+        ],
+        "properties": {
+          "price": {
+            "type": "number"
+          },
+          "retailer": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string"
+          },
+          "fetched_at": {
+            "type": "string"
+          }
+        }
+      },
+      "retailer_links": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "price_stats": {
+        "type": "object",
+        "properties": {
+          "min_90d": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "median_90d": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "n_points": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

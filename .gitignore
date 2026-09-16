@@ -152,7 +152,7 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
-/site
+# /site  (removed: this repo keeps the Astro site in site/)
 
 # mypy
 .mypy_cache/
@@ -205,3 +205,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# SiliconValueIndex pipeline
+data/raw/benchmarks/toms/*.html
+data/raw/prices/*.jsonl
+.env
+site/node_modules/
+site/dist/
+site/.astro/
+public/data/
+
+# The Astro site is not a virtualenv
+!site/src/lib/

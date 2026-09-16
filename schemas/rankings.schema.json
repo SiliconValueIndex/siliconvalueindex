@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "rankings",
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "gpu_id",
+        "rank",
+        "fps",
+        "price",
+        "cost_per_fps",
+        "zone",
+        "normalized"
+      ],
+      "properties": {
+        "gpu_id": {
+          "type": "string",
+          "pattern": "^[a-z]+-[a-z0-9-]+$"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fps": {
+          "type": "number"
+        },
+        "price": {
+          "type": "number"
+        },
+        "cost_per_fps": {
+          "type": "number"
+        },
+        "zone": {
+          "enum": [
+            "great",
+            "fair",
+            "poor"
+          ]
+        },
+        "normalized": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+alias,gpu_id,source
+Arc B580,intel-arc-b580,toms
+Arc B570,intel-arc-b570,toms
+Arc A770 16GB,intel-arc-a770,toms
+Arc A750,intel-arc-a750,toms
+Arc A580,intel-arc-a580,toms
+RTX 4060 Ti,nvidia-rtx-4060-ti-8gb,manual
+RTX 5060 Ti,nvidia-rtx-5060-ti-8gb,manual
+RTX 3080 10GB,nvidia-rtx-3080,toms
+RX 6700,amd-rx-6700-10gb,toms

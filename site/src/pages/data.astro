@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import { manifest, changelog, gpuById, fmtDate, money, viewLabel } from '../lib/data';
+
+const files = [
+  ['manifest.json', 'Run metadata, zone thresholds, normalization parameters'],
+  ['gpus.json', 'Every card with specs, benchmarks per view, current price and links'],
+  ['rankings.json', 'Ranked rows per view'],
+  ['price_history.json', 'Lowest valid price per card per day'],
+  ['changelog.json', 'What changed on each run'],
+  ['review_report.md', 'The latest refresh report'],
+];
+const name = (id: string) => gpuById[id]?.display_name ?? id;
+---
+
+<Base title="Data" description="Sources, update history and downloadable JSON behind the SiliconValueIndex rankings.">
+  <div class="prose">
+    <h1>Data and updates.</h1>
+    <p class="lede">
+      Last run {fmtDate(manifest.generated_at)} ({manifest.run_id}). {manifest.gpu_count} cards on file,{' '}
+      {Object.entries(manifest.ranked_counts).map(([v, n]) => `${n} ranked at ${viewLabel(v)}`).join(', ')}.
+    </p>
+
+    <h2>Sources</h2>
+    <table class="table">
+      <thead><tr><th>Source</th><th>Used for</th><th>Last fetched</th></tr></thead>
+      <tbody>
+        {manifest.sources.map((s) => (
+          <tr>
+            <td><a href={s.url}>{s.name}</a></td>
+            <td>{s.kind}</td>
+            <td>{s.fetched_at ? fmtDate(s.fetched_at) : 'not yet automated'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="small muted">
+      Benchmark suites in use: {Object.entries(manifest.benchmark_suites).map(([v, s]) => `${viewLabel(v)}: ${s}`).join('; ')}.
+    </p>
+
+    <h2>Download</h2>
+    <ul>
+      {files.map(([f, d]) => (
+        <li><a href={`/data/${f}`} download>{f}</a> <span class="muted">{d}</span></li>
+      ))}
+    </ul>
+    <p>
+      Raw inputs, the registry of cards and the code live in the{' '}
+      <a href="https://github.com/SiliconValueIndex/siliconvalueindex">GitHub repository</a>. Found a wrong price or a missing card?
+      Open an issue there.
+    </p>
+
+    <h2>Change log</h2>
+    {changelog.map((e) => (
+      <section class="entry">
+        <h3>{fmtDate(e.generated_at)} <span class="muted small">{e.run_id}</span></h3>
+        <ul>
+          {e.benchmark_suite_changed && <li>Benchmark suite changed. Cards were re-normalized.</li>}
+          {e.added_gpus.length > 0 && <li>Added {e.added_gpus.length} card{e.added_gpus.length > 1 ? 's' : ''}: {e.added_gpus.map(name).join(', ')}.</li>}
+          {e.removed_gpus.length > 0 && <li>Removed: {e.removed_gpus.map(name).join(', ')}.</li>}
+          {e.price_changes.slice(0, 12).map((c) => (
+            <li>
+              <a href={`/gpu/${c.gpu_id}/`}>{name(c.gpu_id)}</a> {money(c.from, 0)} → {money(c.to, 0)}
+              <span class={c.pct < 0 ? 'zone-great' : 'zone-poor'}> ({c.pct > 0 ? '+' : ''}{c.pct}%)</span>
+            </li>
+          ))}
+          {e.price_changes.length > 12 && <li class="muted">and {e.price_changes.length - 12} more price changes.</li>}
+          {e.unresolved_count > 0 && <li>{e.unresolved_count} source name{e.unresolved_count > 1 ? 's' : ''} could not be matched and await review.</li>}
+          {e.notes.map((n) => <li class="muted">{n}</li>)}
+          {!e.benchmark_suite_changed && !e.added_gpus.length && !e.removed_gpus.length && !e.price_changes.length && !e.unresolved_count && !e.notes.length && (
+            <li class="muted">No changes.</li>
+          )}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .lede {
+    font-size: var(--t1);
+    color: var(--muted);
+  }
+  .entry h3 {
+    margin-top: 1.5em;
+  }
+</style>

@@ -1,0 +1,92 @@
+name: Refresh data
+
+on:
+  schedule:
+    # Mondays 11:00 UTC. Benchmarks and prices are both fetched.
+    - cron: "0 11 * * 1"
+  workflow_dispatch:
+    inputs:
+      skip_prices:
+        description: "Skip the Best Buy price fetch"
+        type: boolean
+        default: false
+      skip_benchmarks:
+        description: "Skip the Tom's Hardware fetch"
+        type: boolean
+        default: false
+      dry_run:
+        description: "Build but do not commit or open a PR"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -e ".[dev]"
+
+      - name: Build
+        id: build
+        env:
+          BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+        run: |
+          ARGS="--run-id gh-${{ github.run_id }}"
+          if [ "${{ inputs.skip_prices }}" = "true" ]; then ARGS="$ARGS --skip-prices"; fi
+          if [ "${{ inputs.skip_benchmarks }}" = "true" ]; then ARGS="$ARGS --skip-benchmarks"; fi
+          if [ -z "$BESTBUY_API_KEY" ]; then echo "No BESTBUY_API_KEY secret; skipping prices"; ARGS="$ARGS --skip-prices"; fi
+          svi build $ARGS
+
+      - name: Validate
+        run: pytest -q
+
+      - name: Upload report and snapshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: refresh-${{ github.run_id }}
+          path: |
+            data/site/review_report.md
+            data/raw/benchmarks/toms/*.html
+          retention-days: 90
+          if-no-files-found: ignore
+
+      - name: Commit directly (clean run)
+        if: ${{ steps.build.outputs.needs_review == 'false' && inputs.dry_run != true }}
+        run: |
+          git config user.name "svi-refresh[bot]"
+          git config user.email "svi-refresh@users.noreply.github.com"
+          git add data/processed data/site data/raw/prices
+          if git diff --cached --quiet; then echo "No data changes"; exit 0; fi
+          git commit -m "data: refresh ${{ steps.build.outputs.run_id }}"
+          git push
+
+      - name: Open pull request (needs review)
+        if: ${{ steps.build.outputs.needs_review == 'true' && inputs.dry_run != true }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: refresh/${{ steps.build.outputs.run_id }}
+          title: "Data refresh ${{ steps.build.outputs.run_id }} needs review"
+          body-path: data/site/review_report.md
+          commit-message: "data: refresh ${{ steps.build.outputs.run_id }} (needs review)"
+          add-paths: |
+            data/processed
+            data/site
+            data/raw/prices
+          labels: data-refresh
+          delete-branch: true

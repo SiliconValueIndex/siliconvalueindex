@@ -1,0 +1,514 @@
+{
+ "generated_at": "2026-09-16T15:56:09Z",
+ "run_id": "scrape-2026-09-16",
+ "primary_view": "1440p_raster",
+ "views": [
+  "1080p_raster",
+  "1080p_rt",
+  "1440p_raster",
+  "1440p_rt",
+  "4k_raster",
+  "4k_rt"
+ ],
+ "gpu_count": 62,
+ "ranked_counts": {
+  "1080p_raster": 43,
+  "1080p_rt": 43,
+  "1440p_raster": 59,
+  "1440p_rt": 43,
+  "4k_raster": 43,
+  "4k_rt": 43
+ },
+ "zones": {
+  "1080p_raster": {
+   "mode": "percentile",
+   "great_max": 5.18,
+   "fair_max": 6.8
+  },
+  "1080p_rt": {
+   "mode": "percentile",
+   "great_max": 11.13,
+   "fair_max": 15.13
+  },
+  "1440p_raster": {
+   "mode": "absolute",
+   "great_max": 8.0,
+   "fair_max": 12.0
+  },
+  "1440p_rt": {
+   "mode": "percentile",
+   "great_max": 16.8,
+   "fair_max": 22.3
+  },
+  "4k_raster": {
+   "mode": "percentile",
+   "great_max": 15.15,
+   "fair_max": 20.22
+  },
+  "4k_rt": {
+   "mode": "percentile",
+   "great_max": 38.84,
+   "fair_max": 58.43
+  }
+ },
+ "normalization": {
+  "method": "linear",
+  "transforms": [
+   {
+    "resolution": "1440p",
+    "mode": "raster",
+    "from_suite": "2026-03",
+    "to_suite": "2026-09-16",
+    "method": "linear",
+    "params": {
+     "a": 1.11593,
+     "b": 4.15616
+    },
+    "overlap_ids": [
+     "amd-rx-6600",
+     "amd-rx-7600",
+     "amd-rx-7600-xt",
+     "amd-rx-7700-xt",
+     "amd-rx-7800-xt",
+     "amd-rx-7900-xt",
+     "amd-rx-7900-xtx",
+     "amd-rx-9060-xt",
+     "amd-rx-9070",
+     "amd-rx-9070-xt",
+     "intel-arc-b570",
+     "intel-arc-b580",
+     "nvidia-rtx-3060",
+     "nvidia-rtx-4060",
+     "nvidia-rtx-4060-ti-16gb",
+     "nvidia-rtx-4060-ti-8gb",
+     "nvidia-rtx-4070",
+     "nvidia-rtx-4070-super",
+     "nvidia-rtx-4070-ti",
+     "nvidia-rtx-4070-ti-super",
+     "nvidia-rtx-4080",
+     "nvidia-rtx-4080-super",
+     "nvidia-rtx-4090",
+     "nvidia-rtx-5060",
+     "nvidia-rtx-5060-ti-16gb",
+     "nvidia-rtx-5060-ti-8gb",
+     "nvidia-rtx-5070",
+     "nvidia-rtx-5070-ti",
+     "nvidia-rtx-5080",
+     "nvidia-rtx-5090"
+    ],
+    "n_overlap": 30,
+    "n_used": 28,
+    "r2": 0.9572,
+    "residual_sd": 6.96,
+    "legacy_range": [
+     24.1,
+     143.0
+    ],
+    "dropped_outliers": [
+     "amd-rx-9070",
+     "nvidia-rtx-4070-ti-super"
+    ],
+    "overlap_points": [
+     [
+      "nvidia-rtx-4060-ti-8gb",
+      49.3,
+      58.9
+     ],
+     [
+      "nvidia-rtx-5080",
+      111.7,
+      128.3
+     ],
+     [
+      "amd-rx-9060-xt",
+      59.4,
+      62.5
+     ],
+     [
+      "amd-rx-7900-xtx",
+      102.6,
+      122.3
+     ],
+     [
+      "amd-rx-7900-xt",
+      92.0,
+      108.0
+     ],
+     [
+      "amd-rx-7800-xt",
+      69.0,
+      84.7
+     ],
+     [
+      "amd-rx-9070-xt",
+      98.3,
+      116.5
+     ],
+     [
+      "amd-rx-7700-xt",
+      60.6,
+      72.7
+     ],
+     [
+      "amd-rx-7600",
+      27.9,
+      45.4
+     ],
+     [
+      "amd-rx-6600",
+      24.1,
+      24.8
+     ],
+     [
+      "amd-rx-7600-xt",
+      41.7,
+      50.2
+     ],
+     [
+      "nvidia-rtx-5060-ti-16gb",
+      62.3,
+      73.4
+     ],
+     [
+      "nvidia-rtx-5060",
+      45.7,
+      59.8
+     ],
+     [
+      "nvidia-rtx-4090",
+      126.6,
+      143.4
+     ],
+     [
+      "nvidia-rtx-4080-super",
+      105.8,
+      118.6
+     ],
+     [
+      "nvidia-rtx-4080",
+      103.7,
+      117.5
+     ],
+     [
+      "nvidia-rtx-4070-ti-super",
+      116.9,
+      104.0
+     ],
+     [
+      "nvidia-rtx-4070-ti",
+      85.5,
+      97.9
+     ],
+     [
+      "nvidia-rtx-4070-super",
+      79.7,
+      91.2
+     ],
+     [
+      "nvidia-rtx-4070",
+      68.3,
+      77.8
+     ],
+     [
+      "nvidia-rtx-5070-ti",
+      101.2,
+      116.8
+     ],
+     [
+      "nvidia-rtx-4060-ti-16gb",
+      52.5,
+      60.5
+     ],
+     [
+      "nvidia-rtx-4060",
+      38.9,
+      47.6
+     ],
+     [
+      "nvidia-rtx-3060",
+      34.9,
+      41.9
+     ],
+     [
+      "intel-arc-b580",
+      42.6,
+      50.7
+     ],
+     [
+      "intel-arc-b570",
+      35.3,
+      44.3
+     ],
+     [
+      "nvidia-rtx-5060-ti-8gb",
+      56.0,
+      68.6
+     ],
+     [
+      "nvidia-rtx-5090",
+      143.0,
+      167.3
+     ],
+     [
+      "nvidia-rtx-5070",
+      81.2,
+      96.4
+     ],
+     [
+      "amd-rx-9070",
+      86.9,
+      86.6
+     ]
+    ]
+   },
+   {
+    "resolution": "1440p",
+    "mode": "raster",
+    "from_suite": "2022",
+    "to_suite": "2026-09-16",
+    "method": "linear",
+    "params": {
+     "a": 0.98978,
+     "b": -15.70984
+    },
+    "overlap_ids": [
+     "amd-rx-6600-xt",
+     "amd-rx-6700-xt",
+     "amd-rx-6750-xt",
+     "amd-rx-6800-xt",
+     "amd-rx-6900-xt",
+     "amd-rx-6950-xt",
+     "amd-rx-7600-xt",
+     "amd-rx-7700-xt",
+     "amd-rx-7800-xt",
+     "amd-rx-7900-xt",
+     "amd-rx-7900-xtx",
+     "nvidia-rtx-3060",
+     "nvidia-rtx-3060-ti",
+     "nvidia-rtx-3070",
+     "nvidia-rtx-3070-ti",
+     "nvidia-rtx-3080",
+     "nvidia-rtx-3080-ti",
+     "nvidia-rtx-3090",
+     "nvidia-rtx-3090-ti",
+     "nvidia-rtx-4060",
+     "nvidia-rtx-4060-ti-16gb",
+     "nvidia-rtx-4060-ti-8gb",
+     "nvidia-rtx-4070",
+     "nvidia-rtx-4070-super",
+     "nvidia-rtx-4070-ti",
+     "nvidia-rtx-4070-ti-super",
+     "nvidia-rtx-4080",
+     "nvidia-rtx-4080-super",
+     "nvidia-rtx-4090"
+    ],
+    "n_overlap": 29,
+    "n_used": 28,
+    "r2": 0.9779,
+    "residual_sd": 3.914,
+    "legacy_range": [
+     52.2,
+     146.1
+    ],
+    "dropped_outliers": [
+     "nvidia-rtx-4090"
+    ],
+    "overlap_points": [
+     [
+      "nvidia-rtx-4090",
+      146.1,
+      143.4
+     ],
+     [
+      "nvidia-rtx-4080-super",
+      133.0,
+      118.6
+     ],
+     [
+      "nvidia-rtx-4080",
+      130.4,
+      117.5
+     ],
+     [
+      "nvidia-rtx-4070-ti-super",
+      122.0,
+      104.0
+     ],
+     [
+      "nvidia-rtx-4070-ti",
+      116.5,
+      97.9
+     ],
+     [
+      "nvidia-rtx-4070-super",
+      109.8,
+      91.2
+     ],
+     [
+      "nvidia-rtx-4060-ti-8gb",
+      75.6,
+      58.9
+     ],
+     [
+      "amd-rx-7900-xtx",
+      135.3,
+      122.3
+     ],
+     [
+      "amd-rx-7900-xt",
+      125.9,
+      108.0
+     ],
+     [
+      "amd-rx-7800-xt",
+      105.8,
+      84.7
+     ],
+     [
+      "amd-rx-7700-xt",
+      92.7,
+      72.7
+     ],
+     [
+      "amd-rx-7600-xt",
+      65.9,
+      50.2
+     ],
+     [
+      "amd-rx-6950-xt",
+      110.1,
+      89.5
+     ],
+     [
+      "amd-rx-6800-xt",
+      99.0,
+      79.6
+     ],
+     [
+      "amd-rx-6750-xt",
+      77.2,
+      57.6
+     ],
+     [
+      "amd-rx-6700-xt",
+      73.4,
+      54.3
+     ],
+     [
+      "amd-rx-6900-xt",
+      102.1,
+      83.9
+     ],
+     [
+      "nvidia-rtx-4060-ti-16gb",
+      75.7,
+      60.5
+     ],
+     [
+      "nvidia-rtx-4060",
+      61.2,
+      47.6
+     ],
+     [
+      "nvidia-rtx-3090-ti",
+      112.7,
+      99.9
+     ],
+     [
+      "nvidia-rtx-3090",
+      106.0,
+      91.5
+     ],
+     [
+      "nvidia-rtx-3080-ti",
+      103.9,
+      89.1
+     ],
+     [
+      "nvidia-rtx-3080",
+      96.4,
+      82.0
+     ],
+     [
+      "nvidia-rtx-3070-ti",
+      82.8,
+      66.9
+     ],
+     [
+      "nvidia-rtx-3070",
+      77.7,
+      58.2
+     ],
+     [
+      "nvidia-rtx-3060-ti",
+      70.0,
+      51.0
+     ],
+     [
+      "nvidia-rtx-3060",
+      54.0,
+      41.9
+     ],
+     [
+      "nvidia-rtx-4070",
+      97.8,
+      77.8
+     ],
+     [
+      "amd-rx-6600-xt",
+      52.2,
+      40.7
+     ]
+    ]
+   }
+  ]
+ },
+ "benchmark_suites": {
+  "1080p_raster": "2026-09-16",
+  "1080p_rt": "2026-09-16",
+  "1440p_raster": "2026-09-16",
+  "1440p_rt": "2026-09-16",
+  "4k_raster": "2026-09-16",
+  "4k_rt": "2026-09-16"
+ },
+ "sources": [
+  {
+   "name": "Tom's Hardware GPU Hierarchy",
+   "url": "https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html",
+   "kind": "benchmarks",
+   "fetched_at": "2026-09-16T15:56:09Z"
+  },
+  {
+   "name": "Best Buy Products API",
+   "url": "https://www.bestbuy.com",
+   "kind": "prices",
+   "fetched_at": null
+  },
+  {
+   "name": "Manual price overrides",
+   "url": "https://github.com/SiliconValueIndex/siliconvalueindex/blob/main/data/reference/price_overrides.csv",
+   "kind": "prices",
+   "fetched_at": null
+  }
+ ],
+ "anomalies": [
+  {
+   "type": "overlap_residual",
+   "gpu_id": "nvidia-rtx-4070-ti-super",
+   "resolution": "1440p",
+   "mode": "raster",
+   "residual": -30.6,
+   "detail": "2026-03->2026-09-16 fit residual exceeds 2.5 sd (7.0)"
+  },
+  {
+   "type": "overlap_residual",
+   "gpu_id": "nvidia-rtx-4090",
+   "resolution": "1440p",
+   "mode": "raster",
+   "residual": 14.5,
+   "detail": "2022->2026-09-16 fit residual exceeds 2.5 sd (3.9)"
+  }
+ ],
+ "unresolved": [],
+ "needs_review": true
+}

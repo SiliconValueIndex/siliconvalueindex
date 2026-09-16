@@ -1,0 +1,52 @@
+# Single source of truth for pipeline behaviour. The front end never hardcodes
+# any of these values; the exporter copies the resolved ones into manifest.json.
+
+project:
+  name: SiliconValueIndex
+  site_url: https://siliconvalueindex.com
+  repo_url: https://github.com/SiliconValueIndex/siliconvalueindex
+
+benchmarks:
+  source: toms_gpu_hierarchy
+  current_url: https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html
+  legacy_url: https://www.tomshardware.com/reviews/gpu-hierarchy,4388-3.html
+  resolutions: [1080p, 1440p, 4k]
+  modes: [raster, rt]
+  setting: ultra
+  primary_view: 1440p_raster
+
+normalization:
+  # linear        -> robust OLS of current-suite fps on legacy-suite fps (default)
+  # ratio_trimmed -> single trimmed-mean ratio (the original 2026-03 method, ~0.703)
+  # piecewise     -> tercile-binned median ratios with interpolation
+  method: linear
+  trim_fraction: 0.10
+  min_overlap: 3
+  outlier_mad: 3.0
+  max_extrapolation: 0.15
+
+zones:
+  # absolute uses fixed $/FPS thresholds; percentile derives them from the view's distribution
+  default_mode: percentile
+  absolute:
+    great_max: 8.0
+    fair_max: 12.0
+  percentile:
+    great: 0.33
+    fair: 0.66
+  per_view:
+    1440p_raster: absolute
+
+pricing:
+  retailers: [bestbuy, manual]
+  currency: USD
+  price_floor_ratio: 0.35
+  price_ceiling_ratio: 3.0
+  stale_days: 60
+  # Until automated pricing is live, stale prices stay in the rankings and are shown with their age.
+  enforce_stale: false
+  review_move_pct: 25
+  bestbuy_category_id: abcat0507002
+
+guards:
+  max_gpu_count_drop_pct: 10
