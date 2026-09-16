@@ -214,3 +214,6 @@ site/node_modules/
 site/dist/
 site/.astro/
 public/data/
+
+# The Astro site is not a virtualenv
+!site/src/lib/
