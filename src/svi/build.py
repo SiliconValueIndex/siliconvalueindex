@@ -90,13 +90,22 @@ def run_build(
         from svi.scrapers.toms_hardware import scrape_benchmarks
 
         try:
-            records, unres = scrape_benchmarks(resolver, cfg, run_id=run_id, now=now)
+            records, unres, info = scrape_benchmarks(
+                resolver, cfg, run_id=run_id, now=now, existing=benchmarks
+            )
             unresolved += [u.model_dump() for u in unres]
             if records.empty:
                 raise RuntimeError("parser returned no rows")
             benchmarks = append_benchmarks(records)
             source_fetched["toms"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-            notes.append(f"Tom's Hardware: {len(records)} benchmark rows parsed")
+            notes.append(
+                f"Tom's Hardware: {info['rows_parsed']} cells parsed, "
+                f"suite {info['suite_version']} ({info['suite_reason']})"
+            )
+            notes += [f"Tom's Hardware parser: {w}" for w in info["warnings"]]
+            # Fill launch prices the registry does not carry, without editing the registry.
+            missing = registry["msrp_usd"].isna()
+            registry.loc[missing, "msrp_usd"] = registry.loc[missing, "gpu_id"].map(info["msrp"])
         except Exception as exc:  # degrade: keep previous benchmarks
             fetch_failures.append(f"toms_hardware: {exc}")
 

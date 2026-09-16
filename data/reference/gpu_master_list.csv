@@ -58,3 +58,6 @@ intel-arc-a750,gpu,Intel,Alchemist,Arc A,Intel Arc A750,2022,,225,8,true,
 intel-arc-a770,gpu,Intel,Alchemist,Arc A,Intel Arc A770,2022,,225,16,true,
 intel-arc-b570,gpu,Intel,Battlemage,Arc B,Intel Arc B570,2024,,120,10,true,
 intel-arc-b580,gpu,Intel,Battlemage,Arc B,Intel Arc B580,2024,,190,12,true,
+nvidia-rtx-3050,gpu,NVIDIA,Ampere,RTX 30,RTX 3050,2022,,130,8,true,8GB model
+nvidia-rtx-5050,gpu,NVIDIA,Blackwell,RTX 50,RTX 5050,2025,,130,8,true,
+amd-rx-6650-xt,gpu,AMD,RDNA2,RX 6000,RX 6650 XT,2022,,180,8,true,
