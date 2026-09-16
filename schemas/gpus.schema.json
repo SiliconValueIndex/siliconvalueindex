@@ -128,7 +128,8 @@
               "enum": [
                 "great",
                 "fair",
-                "poor"
+                "poor",
+                "unplayable"
               ]
             }
           }

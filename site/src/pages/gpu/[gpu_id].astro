@@ -11,7 +11,7 @@ const price = gpu.current_price;
 const rankEntries = Object.entries(gpu.rankings);
 const primary = gpu.rankings[manifest.primary_view];
 const total = manifest.ranked_counts[manifest.primary_view] ?? 0;
-const zoneWord = { great: 'great value', fair: 'fair value', poor: 'poor value' } as const;
+const zoneWord = { great: 'great value', fair: 'fair value', poor: 'poor value', unplayable: 'below the playable floor' } as const;
 const transformFor = (resolution: string, mode: string) =>
   manifest.normalization.transforms.find((t) => t.resolution === resolution && t.mode === mode);
 const benchRows = Object.entries(gpu.benchmarks).flatMap(([res, modes]) =>

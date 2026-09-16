@@ -7,13 +7,14 @@ interface Row {
   fps: number;
   price: number;
   cost_per_fps: number;
-  zone: 'great' | 'fair' | 'poor';
+  zone: 'great' | 'fair' | 'poor' | 'unplayable';
   normalized: boolean;
+  playable: boolean;
 }
 interface BoardData {
   views: string[];
   primary: string;
-  zones: Record<string, { mode: string; great_max: number; fair_max: number }>;
+  zones: Record<string, { mode: string; great_max: number; fair_max: number; min_fps: number }>;
   rankings: Record<string, Row[]>;
   gpus: Record<string, { name: string; vendor: string; price_date: string | null }>;
 }
@@ -85,11 +86,17 @@ export function renderBoard() {
     board!.style.setProperty('--g', `${(zones.great_max / scale) * 100}%`);
     board!.style.setProperty('--f', `${(zones.fair_max / scale) * 100}%`);
 
+    let dividerDone = false;
     rowsEl!.innerHTML = rows
       .map((r) => {
         const g = data.gpus[r.gpu_id];
+        let divider = '';
+        if (!r.playable && !dividerDone && state.sort === 'value') {
+          dividerDone = true;
+          divider = `<li class="divider">Below ${zones.min_fps} FPS at this setting. Cheap per frame, but not enough frames to play on.</li>`;
+        }
         const est = r.normalized ? '<span class="badge" title="FPS estimated from the older benchmark suite">est.</span>' : '';
-        return `<li><a class="row zone-${r.zone}" href="/gpu/${r.gpu_id}/" data-vendor="${g.vendor}" data-normalized="${r.normalized}" style="--w:${(r.cost_per_fps / scale) * 100}%">
+        return `${divider}<li><a class="row zone-${r.zone}" href="/gpu/${r.gpu_id}/" data-vendor="${g.vendor}" data-normalized="${r.normalized}" style="--w:${(r.cost_per_fps / scale) * 100}%">
 <span class="rank num">${r.rank}</span>
 <span class="name"><i class="vendor-tick" data-vendor="${g.vendor}"></i>${g.name}${est}</span>
 <span class="bar"><span class="fill"></span></span>

@@ -33,14 +33,14 @@ def test_score_view_ranks_and_uses_view_zone_mode():
             "gpu_id": ["a", "b", "c"],
             "resolution": ["1440p"] * 3,
             "mode": ["raster"] * 3,
-            "fps": [100.0, 50.0, 25.0],
-            "raw_fps": [100.0, 50.0, 25.0],
+            "fps": [100.0, 70.0, 25.0],
+            "raw_fps": [100.0, 70.0, 25.0],
             "suite_version": ["s"] * 3,
             "normalized": [False, True, False],
             "pct_of_top": [100.0, 50.0, 25.0],
         }
     )
-    prices = pd.DataFrame({"gpu_id": ["a", "b", "c"], "price": [500.0, 500.0, None]})
+    prices = pd.DataFrame({"gpu_id": ["a", "b", "c"], "price": [500.0, 700.0, None]})
     ranked, meta = score_view(eff, prices, cfg.zones, resolution="1440p", mode="raster")
     assert ranked["gpu_id"].tolist() == ["a", "b"]  # c has no price -> excluded
     assert ranked["rank"].tolist() == [1, 2]
@@ -143,3 +143,28 @@ def test_validate_observations_flags_band_and_stock():
         "price_above_ceiling",
         "not_in_stock",
     ]
+
+
+def test_playability_floor_ranks_last_and_gets_no_zone():
+    cfg = get_config()
+    eff = pd.DataFrame(
+        {
+            "gpu_id": ["slow", "ok"],
+            "resolution": ["4k", "4k"],
+            "mode": ["rt", "rt"],
+            "fps": [21.0, 45.0],
+            "raw_fps": [21.0, 45.0],
+            "suite_version": ["s", "s"],
+            "normalized": [False, False],
+            "pct_of_top": [50.0, 100.0],
+        }
+    )
+    prices = pd.DataFrame({"gpu_id": ["slow", "ok"], "price": [100.0, 900.0]})
+    ranked, meta = score_view(
+        eff, prices, cfg.zones, resolution="4k", mode="rt", playability=cfg.playability
+    )
+    assert meta["min_fps"] == 30
+    # The slow card has the better $/FPS (4.8 vs 20) but is unplayable, so it ranks last.
+    assert ranked["gpu_id"].tolist() == ["ok", "slow"]
+    assert ranked["zone"].tolist()[1] == "unplayable"
+    assert ranked["playable"].tolist() == [True, False]

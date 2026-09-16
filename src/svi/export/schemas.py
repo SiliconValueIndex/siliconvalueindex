@@ -26,11 +26,12 @@ BENCH_CELL = {
 
 ZONE_META = {
     "type": "object",
-    "required": ["mode", "great_max", "fair_max"],
+    "required": ["mode", "great_max", "fair_max", "min_fps"],
     "properties": {
         "mode": {"enum": ["absolute", "percentile"]},
         "great_max": {"type": "number"},
         "fair_max": {"type": "number"},
+        "min_fps": {"type": "number"},
     },
     "additionalProperties": False,
 }
@@ -150,7 +151,7 @@ GPU = {
                 "properties": {
                     "rank": {"type": "integer", "minimum": 1},
                     "cost_per_fps": {"type": "number"},
-                    "zone": {"enum": ["great", "fair", "poor"]},
+                    "zone": {"enum": ["great", "fair", "poor", "unplayable"]},
                 },
             },
         },
@@ -192,15 +193,25 @@ RANKINGS = {
         "type": "array",
         "items": {
             "type": "object",
-            "required": ["gpu_id", "rank", "fps", "price", "cost_per_fps", "zone", "normalized"],
+            "required": [
+                "gpu_id",
+                "rank",
+                "fps",
+                "price",
+                "cost_per_fps",
+                "zone",
+                "normalized",
+                "playable",
+            ],
             "properties": {
                 "gpu_id": _ID,
                 "rank": {"type": "integer", "minimum": 1},
                 "fps": {"type": "number"},
                 "price": {"type": "number"},
                 "cost_per_fps": {"type": "number"},
-                "zone": {"enum": ["great", "fair", "poor"]},
+                "zone": {"enum": ["great", "fair", "poor", "unplayable"]},
                 "normalized": {"type": "boolean"},
+                "playable": {"type": "boolean"},
             },
         },
     },

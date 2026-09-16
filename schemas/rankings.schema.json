@@ -13,7 +13,8 @@
         "price",
         "cost_per_fps",
         "zone",
-        "normalized"
+        "normalized",
+        "playable"
       ],
       "properties": {
         "gpu_id": {
@@ -37,10 +38,14 @@
           "enum": [
             "great",
             "fair",
-            "poor"
+            "poor",
+            "unplayable"
           ]
         },
         "normalized": {
+          "type": "boolean"
+        },
+        "playable": {
           "type": "boolean"
         }
       }

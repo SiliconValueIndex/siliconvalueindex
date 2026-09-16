@@ -1,310 +1,232 @@
 ---
 import Base from '../layouts/Base.astro';
-import { manifest, rankings, gpuById, gpus, fmtDate, money, primaryStats, splitView, VIEW_LABELS } from '../lib/data';
+import { manifest, rankings, gpuById, gpus, money, fmtDate, primaryStats, splitView, VIEW_LABELS } from '../lib/data';
 
-const stats = primaryStats();
 const view = manifest.primary_view;
-const rows = rankings[view] ?? [];
-const zones = manifest.zones[view];
-const scale = Math.ceil((rows.at(-1)?.cost_per_fps ?? 30) / 5) * 5;
 const { resolution, mode } = splitView(view);
+const stats = primaryStats();
+const zones = manifest.zones[view];
+const rows = rankings[view] ?? [];
+const playable = rows.filter((r) => r.playable);
 
-// Slim client payload: everything the board needs to re-render any view.
-const clientData = {
+const BRACKETS: [string, number, number][] = [
+  ['Under $350', 0, 350],
+  ['$350 to $500', 350, 500],
+  ['$500 to $800', 500, 800],
+  ['$800 and up', 800, Infinity],
+];
+
+// Payload for switching views on the client.
+const payload = {
   views: manifest.views,
   primary: view,
   zones: manifest.zones,
-  rankings,
-  gpus: Object.fromEntries(
-    gpus.map((g) => [g.gpu_id, { name: g.display_name, vendor: g.vendor, price_date: g.current_price?.fetched_at ?? null }]),
+  rankings: Object.fromEntries(
+    manifest.views.map((v) => [
+      v,
+      (rankings[v] ?? []).map((r) => {
+        const g = gpuById[r.gpu_id];
+        return { ...r, name: g.display_name, vendor: g.vendor, vram: g.vram_gb };
+      }),
+    ]),
   ),
 };
+// Computed here: Astro's template parser misreads `<` comparisons inside expressions.
+const bracketRows = BRACKETS.map(([title, lo, hi]) => {
+  const rs = rows.filter((r) => lo <= r.price && r.price < hi);
+  return { title, rs, best: rs.find((r) => r.playable) };
+});
 const resolutions = ['1080p', '1440p', '4k'];
 const modes = ['raster', 'rt'];
 const available = new Set(manifest.views);
-const description = `${stats?.count ?? 0} graphics cards ranked by cost per frame at ${VIEW_LABELS[resolution]}. Lower is better.`;
+const description = `${gpus.length} graphics cards plotted by price and frame rate, then grouped by budget. Cost per frame, nothing else.`;
 ---
 
 <Base title="SiliconValueIndex" description={description}>
   <section class="hero">
-    <h1>Every GPU, priced per frame.</h1>
+    <h1>What a frame costs, card by card.</h1>
     <p class="lede">
-      Cost per FPS is the current retail price divided by the frames per second Tom's Hardware measures. Lower is better.{" "}
-      {stats && <>The best value right now is the <a href={`/gpu/${stats.best.gpu_id}/`}>{gpuById[stats.best.gpu_id].display_name}</a> at {money(stats.best.cost_per_fps, 2)} per frame; the worst costs {stats.spread.toFixed(1)} times as much.</>}
+      Each dot is a graphics card at its current price and its average frame rate. Cards near the top-left give you the most for the least. The
+      dashed diagonals mark equal cost per frame, and the horizontal line is the point below which the frame rate is too low to play on at this setting.
     </p>
   </section>
 
-  <section class="board" id="board" data-scale={scale} style={`--g:${(zones.great_max / scale) * 100}%; --f:${(zones.fair_max / scale) * 100}%`}>
-    <div class="controls" aria-label="Ranking controls">
-      <div class="seg" role="group" aria-label="Resolution">
-        {resolutions.map((r) => (
-          <button type="button" data-res={r} aria-pressed={r === resolution} disabled={!modes.some((m) => available.has(`${r}_${m}`))}>
-            {VIEW_LABELS[r]}
-          </button>
-        ))}
-      </div>
-      <div class="seg" role="group" aria-label="Rendering mode">
-        {modes.map((m) => (
-          <button type="button" data-mode={m} aria-pressed={m === mode} disabled={!resolutions.some((r) => available.has(`${r}_${m}`))}>
-            {VIEW_LABELS[m]}
-          </button>
-        ))}
-      </div>
-      <div class="seg" role="group" aria-label="Vendor">
-        <button type="button" data-vendor="" aria-pressed="true">All</button>
-        <button type="button" data-vendor="NVIDIA">NVIDIA</button>
-        <button type="button" data-vendor="AMD">AMD</button>
-        <button type="button" data-vendor="Intel">Intel</button>
-      </div>
-      <label class="sort">
-        <span class="muted">Sort</span>
-        <select class="select" id="sort">
-          <option value="value">Best value first</option>
-          <option value="price">Cheapest first</option>
-          <option value="fps">Fastest first</option>
-          <option value="name">Name</option>
-        </select>
-      </label>
-      <label class="check"><input type="checkbox" id="hide-normalized" /> Hide cards estimated from the older benchmark suite</label>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Resolution">
+      {resolutions.map((r) => (
+        <button type="button" data-res={r} aria-pressed={r === resolution} disabled={!modes.some((m) => available.has(`${r}_${m}`))}>{VIEW_LABELS[r]}</button>
+      ))}
     </div>
-
-    <p class="legend small" id="legend">
-      <span><i class="sw" style="background:var(--great)"></i> Great value, under {money(zones.great_max, 0)} per frame</span>
-      <span><i class="sw" style="background:var(--fair)"></i> Fair, {money(zones.great_max, 0)} to {money(zones.fair_max, 0)}</span>
-      <span><i class="sw" style="background:var(--poor)"></i> Poor, over {money(zones.fair_max, 0)}</span>
-      <span class="muted" id="view-note">{rows.length} cards at {VIEW_LABELS[resolution]}, {VIEW_LABELS[mode].toLowerCase()}. Prices checked {stats ? fmtDate(stats.priceDate) : ''}.</span>
-    </p>
-
-    <div class="head" aria-hidden="true">
-      <span class="rank">#</span>
-      <span class="name">Graphics card</span>
-      <span class="bar">Cost per frame</span>
-      <span class="cpf">$/FPS</span>
-      <span class="price">Price</span>
-      <span class="fps">FPS</span>
+    <div class="seg" role="group" aria-label="Rendering mode">
+      {modes.map((m) => (
+        <button type="button" data-mode={m} aria-pressed={m === mode} disabled={!resolutions.some((r) => available.has(`${r}_${m}`))}>{VIEW_LABELS[m]}</button>
+      ))}
     </div>
-    <ol class="rows" id="rows">
-      {rows.map((r) => {
-        const g = gpuById[r.gpu_id];
+    <span class="muted small" id="view-note">{playable.length} playable cards of {rows.length} at {VIEW_LABELS[resolution]}, {VIEW_LABELS[mode].toLowerCase()}. Prices checked {stats ? fmtDate(stats.priceDate) : ''}.</span>
+  </div>
+
+  <figure class="chart">
+    <svg id="scatter" role="img" aria-label="Price against frames per second for every card"></svg>
+    <figcaption id="legend">
+      <span><i class="sw" style="background:var(--great)"></i>Great value, under {money(zones.great_max)} per frame</span>
+      <span><i class="sw" style="background:var(--fair)"></i>Fair, {money(zones.great_max)} to {money(zones.fair_max)}</span>
+      <span><i class="sw" style="background:var(--poor)"></i>Poor, over {money(zones.fair_max)}</span>
+      <span><i class="sw hollow"></i>Below {zones.min_fps} FPS</span>
+      <span class="muted">Hover a dot for the card; click to open it.</span>
+    </figcaption>
+  </figure>
+  <div class="tip" id="tip" hidden></div>
+
+  <div class="how">
+    <p><strong>Where the numbers come from</strong>Frame rates are Tom's Hardware's averages across their test suite at ultra settings. Prices are the lowest new, in-stock listing on file, each shown with the date it was checked.</p>
+    <p><strong>What "est." means</strong>Cards Tom's has not retested in the current suite carry an estimate translated from their older result. <a href="/methodology/#normalization">The methodology page shows the fit.</a></p>
+    <p><strong>Want an answer, not a chart?</strong><a href="/find/">Find a card</a> asks your budget and resolution and gives you three picks with the reasons.</p>
+  </div>
+
+  <section class="brackets">
+    <h2>By budget</h2>
+    <p class="muted">The same cards grouped by price. The first row in each group is the best value in that bracket at the selected setting.</p>
+    <div id="brackets">
+      {bracketRows.map(({ title, rs, best }) => {
         return (
-          <li>
-            <a class={`row zone-${r.zone}`} href={`/gpu/${r.gpu_id}/`} data-vendor={g.vendor} data-normalized={r.normalized} style={`--w:${(r.cost_per_fps / scale) * 100}%`}>
-              <span class="rank num">{r.rank}</span>
-              <span class="name"><i class="vendor-tick" data-vendor={g.vendor}></i>{g.display_name}{r.normalized && <span class="badge" title="FPS estimated from the older benchmark suite">est.</span>}</span>
-              <span class="bar"><span class="fill"></span></span>
-              <span class="cpf num">{money(r.cost_per_fps, 2)}</span>
-              <span class="price num">{money(r.price, 0)}</span>
-              <span class="fps num">{r.fps.toFixed(1)}</span>
-            </a>
-          </li>
+          <section class="bracket">
+            <h3>{title} <span class="count">{rs.length} cards</span></h3>
+            {best && <p class="lead">Best here: <a href={`/gpu/${best.gpu_id}/`}>{gpuById[best.gpu_id].display_name}</a> at {money(best.cost_per_fps, 2)} per frame.</p>}
+            <div class="table-scroll">
+              <table class="table">
+                <thead><tr><th>Card</th><th class="n">Price</th><th class="n">FPS</th><th class="n">$ / frame</th><th class="n">Memory</th><th class="n">Overall</th></tr></thead>
+                <tbody>
+                  {rs.map((r) => {
+                    const g = gpuById[r.gpu_id];
+                    const cls = [r === best ? 'best' : '', r.playable ? '' : 'unplayable'].join(' ').trim();
+                    return (
+                      <tr class={cls}>
+                        <td><a href={`/gpu/${r.gpu_id}/`}><i class="vendor-tick" data-vendor={g.vendor}></i>{g.display_name}</a>{r.normalized && <span class="badge">est.</span>}</td>
+                        <td class="n">{money(r.price)}</td>
+                        <td class="n">{r.fps.toFixed(1)}</td>
+                        <td class={`n zone-${r.zone}`}>{money(r.cost_per_fps, 2)}</td>
+                        <td class="n">{g.vram_gb} GB</td>
+                        <td class="n muted">{r.playable ? `#${r.rank}` : 'below floor'}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </section>
         );
       })}
-    </ol>
-    <p class="empty muted" id="empty" hidden>No cards match these filters.</p>
+    </div>
   </section>
 
-  <script is:inline type="application/json" id="svi-board" set:html={JSON.stringify(clientData)} />
+  <script is:inline type="application/json" id="svi-overview" set:html={JSON.stringify(payload)} />
 </Base>
 
 <script>
-  import { renderBoard } from '../lib/board';
-  renderBoard();
+  import { renderScatter, attachTooltip, type ScatterRow } from '../lib/scatter';
+  const data = JSON.parse(document.getElementById('svi-overview')!.textContent || '{}');
+  const svg = document.getElementById('scatter') as unknown as SVGSVGElement;
+  const tip = document.getElementById('tip')!;
+  const LABEL: Record<string, string> = { '1080p': '1080p', '1440p': '1440p', '4k': '4K', raster: 'rasterization', rt: 'ray tracing' };
+  const money = (n: number, d = 0) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: d, minimumFractionDigits: d });
+  const BR: [string, number, number][] = [['Under $350', 0, 350], ['$350 to $500', 350, 500], ['$500 to $800', 500, 800], ['$800 and up', 800, Infinity]];
+
+  const params = new URLSearchParams(location.search);
+  let view: string = params.get('view') && data.views.includes(params.get('view')) ? params.get('view')! : data.primary;
+  const split = (v: string) => ({ res: v.slice(0, v.lastIndexOf('_')), mode: v.slice(v.lastIndexOf('_') + 1) });
+
+  function brackets(rows: ScatterRow[]) {
+    return BR.map(([title, lo, hi]) => {
+      const rs = rows.filter((r) => lo <= r.price && r.price < hi);
+      const best = rs.find((r) => r.playable);
+      const body = rs
+        .map(
+          (r: any) => `<tr class="${r === best ? 'best' : ''} ${r.playable ? '' : 'unplayable'}"><td><a href="/gpu/${r.gpu_id}/"><i class="vendor-tick" data-vendor="${r.vendor}"></i>${r.name}</a>${r.normalized ? '<span class="badge">est.</span>' : ''}</td><td class="n">${money(r.price)}</td><td class="n">${r.fps.toFixed(1)}</td><td class="n zone-${r.zone}">${money(r.cost_per_fps, 2)}</td><td class="n">${r.vram} GB</td><td class="n muted">${r.playable ? '#' + r.rank : 'below floor'}</td></tr>`,
+        )
+        .join('');
+      const lead = best ? `<p class="lead">Best here: <a href="/gpu/${best.gpu_id}/">${best.name}</a> at ${money(best.cost_per_fps, 2)} per frame.</p>` : '<p class="lead muted">No playable card in this bracket at this setting.</p>';
+      return `<section class="bracket"><h3>${title} <span class="count">${rs.length} cards</span></h3>${lead}<div class="table-scroll"><table class="table"><thead><tr><th>Card</th><th class="n">Price</th><th class="n">FPS</th><th class="n">$ / frame</th><th class="n">Memory</th><th class="n">Overall</th></tr></thead><tbody>${body}</tbody></table></div></section>`;
+    }).join('');
+  }
+
+  function render(full: boolean) {
+    const rows: ScatterRow[] = data.rankings[view] ?? [];
+    const zones = data.zones[view];
+    const { res, mode } = split(view);
+    renderScatter(svg, rows, zones, `Average FPS, ${LABEL[res]} ${LABEL[mode]}`);
+    document.querySelectorAll<HTMLButtonElement>('button[data-res]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.res === res));
+      b.disabled = !data.views.some((v: string) => v.startsWith(`${b.dataset.res}_`));
+    });
+    document.querySelectorAll<HTMLButtonElement>('button[data-mode]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+      b.disabled = !data.views.includes(`${res}_${b.dataset.mode}`);
+    });
+    if (!full) return;
+    const playable = rows.filter((r) => r.playable).length;
+    document.getElementById('view-note')!.textContent = `${playable} playable cards of ${rows.length} at ${LABEL[res]}, ${LABEL[mode]}.`;
+    const spans = document.querySelectorAll('#legend span');
+    spans[0].lastChild!.textContent = `Great value, under ${money(zones.great_max)} per frame`;
+    spans[1].lastChild!.textContent = `Fair, ${money(zones.great_max)} to ${money(zones.fair_max)}`;
+    spans[2].lastChild!.textContent = `Poor, over ${money(zones.fair_max)}`;
+    spans[3].lastChild!.textContent = `Below ${zones.min_fps} FPS`;
+    document.getElementById('brackets')!.innerHTML = brackets(rows);
+    history.replaceState(null, '', view === data.primary ? location.pathname : `?view=${view}`);
+  }
+
+  document.querySelector('.controls')!.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('button') as HTMLButtonElement | null;
+    if (!b || b.disabled) return;
+    const { res, mode } = split(view);
+    const next = b.dataset.res ? `${b.dataset.res}_${mode}` : b.dataset.mode ? `${res}_${b.dataset.mode}` : view;
+    if (!data.views.includes(next)) return;
+    view = next;
+    render(true);
+  });
+  render(view !== data.primary);
+  attachTooltip(svg, tip, Object.values(data.rankings).flat() as ScatterRow[]);
 </script>
 
 <style is:global>
-  .hero {
-    margin-bottom: 28px;
-  }
-  .lede {
-    font-size: var(--t1);
-    max-width: 62ch;
-    color: var(--muted);
-  }
-  .lede a {
-    color: var(--text);
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-    text-decoration-color: var(--great);
-  }
-
-  .board .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 14px;
-    align-items: center;
-    margin-bottom: 14px;
-  }
-  .board .sort {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .board .check {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--muted);
-    font-size: var(--t-1);
-  }
-  .board .check input {
-    accent-color: var(--great);
-  }
-  .board .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 20px;
-    color: var(--text);
-    margin: 0 0 12px;
-  }
-  .board .sw {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    margin-right: 6px;
-    vertical-align: -1px;
-  }
-
-  /* Board grid shared by header and rows */
-  .board .head,
-  .board .row {
-    display: grid;
-    grid-template-columns: 2.2rem minmax(150px, 1fr) minmax(120px, 2.2fr) 5.5rem 4.8rem 4rem;
-    gap: 0 12px;
-    align-items: center;
-  }
-  .board .head .bar {
-    white-space: nowrap;
-    overflow: hidden;
-    background: none;
-    height: auto;
-  }
-  .board .head .bar::before,
-  .board .head .bar::after {
-    display: none;
-  }
-  .board .head {
-    color: var(--muted);
-    font-size: var(--t-1);
-    padding: 6px 10px;
-    border-bottom: 1px solid var(--rule-strong);
-  }
-  .board .head .cpf,
-  .board .head .price,
-  .board .head .fps,
-  .board .row .cpf,
-  .board .row .price,
-  .board .row .fps {
-    text-align: right;
-  }
-  .board .rows {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .board .row {
-    color: var(--text);
-    padding: 7px 10px;
-    border-bottom: 1px solid var(--rule);
-    text-decoration: none;
-  }
-  .board .row:hover {
-    background: var(--raised);
-    text-decoration: none;
-  }
-  .board .row .rank {
-    color: var(--dim);
-    font-size: var(--t-1);
-  }
-  .board .row .name {
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .board .row .name .badge {
-    margin-left: 8px;
-  }
-  .board .row .cpf {
-    font-weight: 600;
-    font-size: 1.05rem;
-  }
-  .board .row .price,
-  .board .row .fps {
-    color: var(--muted);
-  }
-  .board .row.zone-great .cpf {
-    color: var(--great);
-  }
-  .board .row.zone-fair .cpf {
-    color: var(--fair);
-  }
-  .board .row.zone-poor .cpf {
-    color: var(--poor);
-  }
-
-  /* The bar column: length is $/FPS on a shared scale; the two rules are the zone thresholds. */
-  .board .bar {
-    position: relative;
-    height: 14px;
-    background: var(--raised);
-    border-radius: 2px;
-  }
-  .board .bar::before,
-  .board .bar::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    bottom: -3px;
-    width: 1px;
-    background: var(--rule-strong);
-  }
-  .board .bar::before {
-    left: var(--g);
-  }
-  .board .bar::after {
-    left: var(--f);
-  }
-  .board .fill {
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: var(--w);
-    border-radius: 2px;
-    background: currentColor;
-    opacity: 0.85;
-    animation: grow 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  }
-  .board .zone-great .fill {
-    color: var(--great);
-  }
-  .board .zone-fair .fill {
-    color: var(--fair);
-  }
-  .board .zone-poor .fill {
-    color: var(--poor);
-  }
-  @keyframes grow {
-    from {
-      width: 0;
-    }
-  }
-  .board .row[hidden] {
-    display: none;
-  }
-  .board .empty {
-    padding: 24px 10px;
-  }
-
-  @media (max-width: 720px) {
-    .board .head,
-    .board .row {
-      grid-template-columns: 1.8rem minmax(120px, 1.5fr) minmax(60px, 1fr) 4.6rem;
-    }
-    .board .head .price,
-    .board .head .fps,
-    .board .row .price,
-    .board .row .fps {
-      display: none;
-    }
-  }
+  .hero { margin-bottom: 20px; }
+  .hero h1 { max-width: 18ch; }
+  .lede { font-size: var(--t1); color: var(--muted); max-width: 60ch; }
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 12px; }
+  .chart { margin: 0 0 8px; background: var(--raised); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 12px 8px; }
+  .chart svg { width: 100%; height: auto; display: block; font-family: var(--font-num); }
+  .chart .grid { stroke: var(--raised-2); stroke-width: 1; }
+  .chart .tick { fill: var(--muted); font-size: 11px; }
+  .chart .axis { fill: var(--muted); font-size: 12px; font-family: var(--font-ui); }
+  .chart .iso { stroke: var(--rule-strong); stroke-width: 1; stroke-dasharray: 4 4; }
+  .chart .isolab { fill: var(--dim); font-size: 11px; }
+  .chart .floor { stroke: var(--rule-strong); stroke-width: 1.5; }
+  .chart .floorlab { fill: var(--muted); font-size: 11px; font-family: var(--font-ui); }
+  .chart .dot { stroke: var(--raised); stroke-width: 1.5; cursor: pointer; transition: r 120ms; }
+  .chart .dot.z-great { fill: var(--great); }
+  .chart .dot.z-fair { fill: var(--fair); }
+  .chart .dot.z-poor { fill: var(--poor); }
+  .chart .dot.z-unplayable { fill: var(--raised); stroke: var(--dim); }
+  .chart .dot:hover { r: 8; }
+  .chart .dlabel { fill: var(--text); font-size: 12px; font-family: var(--font-ui); font-weight: 500; paint-order: stroke; stroke: var(--raised); stroke-width: 3px; pointer-events: none; }
+  .chart figcaption { color: var(--text); font-size: var(--t-1); padding: 6px 4px 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+  .sw.hollow { border: 1.5px solid var(--dim); }
+  .tip { position: fixed; pointer-events: none; background: var(--text); color: var(--ink); font-size: 13px; padding: 8px 10px; border-radius: 6px; z-index: 60; line-height: 1.4; }
+  .tip .badge { border-color: var(--ink); color: var(--ink); opacity: 0.8; }
+  .how { margin: 28px 0 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px 32px; }
+  .how p { margin: 0; max-width: none; }
+  .how strong { display: block; font-family: var(--font-display); font-weight: 500; font-size: var(--t1); margin-bottom: 4px; }
+  .brackets h2 { margin-bottom: 4px; }
+  .bracket { margin-top: 30px; }
+  .bracket h3 { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2px; }
+  .bracket .count { font-family: var(--font-ui); font-size: var(--t-1); color: var(--muted); }
+  .bracket .lead { margin: 0 0 8px; color: var(--muted); }
+  .bracket .lead a { color: var(--text); font-weight: 600; }
+  .bracket td a { color: var(--text); }
+  .bracket tr.best td { background: var(--raised); }
+  .bracket tr.best td:first-child { box-shadow: inset 3px 0 0 var(--link); font-weight: 600; }
+  .bracket tr.unplayable td { color: var(--dim); }
+  .bracket tr.unplayable td a { color: var(--dim); }
+  .bracket .badge { margin-left: 6px; }
+  .zone-great, .zone-fair, .zone-poor { font-weight: 500; }
 </style>

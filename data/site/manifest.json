@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-09-16T15:56:09Z",
- "run_id": "scrape-2026-09-16",
+ "generated_at": "2026-09-16T17:20:47Z",
+ "run_id": "floor-2026-09-16",
  "primary_view": "1440p_raster",
  "views": [
   "1080p_raster",
@@ -22,33 +22,39 @@
  "zones": {
   "1080p_raster": {
    "mode": "percentile",
-   "great_max": 5.18,
-   "fair_max": 6.8
+   "great_max": 5.07,
+   "fair_max": 6.82,
+   "min_fps": 60.0
   },
   "1080p_rt": {
    "mode": "percentile",
-   "great_max": 11.13,
-   "fair_max": 15.13
+   "great_max": 11.0,
+   "fair_max": 15.11,
+   "min_fps": 45.0
   },
   "1440p_raster": {
    "mode": "absolute",
    "great_max": 8.0,
-   "fair_max": 12.0
+   "fair_max": 12.0,
+   "min_fps": 45.0
   },
   "1440p_rt": {
    "mode": "percentile",
-   "great_max": 16.8,
-   "fair_max": 22.3
+   "great_max": 16.43,
+   "fair_max": 21.54,
+   "min_fps": 40.0
   },
   "4k_raster": {
    "mode": "percentile",
-   "great_max": 15.15,
-   "fair_max": 20.22
+   "great_max": 15.03,
+   "fair_max": 17.53,
+   "min_fps": 40.0
   },
   "4k_rt": {
    "mode": "percentile",
-   "great_max": 38.84,
-   "fair_max": 58.43
+   "great_max": 29.43,
+   "fair_max": 37.19,
+   "min_fps": 30.0
   }
  },
  "normalization": {
@@ -476,7 +482,7 @@
    "name": "Tom's Hardware GPU Hierarchy",
    "url": "https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html",
    "kind": "benchmarks",
-   "fetched_at": "2026-09-16T15:56:09Z"
+   "fetched_at": null
   },
   {
    "name": "Best Buy Products API",

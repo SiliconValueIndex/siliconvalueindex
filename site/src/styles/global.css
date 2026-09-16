@@ -1,30 +1,34 @@
 /* SiliconValueIndex design tokens and base styles.
-   Dark ledger. Numbers are the typography. Color means value zone or vendor, nothing else. */
+   Paper ground, serif display, mono numerals. Color means value zone or vendor, nothing else.
+   Token names are kept from the first dark build (--ink is the page ground) so page styles
+   did not have to change. Single light theme by choice. */
 
 :root {
-  --ink: #0b0f14;
-  --raised: #121821;
-  --raised-2: #182130;
-  --rule: #243040;
-  --rule-strong: #34455c;
-  --text: #e8eef4;
-  --muted: #8a97a6;
-  --dim: #5b6877;
-  --link: #7fb8ff;
+  --ink: #f3f5f2;
+  --raised: #ffffff;
+  --raised-2: #e9ece7;
+  --rule: #d4dad4;
+  --rule-strong: #b8c0bb;
+  --text: #172026;
+  --muted: #5b6770;
+  --dim: #8a949b;
+  --link: #0f6e63;
 
-  --great: #3ddc97;
-  --fair: #f5b942;
-  --poor: #f26d6d;
-  --great-soft: rgba(61, 220, 151, 0.12);
-  --fair-soft: rgba(245, 185, 66, 0.12);
-  --poor-soft: rgba(242, 109, 109, 0.12);
+  --great: #1f8a5b;
+  --fair: #b07a12;
+  --poor: #b9402b;
+  --unplayable: #8a949b;
+  --great-soft: rgba(31, 138, 91, 0.12);
+  --fair-soft: rgba(176, 122, 18, 0.14);
+  --poor-soft: rgba(185, 64, 43, 0.12);
 
   --nvidia: #76b900;
   --amd: #ed1c24;
   --intel: #0071c5;
 
-  --font-ui: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
-  --font-num: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --font-ui: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-num: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
 
   --max: 1180px;
   --gutter: clamp(16px, 4vw, 40px);
@@ -39,7 +43,7 @@
   --t4: 2.441rem;
   --t5: 3.052rem;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 *,
@@ -76,18 +80,16 @@ a:hover {
 h1,
 h2,
 h3 {
-  font-family: var(--font-ui);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.015em;
   margin: 0 0 0.5em;
   text-wrap: balance;
 }
 h1 {
-  font-size: clamp(var(--t3), 5vw, var(--t5));
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  font-variation-settings: 'wdth' 90;
+  font-size: clamp(var(--t3), 5.5vw, 3.6rem);
+  letter-spacing: -0.02em;
 }
 h2 {
   font-size: var(--t2);
@@ -127,7 +129,7 @@ main {
 /* Header */
 .site-header {
   border-bottom: 1px solid var(--rule);
-  background: color-mix(in srgb, var(--ink) 88%, transparent);
+  background: color-mix(in srgb, var(--ink) 92%, transparent);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -141,13 +143,14 @@ main {
   min-height: 56px;
 }
 .brand {
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 600;
   color: var(--text);
-  letter-spacing: -0.02em;
-  font-size: var(--t1);
+  letter-spacing: -0.01em;
+  font-size: 1.5rem;
   display: inline-flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 8px;
 }
 .brand:hover {
   text-decoration: none;
@@ -177,7 +180,7 @@ main {
 }
 .site-nav a[aria-current='page'] {
   color: var(--text);
-  box-shadow: inset 0 -2px 0 var(--great);
+  box-shadow: inset 0 -2px 0 var(--link);
   border-radius: 0;
 }
 @media (max-width: 560px) {
@@ -267,12 +270,12 @@ main {
   text-decoration: none;
 }
 .btn-primary {
-  background: var(--great);
-  border-color: var(--great);
-  color: #06261a;
+  background: var(--link);
+  border-color: var(--link);
+  color: #ffffff;
 }
 .btn-primary:hover {
-  background: #5ce6a9;
+  background: #0c5a51;
 }
 
 /* Zone and vendor marks */
@@ -284,6 +287,9 @@ main {
 }
 .zone-poor {
   color: var(--poor);
+}
+.zone-unplayable {
+  color: var(--unplayable);
 }
 .vendor-tick {
   display: inline-block;

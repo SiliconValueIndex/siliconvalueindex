@@ -1,0 +1,183 @@
+---
+import Base from '../layouts/Base.astro';
+import { manifest, rankings, gpuById, gpus } from '../lib/data';
+
+const maxPrice = Math.ceil(Math.max(...gpus.map((g) => g.current_price?.price ?? 0)) / 100) * 100;
+const payload = {
+  views: manifest.views,
+  primary: manifest.primary_view,
+  zones: manifest.zones,
+  total: gpus.length,
+  rankings: Object.fromEntries(
+    manifest.views.map((v) => [
+      v,
+      (rankings[v] ?? []).map((r) => {
+        const g = gpuById[r.gpu_id];
+        return { id: r.gpu_id, name: g.display_name, vendor: g.vendor, vram: g.vram_gb ?? 0, price: r.price, fps: r.fps, cpf: r.cost_per_fps, zone: r.zone, est: r.normalized, playable: r.playable };
+      }),
+    ]),
+  ),
+};
+---
+
+<Base title="Find a card" description="Tell us your budget, resolution and what you play, and get three graphics card picks with the reasons.">
+  <div class="layout">
+    <aside aria-label="Your requirements">
+      <h2>What you need</h2>
+      <div class="field">
+        <label for="budget">Budget <output id="budget-out">up to $700</output></label>
+        <input type="range" id="budget" min="150" max={maxPrice} step="25" value="700" />
+      </div>
+      <div class="field">
+        <span class="lbl">Resolution</span>
+        <div class="chips" id="res"><button type="button" data-res="1080p">1080p</button><button type="button" data-res="1440p" aria-pressed="true">1440p</button><button type="button" data-res="4k">4K</button></div>
+      </div>
+      <div class="field">
+        <span class="lbl">Mostly playing</span>
+        <div class="chips" id="mode"><button type="button" data-mode="raster" aria-pressed="true">Everything</button><button type="button" data-mode="rt">Ray-traced games</button></div>
+      </div>
+      <div class="field">
+        <label for="minfps">Frame rate you want <output id="minfps-out"></output></label>
+        <select class="select" id="minfps">
+          <option value="floor">Playable at this setting</option>
+          <option value="60">At least 60 FPS</option>
+          <option value="90">At least 90 FPS</option>
+          <option value="120">At least 120 FPS</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="lbl">Brand</span>
+        <div class="chips" id="vendor"><button type="button" data-vendor="" aria-pressed="true">Any</button><button type="button" data-vendor="NVIDIA">NVIDIA</button><button type="button" data-vendor="AMD">AMD</button><button type="button" data-vendor="Intel">Intel</button></div>
+      </div>
+      <div class="field">
+        <span class="lbl">Memory</span>
+        <div class="chips" id="vram"><button type="button" data-vram="0" aria-pressed="true">Any</button><button type="button" data-vram="12">12 GB or more</button><button type="button" data-vram="16">16 GB or more</button></div>
+      </div>
+      <button type="button" class="reset" id="reset">Start over</button>
+    </aside>
+
+    <main class="results">
+      <h1 id="c-title">Best cards under $700 at 1440p</h1>
+      <p class="sub muted" id="c-sub"></p>
+      <div class="picks" id="picks"></div>
+      <h2 class="list">Everything that fits <span class="muted" id="c-count"></span></h2>
+      <div class="table-scroll">
+        <table class="table">
+          <thead><tr><th>Card</th><th class="n">Price</th><th class="n">FPS</th><th class="n">$ / frame</th><th>Value</th><th class="n">Memory</th></tr></thead>
+          <tbody id="c-rows"></tbody>
+        </table>
+      </div>
+      <p class="muted small">Cards below the playable floor for the chosen setting are never shown here; they are still on the <a href="/rankings/">full rankings</a>.</p>
+    </main>
+  </div>
+
+  <script is:inline type="application/json" id="svi-find" set:html={JSON.stringify(payload)} />
+  <script is:inline>
+    (function () {
+      var data = JSON.parse(document.getElementById('svi-find').textContent);
+      var money = function (n, d) { d = d || 0; return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: d, minimumFractionDigits: d }); };
+      var LABEL = { '1080p': '1080p', '1440p': '1440p', '4k': '4K' };
+      var q = new URLSearchParams(location.search);
+      var st = { budget: Number(q.get('budget')) || 700, res: q.get('res') || '1440p', mode: q.get('mode') || 'raster', vendor: q.get('vendor') || '', vram: Number(q.get('vram')) || 0, minfps: q.get('fps') || 'floor' };
+      var $ = function (id) { return document.getElementById(id); };
+      $('budget').value = st.budget;
+      $('minfps').value = st.minfps;
+      function pressGroup(id, attr, val) { document.querySelectorAll('#' + id + ' button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset[attr] === String(val))); }); }
+      function pick(r, why, cls) {
+        return '<div class="pick ' + cls + '"><div class="why">' + why + '</div><div class="nm"><a href="/gpu/' + r.id + '/">' + r.name + '</a>' + (r.est ? '<span class="badge">est.</span>' : '') + '</div><div class="big num zone-' + r.zone + '">' + money(r.cpf, 2) + '<small>per frame</small></div><div class="stats"><span><b class="num">' + money(r.price) + '</b> price</span><span><b class="num">' + r.fps.toFixed(0) + '</b> FPS</span><span><b class="num">' + r.vram + ' GB</b> memory</span></div></div>';
+      }
+      function render() {
+        var view = st.res + '_' + st.mode;
+        if (data.views.indexOf(view) < 0) { view = data.primary; }
+        var zones = data.zones[view];
+        var floor = st.minfps === 'floor' ? zones.min_fps : Number(st.minfps);
+        $('budget-out').textContent = 'up to ' + money(st.budget);
+        $('minfps-out').textContent = st.minfps === 'floor' ? zones.min_fps + ' FPS here' : '';
+        pressGroup('res', 'res', st.res); pressGroup('mode', 'mode', st.mode); pressGroup('vendor', 'vendor', st.vendor); pressGroup('vram', 'vram', st.vram);
+        var rows = (data.rankings[view] || []).filter(function (r) { return r.price <= st.budget && r.fps >= floor && (!st.vendor || r.vendor === st.vendor) && r.vram >= st.vram; });
+        rows.sort(function (a, b) { return a.cpf - b.cpf; });
+        $('c-title').textContent = 'Best cards under ' + money(st.budget) + ' at ' + LABEL[st.res] + (st.mode === 'rt' ? ' for ray tracing' : '');
+        var picks = $('picks');
+        if (!rows.length) {
+          $('c-sub').textContent = '';
+          picks.innerHTML = '<div class="empty">Nothing hits ' + floor + ' FPS at ' + LABEL[st.res] + ' for ' + money(st.budget) + '. Raise the budget, drop to a lower resolution, or lower the frame rate you want.</div>';
+        } else {
+          var best = rows[0];
+          var fastest = rows.reduce(function (a, b) { return b.fps > a.fps ? b : a; });
+          var cheapest = rows.reduce(function (a, b) { return b.price < a.price ? b : a; });
+          $('c-sub').textContent = rows.length + ' cards fit. The first pick is the lowest cost per frame; the other two show the trade-offs at the edges of your budget.';
+          var seen = {}; seen[best.id] = 1;
+          var html = pick(best, 'Best value for your money', 'first');
+          if (!seen[fastest.id]) { seen[fastest.id] = 1; html += pick(fastest, 'Fastest within budget', ''); }
+          if (!seen[cheapest.id]) { seen[cheapest.id] = 1; html += pick(cheapest, 'Cheapest that still fits', ''); }
+          if (Object.keys(seen).length < 3 && rows[1] && !seen[rows[1].id]) { html += pick(rows[1], 'Runner-up on value', ''); }
+          picks.innerHTML = html;
+        }
+        var maxf = rows.length ? Math.max.apply(null, rows.map(function (r) { return r.fps; })) : 1;
+        $('c-count').textContent = rows.length ? rows.length + ' of ' + data.total : '';
+        $('c-rows').innerHTML = rows.map(function (r) {
+          return '<tr><td><a href="/gpu/' + r.id + '/"><i class="vendor-tick" data-vendor="' + r.vendor + '"></i>' + r.name + '</a>' + (r.est ? '<span class="badge">est.</span>' : '') + '</td><td class="n">' + money(r.price) + '</td><td class="n"><span class="mbar"><i style="width:' + (r.fps / maxf * 100).toFixed(0) + '%"></i></span>' + r.fps.toFixed(1) + '</td><td class="n zone-' + r.zone + '">' + money(r.cpf, 2) + '</td><td><span class="pill ' + r.zone + '">' + r.zone + '</span></td><td class="n">' + r.vram + ' GB</td></tr>';
+        }).join('');
+        var p = new URLSearchParams();
+        if (st.budget !== 700) p.set('budget', st.budget);
+        if (st.res !== '1440p') p.set('res', st.res);
+        if (st.mode !== 'raster') p.set('mode', st.mode);
+        if (st.vendor) p.set('vendor', st.vendor);
+        if (st.vram) p.set('vram', st.vram);
+        if (st.minfps !== 'floor') p.set('fps', st.minfps);
+        var s = p.toString();
+        history.replaceState(null, '', s ? '?' + s : location.pathname);
+      }
+      $('budget').addEventListener('input', function () { st.budget = Number(this.value); render(); });
+      $('minfps').addEventListener('change', function () { st.minfps = this.value; render(); });
+      document.querySelector('aside').addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return;
+        if (b.dataset.res) st.res = b.dataset.res;
+        else if (b.dataset.mode) st.mode = b.dataset.mode;
+        else if (b.dataset.vendor !== undefined) st.vendor = b.dataset.vendor;
+        else if (b.dataset.vram !== undefined) st.vram = Number(b.dataset.vram);
+        else if (b.id === 'reset') { st = { budget: 700, res: '1440p', mode: 'raster', vendor: '', vram: 0, minfps: 'floor' }; $('budget').value = 700; $('minfps').value = 'floor'; }
+        else return;
+        render();
+      });
+      render();
+    })();
+  </script>
+</Base>
+
+<style is:global>
+  .layout { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start; }
+  aside { position: sticky; top: 70px; background: var(--raised); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 18px; }
+  aside h2 { font-size: var(--t1); margin: 0; }
+  .field label, .field .lbl { display: flex; justify-content: space-between; font-weight: 500; font-size: var(--t-1); color: var(--muted); margin-bottom: 6px; }
+  .field label output { color: var(--text); font-family: var(--font-num); }
+  .field input[type='range'] { width: 100%; accent-color: var(--link); }
+  .field .select { width: 100%; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips button { font: inherit; font-size: var(--t-1); font-weight: 500; background: transparent; color: var(--muted); border: 1px solid var(--rule-strong); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+  .chips button[aria-pressed='true'] { background: var(--link); color: #fff; border-color: var(--link); }
+  .reset { background: none; border: 0; color: var(--link); font: inherit; font-weight: 500; cursor: pointer; padding: 0; justify-self: start; }
+  .results h1 { font-size: clamp(var(--t2), 3.6vw, var(--t4)); margin-bottom: 4px; }
+  .sub { margin-bottom: 20px; }
+  .picks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 30px; }
+  .pick { background: var(--raised); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 8px; align-content: start; }
+  .pick.first { border-color: var(--link); box-shadow: inset 0 0 0 1px var(--link); }
+  .pick .why { color: var(--muted); font-size: var(--t-1); font-weight: 500; }
+  .pick .nm { font-family: var(--font-display); font-size: var(--t2); font-weight: 500; letter-spacing: -0.01em; }
+  .pick .nm a { color: var(--text); }
+  .pick .big { font-size: var(--t4); font-weight: 500; letter-spacing: -0.02em; line-height: 1; white-space: nowrap; }
+  .pick .big small { font: 500 var(--t-1) var(--font-ui); color: var(--muted); margin-left: 6px; letter-spacing: 0; }
+  .pick .stats { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: var(--t-1); }
+  .pick .stats b { color: var(--text); font-weight: 500; }
+  .empty { grid-column: 1 / -1; color: var(--muted); padding: 28px; border: 1px dashed var(--rule-strong); border-radius: 10px; text-align: center; }
+  h2.list { font-family: var(--font-ui); font-size: var(--t0); font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .table td a { color: var(--text); }
+  .table .badge { margin-left: 6px; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; text-transform: capitalize; }
+  .pill.great { background: var(--great-soft); color: var(--great); }
+  .pill.fair { background: var(--fair-soft); color: var(--fair); }
+  .pill.poor { background: var(--poor-soft); color: var(--poor); }
+  .mbar { display: inline-block; width: 70px; height: 6px; background: var(--raised-2); border-radius: 3px; vertical-align: middle; margin-right: 8px; overflow: hidden; }
+  .mbar i { display: block; height: 100%; background: var(--link); }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } aside { position: static; } .picks { grid-template-columns: 1fr; } }
+</style>
