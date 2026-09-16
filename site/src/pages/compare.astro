@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import { gpus, manifest, viewLabel } from '../lib/data';
+
+const payload = {
+  views: manifest.views,
+  viewLabels: Object.fromEntries(manifest.views.map((v) => [v, viewLabel(v)])),
+  counts: manifest.ranked_counts,
+  gpus: gpus.map((g) => ({
+    id: g.gpu_id,
+    name: g.display_name,
+    vendor: g.vendor,
+    arch: g.architecture,
+    year: g.release_year,
+    vram: g.vram_gb,
+    tdp: g.tdp_w,
+    price: g.current_price?.price ?? null,
+    benchmarks: g.benchmarks,
+    rankings: g.rankings,
+  })),
+};
+---
+
+<Base title="Compare" description="Put two to four graphics cards side by side: price, FPS per resolution and cost per frame.">
+  <h1>Compare cards side by side.</h1>
+  <p class="lede muted">Pick two to four cards. The link updates as you go, so you can share the comparison.</p>
+
+  <form class="picker" id="picker" autocomplete="off">
+    <label for="pick" class="muted small">Add a card</label>
+    <input id="pick" class="select input" list="gpu-list" placeholder="Type a name, then press Enter" />
+    <datalist id="gpu-list">{gpus.map((g) => <option value={g.display_name}></option>)}</datalist>
+    <div class="chips" id="chips"></div>
+  </form>
+
+  <div id="out" class="table-scroll"></div>
+  <p class="muted" id="hint">Nothing selected yet. Start with two cards you are deciding between.</p>
+
+  <script is:inline type="application/json" id="svi-compare" set:html={JSON.stringify(payload)} />
+</Base>
+
+<script>
+  interface G {
+    id: string; name: string; vendor: string; arch: string; year: number; vram: number | null; tdp: number | null; price: number | null;
+    benchmarks: Record<string, Record<string, { fps: number; normalized: boolean }>>;
+    rankings: Record<string, { rank: number; cost_per_fps: number; zone: string }>;
+  }
+  const data = JSON.parse(document.getElementById('svi-compare')!.textContent || '{}') as {
+    views: string[]; viewLabels: Record<string, string>; counts: Record<string, number>; gpus: G[];
+  };
+  const byName = new Map(data.gpus.map((g) => [g.name.toLowerCase(), g]));
+  const byId = new Map(data.gpus.map((g) => [g.id, g]));
+  const money = (n: number, d = 0) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: d, minimumFractionDigits: d });
+
+  let ids = (new URLSearchParams(location.search).get('ids') ?? '').split(',').filter((i) => byId.has(i)).slice(0, 4);
+  const input = document.getElementById('pick') as HTMLInputElement;
+  const chips = document.getElementById('chips')!;
+  const out = document.getElementById('out')!;
+  const hint = document.getElementById('hint')!;
+
+  function cell(label: string, fn: (g: G) => string, cls = '') {
+    return `<tr><th scope="row">${label}</th>${ids.map((i) => `<td class="n ${cls}">${fn(byId.get(i)!)}</td>`).join('')}</tr>`;
+  }
+  function render() {
+    history.replaceState(null, '', ids.length ? `?ids=${ids.join(',')}` : location.pathname);
+    chips.innerHTML = ids
+      .map((i) => `<button type="button" class="chip" data-remove="${i}"><i class="vendor-tick" data-vendor="${byId.get(i)!.vendor}"></i>${byId.get(i)!.name} <span aria-hidden="true">×</span><span class="sr">remove</span></button>`)
+      .join('');
+    hint.hidden = ids.length > 0;
+    if (!ids.length) { out.innerHTML = ''; return; }
+    const head = `<tr><th></th>${ids.map((i) => `<th><a href="/gpu/${i}/">${byId.get(i)!.name}</a></th>`).join('')}</tr>`;
+    const rows: string[] = [
+      cell('Price', (g) => (g.price != null ? money(g.price) : '—')),
+      cell('Architecture', (g) => g.arch),
+      cell('Released', (g) => String(g.year)),
+      cell('Memory', (g) => (g.vram != null ? `${g.vram} GB` : '—')),
+      cell('Board power', (g) => (g.tdp != null ? `${g.tdp} W` : '—')),
+    ];
+    for (const v of data.views) {
+      const [res, mode] = [v.slice(0, v.lastIndexOf('_')), v.slice(v.lastIndexOf('_') + 1)];
+      rows.push(cell(`FPS, ${data.viewLabels[v]}`, (g) => {
+        const b = g.benchmarks[res]?.[mode];
+        return b ? `${b.fps.toFixed(1)}${b.normalized ? ' <span class="badge">est.</span>' : ''}` : '—';
+      }));
+      rows.push(cell(`$/FPS, ${data.viewLabels[v]}`, (g) => {
+        const r = g.rankings[v];
+        return r ? `<span class="zone-${r.zone}">${money(r.cost_per_fps, 2)}</span> <span class="muted small">#${r.rank} of ${data.counts[v]}</span>` : '—';
+      }));
+    }
+    // Relative bars for the primary comparison: cheapest per frame is the reference.
+    const primary = data.views[0];
+    const vals = ids.map((i) => byId.get(i)!.rankings[primary]?.cost_per_fps ?? NaN);
+    const best = Math.min(...vals.filter((v) => !isNaN(v)));
+    if (isFinite(best)) {
+      rows.push(cell(`Relative cost per frame`, (g) => {
+        const v = g.rankings[primary]?.cost_per_fps;
+        if (v == null) return '—';
+        const pct = ((v / best - 1) * 100).toFixed(0);
+        return `<span class="rel"><span class="relfill" style="width:${Math.min(100, (best / v) * 100)}%"></span></span>${v === best ? 'cheapest' : `+${pct}%`}`;
+      }));
+    }
+    out.innerHTML = `<table class="table compare"><thead>${head}</thead><tbody>${rows.join('')}</tbody></table>`;
+  }
+  input.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    const g = byName.get(input.value.trim().toLowerCase());
+    if (g && !ids.includes(g.id) && ids.length < 4) { ids.push(g.id); input.value = ''; render(); }
+  });
+  input.addEventListener('change', () => {
+    const g = byName.get(input.value.trim().toLowerCase());
+    if (g && !ids.includes(g.id) && ids.length < 4) { ids.push(g.id); input.value = ''; render(); }
+  });
+  chips.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('[data-remove]') as HTMLElement | null;
+    if (!b) return;
+    ids = ids.filter((i) => i !== b.dataset.remove);
+    render();
+  });
+  render();
+</script>
+
+<style>
+  .lede { font-size: var(--t1); }
+  .picker { margin: 20px 0 24px; display: flex; flex-direction: column; gap: 8px; max-width: 520px; }
+  .input { background-image: none; padding-right: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  :global(.chip) { display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--raised); color: var(--text); font: inherit; cursor: pointer; }
+  :global(.chip:hover) { background: var(--raised-2); }
+  :global(.sr) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  :global(.compare th[scope='row']) { color: var(--muted); font-weight: 500; white-space: nowrap; }
+  :global(.compare thead th) { font-weight: 600; color: var(--text); }
+  :global(.rel) { display: inline-block; width: 90px; height: 8px; background: var(--raised-2); border-radius: 2px; margin-right: 8px; vertical-align: middle; overflow: hidden; }
+  :global(.relfill) { display: block; height: 100%; background: var(--great); }
+</style>
