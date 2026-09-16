@@ -36,6 +36,7 @@ class SuiteTransform:
     legacy_min: float = 0.0
     legacy_max: float = 0.0
     dropped_outliers: list[str] = field(default_factory=list)
+    overlap_points: list[list] = field(default_factory=list)  # [gpu_id, legacy, current]
 
     def to_dict(self) -> dict:
         return {
@@ -54,6 +55,7 @@ class SuiteTransform:
             "residual_sd": None if self.residual_sd is None else round(self.residual_sd, 3),
             "legacy_range": [round(self.legacy_min, 1), round(self.legacy_max, 1)],
             "dropped_outliers": self.dropped_outliers,
+            "overlap_points": self.overlap_points,
         }
 
 
@@ -96,6 +98,10 @@ def fit_suite_transform(
         n_overlap=len(df),
         legacy_min=float(df["legacy_fps"].min()),
         legacy_max=float(df["legacy_fps"].max()),
+        overlap_points=[
+            [g, float(lf), float(cf)]
+            for g, lf, cf in zip(df["gpu_id"], df["legacy_fps"], df["current_fps"], strict=True)
+        ],
     )
 
     if method == "ratio_trimmed":

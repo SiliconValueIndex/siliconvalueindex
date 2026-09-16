@@ -282,7 +282,8 @@ def guard_gpu_count(new_count: int, previous_dir: Path, max_drop_pct: float) -> 
     old = int(prev.get("gpu_count", 0))
     if old and new_count < old * (1 - max_drop_pct / 100):
         raise RuntimeError(
-            f"Refusing to publish: gpu_count fell from {old} to {new_count} (> {max_drop_pct}% drop)"
+            f"Refusing to publish: gpu_count fell from {old} to {new_count} "
+            f"(> {max_drop_pct}% drop)"
         )
 
 

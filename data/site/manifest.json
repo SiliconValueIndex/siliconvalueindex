@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-16T15:40:09Z",
+ "generated_at": "2026-09-16T15:43:43Z",
  "run_id": "seed-parity",
  "primary_view": "1440p_raster",
  "views": [
@@ -58,6 +58,93 @@
     ],
     "dropped_outliers": [
      "nvidia-rtx-4070-ti-super"
+    ],
+    "overlap_points": [
+     [
+      "amd-rx-7900-xtx",
+      135.3,
+      102.6
+     ],
+     [
+      "amd-rx-7900-xt",
+      125.9,
+      92.0
+     ],
+     [
+      "amd-rx-7800-xt",
+      105.8,
+      69.0
+     ],
+     [
+      "amd-rx-7900-gre",
+      113.9,
+      77.5
+     ],
+     [
+      "amd-rx-7700-xt",
+      92.7,
+      60.6
+     ],
+     [
+      "nvidia-rtx-3060",
+      54.0,
+      34.9
+     ],
+     [
+      "amd-rx-7600-xt",
+      65.9,
+      41.7
+     ],
+     [
+      "nvidia-rtx-4060",
+      61.2,
+      38.9
+     ],
+     [
+      "nvidia-rtx-4060-ti-8gb",
+      75.6,
+      49.3
+     ],
+     [
+      "nvidia-rtx-4060-ti-16gb",
+      75.7,
+      52.5
+     ],
+     [
+      "nvidia-rtx-4090",
+      146.1,
+      126.6
+     ],
+     [
+      "nvidia-rtx-4080-super",
+      133.0,
+      105.8
+     ],
+     [
+      "nvidia-rtx-4080",
+      130.4,
+      103.7
+     ],
+     [
+      "nvidia-rtx-4070-ti-super",
+      122.0,
+      116.9
+     ],
+     [
+      "nvidia-rtx-4070-ti",
+      116.5,
+      85.5
+     ],
+     [
+      "nvidia-rtx-4070-super",
+      109.8,
+      79.7
+     ],
+     [
+      "nvidia-rtx-4070",
+      97.8,
+      68.3
+     ]
     ]
    }
   ]

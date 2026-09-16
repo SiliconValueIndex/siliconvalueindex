@@ -213,3 +213,4 @@ data/raw/prices/*.jsonl
 site/node_modules/
 site/dist/
 site/.astro/
+public/data/

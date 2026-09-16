@@ -52,6 +52,7 @@ TRANSFORM = {
         "residual_sd": _NUM_OR_NULL,
         "legacy_range": {"type": "array", "items": {"type": "number"}},
         "dropped_outliers": {"type": "array", "items": _ID},
+        "overlap_points": {"type": "array"},
     },
 }
 

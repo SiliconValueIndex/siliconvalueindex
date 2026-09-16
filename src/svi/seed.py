@@ -73,7 +73,7 @@ def seed_benchmarks(resolver: Resolver) -> tuple[pd.DataFrame, list[UnresolvedNa
                 }
             )
     df = pd.DataFrame(rows, columns=BENCHMARK_COLUMNS)
-    for suite, grp in df.groupby("suite_version"):
+    for _suite, grp in df.groupby("suite_version"):
         top = grp["fps"].max()
         df.loc[grp.index, "pct_of_top"] = (grp["fps"] / top * 100).round(1)
     return df, unresolved

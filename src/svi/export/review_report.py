@@ -71,7 +71,8 @@ def build_report(inp: ReviewInputs) -> tuple[str, bool, list[str]]:
 
     md.append("\n## Unresolved names\n")
     md.append(
-        "Add a row to `data/reference/aliases.csv` (alias,gpu_id,source) or a new registry entry.\n\n"
+        "Add a row to `data/reference/aliases.csv` (alias,gpu_id,source) "
+        "or a new registry entry.\n\n"
     )
     md.append(
         _table(
@@ -91,7 +92,8 @@ def build_report(inp: ReviewInputs) -> tuple[str, bool, list[str]]:
 
     md.append("\n## Active GPUs with no valid current price\n")
     md.append(
-        "These drop out of the rankings. Add a row to `data/reference/price_overrides.csv` if needed.\n\n"
+        "These drop out of the rankings. "
+        "Add a row to `data/reference/price_overrides.csv` if needed.\n\n"
     )
     md.append("\n".join(f"- `{g}`" for g in missing_price) + "\n" if missing_price else "_none_\n")
 

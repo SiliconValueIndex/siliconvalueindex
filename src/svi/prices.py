@@ -81,7 +81,10 @@ def validate_observations(
 
 
 def load_overrides(path=PRICE_OVERRIDES_PATH, now: datetime | None = None) -> pd.DataFrame:
-    """Manual prices for cards the APIs miss. Columns: gpu_id, price, url, retailer, note, valid_until."""
+    """Manual prices for cards the APIs miss.
+
+    Columns: gpu_id, price, url, retailer, note, valid_until.
+    """
     if not path.exists():
         return pd.DataFrame(columns=PRICE_COLUMNS)
     now = now or datetime.now(UTC)
