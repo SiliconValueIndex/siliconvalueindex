@@ -13,7 +13,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test:compare": "node scripts/compare-selection.test.mjs",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs scripts/compare-selection.test.mjs",
     "astro": "astro"
   },
   "dependencies": {

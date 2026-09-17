@@ -16,7 +16,7 @@ export function drawSparkline(canvas: HTMLCanvasElement, points: [string, number
         {
           data: points.map((p) => p[1]),
           borderColor: great,
-          backgroundColor: great.replace(')', ' / 0.12)').replace('rgb(', 'rgb(') || 'transparent',
+          backgroundColor: css('--great-soft'),
           fill: true,
           tension: 0.25,
           pointRadius: points.length > 40 ? 0 : 3,
