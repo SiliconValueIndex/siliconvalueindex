@@ -9,12 +9,13 @@ const zones = manifest.zones[view];
 const rows = rankings[view] ?? [];
 const playable = rows.filter((r) => r.playable);
 
-const BRACKETS: [string, number, number][] = [
-  ['Under $350', 0, 350],
-  ['$350 to $500', 350, 500],
-  ['$500 to $800', 500, 800],
-  ['$800 and up', 800, Infinity],
-];
+// The hook: two real numbers, not the whole chart. "The trap" is the worst
+// $/frame among cards that are actually playable, not necessarily the
+// fastest card on file, so the copy below never claims more than the data does.
+const best = rows[0];
+const second = rows[1];
+const trap = playable.at(-1);
+const HOOK_ZONE_COLOR: Record<string, string> = { great: '#7CB87A', fair: '#C08A2E', poor: '#D96B4A', unplayable: '#8A7B69' };
 
 // Payload for switching views on the client.
 const payload = {
@@ -31,11 +32,6 @@ const payload = {
     ]),
   ),
 };
-// Computed here: Astro's template parser misreads `<` comparisons inside expressions.
-const bracketRows = BRACKETS.map(([title, lo, hi]) => {
-  const rs = rows.filter((r) => lo <= r.price && r.price < hi);
-  return { title, rs, best: rs.find((r) => r.playable) };
-});
 const resolutions = ['1080p', '1440p', '4k'];
 const modes = ['raster', 'rt'];
 const available = new Set(manifest.views);
@@ -43,15 +39,74 @@ const description = `${gpus.length} graphics cards plotted by price and frame ra
 ---
 
 <Base title="SiliconValueIndex" description={description}>
-  <section class="hero">
-    <h1>What a frame costs, card by card.</h1>
-    <p class="lede">
-      Each dot is a graphics card at its current price and its average frame rate. Cards near the top-left give you the most for the least. The
-      dashed diagonals mark equal cost per frame, and the horizontal line is the point below which the frame rate is too low to play on at this setting.
-    </p>
+  <div class="ov-dark">
+    <div class="ov-dark-inner">
+    <section class="hook">
+      <svg class="gpu-art" viewBox="0 0 400 220" aria-hidden="true" focusable="false">
+        <rect x="30" y="30" width="340" height="150" rx="14" fill="none" stroke="currentColor" stroke-width="2"></rect>
+        <rect x="10" y="60" width="14" height="90" rx="3" fill="none" stroke="currentColor" stroke-width="2"></rect>
+        <circle cx="130" cy="105" r="46" fill="none" stroke="currentColor" stroke-width="2"></circle>
+        <circle cx="130" cy="105" r="18" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+        <circle cx="250" cy="105" r="46" fill="none" stroke="currentColor" stroke-width="2"></circle>
+        <circle cx="250" cy="105" r="18" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+        <line x1="46" y1="46" x2="46" y2="60" stroke="currentColor" stroke-width="2"></line>
+        <line x1="66" y1="46" x2="66" y2="60" stroke="currentColor" stroke-width="2"></line>
+        <line x1="86" y1="46" x2="86" y2="60" stroke="currentColor" stroke-width="2"></line>
+      </svg>
+      <div class="hook-content">
+      <div class="ticker">
+        <div class="ticker-items">
+          {best && <span class="t-item"><i class="dot"></i>{gpuById[best.gpu_id].display_name} <b style={`color:${HOOK_ZONE_COLOR[best.zone]}`}>{money(best.cost_per_fps, 2)}/fr</b></span>}
+          {second && <span class="t-item">{gpuById[second.gpu_id].display_name} <b style={`color:${HOOK_ZONE_COLOR[second.zone]}`}>{money(second.cost_per_fps, 2)}/fr</b></span>}
+          {trap && <span class="t-item">{gpuById[trap.gpu_id].display_name} <b style={`color:${HOOK_ZONE_COLOR[trap.zone]}`}>{money(trap.cost_per_fps, 2)}/fr</b></span>}
+        </div>
+        <span class="t-date">{stats && `Prices checked ${fmtDate(stats.priceDate)}`}</span>
+      </div>
+
+      <h1>
+        {trap && best && (
+          <>The priciest card here costs <span style={`color:${HOOK_ZONE_COLOR[trap.zone]}`}>{money(trap.cost_per_fps, 2)}</span> a frame. The best value costs <span style={`color:${HOOK_ZONE_COLOR[best.zone]}`}>{money(best.cost_per_fps, 2)}</span>.</>
+        )}
+      </h1>
+      <p class="hook-lede">
+        Reviews rank cards by raw speed. SiliconValueIndex ranks them by price &divide; real frame rate &mdash; the number that tells you what you're actually paying for.
+      </p>
+
+      <div class="glimpse">
+        {best && (
+          <div class="g-card" style={`border-top-color:${HOOK_ZONE_COLOR[best.zone]}`}>
+            <span class="g-label">Best value</span>
+            <span class="g-name"><i class="vendor-tick" data-vendor={gpuById[best.gpu_id].vendor}></i>{gpuById[best.gpu_id].display_name}</span>
+            <span class="g-price" style={`color:${HOOK_ZONE_COLOR[best.zone]}`}>{money(best.cost_per_fps, 2)}</span>
+            <span class="g-sub">{money(best.price)} at {best.fps.toFixed(1)} fps</span>
+          </div>
+        )}
+        {second && (
+          <div class="g-card" style={`border-top-color:${HOOK_ZONE_COLOR[second.zone]}`}>
+            <span class="g-label">Close second</span>
+            <span class="g-name"><i class="vendor-tick" data-vendor={gpuById[second.gpu_id].vendor}></i>{gpuById[second.gpu_id].display_name}</span>
+            <span class="g-price" style={`color:${HOOK_ZONE_COLOR[second.zone]}`}>{money(second.cost_per_fps, 2)}</span>
+            <span class="g-sub">{money(second.price)} at {second.fps.toFixed(1)} fps</span>
+          </div>
+        )}
+        {trap && (
+          <div class="g-card" style={`border-top-color:${HOOK_ZONE_COLOR[trap.zone]}`}>
+            <span class="g-label">The trap</span>
+            <span class="g-name"><i class="vendor-tick" data-vendor={gpuById[trap.gpu_id].vendor}></i>{gpuById[trap.gpu_id].display_name}</span>
+            <span class="g-price" style={`color:${HOOK_ZONE_COLOR[trap.zone]}`}>{money(trap.cost_per_fps, 2)}</span>
+            <span class="g-sub">{money(trap.price)} at {trap.fps.toFixed(1)} fps</span>
+          </div>
+        )}
+      </div>
+
+      <div class="hook-cta">
+        <a class="btn btn-primary" href="#board">See the full chart</a>
+        <a class="hook-sec" href="/methodology/#score">How the number is calculated</a>
+      </div>
+    </div>
   </section>
 
-  <div class="controls">
+  <div class="controls" id="board">
     <div class="seg" role="group" aria-label="Resolution">
       {resolutions.map((r) => (
         <button type="button" data-res={r} aria-pressed={r === resolution} disabled={!modes.some((m) => available.has(`${r}_${m}`))}>{VIEW_LABELS[r]}</button>
@@ -83,41 +138,8 @@ const description = `${gpus.length} graphics cards plotted by price and frame ra
     <p><strong>Want an answer, not a chart?</strong><a href="/find/">Find a card</a> asks your budget and resolution and gives you three picks with the reasons.</p>
   </div>
 
-  <section class="brackets">
-    <h2>By budget</h2>
-    <p class="muted">The same cards grouped by price. The first row in each group is the best value in that bracket at the selected setting.</p>
-    <div id="brackets">
-      {bracketRows.map(({ title, rs, best }) => {
-        return (
-          <section class="bracket">
-            <h3>{title} <span class="count">{rs.length} cards</span></h3>
-            {best && <p class="lead">Best here: <a href={`/gpu/${best.gpu_id}/`}>{gpuById[best.gpu_id].display_name}</a> at {money(best.cost_per_fps, 2)} per frame.</p>}
-            <div class="table-scroll">
-              <table class="table">
-                <thead><tr><th>Card</th><th class="n">Price</th><th class="n">FPS</th><th class="n">$ / frame</th><th class="n">Memory</th><th class="n">Overall</th></tr></thead>
-                <tbody>
-                  {rs.map((r) => {
-                    const g = gpuById[r.gpu_id];
-                    const cls = [r === best ? 'best' : '', r.playable ? '' : 'unplayable'].join(' ').trim();
-                    return (
-                      <tr class={cls}>
-                        <td><a href={`/gpu/${r.gpu_id}/`}><i class="vendor-tick" data-vendor={g.vendor}></i>{g.display_name}</a>{r.normalized && <span class="badge">est.</span>}</td>
-                        <td class="n">{money(r.price)}</td>
-                        <td class="n">{r.fps.toFixed(1)}</td>
-                        <td class={`n zone-${r.zone}`}>{money(r.cost_per_fps, 2)}</td>
-                        <td class="n">{g.vram_gb} GB</td>
-                        <td class="n muted">{r.playable ? `#${r.rank}` : 'below floor'}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </section>
-        );
-      })}
     </div>
-  </section>
+  </div>
 
   <script is:inline type="application/json" id="svi-overview" set:html={JSON.stringify(payload)} />
 </Base>
@@ -129,25 +151,10 @@ const description = `${gpus.length} graphics cards plotted by price and frame ra
   const tip = document.getElementById('tip')!;
   const LABEL: Record<string, string> = { '1080p': '1080p', '1440p': '1440p', '4k': '4K', raster: 'rasterization', rt: 'ray tracing' };
   const money = (n: number, d = 0) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: d, minimumFractionDigits: d });
-  const BR: [string, number, number][] = [['Under $350', 0, 350], ['$350 to $500', 350, 500], ['$500 to $800', 500, 800], ['$800 and up', 800, Infinity]];
 
   const params = new URLSearchParams(location.search);
   let view: string = params.get('view') && data.views.includes(params.get('view')) ? params.get('view')! : data.primary;
   const split = (v: string) => ({ res: v.slice(0, v.lastIndexOf('_')), mode: v.slice(v.lastIndexOf('_') + 1) });
-
-  function brackets(rows: ScatterRow[]) {
-    return BR.map(([title, lo, hi]) => {
-      const rs = rows.filter((r) => lo <= r.price && r.price < hi);
-      const best = rs.find((r) => r.playable);
-      const body = rs
-        .map(
-          (r: any) => `<tr class="${r === best ? 'best' : ''} ${r.playable ? '' : 'unplayable'}"><td><a href="/gpu/${r.gpu_id}/"><i class="vendor-tick" data-vendor="${r.vendor}"></i>${r.name}</a>${r.normalized ? '<span class="badge">est.</span>' : ''}</td><td class="n">${money(r.price)}</td><td class="n">${r.fps.toFixed(1)}</td><td class="n zone-${r.zone}">${money(r.cost_per_fps, 2)}</td><td class="n">${r.vram} GB</td><td class="n muted">${r.playable ? '#' + r.rank : 'below floor'}</td></tr>`,
-        )
-        .join('');
-      const lead = best ? `<p class="lead">Best here: <a href="/gpu/${best.gpu_id}/">${best.name}</a> at ${money(best.cost_per_fps, 2)} per frame.</p>` : '<p class="lead muted">No playable card in this bracket at this setting.</p>';
-      return `<section class="bracket"><h3>${title} <span class="count">${rs.length} cards</span></h3>${lead}<div class="table-scroll"><table class="table"><thead><tr><th>Card</th><th class="n">Price</th><th class="n">FPS</th><th class="n">$ / frame</th><th class="n">Memory</th><th class="n">Overall</th></tr></thead><tbody>${body}</tbody></table></div></section>`;
-    }).join('');
-  }
 
   function render(full: boolean) {
     const rows: ScatterRow[] = data.rankings[view] ?? [];
@@ -170,7 +177,6 @@ const description = `${gpus.length} graphics cards plotted by price and frame ra
     spans[1].lastChild!.textContent = `Fair, ${money(zones.great_max)} to ${money(zones.fair_max)}`;
     spans[2].lastChild!.textContent = `Poor, over ${money(zones.fair_max)}`;
     spans[3].lastChild!.textContent = `Below ${zones.min_fps} FPS`;
-    document.getElementById('brackets')!.innerHTML = brackets(rows);
     history.replaceState(null, '', view === data.primary ? location.pathname : `?view=${view}`);
   }
 
@@ -188,9 +194,87 @@ const description = `${gpus.length} graphics cards plotted by price and frame ra
 </script>
 
 <style is:global>
-  .hero { margin-bottom: 20px; }
-  .hero h1 { max-width: 18ch; }
-  .lede { font-size: var(--t1); color: var(--muted); max-width: 60ch; }
+  /* A warm-dark scope for the overview page only, layered over the site's light tokens
+     by redefining the same custom property names one level down. Every component below
+     (.chart, .controls .seg, .btn, .how, .tip, zone colors) already reads these tokens
+     via var(), so nothing else has to change to pick up the new palette. */
+  .ov-dark {
+    --ink: #1b1512;
+    --raised: #241d18;
+    --raised-2: #2e251f;
+    --rule: #3a2f26;
+    --rule-strong: #4e4030;
+    --text: #f2e9dd;
+    --muted: #b3a38f;
+    --dim: #8a7b69;
+    --link: #e8a23d;
+    --great: #7cb87a;
+    --fair: #c08a2e;
+    --poor: #d96b4a;
+    --unplayable: #8a7b69;
+    --great-soft: rgba(124, 184, 122, 0.16);
+    --fair-soft: rgba(192, 138, 46, 0.18);
+    --poor-soft: rgba(217, 107, 74, 0.16);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: var(--ink);
+    color: var(--text);
+    padding-block: 48px 64px;
+  }
+  .ov-dark-inner { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+
+  .hook { position: relative; margin-bottom: 44px; }
+  .hook-content { position: relative; z-index: 1; }
+  .gpu-art { position: absolute; top: -8px; right: -16px; width: 340px; height: auto; color: var(--link); opacity: 0.14; pointer-events: none; z-index: 0; }
+  @media (max-width: 900px) {
+    .gpu-art { display: none; }
+  }
+  .ticker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 20px;
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-num);
+    font-size: var(--t-1);
+    color: var(--muted);
+  }
+  .ticker-items { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  .t-item { display: inline-flex; align-items: center; gap: 8px; padding-right: 20px; border-right: 1px solid var(--rule); }
+  .t-item:last-child { padding-right: 0; border-right: 0; }
+  .t-item i.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--link); display: inline-block; }
+  .t-item b { font-weight: 600; }
+  .t-date { color: var(--dim); }
+  .hook h1 {
+    margin: 0 0 20px;
+    max-width: 22ch;
+    color: var(--text);
+    font-size: clamp(var(--t3), 4.6vw, 3.2rem);
+  }
+  .hook-lede { margin: 0 0 32px; font-size: var(--t1); color: var(--muted); max-width: 62ch; }
+  .glimpse { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin-bottom: 32px; }
+  .g-card { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 2px solid; }
+  .g-label { font-size: var(--t-1); color: var(--muted); }
+  .g-name { display: flex; align-items: center; font-weight: 500; color: var(--text); }
+  .g-price { font-family: var(--font-num); font-size: 2rem; line-height: 1.1; }
+  .g-sub { font-size: var(--t-1); color: var(--dim); }
+  .hook-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+  .ov-dark .btn-primary { background: var(--link); border-color: var(--link); color: #241304; }
+  .ov-dark .btn-primary:hover { background: #f2b356; }
+  .hook-sec { color: var(--muted); font-size: var(--t-1); text-underline-offset: 0.2em; }
+  .hook-sec:hover { color: var(--text); }
+  @media (max-width: 640px) {
+    .ov-dark { padding-block: 36px 44px; }
+    .ticker { flex-direction: column; align-items: flex-start; }
+  }
+
   .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 12px; }
   .chart { margin: 0 0 8px; background: var(--raised); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 12px 8px; }
   .chart svg { width: 100%; height: auto; display: block; font-family: var(--font-num); }
@@ -216,17 +300,5 @@ const description = `${gpus.length} graphics cards plotted by price and frame ra
   .how { margin: 28px 0 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px 32px; }
   .how p { margin: 0; max-width: none; }
   .how strong { display: block; font-family: var(--font-display); font-weight: 500; font-size: var(--t1); margin-bottom: 4px; }
-  .brackets h2 { margin-bottom: 4px; }
-  .bracket { margin-top: 30px; }
-  .bracket h3 { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2px; }
-  .bracket .count { font-family: var(--font-ui); font-size: var(--t-1); color: var(--muted); }
-  .bracket .lead { margin: 0 0 8px; color: var(--muted); }
-  .bracket .lead a { color: var(--text); font-weight: 600; }
-  .bracket td a { color: var(--text); }
-  .bracket tr.best td { background: var(--raised); }
-  .bracket tr.best td:first-child { box-shadow: inset 3px 0 0 var(--link); font-weight: 600; }
-  .bracket tr.unplayable td { color: var(--dim); }
-  .bracket tr.unplayable td a { color: var(--dim); }
-  .bracket .badge { margin-left: 6px; }
   .zone-great, .zone-fair, .zone-poor { font-weight: 500; }
 </style>
