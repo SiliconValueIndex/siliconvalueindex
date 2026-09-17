@@ -6,12 +6,14 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "predev": "node scripts/sync-data.mjs",
+    "preog": "node scripts/generate-og.mjs",
+    "predev": "node scripts/sync-data.mjs && npm run preog",
     "dev": "astro dev",
-    "prebuild": "node scripts/sync-data.mjs",
+    "prebuild": "node scripts/sync-data.mjs && npm run preog",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "test:compare": "node scripts/compare-selection.test.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -23,6 +25,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@resvg/resvg-js": "^2.6.2",
+    "satori": "^0.33.4",
     "typescript": "^6.0.3"
   }
 }

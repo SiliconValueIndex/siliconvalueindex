@@ -39,6 +39,8 @@ const payload = {
 </Base>
 
 <script>
+  import * as compareSelection from '../lib/compareSelection';
+
   interface G {
     id: string; name: string; vendor: string; arch: string; year: number; vram: number | null; tdp: number | null; price: number | null;
     benchmarks: Record<string, Record<string, { fps: number; normalized: boolean }>>;
@@ -51,7 +53,10 @@ const payload = {
   const byId = new Map(data.gpus.map((g) => [g.id, g]));
   const money = (n: number, d = 0) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: d, minimumFractionDigits: d });
 
-  let ids = (new URLSearchParams(location.search).get('ids') ?? '').split(',').filter((i) => byId.has(i)).slice(0, 4);
+  const params = new URLSearchParams(location.search);
+  let explicit = params.has('ids');
+  let ids = [...new Set((explicit ? (params.get('ids') ?? '').split(',') : compareSelection.get())
+    .filter((id) => byId.has(id)))].slice(0, 4);
   const input = document.getElementById('pick') as HTMLInputElement;
   const chips = document.getElementById('chips')!;
   const out = document.getElementById('out')!;
@@ -61,7 +66,7 @@ const payload = {
     return `<tr><th scope="row">${label}</th>${ids.map((i) => `<td class="n ${cls}">${fn(byId.get(i)!)}</td>`).join('')}</tr>`;
   }
   function render() {
-    history.replaceState(null, '', ids.length ? `?ids=${ids.join(',')}` : location.pathname);
+    history.replaceState(null, '', ids.length || explicit ? `?ids=${ids.join(',')}` : location.pathname);
     chips.innerHTML = ids
       .map((i) => `<button type="button" class="chip" data-remove="${i}"><i class="vendor-tick" data-vendor="${byId.get(i)!.vendor}"></i>${byId.get(i)!.name} <span aria-hidden="true">×</span><span class="sr">remove</span></button>`)
       .join('');
@@ -100,20 +105,32 @@ const payload = {
     }
     out.innerHTML = `<table class="table compare"><thead>${head}</thead><tbody>${rows.join('')}</tbody></table>`;
   }
+  function persist() {
+    compareSelection.clear();
+    ids.forEach((id) => compareSelection.add(id));
+  }
+  function addFromInput() {
+    explicit = true;
+    const g = byName.get(input.value.trim().toLowerCase());
+    if (g && !ids.includes(g.id) && ids.length < 4) {
+      ids.push(g.id);
+      input.value = '';
+      persist();
+    }
+    render();
+  }
   input.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter') return;
     e.preventDefault();
-    const g = byName.get(input.value.trim().toLowerCase());
-    if (g && !ids.includes(g.id) && ids.length < 4) { ids.push(g.id); input.value = ''; render(); }
+    addFromInput();
   });
-  input.addEventListener('change', () => {
-    const g = byName.get(input.value.trim().toLowerCase());
-    if (g && !ids.includes(g.id) && ids.length < 4) { ids.push(g.id); input.value = ''; render(); }
-  });
+  input.addEventListener('change', addFromInput);
   chips.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest('[data-remove]') as HTMLElement | null;
     if (!b) return;
+    explicit = true;
     ids = ids.filter((i) => i !== b.dataset.remove);
+    persist();
     render();
   });
   render();
