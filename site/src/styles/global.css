@@ -1,26 +1,26 @@
-/* SiliconValueIndex design tokens and base styles.
-   Paper ground, serif display, mono numerals. Color means value zone or vendor, nothing else.
-   Token names are kept from the first dark build (--ink is the page ground) so page styles
-   did not have to change. Single light theme by choice. */
+/* Shared warm-dark editorial theme: cream type, amber actions, semantic value colors.
+   Keep tokens on the root so CSS and canvas charts use the same palette. */
 
 :root {
-  --ink: #f3f5f2;
-  --raised: #ffffff;
-  --raised-2: #e9ece7;
-  --rule: #d4dad4;
-  --rule-strong: #b8c0bb;
-  --text: #172026;
-  --muted: #5b6770;
-  --dim: #8a949b;
-  --link: #0f6e63;
+  --ink: #1b1512;
+  --raised: #241d18;
+  --raised-2: #32291f;
+  --rule: #42382e;
+  --rule-strong: #786855;
+  --text: #f2e9dd;
+  --muted: #c2b29f;
+  --dim: #b4a18c;
+  --link: #edb65e;
+  --link-hover: #f5ca85;
+  --on-accent: #1b1512;
 
-  --great: #1f8a5b;
-  --fair: #b07a12;
-  --poor: #b9402b;
-  --unplayable: #8a949b;
-  --great-soft: rgba(31, 138, 91, 0.12);
-  --fair-soft: rgba(176, 122, 18, 0.14);
-  --poor-soft: rgba(185, 64, 43, 0.12);
+  --great: #a2ce9c;
+  --fair: #e3b867;
+  --poor: #ed947a;
+  --unplayable: #b4a18c;
+  --great-soft: rgba(162, 206, 156, 0.12);
+  --fair-soft: rgba(227, 184, 103, 0.12);
+  --poor-soft: rgba(237, 148, 122, 0.12);
 
   --nvidia: #76b900;
   --amd: #ed1c24;
@@ -43,7 +43,8 @@
   --t4: 2.441rem;
   --t5: 3.052rem;
 
-  color-scheme: light;
+  color-scheme: dark;
+  scrollbar-color: var(--rule-strong) var(--ink);
 }
 
 *,
@@ -67,6 +68,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+::selection { background: var(--link); color: var(--on-accent); }
+input, textarea { caret-color: var(--link); accent-color: var(--link); }
+input::placeholder, textarea::placeholder { color: var(--dim); opacity: 1; }
+.skip-link { position: fixed; top: 8px; left: 16px; z-index: 100; padding: 12px 20px; background: var(--raised); transform: translateY(-180%); }
+.skip-link:focus { transform: translateY(0); }
 
 a {
   color: var(--link);
@@ -129,8 +136,7 @@ main {
 /* Header */
 .site-header {
   border-bottom: 1px solid var(--rule);
-  background: color-mix(in srgb, var(--ink) 92%, transparent);
-  backdrop-filter: blur(10px);
+  background: var(--ink);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -160,7 +166,7 @@ main {
   width: 10px;
   height: 10px;
   border-radius: 2px;
-  background: var(--great);
+  background: var(--link);
   transform: translateY(-1px);
 }
 .site-nav {
@@ -183,7 +189,7 @@ main {
   box-shadow: inset 0 -2px 0 var(--link);
   border-radius: 0;
 }
-@media (max-width: 560px) {
+@media (max-width: 960px) {
   .site-header .wrap {
     flex-wrap: wrap;
     gap: 0 12px;
@@ -193,11 +199,20 @@ main {
     width: 100%;
     justify-content: space-between;
     margin-inline: -8px;
+    flex-wrap: wrap;
   }
   .site-nav a {
     padding: 6px 8px;
     font-size: var(--t-1);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
+}
+@media (max-width: 560px) {
+  .site-header { position: static; }
+  .site-nav { display: grid; grid-template-columns: repeat(3, 1fr); margin-inline: 0; }
+  .site-nav a { justify-content: center; }
 }
 
 /* Footer */
@@ -222,6 +237,7 @@ main {
   overflow: hidden;
 }
 .seg button {
+  min-height: 44px;
   appearance: none;
   background: transparent;
   color: var(--muted);
@@ -236,14 +252,18 @@ main {
   border-right: 0;
 }
 .seg button[aria-pressed='true'] {
-  background: var(--raised-2);
-  color: var(--text);
+  background: var(--link);
+  color: var(--on-accent);
 }
+.seg button:not(:disabled):not([aria-pressed='true']):hover { background: var(--raised-2); color: var(--text); }
+.seg button:focus-visible { outline-offset: -3px; }
+.seg button[aria-pressed='true']:focus-visible { outline-color: var(--on-accent); }
 .seg button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
 .select {
+  min-height: 44px;
   appearance: none;
   background: var(--raised) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238a97a6' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 10px center;
   color: var(--text);
@@ -253,6 +273,7 @@ main {
   font: inherit;
 }
 .btn {
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -272,10 +293,10 @@ main {
 .btn-primary {
   background: var(--link);
   border-color: var(--link);
-  color: #ffffff;
+  color: var(--on-accent);
 }
 .btn-primary:hover {
-  background: #0c5a51;
+  background: var(--link-hover);
 }
 
 /* Zone and vendor marks */
@@ -336,6 +357,8 @@ main {
   color: var(--muted);
   font-weight: 500;
 }
+.table thead { background: var(--raised); }
+.table tbody tr:hover { background: var(--raised); }
 .table td.n,
 .table th.n {
   text-align: right;
@@ -349,9 +372,12 @@ main {
 /* Prose pages */
 .prose {
   max-width: 68ch;
+  overflow-wrap: anywhere;
 }
 .prose h2 {
   margin-top: 2em;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--rule);
 }
 .prose code {
   font-family: var(--font-num);

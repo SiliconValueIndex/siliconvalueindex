@@ -56,7 +56,7 @@ const payload = {
       <button type="button" class="reset" id="reset">Start over</button>
     </aside>
 
-    <main class="results">
+    <section class="results" aria-labelledby="c-title">
       <h1 id="c-title">Best cards under $700 at 1440p</h1>
       <p class="sub muted" id="c-sub"></p>
       <div class="picks" id="picks"></div>
@@ -68,7 +68,7 @@ const payload = {
         </table>
       </div>
       <p class="muted small">Cards below the playable floor for the chosen setting are never shown here; they are still on the <a href="/rankings/">full rankings</a>.</p>
-    </main>
+    </section>
   </div>
 
   <script is:inline type="application/json" id="svi-find" set:html={JSON.stringify(payload)} />
@@ -146,7 +146,7 @@ const payload = {
 </Base>
 
 <style is:global>
-  .layout { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start; }
+  .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 32px; align-items: start; }
   aside { position: sticky; top: 70px; background: var(--raised); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 18px; }
   aside h2 { font-size: var(--t1); margin: 0; }
   .field label, .field .lbl { display: flex; justify-content: space-between; font-weight: 500; font-size: var(--t-1); color: var(--muted); margin-bottom: 6px; }
@@ -154,19 +154,21 @@ const payload = {
   .field input[type='range'] { width: 100%; accent-color: var(--link); }
   .field .select { width: 100%; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chips button { font: inherit; font-size: var(--t-1); font-weight: 500; background: transparent; color: var(--muted); border: 1px solid var(--rule-strong); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
-  .chips button[aria-pressed='true'] { background: var(--link); color: #fff; border-color: var(--link); }
+  .chips button { font: inherit; font-size: var(--t-1); font-weight: 500; background: transparent; color: var(--muted); border: 1px solid var(--rule-strong); border-radius: var(--radius); padding: 5px 11px; min-height: 44px; cursor: pointer; }
+  .chips button:hover { background: var(--raised-2); color: var(--text); }
+  .chips button[aria-pressed='true'] { background: var(--link); color: var(--on-accent); border-color: var(--link); }
   .reset { background: none; border: 0; color: var(--link); font: inherit; font-weight: 500; cursor: pointer; padding: 0; justify-self: start; }
+  .results { min-width: 0; }
   .results h1 { font-size: clamp(var(--t2), 3.6vw, var(--t4)); margin-bottom: 4px; }
   .sub { margin-bottom: 20px; }
-  .picks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 30px; }
+  .picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 30px; }
   .pick { background: var(--raised); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 8px; align-content: start; }
-  .pick.first { border-color: var(--link); box-shadow: inset 0 0 0 1px var(--link); }
+  .pick.first { border-color: var(--link); }
   .pick .why { color: var(--muted); font-size: var(--t-1); font-weight: 500; }
   .pick .nm { font-family: var(--font-display); font-size: var(--t2); font-weight: 500; letter-spacing: -0.01em; }
   .pick .nm a { color: var(--text); }
-  .pick .big { font-size: var(--t4); font-weight: 500; letter-spacing: -0.02em; line-height: 1; white-space: nowrap; }
-  .pick .big small { font: 500 var(--t-1) var(--font-ui); color: var(--muted); margin-left: 6px; letter-spacing: 0; }
+  .pick .big { font-size: clamp(var(--t2), 2.8vw, var(--t4)); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+  .pick .big small { display: block; font: 500 var(--t-1) var(--font-ui); color: var(--muted); margin-top: 6px; letter-spacing: 0; }
   .pick .stats { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: var(--t-1); }
   .pick .stats b { color: var(--text); font-weight: 500; }
   .empty { grid-column: 1 / -1; color: var(--muted); padding: 28px; border: 1px dashed var(--rule-strong); border-radius: 10px; text-align: center; }
@@ -179,5 +181,6 @@ const payload = {
   .pill.poor { background: var(--poor-soft); color: var(--poor); }
   .mbar { display: inline-block; width: 70px; height: 6px; background: var(--raised-2); border-radius: 3px; vertical-align: middle; margin-right: 8px; overflow: hidden; }
   .mbar i { display: block; height: 100%; background: var(--link); }
-  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } aside { position: static; } .picks { grid-template-columns: 1fr; } }
+  @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } aside { position: static; } }
+  @media (max-width: 600px) { .picks { grid-template-columns: 1fr; } .pick .big { font-size: var(--t4); } }
 </style>

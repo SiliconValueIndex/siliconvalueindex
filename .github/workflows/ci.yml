@@ -39,4 +39,5 @@ jobs:
           cache-dependency-path: site/package-lock.json
       - run: npm ci
       - run: npm run check --if-present
+      - run: npm test
       - run: npm run build
