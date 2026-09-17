@@ -124,7 +124,7 @@ const payload = {
   .picker { margin: 20px 0 24px; display: flex; flex-direction: column; gap: 8px; max-width: 520px; }
   .input { background-image: none; padding-right: 10px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  :global(.chip) { display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--raised); color: var(--text); font: inherit; cursor: pointer; }
+  :global(.chip) { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 6px 10px; border: 1px solid var(--rule-strong); border-radius: var(--radius); background: var(--raised); color: var(--text); font: inherit; cursor: pointer; }
   :global(.chip:hover) { background: var(--raised-2); }
   :global(.sr) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   :global(.compare th[scope='row']) { color: var(--muted); font-weight: 500; white-space: nowrap; }

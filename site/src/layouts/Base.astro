@@ -5,9 +5,9 @@ import { manifest } from '../lib/data';
 interface Props {
   title: string;
   description: string;
-  theme?: 'paper' | 'warm';
+  theme?: 'warm';
 }
-const { title, description, theme = 'paper' } = Astro.props;
+const { title, description, theme = 'warm' } = Astro.props;
 const path = Astro.url.pathname;
 const nav = [
   { href: '/', label: 'Overview' },
