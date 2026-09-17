@@ -1,5 +1,6 @@
 // Client-side behaviour for the rankings board: switch view, filter, sort.
 // The server renders the primary view; this re-renders rows from embedded JSON.
+import * as compareSelection from './compareSelection';
 
 interface Row {
   gpu_id: string;
@@ -50,8 +51,26 @@ export function renderBoard() {
 
   const sortEl = document.getElementById('sort') as HTMLSelectElement | null;
   const hideEl = document.getElementById('hide-normalized') as HTMLInputElement | null;
+  const compareLink = document.getElementById('compare-selection') as HTMLAnchorElement | null;
+  const compareCount = document.getElementById('compare-count');
   if (sortEl) sortEl.value = state.sort;
   if (hideEl) hideEl.checked = state.hideNormalized;
+
+  function syncSelection() {
+    const ids = compareSelection.get();
+    rowsEl!.querySelectorAll<HTMLButtonElement>('button[data-compare]').forEach((button) => {
+      const selected = ids.includes(button.dataset.compare!);
+      button.disabled = false;
+      button.setAttribute('aria-pressed', String(selected));
+      button.querySelector('span')!.textContent = selected ? '✓' : '+';
+      button.title = `${selected ? 'Remove from' : 'Add to'} compare`;
+    });
+    if (compareLink) {
+      compareLink.hidden = !ids.length;
+      compareLink.href = `/compare/?ids=${ids.join(',')}`;
+    }
+    if (compareCount) compareCount.textContent = `${ids.length} selected`;
+  }
 
   function syncButtons() {
     board!.querySelectorAll<HTMLButtonElement>('button[data-res]').forEach((b) => {
@@ -96,13 +115,14 @@ export function renderBoard() {
           divider = `<li class="divider">Below ${zones.min_fps} FPS at this setting. Cheap per frame, but not enough frames to play on.</li>`;
         }
         const est = r.normalized ? '<span class="badge" title="FPS estimated from the older benchmark suite">est.</span>' : '';
-        return `${divider}<li><a class="row zone-${r.zone}" href="/gpu/${r.gpu_id}/" data-vendor="${g.vendor}" data-normalized="${r.normalized}" style="--w:${(r.cost_per_fps / scale) * 100}%">
+        return `${divider}<li class="row zone-${r.zone}" data-vendor="${g.vendor}" data-normalized="${r.normalized}" style="--w:${(r.cost_per_fps / scale) * 100}%">
 <span class="rank num">${r.rank}</span>
-<span class="name"><i class="vendor-tick" data-vendor="${g.vendor}"></i>${g.name}${est}</span>
+<a class="name" href="/gpu/${r.gpu_id}/"><i class="vendor-tick" data-vendor="${g.vendor}"></i>${g.name}${est}</a>
 <span class="bar"><span class="fill"></span></span>
 <span class="cpf num">${money(r.cost_per_fps, 2)}</span>
 <span class="price num">${money(r.price, 0)}</span>
-<span class="fps num">${r.fps.toFixed(1)}</span></a></li>`;
+<span class="fps num">${r.fps.toFixed(1)}</span>
+<button type="button" class="compare-toggle" data-compare="${r.gpu_id}" aria-label="Compare ${g.name}" aria-pressed="false" title="Add to compare"><span aria-hidden="true">+</span></button></li>`;
       })
       .join('');
     const empty = document.getElementById('empty');
@@ -131,11 +151,17 @@ export function renderBoard() {
     const qs = q.toString();
     history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
     syncButtons();
+    syncSelection();
   }
 
   board.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest('button') as HTMLButtonElement | null;
     if (!b || b.disabled) return;
+    if (b.dataset.compare) {
+      compareSelection.toggle(b.dataset.compare);
+      syncSelection();
+      return;
+    }
     if (b.dataset.res) state.res = b.dataset.res;
     else if (b.dataset.mode) state.mode = b.dataset.mode;
     else if (b.dataset.vendor !== undefined) state.vendor = b.dataset.vendor;
@@ -153,5 +179,7 @@ export function renderBoard() {
 
   // Only re-render on load when the URL asked for something other than the server default.
   if (params.toString()) render();
-  else syncButtons();
+  else { syncButtons(); syncSelection(); }
+  window.addEventListener('pageshow', syncSelection);
+  window.addEventListener('storage', syncSelection);
 }

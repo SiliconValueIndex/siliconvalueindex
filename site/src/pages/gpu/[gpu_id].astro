@@ -23,7 +23,7 @@ const description = primary
   : `${gpu.display_name} specs, benchmarks and price history.`;
 ---
 
-<Base title={gpu.display_name} description={description}>
+<Base title={gpu.display_name} description={description} image={`/og/gpu/${gpu.gpu_id}.png`}>
   <article class="gpu">
     <header class="top">
       <p class="crumbs small"><a href="/">Rankings</a> / {gpu.vendor} {gpu.series}</p>
@@ -49,6 +49,8 @@ const description = primary
               {gpu.price_stats.n_points > 1 && <> 90-day low {money(gpu.price_stats.min_90d ?? 0, 0)}, median {money(gpu.price_stats.median_90d ?? 0, 0)}.</>}
             </p>
             <div class="actions">
+              <button type="button" class="btn" data-compare-add={gpu.gpu_id} disabled>Add to compare</button>
+              <a class="btn" data-compare-link href="/compare/" hidden>Compare →</a>
               {price.url && <a class="btn btn-primary" href={price.url} rel="nofollow noopener" target="_blank">Open this listing</a>}
               {Object.entries(gpu.retailer_links).map(([k, url]) => (
                 <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerNames[k] ?? k}</a>
@@ -59,6 +61,8 @@ const description = primary
           <>
             <p class="muted">No current price on file.</p>
             <div class="actions">
+              <button type="button" class="btn" data-compare-add={gpu.gpu_id} disabled>Add to compare</button>
+              <a class="btn" data-compare-link href="/compare/" hidden>Compare →</a>
               {Object.entries(gpu.retailer_links).map(([k, url]) => (
                 <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerNames[k] ?? k}</a>
               ))}
@@ -153,6 +157,28 @@ const description = primary
 
 <script>
   import { drawSparkline } from '../../lib/charts';
+  import * as compareSelection from '../../lib/compareSelection';
+  const compareButton = document.querySelector<HTMLButtonElement>('[data-compare-add]');
+  const compareLink = document.querySelector<HTMLAnchorElement>('[data-compare-link]');
+  function syncCompare() {
+    const ids = compareSelection.get();
+    if (compareButton) {
+      const selected = ids.includes(compareButton.dataset.compareAdd!);
+      compareButton.textContent = selected ? 'Added to compare' : 'Add to compare';
+      compareButton.disabled = selected;
+    }
+    if (compareLink) {
+      compareLink.hidden = !ids.length;
+      compareLink.href = `/compare/?ids=${ids.join(',')}`;
+    }
+  }
+  compareButton?.addEventListener('click', () => {
+    compareSelection.add(compareButton.dataset.compareAdd!);
+    syncCompare();
+  });
+  window.addEventListener('pageshow', syncCompare);
+  window.addEventListener('storage', syncCompare);
+  syncCompare();
   const el = document.getElementById('svi-history');
   const canvas = document.getElementById('spark') as HTMLCanvasElement | null;
   if (el && canvas) drawSparkline(canvas, JSON.parse(el.textContent || '[]'));
@@ -206,6 +232,8 @@ const description = primary
     gap: 8px;
     margin: 12px 0 4px;
   }
+  .actions [hidden] { display: none; }
+  .actions button:disabled { color: var(--muted); cursor: default; }
   .specs {
     display: grid;
     grid-template-columns: auto 1fr;

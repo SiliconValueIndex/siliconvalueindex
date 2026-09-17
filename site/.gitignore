@@ -1,5 +1,7 @@
 # build output
 dist/
+# Generated at predev/prebuild from the pipeline snapshot.
+public/og/
 # generated types
 .astro/
 
