@@ -5,8 +5,9 @@ import { manifest } from '../lib/data';
 interface Props {
   title: string;
   description: string;
+  theme?: 'paper' | 'warm';
 }
-const { title, description } = Astro.props;
+const { title, description, theme = 'paper' } = Astro.props;
 const path = Astro.url.pathname;
 const nav = [
   { href: '/', label: 'Overview' },
@@ -40,7 +41,8 @@ const generated = manifest.generated_at.slice(0, 10);
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class:list={{ 'theme-warm': theme === 'warm' }}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>SiliconValueIndex</a>
@@ -49,7 +51,7 @@ const generated = manifest.generated_at.slice(0, 10);
         </nav>
       </div>
     </header>
-    <main class="wrap">
+    <main class="wrap" id="main-content" tabindex="-1">
       <slot />
     </main>
     <footer class="site-footer">

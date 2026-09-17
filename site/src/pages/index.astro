@@ -1,304 +1,239 @@
 ---
 import Base from '../layouts/Base.astro';
-import { manifest, rankings, gpuById, gpus, money, fmtDate, primaryStats, splitView, VIEW_LABELS } from '../lib/data';
+import { manifest, rankings, gpuById, money, fmtDate, splitView, VIEW_LABELS } from '../lib/data';
 
 const view = manifest.primary_view;
 const { resolution, mode } = splitView(view);
-const stats = primaryStats();
-const zones = manifest.zones[view];
 const rows = rankings[view] ?? [];
 const playable = rows.filter((r) => r.playable);
-
-// The hook: two real numbers, not the whole chart. "The trap" is the worst
-// $/frame among cards that are actually playable, not necessarily the
-// fastest card on file, so the copy below never claims more than the data does.
-const best = rows[0];
-const second = rows[1];
-const trap = playable.at(-1);
-const HOOK_ZONE_COLOR: Record<string, string> = { great: '#7CB87A', fair: '#C08A2E', poor: '#D96B4A', unplayable: '#8A7B69' };
-
-// Payload for switching views on the client.
+const zones = manifest.zones[view];
+const snapshot = [playable[0], playable[1], playable.at(-1)].filter((r, i, all) => r && all.findIndex((a) => a?.gpu_id === r.gpu_id) === i);
+const labels = ['Best value', 'Close second', 'Highest cost per FPS'];
+const priceDates = [...new Set(rows.map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at?.slice(0, 10)).filter((d): d is string => !!d))].sort();
+const priceDate = priceDates.length ? `${fmtDate(priceDates[0])}${priceDates.length > 1 ? ` – ${fmtDate(priceDates.at(-1)!)}` : ''}` : 'Date unavailable';
+const priceAge = priceDates.length ? Math.floor((Date.now() - new Date(priceDates[0]).getTime()) / 86400000) : null;
+const priceCaution = priceAge === null || priceAge > 60;
 const payload = {
-  views: manifest.views,
-  primary: view,
-  zones: manifest.zones,
-  rankings: Object.fromEntries(
-    manifest.views.map((v) => [
-      v,
-      (rankings[v] ?? []).map((r) => {
-        const g = gpuById[r.gpu_id];
-        return { ...r, name: g.display_name, vendor: g.vendor, vram: g.vram_gb };
-      }),
-    ]),
-  ),
+  views: manifest.views, primary: view, zones: manifest.zones, priceDate,
+  rankings: Object.fromEntries(manifest.views.map((v) => [v, (rankings[v] ?? []).map((r) => ({
+    ...r, name: gpuById[r.gpu_id].display_name, vendor: gpuById[r.gpu_id].vendor,
+  }))])),
 };
 const resolutions = ['1080p', '1440p', '4k'];
 const modes = ['raster', 'rt'];
 const available = new Set(manifest.views);
-const description = `${gpus.length} graphics cards plotted by price and frame rate, then grouped by budget. Cost per frame, nothing else.`;
 ---
 
-<Base title="SiliconValueIndex" description={description}>
-  <div class="ov-dark">
-    <div class="ov-dark-inner">
-    <section class="hook">
-      <svg class="gpu-art" viewBox="0 0 400 220" aria-hidden="true" focusable="false">
-        <rect x="30" y="30" width="340" height="150" rx="14" fill="none" stroke="currentColor" stroke-width="2"></rect>
-        <rect x="10" y="60" width="14" height="90" rx="3" fill="none" stroke="currentColor" stroke-width="2"></rect>
-        <circle cx="130" cy="105" r="46" fill="none" stroke="currentColor" stroke-width="2"></circle>
-        <circle cx="130" cy="105" r="18" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
-        <circle cx="250" cy="105" r="46" fill="none" stroke="currentColor" stroke-width="2"></circle>
-        <circle cx="250" cy="105" r="18" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
-        <line x1="46" y1="46" x2="46" y2="60" stroke="currentColor" stroke-width="2"></line>
-        <line x1="66" y1="46" x2="66" y2="60" stroke="currentColor" stroke-width="2"></line>
-        <line x1="86" y1="46" x2="86" y2="60" stroke="currentColor" stroke-width="2"></line>
-      </svg>
-      <div class="hook-content">
-      <div class="ticker">
-        <div class="ticker-items">
-          {best && <span class="t-item"><i class="dot"></i>{gpuById[best.gpu_id].display_name} <b style={`color:${HOOK_ZONE_COLOR[best.zone]}`}>{money(best.cost_per_fps, 2)}/fr</b></span>}
-          {second && <span class="t-item">{gpuById[second.gpu_id].display_name} <b style={`color:${HOOK_ZONE_COLOR[second.zone]}`}>{money(second.cost_per_fps, 2)}/fr</b></span>}
-          {trap && <span class="t-item">{gpuById[trap.gpu_id].display_name} <b style={`color:${HOOK_ZONE_COLOR[trap.zone]}`}>{money(trap.cost_per_fps, 2)}/fr</b></span>}
-        </div>
-        <span class="t-date">{stats && `Prices checked ${fmtDate(stats.priceDate)}`}</span>
+<Base title="SiliconValueIndex" theme="warm" description="Compare graphics card prices, frame rates and cost per FPS. Explore the market, then find a GPU for your budget and resolution.">
+  <section class="overview-hero" aria-labelledby="overview-title">
+    <div class="hero-copy">
+      <h1 id="overview-title">Know what<br />a frame <em>is worth.</em></h1>
+      <p class="hero-lede">Reviews rank cards by raw speed. SiliconValueIndex ranks them by price divided by frame rate, so you can see what your money buys.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/find/">Find a card for me <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg></a>
+        <a class="text-action" href="#board">Explore the market</a>
       </div>
-
-      <h1>
-        {trap && best && (
-          <>The priciest card here costs <span style={`color:${HOOK_ZONE_COLOR[trap.zone]}`}>{money(trap.cost_per_fps, 2)}</span> a frame. The best value costs <span style={`color:${HOOK_ZONE_COLOR[best.zone]}`}>{money(best.cost_per_fps, 2)}</span>.</>
-        )}
-      </h1>
-      <p class="hook-lede">
-        Reviews rank cards by raw speed. SiliconValueIndex ranks them by price &divide; real frame rate &mdash; the number that tells you what you're actually paying for.
-      </p>
-
-      <div class="glimpse">
-        {best && (
-          <div class="g-card" style={`border-top-color:${HOOK_ZONE_COLOR[best.zone]}`}>
-            <span class="g-label">Best value</span>
-            <span class="g-name"><i class="vendor-tick" data-vendor={gpuById[best.gpu_id].vendor}></i>{gpuById[best.gpu_id].display_name}</span>
-            <span class="g-price" style={`color:${HOOK_ZONE_COLOR[best.zone]}`}>{money(best.cost_per_fps, 2)}</span>
-            <span class="g-sub">{money(best.price)} at {best.fps.toFixed(1)} fps</span>
-          </div>
-        )}
-        {second && (
-          <div class="g-card" style={`border-top-color:${HOOK_ZONE_COLOR[second.zone]}`}>
-            <span class="g-label">Close second</span>
-            <span class="g-name"><i class="vendor-tick" data-vendor={gpuById[second.gpu_id].vendor}></i>{gpuById[second.gpu_id].display_name}</span>
-            <span class="g-price" style={`color:${HOOK_ZONE_COLOR[second.zone]}`}>{money(second.cost_per_fps, 2)}</span>
-            <span class="g-sub">{money(second.price)} at {second.fps.toFixed(1)} fps</span>
-          </div>
-        )}
-        {trap && (
-          <div class="g-card" style={`border-top-color:${HOOK_ZONE_COLOR[trap.zone]}`}>
-            <span class="g-label">The trap</span>
-            <span class="g-name"><i class="vendor-tick" data-vendor={gpuById[trap.gpu_id].vendor}></i>{gpuById[trap.gpu_id].display_name}</span>
-            <span class="g-price" style={`color:${HOOK_ZONE_COLOR[trap.zone]}`}>{money(trap.cost_per_fps, 2)}</span>
-            <span class="g-sub">{money(trap.price)} at {trap.fps.toFixed(1)} fps</span>
-          </div>
-        )}
-      </div>
-
-      <div class="hook-cta">
-        <a class="btn btn-primary" href="#board">See the full chart</a>
-        <a class="hook-sec" href="/methodology/#score">How the number is calculated</a>
-      </div>
+      <p class="hero-footnote">Cost per FPS = recorded price ÷ average FPS. Lower is better.</p>
     </div>
+    <aside class="market-snapshot" aria-labelledby="snapshot-heading">
+      <h2 id="snapshot-heading">A little perspective.</h2>
+      <p class="snapshot-context">{VIEW_LABELS[resolution]} Ultra · {mode === 'rt' ? 'Ray tracing' : 'Rasterization'}</p>
+      <div class="snapshot-list">
+        {snapshot.map((r, i) => r && (
+          <a class="snapshot-row" href={`/gpu/${r.gpu_id}/`}>
+            <span class="snapshot-card"><span class="snapshot-label">{labels[i]}</span><strong>{gpuById[r.gpu_id].display_name}</strong><span class="snapshot-spec">{money(r.price)} · {r.fps.toFixed(1)} FPS{r.normalized && ' (est.)'}</span></span>
+            <span class={`snapshot-score zone-${r.zone}`}><span class="num">{money(r.cost_per_fps, 2)}</span><small>per FPS</small></span>
+          </a>
+        ))}
+      </div>
+      <p class="snapshot-note">Among cards meeting the {zones.min_fps} FPS minimum in this view.</p>
+    </aside>
   </section>
 
-  <div class="controls" id="board">
-    <div class="seg" role="group" aria-label="Resolution">
-      {resolutions.map((r) => (
-        <button type="button" data-res={r} aria-pressed={r === resolution} disabled={!modes.some((m) => available.has(`${r}_${m}`))}>{VIEW_LABELS[r]}</button>
-      ))}
-    </div>
-    <div class="seg" role="group" aria-label="Rendering mode">
-      {modes.map((m) => (
-        <button type="button" data-mode={m} aria-pressed={m === mode} disabled={!resolutions.some((r) => available.has(`${r}_${m}`))}>{VIEW_LABELS[m]}</button>
-      ))}
-    </div>
-    <span class="muted small" id="view-note">{playable.length} playable cards of {rows.length} at {VIEW_LABELS[resolution]}, {VIEW_LABELS[mode].toLowerCase()}. Prices checked {stats ? fmtDate(stats.priceDate) : ''}.</span>
+  <div class="price-context">
+    <span>Prices recorded <strong>{priceDate}</strong></span>
+    <span>{priceCaution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.'} <a href="/data/">Data &amp; sources</a></span>
   </div>
 
-  <figure class="chart">
-    <svg id="scatter" role="img" aria-label="Price against frames per second for every card"></svg>
-    <figcaption id="legend">
-      <span><i class="sw" style="background:var(--great)"></i>Great value, under {money(zones.great_max)} per frame</span>
-      <span><i class="sw" style="background:var(--fair)"></i>Fair, {money(zones.great_max)} to {money(zones.fair_max)}</span>
-      <span><i class="sw" style="background:var(--poor)"></i>Poor, over {money(zones.fair_max)}</span>
-      <span><i class="sw hollow"></i>Below {zones.min_fps} FPS</span>
-      <span class="muted">Hover a dot for the card; click to open it.</span>
-    </figcaption>
-  </figure>
-  <div class="tip" id="tip" hidden></div>
-
-  <div class="how">
-    <p><strong>Where the numbers come from</strong>Frame rates are Tom's Hardware's averages across their test suite at ultra settings. Prices are the lowest new, in-stock listing on file, each shown with the date it was checked.</p>
-    <p><strong>What "est." means</strong>Cards Tom's has not retested in the current suite carry an estimate translated from their older result. <a href="/methodology/#normalization">The methodology page shows the fit.</a></p>
-    <p><strong>Want an answer, not a chart?</strong><a href="/find/">Find a card</a> asks your budget and resolution and gives you three picks with the reasons.</p>
-  </div>
-
+  <section class="market-section" id="board" aria-labelledby="market-heading">
+    <div class="market-heading">
+      <div><h2 id="market-heading">The market, at a glance.</h2><p>Higher means faster. Further left means cheaper.</p></div>
+      <a class="text-action" id="ranking-link" href={`/rankings/?view=${view}`}>See ranked list <span aria-hidden="true">→</span></a>
     </div>
-  </div>
+    <div class="market-controls">
+      <div class="control-field"><span class="control-label">Resolution</span><div class="seg" role="group" aria-label="Resolution">
+        {resolutions.map((r) => <button type="button" data-res={r} aria-pressed={r === resolution} disabled={!modes.some((m) => available.has(`${r}_${m}`))}>{VIEW_LABELS[r]}</button>)}
+      </div></div>
+      <div class="control-field"><span class="control-label">Rendering</span><div class="seg" role="group" aria-label="Rendering mode">
+        {modes.map((m) => <button type="button" data-mode={m} aria-pressed={m === mode} disabled={!resolutions.some((r) => available.has(`${r}_${m}`))}>{m === 'raster' ? 'Rasterization' : 'Ray tracing'}</button>)}
+      </div></div>
+      <p id="view-note" class="view-note" aria-live="polite">{playable.length} of {rows.length} cards meet the {zones.min_fps} FPS minimum.</p>
+    </div>
+    <figure class="market-chart">
+      <svg id="scatter" role="group" aria-label="Graphics cards by recorded price and average frame rate" aria-describedby="chart-help"></svg>
+      <figcaption id="legend">
+        <span><i class="sw great" aria-hidden="true"></i>Great value <b id="great-label">under {money(zones.great_max, 2)}/FPS</b></span>
+        <span><i class="sw fair" aria-hidden="true"></i>Fair <b id="fair-label">{money(zones.great_max, 2)}–{money(zones.fair_max, 2)}/FPS</b></span>
+        <span><i class="sw poor" aria-hidden="true"></i>Poor <b id="poor-label">over {money(zones.fair_max, 2)}/FPS</b></span>
+        <span><i class="sw hollow" aria-hidden="true"></i><span id="floor-label">Below {zones.min_fps} FPS</span></span>
+      </figcaption>
+    </figure>
+    <p class="chart-help" id="chart-help">Select a dot to open its card. Dashed lines show the value thresholds; the shaded area is below the FPS minimum. These are test-suite averages, not a guarantee for every game.</p>
+    <div class="chart-tooltip" id="tip" role="tooltip" hidden></div>
+    <noscript><p>Enable JavaScript for the interactive chart. The recorded values are available in the table below.</p></noscript>
+    <details class="chart-data"><summary>View chart data <span id="table-count">({rows.length} cards)</span></summary>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Chart data table">
+        <table class="table"><caption id="table-caption">{VIEW_LABELS[resolution]} Ultra · {VIEW_LABELS[mode]} · Recorded prices</caption>
+          <thead><tr><th scope="col">Graphics card</th><th scope="col" class="n">Price</th><th scope="col" class="n">FPS</th><th scope="col" class="n">$/FPS</th><th scope="col">Minimum FPS</th></tr></thead>
+          <tbody id="chart-rows">{rows.map((r) => <tr><th scope="row"><a href={`/gpu/${r.gpu_id}/`}>{gpuById[r.gpu_id].display_name}</a></th><td class="n">{money(r.price, 2)}</td><td class="n">{r.fps.toFixed(1)}{r.normalized && ' est.'}</td><td class="n">{money(r.cost_per_fps, 2)}</td><td>{r.playable ? 'Meets minimum' : 'Below minimum'}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </details>
+  </section>
 
+  <section class="reading-guide" aria-labelledby="guide-heading">
+    <h2 id="guide-heading">A useful number.<br />With the context to trust it.</h2>
+    <div class="guide-copy">
+      <p><strong>Benchmarks, not promises.</strong> Frame rates are Tom’s Hardware’s averages across their test suite at Ultra settings. Your games and the rest of your system can change the result.</p>
+      <p><strong>Measured or estimated.</strong> Older cards carry an “est.” label when their result has been translated to the current suite. <a href="/methodology/#normalization">See how normalization works.</a></p>
+      <p><strong>Enough frames comes first.</strong> Cards below the selected view’s FPS minimum stay visible, but do not receive a value rating. Set your own target in <a href="/find/">Find a card</a>.</p>
+      <a class="text-action" href="/methodology/#score">Read the methodology</a>
+    </div>
+  </section>
   <script is:inline type="application/json" id="svi-overview" set:html={JSON.stringify(payload)} />
 </Base>
 
 <script>
-  import { renderScatter, attachTooltip, type ScatterRow } from '../lib/scatter';
-  const data = JSON.parse(document.getElementById('svi-overview')!.textContent || '{}');
+  import { renderScatter, attachTooltip, type ScatterRow, type ScatterZones } from '../lib/scatter';
+  const data = JSON.parse(document.getElementById('svi-overview')!.textContent || '{}') as {
+    views: string[]; primary: string; zones: Record<string, ScatterZones>; rankings: Record<string, ScatterRow[]>;
+  };
   const svg = document.getElementById('scatter') as unknown as SVGSVGElement;
   const tip = document.getElementById('tip')!;
-  const LABEL: Record<string, string> = { '1080p': '1080p', '1440p': '1440p', '4k': '4K', raster: 'rasterization', rt: 'ray tracing' };
-  const money = (n: number, d = 0) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: d, minimumFractionDigits: d });
-
-  const params = new URLSearchParams(location.search);
-  let view: string = params.get('view') && data.views.includes(params.get('view')) ? params.get('view')! : data.primary;
-  const split = (v: string) => ({ res: v.slice(0, v.lastIndexOf('_')), mode: v.slice(v.lastIndexOf('_') + 1) });
-
-  function render(full: boolean) {
-    const rows: ScatterRow[] = data.rankings[view] ?? [];
-    const zones = data.zones[view];
-    const { res, mode } = split(view);
-    renderScatter(svg, rows, zones, `Average FPS, ${LABEL[res]} ${LABEL[mode]}`);
-    document.querySelectorAll<HTMLButtonElement>('button[data-res]').forEach((b) => {
-      b.setAttribute('aria-pressed', String(b.dataset.res === res));
-      b.disabled = !data.views.some((v: string) => v.startsWith(`${b.dataset.res}_`));
-    });
-    document.querySelectorAll<HTMLButtonElement>('button[data-mode]').forEach((b) => {
-      b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
-      b.disabled = !data.views.includes(`${res}_${b.dataset.mode}`);
-    });
-    if (!full) return;
-    const playable = rows.filter((r) => r.playable).length;
-    document.getElementById('view-note')!.textContent = `${playable} playable cards of ${rows.length} at ${LABEL[res]}, ${LABEL[mode]}.`;
-    const spans = document.querySelectorAll('#legend span');
-    spans[0].lastChild!.textContent = `Great value, under ${money(zones.great_max)} per frame`;
-    spans[1].lastChild!.textContent = `Fair, ${money(zones.great_max)} to ${money(zones.fair_max)}`;
-    spans[2].lastChild!.textContent = `Poor, over ${money(zones.fair_max)}`;
-    spans[3].lastChild!.textContent = `Below ${zones.min_fps} FPS`;
-    history.replaceState(null, '', view === data.primary ? location.pathname : `?view=${view}`);
+  const labels: Record<string, string> = { '1080p': '1080p', '1440p': '1440p', '4k': '4K', raster: 'Rasterization', rt: 'Ray tracing' };
+  const money = (n: number, digits = 2) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: digits, maximumFractionDigits: digits });
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const readView = () => { const v = new URLSearchParams(location.search).get('view'); return v && data.views.includes(v) ? v : data.primary; };
+  let view = readView();
+  const split = () => ({ res: view.slice(0, view.lastIndexOf('_')), mode: view.slice(view.lastIndexOf('_') + 1) });
+  function draw() { const { res, mode } = split(); renderScatter(svg, data.rankings[view] ?? [], data.zones[view], `Average FPS · ${labels[res]} ${labels[mode]}`); tip.hidden = true; }
+  function render() {
+    const rows = data.rankings[view] ?? [], zones = data.zones[view];
+    const { res, mode } = split();
+    draw();
+    document.querySelectorAll<HTMLButtonElement>('[data-res]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.res === res)); b.disabled = !data.views.includes(`${b.dataset.res}_${mode}`); });
+    document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.mode === mode)); b.disabled = !data.views.includes(`${res}_${b.dataset.mode}`); });
+    document.getElementById('view-note')!.textContent = `${rows.filter((r) => r.playable).length} of ${rows.length} cards meet the ${zones.min_fps} FPS minimum · ${labels[res]} Ultra.`;
+    document.getElementById('great-label')!.textContent = `under ${money(zones.great_max)}/FPS`;
+    document.getElementById('fair-label')!.textContent = `${money(zones.great_max)}–${money(zones.fair_max)}/FPS`;
+    document.getElementById('poor-label')!.textContent = `over ${money(zones.fair_max)}/FPS`;
+    document.getElementById('floor-label')!.textContent = `Below ${zones.min_fps} FPS`;
+    document.getElementById('ranking-link')!.setAttribute('href', `/rankings/?view=${view}`);
+    document.getElementById('table-count')!.textContent = `(${rows.length} cards)`;
+    document.getElementById('table-caption')!.textContent = `${labels[res]} Ultra · ${labels[mode]} · Recorded prices`;
+    document.getElementById('chart-rows')!.innerHTML = rows.map((r) => `<tr><th scope="row"><a href="/gpu/${esc(r.gpu_id)}/">${esc(r.name)}</a></th><td class="n">${money(r.price)}</td><td class="n">${r.fps.toFixed(1)}${r.normalized ? ' est.' : ''}</td><td class="n">${money(r.cost_per_fps)}</td><td>${r.playable ? 'Meets minimum' : 'Below minimum'}</td></tr>`).join('');
   }
-
-  document.querySelector('.controls')!.addEventListener('click', (e) => {
-    const b = (e.target as HTMLElement).closest('button') as HTMLButtonElement | null;
-    if (!b || b.disabled) return;
-    const { res, mode } = split(view);
-    const next = b.dataset.res ? `${b.dataset.res}_${mode}` : b.dataset.mode ? `${res}_${b.dataset.mode}` : view;
-    if (!data.views.includes(next)) return;
+  document.querySelector('.market-controls')!.addEventListener('click', (e) => {
+    const button = (e.target as HTMLElement).closest('button');
+    if (!button || button.disabled) return;
+    const { res, mode } = split();
+    const next = button.dataset.res ? `${button.dataset.res}_${mode}` : `${res}_${button.dataset.mode}`;
+    if (!data.views.includes(next) || next === view) return;
     view = next;
-    render(true);
+    const url = new URL(location.href);
+    if (view === data.primary) url.searchParams.delete('view'); else url.searchParams.set('view', view);
+    history.pushState(null, '', url);
+    render();
   });
-  render(view !== data.primary);
-  attachTooltip(svg, tip, Object.values(data.rankings).flat() as ScatterRow[]);
+  window.addEventListener('popstate', () => { view = readView(); render(); });
+  render();
+  attachTooltip(svg, tip);
+  let width = svg.getBoundingClientRect().width;
+  new ResizeObserver(() => { const next = svg.getBoundingClientRect().width; if (Math.abs(next - width) > 1) { width = next; draw(); } }).observe(svg);
 </script>
 
 <style is:global>
-  /* A warm-dark scope for the overview page only, layered over the site's light tokens
-     by redefining the same custom property names one level down. Every component below
-     (.chart, .controls .seg, .btn, .how, .tip, zone colors) already reads these tokens
-     via var(), so nothing else has to change to pick up the new palette. */
-  .ov-dark {
-    --ink: #1b1512;
-    --raised: #241d18;
-    --raised-2: #2e251f;
-    --rule: #3a2f26;
-    --rule-strong: #4e4030;
-    --text: #f2e9dd;
-    --muted: #b3a38f;
-    --dim: #8a7b69;
-    --link: #e8a23d;
-    --great: #7cb87a;
-    --fair: #c08a2e;
-    --poor: #d96b4a;
-    --unplayable: #8a7b69;
-    --great-soft: rgba(124, 184, 122, 0.16);
-    --fair-soft: rgba(192, 138, 46, 0.18);
-    --poor-soft: rgba(217, 107, 74, 0.16);
-    position: relative;
-    left: 50%;
-    right: 50%;
-    width: 100vw;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    background: var(--ink);
-    color: var(--text);
-    padding-block: 48px 64px;
+  .overview-hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(40px, 7vw, 100px); align-items: center; padding: 24px 0 48px; }
+  .hero-copy h1 { font-size: clamp(3rem, 5.5vw, 4.9rem); line-height: 1.04; letter-spacing: -0.035em; margin-bottom: 24px; }
+  .hero-copy h1 em { color: var(--link); font-style: normal; }
+  .hero-lede { color: var(--muted); font-size: 1.125rem; line-height: 1.7; max-width: 47ch; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; margin: 28px 0 18px; }
+  .hero-actions .btn { padding: 12px 18px; min-height: 48px; }
+  .text-action { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--rule-strong); }
+  .text-action:hover { text-decoration-color: currentColor; }
+  .hero-footnote { color: var(--dim); font-size: 0.8125rem; }
+  .market-snapshot { border-top: 1px solid var(--link); padding-top: 24px; }
+  .market-snapshot h2 { font-size: 1.9rem; margin-bottom: 8px; }
+  .snapshot-context, .snapshot-note { color: var(--muted); font-size: 0.8125rem; }
+  .snapshot-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid var(--rule); color: var(--text); }
+  .snapshot-row:hover { text-decoration: none; background: var(--raised); }
+  .snapshot-card { display: grid; gap: 3px; }
+  .snapshot-card strong { font-size: 1rem; font-weight: 500; }
+  .snapshot-label { color: var(--muted); font-size: 0.75rem; }
+  .snapshot-spec { color: var(--dim); font-size: 0.8125rem; }
+  .snapshot-score { display: grid; justify-items: end; gap: 2px; white-space: nowrap; }
+  .snapshot-score .num { font-size: 1.6rem; }
+  .snapshot-score small { font-size: 0.75rem; color: var(--muted); }
+  .snapshot-note { margin: 12px 0 0; }
+  .price-context { border-block: 1px solid var(--rule); padding-block: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 24px; font-size: 0.8125rem; color: var(--muted); }
+  .price-context strong { color: var(--text); font-weight: 500; }
+  .price-context a { margin-left: 8px; text-decoration: underline; text-underline-offset: 3px; }
+  .market-section { padding-top: 44px; scroll-margin-top: 120px; }
+  .market-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .market-heading h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); margin-bottom: 8px; }
+  .market-heading p { color: var(--muted); margin: 0; }
+  .market-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 16px 28px; margin-bottom: 24px; }
+  .control-field { display: grid; gap: 8px; }
+  .control-label { font-size: 0.8125rem; color: var(--muted); }
+  .market-controls .seg button { min-height: 44px; padding-inline: 18px; }
+  .market-controls .seg button[aria-pressed='true'] { color: var(--ink); background: var(--link); }
+  .market-controls .seg button:hover:not([aria-pressed='true']):not(:disabled) { background: var(--raised-2); }
+  .market-controls .seg button:focus-visible { outline-offset: -4px; outline-color: currentColor; }
+  .view-note { font-size: 0.8125rem; color: var(--muted); margin: 0 0 12px auto; max-width: 32ch; text-align: right; }
+  .market-chart { margin: 0; padding: 24px 20px 20px; border: 1px solid var(--rule); border-radius: 12px; background: var(--raised); }
+  .market-chart svg { width: 100%; height: auto; display: block; font-family: var(--font-num); }
+  .market-chart .grid { stroke: var(--rule); stroke-width: 0.7; }
+  .market-chart .tick { fill: var(--muted); font-size: 11px; }
+  .market-chart .axis { fill: var(--muted); font-size: 12px; font-family: var(--font-ui); }
+  .market-chart .iso { stroke: var(--rule-strong); stroke-width: 1; stroke-dasharray: 4 6; }
+  .market-chart .floor-shade { fill: var(--ink); opacity: 0.5; }
+  .market-chart .floor { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 4; }
+  .market-chart .floorlab { fill: var(--muted); font: 12px var(--font-ui); paint-order: stroke; stroke: var(--raised); stroke-width: 4px; }
+  .market-chart .dot { stroke: var(--raised); stroke-width: 1.5; cursor: pointer; }
+  .market-chart .z-great { fill: var(--great); }
+  .market-chart .z-fair { fill: var(--fair); }
+  .market-chart .z-poor { fill: var(--poor); }
+  .market-chart .z-unplayable { fill: var(--raised); stroke: var(--dim); }
+  .market-chart .point-link:hover .dot, .market-chart .point-link:focus .dot { stroke: var(--text); stroke-width: 3; r: 8; }
+  .market-chart .dlabel { fill: var(--text); font: 500 12px var(--font-ui); paint-order: stroke; stroke: var(--raised); stroke-width: 4px; pointer-events: none; }
+  .market-chart .label-leader { stroke: var(--dim); stroke-width: 0.7; pointer-events: none; }
+  .market-chart figcaption { display: flex; flex-wrap: wrap; gap: 10px 24px; border-top: 1px solid var(--rule); padding-top: 18px; color: var(--text); font-size: 0.8125rem; }
+  .market-chart figcaption b { color: var(--muted); font-weight: 400; margin-left: 4px; }
+  .sw { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+  .sw.great { background: var(--great); } .sw.fair { background: var(--fair); } .sw.poor { background: var(--poor); } .sw.hollow { border: 1px solid var(--dim); }
+  .chart-help { font-size: 0.8125rem; color: var(--muted); margin: 14px 0 18px; max-width: 100ch; }
+  .chart-tooltip { position: fixed; pointer-events: none; background: var(--text); color: var(--ink); padding: 12px 14px; border-radius: 6px; z-index: 60; font-size: 0.875rem; max-width: min(310px, calc(100vw - 16px)); box-shadow: 0 8px 24px #0003; }
+  .chart-tooltip[hidden] { display: none; }
+  .chart-data { border-block: 1px solid var(--rule); }
+  .chart-data summary { padding: 16px 0; cursor: pointer; color: var(--link); }
+  .chart-data summary span { color: var(--muted); font-size: 0.875rem; }
+  .chart-data caption { padding: 16px 12px; text-align: left; color: var(--muted); }
+  .chart-data th[scope='row'] { font-weight: 400; min-width: 180px; }
+  .chart-data td { white-space: nowrap; }
+  .reading-guide { padding-top: 56px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px 80px; }
+  .reading-guide h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
+  .guide-copy { color: var(--muted); }
+  .guide-copy strong { color: var(--text); font-weight: 500; }
+  .guide-copy p { margin-bottom: 20px; }
+  @media (max-width: 760px) {
+    .overview-hero { grid-template-columns: 1fr; gap: 32px; padding-top: 8px; padding-bottom: 32px; }
+    .hero-copy h1 { max-width: 14ch; font-size: clamp(3rem, 9vw, 4.5rem); }
+    .market-snapshot { max-width: none; }
+    .market-heading { align-items: start; flex-direction: column; gap: 8px; }
+    .market-heading .text-action { font-size: 0.875rem; }
+    .view-note { margin: 0; text-align: left; max-width: none; width: 100%; }
+    .market-chart { padding: 18px 8px; }
+    .market-chart figcaption { padding-inline: 8px; gap: 10px 16px; }
+    .reading-guide { grid-template-columns: 1fr; gap: 16px; padding-top: 40px; }
   }
-  .ov-dark-inner { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
-
-  .hook { position: relative; margin-bottom: 44px; }
-  .hook-content { position: relative; z-index: 1; }
-  .gpu-art { position: absolute; top: -8px; right: -16px; width: 340px; height: auto; color: var(--link); opacity: 0.14; pointer-events: none; z-index: 0; }
-  @media (max-width: 900px) {
-    .gpu-art { display: none; }
-  }
-  .ticker {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px 20px;
-    padding-bottom: 18px;
-    margin-bottom: 28px;
-    border-bottom: 1px solid var(--rule);
-    font-family: var(--font-num);
-    font-size: var(--t-1);
-    color: var(--muted);
-  }
-  .ticker-items { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-  .t-item { display: inline-flex; align-items: center; gap: 8px; padding-right: 20px; border-right: 1px solid var(--rule); }
-  .t-item:last-child { padding-right: 0; border-right: 0; }
-  .t-item i.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--link); display: inline-block; }
-  .t-item b { font-weight: 600; }
-  .t-date { color: var(--dim); }
-  .hook h1 {
-    margin: 0 0 20px;
-    max-width: 22ch;
-    color: var(--text);
-    font-size: clamp(var(--t3), 4.6vw, 3.2rem);
-  }
-  .hook-lede { margin: 0 0 32px; font-size: var(--t1); color: var(--muted); max-width: 62ch; }
-  .glimpse { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin-bottom: 32px; }
-  .g-card { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 2px solid; }
-  .g-label { font-size: var(--t-1); color: var(--muted); }
-  .g-name { display: flex; align-items: center; font-weight: 500; color: var(--text); }
-  .g-price { font-family: var(--font-num); font-size: 2rem; line-height: 1.1; }
-  .g-sub { font-size: var(--t-1); color: var(--dim); }
-  .hook-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
-  .ov-dark .btn-primary { background: var(--link); border-color: var(--link); color: #241304; }
-  .ov-dark .btn-primary:hover { background: #f2b356; }
-  .hook-sec { color: var(--muted); font-size: var(--t-1); text-underline-offset: 0.2em; }
-  .hook-sec:hover { color: var(--text); }
-  @media (max-width: 640px) {
-    .ov-dark { padding-block: 36px 44px; }
-    .ticker { flex-direction: column; align-items: flex-start; }
-  }
-
-  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 12px; }
-  .chart { margin: 0 0 8px; background: var(--raised); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 12px 8px; }
-  .chart svg { width: 100%; height: auto; display: block; font-family: var(--font-num); }
-  .chart .grid { stroke: var(--raised-2); stroke-width: 1; }
-  .chart .tick { fill: var(--muted); font-size: 11px; }
-  .chart .axis { fill: var(--muted); font-size: 12px; font-family: var(--font-ui); }
-  .chart .iso { stroke: var(--rule-strong); stroke-width: 1; stroke-dasharray: 4 4; }
-  .chart .isolab { fill: var(--dim); font-size: 11px; }
-  .chart .floor { stroke: var(--rule-strong); stroke-width: 1.5; }
-  .chart .floorlab { fill: var(--muted); font-size: 11px; font-family: var(--font-ui); }
-  .chart .dot { stroke: var(--raised); stroke-width: 1.5; cursor: pointer; transition: r 120ms; }
-  .chart .dot.z-great { fill: var(--great); }
-  .chart .dot.z-fair { fill: var(--fair); }
-  .chart .dot.z-poor { fill: var(--poor); }
-  .chart .dot.z-unplayable { fill: var(--raised); stroke: var(--dim); }
-  .chart .dot:hover { r: 8; }
-  .chart .dlabel { fill: var(--text); font-size: 12px; font-family: var(--font-ui); font-weight: 500; paint-order: stroke; stroke: var(--raised); stroke-width: 3px; pointer-events: none; }
-  .chart figcaption { color: var(--text); font-size: var(--t-1); padding: 6px 4px 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
-  .sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
-  .sw.hollow { border: 1.5px solid var(--dim); }
-  .tip { position: fixed; pointer-events: none; background: var(--text); color: var(--ink); font-size: 13px; padding: 8px 10px; border-radius: 6px; z-index: 60; line-height: 1.4; }
-  .tip .badge { border-color: var(--ink); color: var(--ink); opacity: 0.8; }
-  .how { margin: 28px 0 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px 32px; }
-  .how p { margin: 0; max-width: none; }
-  .how strong { display: block; font-family: var(--font-display); font-weight: 500; font-size: var(--t1); margin-bottom: 4px; }
-  .zone-great, .zone-fair, .zone-poor { font-weight: 500; }
 </style>
