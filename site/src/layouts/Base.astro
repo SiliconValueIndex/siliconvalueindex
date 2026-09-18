@@ -19,6 +19,7 @@ const nav = [
   { href: '/methodology/', label: 'Methodology' },
   { href: '/data/', label: 'Data' },
 ];
+const icons = ['M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z', 'M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14 M15 15l6 6', 'M5 20V10 M12 20V4 M19 20v-7', 'M8 3v18 M16 3v18 M3 8h10 M11 16h10', 'M4 4h6l2 2 2-2h6v16h-6l-2 2-2-2H4z M12 6v16', 'M4 4h16v16H4z M4 9h16 M9 9v11'];
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 const fullTitle = title === 'SiliconValueIndex' ? title : `${title} · SiliconValueIndex`;
 const generated = manifest.generated_at.slice(0, 10);
@@ -44,7 +45,7 @@ const generated = manifest.generated_at.slice(0, 10);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -54,8 +55,8 @@ const generated = manifest.generated_at.slice(0, 10);
       <div class="wrap">
         <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>SiliconValueIndex</a>
         <nav class="site-nav" aria-label="Main">
-          {nav.map((n) => <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>)}
-        </nav>
+          {nav.map((n, i) => <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icons[i]} /></svg>{n.label}</a>)}
+        </nav><div class="nav-note"><strong>More frames. Better value.</strong>Price ÷ performance.<br />Every number, explained.</div>
       </div>
     </header>
     <main class="wrap" id="main-content" tabindex="-1">

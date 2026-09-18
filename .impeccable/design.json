@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-18T16:43:42Z",
+  "title": "Design System: SiliconValueIndex",
+  "extensions": {
+    "colorMeta": {
+      "link": {
+        "role": "primary",
+        "displayName": "Pale green action"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Charcoal canvas"
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised charcoal surface"
+      },
+      "great": {
+        "role": "semantic",
+        "displayName": "Great value"
+      },
+      "fair": {
+        "role": "semantic",
+        "displayName": "Fair value sand"
+      },
+      "poor": {
+        "role": "semantic",
+        "displayName": "Poor value rose"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Homepage heading",
+        "purpose": "Compact introduction; mobile override is 2.3rem."
+      },
+      "numeric": {
+        "displayName": "Tabular evidence",
+        "purpose": "Prices, FPS, and cost per FPS use tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "chart-tooltip",
+        "value": "0 8px 24px #0003",
+        "purpose": "Separate transient chart details from the plot."
+      }
+    ],
+    "motion": [
+      {
+        "name": "reduced-motion",
+        "value": "0.001ms",
+        "purpose": "Animation and transition duration override under prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "shortlist-stack",
+        "value": "1200px"
+      },
+      {
+        "name": "compact-sidebar",
+        "value": "1100px"
+      },
+      {
+        "name": "mobile-shell",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled primary action with contrasting keyboard focus.",
+      "html": "<button class=\"ds-primary\">Find a card for me</button>",
+      "css": ".ds-primary { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 14px; border: 1px solid var(--link, #b6ed8a); border-radius: 8px; background: var(--link, #b6ed8a); color: var(--on-accent, #101413); font: 500 1rem var(--font-ui, 'IBM Plex Sans', 'Segoe UI', sans-serif); cursor: pointer; } .ds-primary:hover { background: var(--link-hover, #cef7b0); } .ds-primary:focus-visible { outline: 2px solid var(--link, #b6ed8a); outline-offset: 2px; }"
+    },
+    {
+      "name": "Selected navigation",
+      "kind": "nav",
+      "refersTo": "navigation-selected",
+      "description": "Current route in the persistent desktop navigation.",
+      "html": "<a class=\"ds-nav\" href=\"/\" aria-current=\"page\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z\" /></svg>Overview</a>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 12px; min-height: 46px; padding: 10px 14px; border-radius: 8px; background: #293629; color: var(--link, #b6ed8a); font: 500 .875rem var(--font-ui, 'IBM Plex Sans', 'Segoe UI', sans-serif); text-decoration: none; } .ds-nav:focus-visible { outline: 2px solid var(--link, #b6ed8a); outline-offset: 2px; } .ds-nav:hover { text-decoration: none; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Charcoal analytics workspace",
+    "overview": "The implemented direction uses compact navigation, restrained panels, and clear numerical hierarchy to compare GPU price and performance. This descriptive name records the implementation; it is not a claim of a separately approved brand metaphor.",
+    "keyCharacteristics": [
+      "Persistent desktop wayfinding",
+      "Tonal surfaces and fine borders",
+      "Monospaced numerical evidence",
+      "Labeled semantic value colors"
+    ],
+    "rules": [
+      {
+        "name": "The Context Rule",
+        "body": "Value colors never replace accompanying labels, thresholds, or the below-minimum state.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Preserve keyboard focus, estimate labels, price dates, and sources.",
+      "Synchronize chart and shortlist with the selected view."
+    ],
+    "donts": [
+      "Do not substitute vendor colors for value ratings.",
+      "Do not present price snapshots as live quotes.",
+      "Do not ship reference screenshots as artwork."
+    ]
+  }
+}

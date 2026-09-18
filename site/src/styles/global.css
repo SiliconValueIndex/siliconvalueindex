@@ -1,23 +1,23 @@
-/* Shared warm-dark editorial theme: cream type, amber actions, semantic value colors.
+/* Graphite analytics theme: pale green actions and semantic value colors.
    Keep tokens on the root so CSS and canvas charts use the same palette. */
 
 :root {
-  --ink: #1b1512;
-  --raised: #241d18;
-  --raised-2: #32291f;
-  --rule: #42382e;
-  --rule-strong: #786855;
-  --text: #f2e9dd;
-  --muted: #c2b29f;
-  --dim: #b4a18c;
-  --link: #edb65e;
-  --link-hover: #f5ca85;
-  --on-accent: #1b1512;
+  --ink: #101413;
+  --raised: #191f1d;
+  --raised-2: #232c28;
+  --rule: #303b35;
+  --rule-strong: #59685f;
+  --text: #eef4ef;
+  --muted: #aebdb3;
+  --dim: #93a69a;
+  --link: #b6ed8a;
+  --link-hover: #cef7b0;
+  --on-accent: #101413;
 
-  --great: #a2ce9c;
-  --fair: #e3b867;
-  --poor: #ed947a;
-  --unplayable: #b4a18c;
+  --great: #b6ed8a;
+  --fair: #e3c78f;
+  --poor: #e89da8;
+  --unplayable: #93a69a;
   --great-soft: rgba(162, 206, 156, 0.12);
   --fair-soft: rgba(227, 184, 103, 0.12);
   --poor-soft: rgba(237, 148, 122, 0.12);
@@ -27,7 +27,7 @@
   --intel: #0071c5;
 
   --font-ui: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
-  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-display: 'IBM Plex Sans', 'Segoe UI', sans-serif;
   --font-num: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
 
   --max: 1180px;
@@ -413,4 +413,49 @@ figcaption {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* Application shell: persistent wayfinding, a quiet canvas, and clear selected states. */
+h1, h2, h3 { font-weight: 500; }
+.site-header { position: fixed; inset: 0 auto 0 0; width: 224px; border-right: 1px solid var(--rule); border-bottom: 0; background: #151a17; }
+.site-header .wrap { width: 100%; padding: 32px 18px; display: flex; flex-direction: column; align-items: stretch; gap: 42px; }
+.brand { font-size: 1.1rem; gap: 10px; align-items: center; letter-spacing: -.03em; }
+.brand-mark { width: 26px; height: 26px; border-radius: 7px; background: var(--link); position: relative; flex-shrink: 0; }
+.brand-mark::after { content: ''; position: absolute; inset: 7px; border: 2px solid var(--ink); border-radius: 2px; }
+.site-nav { flex-direction: column; gap: 8px; }
+.site-nav a { display: flex; align-items: center; gap: 12px; min-height: 46px; padding: 10px 14px; font-size: .875rem; }
+.site-nav a[aria-current='page'] { background: #293629; color: var(--link); box-shadow: none; border-radius: 8px; }
+.nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+.nav-note { border-top: 1px solid var(--rule); padding: 22px 12px 0; margin-top: auto; font-size: .75rem; color: var(--dim); }
+.nav-note strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 7px; }
+main.wrap { width: calc(100% - 304px); max-width: 1440px; margin-left: 264px; margin-right: 40px; padding-top: 36px; }
+.site-footer { margin-left: 224px; }
+.site-footer .wrap { width: calc(100% - 80px); }
+.btn, .select, .seg { border-radius: 8px; }
+.btn-primary { color: var(--on-accent); }
+.seg { background: var(--ink); border-color: var(--rule); padding: 4px; gap: 3px; }
+.seg button { border: 0; border-radius: 5px; font-size: .8125rem; }
+.seg button[aria-pressed='true'] { background: var(--link); color: var(--on-accent); }
+.table th, .table td { padding-block: 15px; }
+.table thead th { font-size: .8125rem; }
+.hero h1 { max-width: 24ch; font-size: clamp(2rem, 3.4vw, 3rem); }
+.hero { margin-bottom: 32px; }
+@media (max-width: 1100px) {
+  .site-header { width: 190px; }
+  .site-header .wrap { padding-inline: 12px; }
+  .brand { font-size: .96rem; }
+  main.wrap { width: calc(100% - 238px); margin-left: 214px; margin-right: 24px; }
+  .site-footer { margin-left: 190px; }
+}
+@media (max-width: 760px) {
+  .site-header { position: static; width: 100%; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .site-header .wrap { padding: 16px; gap: 18px; }
+  .brand { font-size: 1.125rem; }
+  .site-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 0; }
+  .site-nav a { padding: 8px; justify-content: center; font-size: .75rem; gap: 7px; }
+  .nav-icon { width: 15px; height: 15px; }
+  .nav-note { display: none; }
+  main.wrap { width: calc(100% - 32px); margin-inline: 16px; padding-top: 28px; }
+  .site-footer { margin-left: 0; }
+  .site-footer .wrap { width: calc(100% - 32px); }
 }
