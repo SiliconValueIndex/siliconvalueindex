@@ -55,8 +55,13 @@ npm run dev           # http://localhost:4321
 ```
 
 `svi build` without `--offline` also fetches Tom's Hardware and Best Buy (needs `BESTBUY_API_KEY` in the environment).
+Use `svi prices-check --retailer bestbuy` to verify the key without writing data.
+A missing key skips Best Buy without failing the run.
 
 ## Automated refresh
+
+Adding the `BESTBUY_API_KEY` secret enables weekly Best Buy prices; a missing key records a skip without failing the run.
+Verify the key locally with `svi prices-check --retailer bestbuy`.
 
 `.github/workflows/refresh-data.yml` runs the pipeline on a schedule. A clean run commits the new data to `main` and the site redeploys. If anything needs a human (a name that could not be matched, a card with no valid price, a price move over 25%, a benchmark suite change, a fetch failure) the run opens a pull request with the review report as its body. Fixing it is a one-line edit to `aliases.csv`, `price_overrides.csv` or the registry.
 

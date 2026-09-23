@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 
 import pandas as pd
@@ -28,6 +29,7 @@ from svi.prices import (
     validate_observations,
 )
 from svi.scoring.cost_per_fps import score_all_views
+from svi.scrapers.retailers import ADAPTERS, RetailerSkipped, redact_secrets
 from svi.seed import BENCHMARK_COLUMNS, BENCHMARKS_PATH, write_benchmarks
 
 BENCHMARKS_PATH = BENCHMARKS_PATH  # re-export for callers
@@ -60,6 +62,52 @@ def append_benchmarks(new_rows: pd.DataFrame) -> pd.DataFrame:
     return load_benchmarks()
 
 
+@dataclass
+class PriceCollection:
+    history: pd.DataFrame
+    unresolved: list[dict] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)
+    fetch_failures: list[str] = field(default_factory=list)
+    source_fetched: dict[str, str] = field(default_factory=dict)
+
+
+def collect_retailer_prices(
+    retailers,
+    resolver,
+    registry,
+    cfg,
+    history,
+    *,
+    run_id,
+    now,
+    adapters=ADAPTERS,
+    append=append_history,
+) -> PriceCollection:
+    result = PriceCollection(history)
+    for name in retailers:
+        if name == "manual":
+            continue
+        if name not in adapters:
+            result.fetch_failures.append(f"{name}: unknown retailer")
+            continue
+        display = "Best Buy" if name == "bestbuy" else name
+        try:
+            obs, unres = adapters[name](resolver, registry, cfg, run_id=run_id, now=now)
+            # Use history including earlier retailers, before appending this retailer.
+            obs = validate_observations(obs, result.history, cfg.pricing, now=now)
+            result.history = append(obs)
+            result.unresolved += [u.model_dump() for u in unres]
+            result.source_fetched[name] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+            result.notes.append(
+                f"{display}: {int(obs['is_valid'].sum())} valid of {len(obs)} observations"
+            )
+        except RetailerSkipped as exc:
+            result.notes.append(redact_secrets(f"{display} skipped: {exc}"))
+        except Exception as exc:
+            result.fetch_failures.append(redact_secrets(f"{name}: {exc}"))
+    return result
+
+
 def run_build(
     *,
     offline: bool = True,
@@ -67,6 +115,7 @@ def run_build(
     now: datetime | None = None,
     skip_benchmarks: bool = False,
     skip_prices: bool = False,
+    retailers: list[str] | None = None,
     cfg: Config | None = None,
 ) -> dict:
     cfg = cfg or get_config()
@@ -110,17 +159,20 @@ def run_build(
             fetch_failures.append(f"toms_hardware: {exc}")
 
     if not offline and not skip_prices:
-        from svi.scrapers.bestbuy import scrape_prices
-
-        try:
-            obs, unres = scrape_prices(resolver, registry, cfg, run_id=run_id, now=now)
-            unresolved += [u.model_dump() for u in unres]
-            obs = validate_observations(obs, history, cfg.pricing, now=now)
-            history = append_history(obs)
-            source_fetched["bestbuy"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-            notes.append(f"Best Buy: {int(obs['is_valid'].sum())} valid of {len(obs)} observations")
-        except Exception as exc:
-            fetch_failures.append(f"bestbuy: {exc}")
+        prices = collect_retailer_prices(
+            cfg.pricing.retailers if retailers is None else retailers,
+            resolver,
+            registry,
+            cfg,
+            history,
+            run_id=run_id,
+            now=now,
+        )
+        history = prices.history
+        unresolved += prices.unresolved
+        notes += prices.notes
+        fetch_failures += prices.fetch_failures
+        source_fetched.update(prices.source_fetched)
 
     overrides = load_overrides(now=now)
     if not overrides.empty:

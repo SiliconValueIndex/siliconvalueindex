@@ -50,7 +50,6 @@ jobs:
           ARGS="--run-id gh-${{ github.run_id }}"
           if [ "${{ inputs.skip_prices }}" = "true" ]; then ARGS="$ARGS --skip-prices"; fi
           if [ "${{ inputs.skip_benchmarks }}" = "true" ]; then ARGS="$ARGS --skip-benchmarks"; fi
-          if [ -z "$BESTBUY_API_KEY" ]; then echo "No BESTBUY_API_KEY secret; skipping prices"; ARGS="$ARGS --skip-prices"; fi
           svi build $ARGS
 
       - name: Validate
