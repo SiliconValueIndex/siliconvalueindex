@@ -1,10 +1,18 @@
 // Typed access to the pipeline output in ../../data/site. These imports are resolved
 // at build time, so the site is fully static.
-import manifestJson from '../../../data/site/manifest.json';
-import gpusJson from '../../../data/site/gpus.json';
-import rankingsJson from '../../../data/site/rankings.json';
-import priceHistoryJson from '../../../data/site/price_history.json';
-import changelogJson from '../../../data/site/changelog.json';
+import manifestJson from '../../../data/site/manifest.json' with { type: 'json' };
+import gpusJson from '../../../data/site/gpus.json' with { type: 'json' };
+import rankingsJson from '../../../data/site/rankings.json' with { type: 'json' };
+import priceHistoryJson from '../../../data/site/price_history.json' with { type: 'json' };
+import changelogJson from '../../../data/site/changelog.json' with { type: 'json' };
+
+export const RETAILER_NAMES: Record<string, string> = {
+  bestbuy: 'Best Buy', newegg: 'Newegg', amazon: 'Amazon', manual: 'listed retailer',
+};
+
+export function retailerName(id: string): string {
+  return Object.hasOwn(RETAILER_NAMES, id) ? RETAILER_NAMES[id] : id;
+}
 
 export type Vendor = 'NVIDIA' | 'AMD' | 'Intel';
 export type Zone = 'great' | 'fair' | 'poor' | 'unplayable';
