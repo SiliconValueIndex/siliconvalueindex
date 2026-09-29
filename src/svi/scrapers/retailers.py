@@ -31,7 +31,19 @@ def _bestbuy(resolver, registry, cfg, *, run_id, now):
     return scrape_prices(resolver, registry, cfg, run_id=run_id, now=now)
 
 
-ADAPTERS: dict[str, RetailerAdapter] = {"bestbuy": _bestbuy}
+def _newegg(resolver, registry, cfg, *, run_id, now):
+    from svi.scrapers.rakuten import scrape_newegg_prices
+
+    return scrape_newegg_prices(resolver, registry, cfg, run_id=run_id, now=now)
+
+
+ADAPTERS: dict[str, RetailerAdapter] = {"bestbuy": _bestbuy, "newegg": _newegg}
+DISPLAY_NAMES = {"bestbuy": "Best Buy", "newegg": "Newegg"}
+SECRET_ENV_VARS = ("BESTBUY_API_KEY", "RAKUTEN_CLIENT_SECRET", "RAKUTEN_CLIENT_ID")
+
+
+def display_name(name: str) -> str:
+    return DISPLAY_NAMES.get(name, name)
 
 
 def get_adapter(name: str) -> RetailerAdapter:
@@ -43,6 +55,7 @@ def get_adapter(name: str) -> RetailerAdapter:
 
 def redact_secrets(text: str) -> str:
     """Remove configured credentials before displaying adapter errors or skips."""
-    if secret := os.environ.get("BESTBUY_API_KEY"):
-        text = text.replace(secret, "***")
+    for var in SECRET_ENV_VARS:
+        if secret := os.environ.get(var, "").strip():
+            text = text.replace(secret, "***")
     return text

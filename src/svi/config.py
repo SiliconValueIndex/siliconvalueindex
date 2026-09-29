@@ -85,6 +85,8 @@ class PricingConfig(BaseModel):
     enforce_stale: bool = False
     review_move_pct: float = 25.0
     bestbuy_category_id: str = "abcat0507002"
+    # Newegg's advertiser id (MID) on Rakuten Advertising.
+    newegg_rakuten_mid: str = "44583"
 
 
 class GuardsConfig(BaseModel):

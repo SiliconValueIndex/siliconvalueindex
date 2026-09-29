@@ -51,7 +51,7 @@ playability:
     4k_rt: 30
 
 pricing:
-  retailers: [bestbuy, manual]
+  retailers: [bestbuy, newegg, manual]
   currency: USD
   price_floor_ratio: 0.35
   price_ceiling_ratio: 3.0
@@ -60,6 +60,8 @@ pricing:
   enforce_stale: false
   review_move_pct: 25
   bestbuy_category_id: abcat0507002
+  # Newegg's advertiser id on Rakuten; prices come from Rakuten Product Search once approved.
+  newegg_rakuten_mid: "44583"
 
 guards:
   max_gpu_count_drop_pct: 10

@@ -58,10 +58,13 @@ npm run dev           # http://localhost:4321
 Use `svi prices-check --retailer bestbuy` to verify the key without writing data.
 A missing key skips Best Buy without failing the run.
 
+Newegg prices come from Rakuten Advertising's Product Search API and need `RAKUTEN_CLIENT_ID`, `RAKUTEN_CLIENT_SECRET` and `RAKUTEN_SID`. Until the Newegg partnership on Rakuten is approved, Newegg is skipped with a note. `svi prices-check --retailer newegg` shows which state you are in.
+
 ## Automated refresh
 
 Adding the `BESTBUY_API_KEY` secret enables weekly Best Buy prices; a missing key records a skip without failing the run.
 Verify the key locally with `svi prices-check --retailer bestbuy`.
+The three `RAKUTEN_*` secrets do the same for Newegg once the partnership is approved; its listing links are Rakuten affiliate links.
 
 `.github/workflows/refresh-data.yml` runs the pipeline on a schedule. A clean run commits the new data to `main` and the site redeploys. If anything needs a human (a name that could not be matched, a card with no valid price, a price move over 25%, a benchmark suite change, a fetch failure) the run opens a pull request with the review report as its body. Fixing it is a one-line edit to `aliases.csv`, `price_overrides.csv` or the registry.
 
@@ -75,4 +78,4 @@ Verify the key locally with `svi prices-check --retailer bestbuy`.
 ## Data sources
 
 - Benchmarks: [Tom's Hardware GPU Hierarchy](https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html)
-- Prices: Best Buy Products API, manual overrides; Newegg and Amazon as search links
+- Prices: Best Buy Products API, Newegg via Rakuten Advertising Product Search, manual overrides; Amazon as a search link

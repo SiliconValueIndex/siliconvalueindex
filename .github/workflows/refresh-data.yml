@@ -46,6 +46,9 @@ jobs:
         id: build
         env:
           BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+          RAKUTEN_CLIENT_ID: ${{ secrets.RAKUTEN_CLIENT_ID }}
+          RAKUTEN_CLIENT_SECRET: ${{ secrets.RAKUTEN_CLIENT_SECRET }}
+          RAKUTEN_SID: ${{ secrets.RAKUTEN_SID }}
         run: |
           ARGS="--run-id gh-${{ github.run_id }}"
           if [ "${{ inputs.skip_prices }}" = "true" ]; then ARGS="$ARGS --skip-prices"; fi

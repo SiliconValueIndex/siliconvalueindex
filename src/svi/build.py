@@ -29,7 +29,7 @@ from svi.prices import (
     validate_observations,
 )
 from svi.scoring.cost_per_fps import score_all_views
-from svi.scrapers.retailers import ADAPTERS, RetailerSkipped, redact_secrets
+from svi.scrapers.retailers import ADAPTERS, RetailerSkipped, display_name, redact_secrets
 from svi.seed import BENCHMARK_COLUMNS, BENCHMARKS_PATH, write_benchmarks
 
 BENCHMARKS_PATH = BENCHMARKS_PATH  # re-export for callers
@@ -90,7 +90,7 @@ def collect_retailer_prices(
         if name not in adapters:
             result.fetch_failures.append(f"{name}: unknown retailer")
             continue
-        display = "Best Buy" if name == "bestbuy" else name
+        display = display_name(name)
         try:
             obs, unres = adapters[name](resolver, registry, cfg, run_id=run_id, now=now)
             # Use history including earlier retailers, before appending this retailer.
