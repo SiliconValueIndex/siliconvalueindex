@@ -1,22 +1,32 @@
 ---
 import Base from '../layouts/Base.astro';
-import { manifest, rankings, gpuById, money, fmtDate, ageDays, STALE_DAYS, splitView, VIEW_LABELS } from '../lib/data';
+import { manifest, rankings, gpus, retailerName, gpuById, ZONE_WORD, money, fmtDate, ageDays, STALE_DAYS, splitView, VIEW_LABELS } from '../lib/data';
+
+import { pickVerdict, topList, picksHref } from '../lib/overview';
 
 const view = manifest.primary_view;
 const { resolution, mode } = splitView(view);
 const rows = rankings[view] ?? [];
 const playable = rows.filter((r) => r.playable);
 const zones = manifest.zones[view];
-const snapshot = [playable[0], playable[1], playable.at(-1)].filter((r, i, all) => r && all.findIndex((a) => a?.gpu_id === r.gpu_id) === i);
-const labels = ['Best value', 'Close second', 'Highest cost per FPS'];
-const priceDates = [...new Set(rows.map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at?.slice(0, 10)).filter((d): d is string => !!d))].sort();
-const priceDate = priceDates.length ? `${fmtDate(priceDates[0])}${priceDates.length > 1 ? ` – ${fmtDate(priceDates.at(-1)!)}` : ''}` : 'Date unavailable';
-const priceCaution = !priceDates.length || ageDays(priceDates[0]) > STALE_DAYS;
-const latestCheck = rows.map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at).filter((d): d is string => !!d).sort().at(-1);
+const verdict = pickVerdict(rows, null);
+const shortlist = topList(rows, null);
+const priceContext = Object.fromEntries(manifest.views.map((v) => {
+  const stamps = (rankings[v] ?? []).map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at).filter((d): d is string => !!d).sort();
+  const dates = [...new Set(stamps.map((d) => d.slice(0, 10)))];
+  return [v, {
+    date: dates.length ? fmtDate(dates[0]) + (dates.length > 1 ? ' – ' + fmtDate(dates.at(-1)!) : '') : 'Date unavailable',
+    caution: !dates.length || ageDays(dates[0]) > STALE_DAYS,
+    latest: stamps.at(-1) ?? null,
+  }];
+}));
+const { date: priceDate, caution: priceCaution, latest: latestCheck } = priceContext[view];
 const payload = {
-  views: manifest.views, primary: view, zones: manifest.zones, priceDate,
+  views: manifest.views, primary: view, zones: manifest.zones,
+  gpus: gpus.map((g) => ({ current_price: g.current_price })),
+  priceContext,
   rankings: Object.fromEntries(manifest.views.map((v) => [v, (rankings[v] ?? []).map((r) => ({
-    ...r, name: gpuById[r.gpu_id].display_name, vendor: gpuById[r.gpu_id].vendor,
+    ...r, name: gpuById[r.gpu_id].display_name, vendor: gpuById[r.gpu_id].vendor, current_price: gpuById[r.gpu_id].current_price, retailer_name: retailerName(gpuById[r.gpu_id].current_price?.retailer ?? ''),
   }))])),
 };
 const resolutions = ['1080p', '1440p', '4k'];
@@ -24,30 +34,20 @@ const modes = ['raster', 'rt'];
 const available = new Set(manifest.views);
 ---
 
-<Base title="SiliconValueIndex" theme="warm" description="Compare graphics card prices, frame rates and cost per FPS. Explore the market, then find a GPU for your budget and resolution.">
+<Base title="SiliconValueIndex" theme="warm" description="Find the best value graphics card for your budget and resolution, with recorded prices and benchmark evidence.">
   <section class="overview-hero" aria-labelledby="overview-title">
-    <div class="hero-copy">
-      <h1 id="overview-title">Know what a frame <em>is worth.</em></h1>
-      <p class="hero-lede">Reviews rank cards by raw speed. SiliconValueIndex ranks them by price divided by frame rate, so you can see what your money buys.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="/find/">Find a card for me <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg></a>
-        <a class="text-action" href="#board">Explore the market</a>
-      </div>
-      <p class="hero-footnote">Cost per FPS = recorded price ÷ average FPS. Lower is better.</p>
+    <p class="eyebrow">More frames for your money</p>
+    <h1 id="overview-title">Best value at {VIEW_LABELS[resolution]}{mode === 'rt' ? ', ray tracing' : ''}</h1>
+    <div id="verdict" aria-live="polite">
+      {verdict ? <>
+        <h2 class="verdict-name"><a href={`/gpu/${verdict.best.gpu_id}/`}>{gpuById[verdict.best.gpu_id].display_name}</a></h2>
+        <p class={`verdict-score zone-${verdict.best.zone}`}><span class="num">{money(verdict.best.cost_per_fps, 2)}</span> <span>per FPS</span></p>
+        <p class="verdict-stats"><span class="num">{money(verdict.best.price, 2)}</span> · {verdict.best.fps.toFixed(1)} FPS{verdict.best.normalized && ' est.'} · <span class={`zone-${verdict.best.zone}`}>{ZONE_WORD[verdict.best.zone]}</span></p>
+        {gpuById[verdict.best.gpu_id].current_price?.url && <p class="retailer">{retailerName(gpuById[verdict.best.gpu_id].current_price!.retailer)} · <a href={gpuById[verdict.best.gpu_id].current_price!.url} target="_blank" rel="noopener">Check price</a></p>}
+        {verdict.runnerUp && <p class="runner-up">Close second: <a href={`/gpu/${verdict.runnerUp.gpu_id}/`}>{gpuById[verdict.runnerUp.gpu_id].display_name}</a> · {money(verdict.runnerUp.cost_per_fps, 2)}/FPS</p>}
+      </> : <p>No playable cards at this setting. <a href={picksHref(view, null, gpus)}>Find a card</a></p>}
     </div>
-  </section>
-
-  <div class="price-context">
-    <span>Prices recorded <strong>{priceDate}</strong>{latestCheck && <> · last updated <time datetime={latestCheck} data-relative>{fmtDate(latestCheck)}</time></>}</span>
-    <span>{priceCaution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.'} <a href="/data/">Data &amp; sources</a></span>
-  </div>
-
-  <div class="dashboard-grid">
-  <section class="market-section" id="board" aria-labelledby="market-heading">
-    <div class="market-heading">
-      <div><h2 id="market-heading">Price meets performance.</h2><p>Higher means faster. Further left means cheaper.</p></div>
-      <a class="text-action" id="ranking-link" href={`/rankings/?view=${view}`}>See ranked list <span aria-hidden="true">→</span></a>
-    </div>
+    <div class="price-context"><span>Prices recorded <strong id="price-date">{priceDate}</strong><span id="price-latest" hidden={!latestCheck}>, last updated <time datetime={latestCheck ?? ''} data-relative>{latestCheck ? fmtDate(latestCheck) : ''}</time></span>.</span> <span id="price-caution">{priceCaution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.'}</span> <a href="/data/">Data &amp; sources</a></div>
     <div class="market-controls">
       <div class="control-field"><span class="control-label">Resolution</span><div class="seg" role="group" aria-label="Resolution">
         {resolutions.map((r) => <button type="button" data-res={r} aria-pressed={r === resolution} disabled={!modes.some((m) => available.has(`${r}_${m}`))}>{VIEW_LABELS[r]}</button>)}
@@ -55,8 +55,22 @@ const available = new Set(manifest.views);
       <div class="control-field"><span class="control-label">Rendering</span><div class="seg" role="group" aria-label="Rendering mode">
         {modes.map((m) => <button type="button" data-mode={m} aria-pressed={m === mode} disabled={!resolutions.some((r) => available.has(`${r}_${m}`))}>{m === 'raster' ? 'Rasterization' : 'Ray tracing'}</button>)}
       </div></div>
+      <div class="control-field"><label class="control-label" for="overview-budget">Budget</label><select class="select" id="overview-budget"><option value="">Any</option>{[300, 400, 500, 700, 1000].map((n) => <option value={n}>{money(n)}</option>)}</select></div>
+      <a class="btn btn-primary" id="picks-link" href={picksHref(view, null, gpus)}>See my picks</a>
       <p id="view-note" class="view-note" aria-live="polite">{playable.length} of {rows.length} cards meet the {zones.min_fps} FPS minimum.</p>
     </div>
+
+  </section>
+  <section class="market-snapshot" aria-labelledby="snapshot-heading">
+    <div class="section-heading"><h2 id="snapshot-heading">Top 5 for this setting</h2><a id="ranking-link" href={`/rankings/?view=${view}`}>See all {rows.length} ranked</a></div>
+    <p class="muted" id="snapshot-context">{VIEW_LABELS[resolution]} Ultra · {VIEW_LABELS[mode]}</p>
+    <ol class="snapshot-list" id="snapshot-list">
+      {shortlist.map((r) => <li class="snapshot-row"><span class="rank num">{r.rank}</span><a class="snapshot-name" href={`/gpu/${r.gpu_id}/`}>{gpuById[r.gpu_id].display_name}</a><span class="snapshot-price num">{money(r.price, 2)} <small>price</small></span><span class="snapshot-fps num">{r.fps.toFixed(1)} FPS{r.normalized && ' est.'}</span><span class={`snapshot-score zone-${r.zone}`}><span class="num">{money(r.cost_per_fps, 2)}/FPS</span><small>{ZONE_WORD[r.zone]}</small></span></li>)}
+    </ol>
+    <p class="muted small" id="snapshot-note">Among cards meeting the {zones.min_fps} FPS minimum in this view.</p>
+  </section>
+  <section class="market-section" id="board" aria-labelledby="market-heading">
+    <h2 id="market-heading">The market, in perspective</h2><p class="muted">Higher means faster. Further left means cheaper.</p>
     <figure class="market-chart">
       <svg id="scatter" role="group" aria-label="Graphics cards by recorded price and average frame rate" aria-describedby="chart-help"></svg>
       <figcaption id="legend">
@@ -79,22 +93,9 @@ const available = new Set(manifest.views);
     </details>
   </section>
 
-    <aside class="market-snapshot" aria-labelledby="snapshot-heading">
-      <h2 id="snapshot-heading">The value shortlist.</h2>
-      <p class="snapshot-context" id="snapshot-context">{VIEW_LABELS[resolution]} Ultra · {mode === 'rt' ? 'Ray tracing' : 'Rasterization'}</p>
-      <div class="snapshot-list" id="snapshot-list">
-        {snapshot.map((r, i) => r && (
-          <a class="snapshot-row" href={`/gpu/${r.gpu_id}/`}>
-            <span class="snapshot-card"><span class="snapshot-label">{labels[i]}</span><strong>{gpuById[r.gpu_id].display_name}</strong><span class="snapshot-spec">{money(r.price)} · {r.fps.toFixed(1)} FPS{r.normalized && ' (est.)'}</span></span>
-            <span class={`snapshot-score zone-${r.zone}`}><span class="num">{money(r.cost_per_fps, 2)}</span><small>per FPS</small></span>
-          </a>
-        ))}
-      </div>
-      <p class="snapshot-note" id="snapshot-note">Among cards meeting the {zones.min_fps} FPS minimum in this view.</p>
-    </aside>
-  </div>
+
   <section class="reading-guide" aria-labelledby="guide-heading">
-    <h2 id="guide-heading">A useful number.<br />With the context to trust it.</h2>
+    <h2 id="guide-heading">How to read this</h2>
     <div class="guide-copy">
       <p><strong>Benchmarks, not promises.</strong> Frame rates are Tom’s Hardware’s averages across their test suite at Ultra settings. Your games and the rest of your system can change the result.</p>
       <p><strong>Measured or estimated.</strong> Older cards carry an “est.” label when their result has been translated to the current suite. <a href="/methodology/#normalization">See how normalization works.</a></p>
@@ -104,11 +105,16 @@ const available = new Set(manifest.views);
   </section>
   <script is:inline type="application/json" id="svi-overview" set:html={JSON.stringify(payload)} />
 </Base>
-
 <script>
   import { renderScatter, attachTooltip, type ScatterRow, type ScatterZones } from '../lib/scatter';
+  import { pickVerdict, topList, picksHref } from '../lib/overview';
+  import { relTime } from '../lib/relTime';
+  import type { RankingRow, CurrentPrice } from '../lib/data';
+  type OverviewRow = ScatterRow & RankingRow & { current_price: CurrentPrice | null; retailer_name: string };
+  const zoneWords = { great: 'great value', fair: 'fair value', poor: 'poor value', unplayable: 'below playable' };
+  let budget: number | null = null;
   const data = JSON.parse(document.getElementById('svi-overview')!.textContent || '{}') as {
-    views: string[]; primary: string; zones: Record<string, ScatterZones>; rankings: Record<string, ScatterRow[]>;
+    views: string[]; primary: string; zones: Record<string, ScatterZones>; rankings: Record<string, OverviewRow[]>; gpus: { current_price: CurrentPrice | null }[]; priceContext: Record<string, { date: string; caution: boolean; latest: string | null }>;
   };
   const svg = document.getElementById('scatter') as unknown as SVGSVGElement;
   const tip = document.getElementById('tip')!;
@@ -123,12 +129,24 @@ const available = new Set(manifest.views);
     const rows = data.rankings[view] ?? [], zones = data.zones[view];
     const { res, mode } = split();
     draw();
-    const playable = rows.filter((r) => r.playable);
-    const shortlist = [playable[0], playable[1], playable.at(-1)].filter((r, i, all): r is ScatterRow => !!r && all.findIndex((a) => a?.gpu_id === r.gpu_id) === i);
-    const shortlistLabels = ['Best value', 'Close second', 'Highest cost per FPS'];
+    const verdict = pickVerdict(rows, budget);
+    const shortlist = topList(rows, budget);
+    const href = picksHref(view, budget, data.gpus);
+    document.getElementById('overview-title')!.textContent = `Best value at ${labels[res]}${mode === 'rt' ? ', ray tracing' : ''}`;
+    document.getElementById('picks-link')!.setAttribute('href', href);
+    document.getElementById('price-date')!.textContent = data.priceContext[view].date;
+    const latest = data.priceContext[view].latest, latestEl = document.getElementById('price-latest')!;
+    latestEl.hidden = !latest;
+    if (latest) { const t = latestEl.querySelector('time')!; t.dateTime = latest; t.textContent = relTime(latest); }
+    document.getElementById('price-caution')!.textContent = data.priceContext[view].caution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.';
+    const empty = budget === null ? 'No playable cards at this setting.' : `No playable card under ${money(budget, 0)} at this setting.`;
+    if (verdict) {
+      const { best: b, runnerUp: r } = verdict;
+      document.getElementById('verdict')!.innerHTML = `<h2 class="verdict-name"><a href="/gpu/${esc(b.gpu_id)}/">${esc(b.name)}</a></h2><p class="verdict-score zone-${b.zone}"><span class="num">${money(b.cost_per_fps)}</span> <span>per FPS</span></p><p class="verdict-stats"><span class="num">${money(b.price)}</span> · ${b.fps.toFixed(1)} FPS${b.normalized ? ' est.' : ''} · <span class="zone-${b.zone}">${zoneWords[b.zone]}</span></p>${b.current_price?.url ? `<p class="retailer">${esc(b.retailer_name)} · <a href="${esc(b.current_price.url)}" target="_blank" rel="noopener">Check price</a></p>` : ''}${r ? `<p class="runner-up">Close second: <a href="/gpu/${esc(r.gpu_id)}/">${esc(r.name)}</a> · ${money(r.cost_per_fps)}/FPS</p>` : ''}`;
+    } else document.getElementById('verdict')!.innerHTML = `<p>${empty} <a href="${esc(href)}">Find a card</a></p>`;
     document.getElementById('snapshot-context')!.textContent = `${labels[res]} Ultra · ${labels[mode]}`;
     document.getElementById('snapshot-note')!.textContent = `Among cards meeting the ${zones.min_fps} FPS minimum in this view.`;
-    document.getElementById('snapshot-list')!.innerHTML = shortlist.map((r, i) => `<a class="snapshot-row" href="/gpu/${esc(r.gpu_id)}/"><span class="snapshot-card"><span class="snapshot-label">${shortlistLabels[i]}</span><strong>${esc(r.name)}</strong><span class="snapshot-spec">${money(r.price, 0)} · ${r.fps.toFixed(1)} FPS${r.normalized ? ' (est.)' : ''}</span></span><span class="snapshot-score zone-${r.zone}"><span class="num">${money(r.cost_per_fps)}</span><small>per FPS</small></span></a>`).join('') || '<p>No cards meet this view’s FPS minimum.</p>';
+    document.getElementById('snapshot-list')!.innerHTML = shortlist.map((r) => `<li class="snapshot-row"><span class="rank num">${r.rank}</span><a class="snapshot-name" href="/gpu/${esc(r.gpu_id)}/">${esc(r.name)}</a><span class="snapshot-price num">${money(r.price)} <small>price</small></span><span class="snapshot-fps num">${r.fps.toFixed(1)} FPS${r.normalized ? ' est.' : ''}</span><span class="snapshot-score zone-${r.zone}"><span class="num">${money(r.cost_per_fps)}/FPS</span><small>${zoneWords[r.zone]}</small></span></li>`).join('') || `<li>${empty} <a href="${esc(href)}">Find a card</a></li>`;
     document.querySelectorAll<HTMLButtonElement>('[data-res]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.res === res)); b.disabled = !data.views.includes(`${b.dataset.res}_${mode}`); });
     document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.mode === mode)); b.disabled = !data.views.includes(`${res}_${b.dataset.mode}`); });
     document.getElementById('view-note')!.textContent = `${rows.filter((r) => r.playable).length} of ${rows.length} cards meet the ${zones.min_fps} FPS minimum · ${labels[res]} Ultra.`;
@@ -137,6 +155,7 @@ const available = new Set(manifest.views);
     document.getElementById('poor-label')!.textContent = `over ${money(zones.fair_max)}/FPS`;
     document.getElementById('floor-label')!.textContent = `Below ${zones.min_fps} FPS`;
     document.getElementById('ranking-link')!.setAttribute('href', `/rankings/?view=${view}`);
+    document.getElementById('ranking-link')!.textContent = `See all ${rows.length} ranked`;
     document.getElementById('table-count')!.textContent = `(${rows.length} cards)`;
     document.getElementById('table-caption')!.textContent = `${labels[res]} Ultra · ${labels[mode]} · Recorded prices`;
     document.getElementById('chart-rows')!.innerHTML = rows.map((r) => `<tr><th scope="row"><a href="/gpu/${esc(r.gpu_id)}/">${esc(r.name)}</a></th><td class="n">${money(r.price)}</td><td class="n">${r.fps.toFixed(1)}${r.normalized ? ' est.' : ''}</td><td class="n">${money(r.cost_per_fps)}</td><td>${r.playable ? 'Meets minimum' : 'Below minimum'}</td></tr>`).join('');
@@ -153,6 +172,7 @@ const available = new Set(manifest.views);
     history.pushState(null, '', url);
     render();
   });
+  document.getElementById('overview-budget')!.addEventListener('change', (e) => { const value = (e.target as HTMLSelectElement).value; budget = value ? Number(value) : null; render(); });
   window.addEventListener('popstate', () => { view = readView(); render(); });
   render();
   attachTooltip(svg, tip);
@@ -161,45 +181,32 @@ const available = new Set(manifest.views);
 </script>
 
 <style is:global>
-  .overview-hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(40px, 7vw, 100px); align-items: center; padding: 24px 0 48px; }
-  .hero-copy h1 { font-size: clamp(3rem, 5.5vw, 4.9rem); line-height: 1.04; letter-spacing: -0.035em; margin-bottom: 24px; }
-  .hero-copy h1 em { color: var(--link); font-style: normal; }
-  .hero-lede { color: var(--muted); font-size: 1.125rem; line-height: 1.7; max-width: 47ch; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; margin: 28px 0 18px; }
-  .hero-actions .btn { padding: 12px 18px; min-height: 48px; }
-  .text-action { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--rule-strong); }
-  .text-action:hover { text-decoration-color: currentColor; }
-  .hero-footnote { color: var(--dim); font-size: 0.8125rem; }
-  .market-snapshot { border-top: 1px solid var(--link); padding-top: 24px; }
-  .market-snapshot h2 { font-size: 1.9rem; margin-bottom: 8px; }
-  .snapshot-context, .snapshot-note { color: var(--muted); font-size: 0.8125rem; }
-  .snapshot-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid var(--rule); color: var(--text); }
-  .snapshot-row:hover { text-decoration: none; background: var(--raised); }
-  .snapshot-card { display: grid; gap: 3px; }
-  .snapshot-card strong { font-size: 1rem; font-weight: 500; }
-  .snapshot-label { color: var(--muted); font-size: 0.75rem; }
-  .snapshot-spec { color: var(--dim); font-size: 0.8125rem; }
-  .snapshot-score { display: grid; justify-items: end; gap: 2px; white-space: nowrap; }
-  .snapshot-score .num { font-size: 1.6rem; }
-  .snapshot-score small { font-size: 0.75rem; color: var(--muted); }
-  .snapshot-note { margin: 12px 0 0; }
-  .price-context { border-block: 1px solid var(--rule); padding-block: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 24px; font-size: 0.8125rem; color: var(--muted); }
-  .price-context strong { color: var(--text); font-weight: 500; }
-  .price-context a { margin-left: 8px; text-decoration: underline; text-underline-offset: 3px; }
-  .market-section { padding-top: 44px; scroll-margin-top: 120px; }
-  .market-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
-  .market-heading h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); margin-bottom: 8px; }
-  .market-heading p { color: var(--muted); margin: 0; }
-  .market-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 16px 28px; margin-bottom: 24px; }
+  .overview-hero { padding: 0 0 var(--space-5); }
+  .eyebrow { color: var(--muted); font-size: .875rem; margin-bottom: 16px; }
+  .overview-hero h1 { max-width: 20ch; margin-bottom: 24px; }
+  .verdict-name { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 12px; }
+  .verdict-name a { color: var(--text); }
+  .verdict-score { margin: 0 0 12px; }
+  .verdict-score .num { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -.05em; line-height: 1.1; }
+  .verdict-score > span:last-child { font-size: 1rem; }
+  .verdict-stats, .retailer, .runner-up { margin-bottom: 8px; }
+  .runner-up, .price-context { color: var(--muted); font-size: .875rem; }
+  .price-context { margin-top: 16px; max-width: 85ch; }
+  .market-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; margin-top: 28px; }
   .control-field { display: grid; gap: 8px; }
-  .control-label { font-size: 0.8125rem; color: var(--muted); }
-  .market-controls .seg button { min-height: 44px; padding-inline: 18px; }
-  .market-controls .seg button[aria-pressed='true'] { color: var(--ink); background: var(--link); }
-  .market-controls .seg button:hover:not([aria-pressed='true']):not(:disabled) { background: var(--raised-2); }
-  .market-controls .seg button:focus-visible { outline-offset: -4px; outline-color: currentColor; }
-  .view-note { font-size: 0.8125rem; color: var(--muted); margin: 0 0 12px auto; max-width: 32ch; text-align: right; }
-  .market-chart { margin: 0; padding: 24px 20px 20px; border: 1px solid var(--rule); border-radius: 12px; background: var(--raised); }
-  .market-chart svg { width: 100%; height: auto; display: block; font-family: var(--font-num); }
+  .control-label { color: var(--muted); font-size: .8125rem; }
+  .view-note { flex-basis: 100%; color: var(--muted); font-size: .8125rem; margin: 0; }
+  .section-heading { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; justify-content: space-between; }
+  .market-snapshot, .market-section, .reading-guide { border-top: 1px solid var(--rule); padding-top: 32px; margin-top: 24px; }
+  .snapshot-list { padding: 0; margin: 20px 0; list-style: none; }
+  .snapshot-row { display: grid; grid-template-columns: 2rem minmax(0, 1fr) 9rem 10rem 10rem; gap: 16px; align-items: center; border-top: 1px solid var(--rule); padding: 20px 0; }
+  .snapshot-name { color: var(--text); font-weight: 500; }
+  .snapshot-price, .snapshot-fps, .snapshot-score { text-align: right; }
+  .snapshot-price small { font-family: var(--font-ui); color: var(--muted); }
+  .snapshot-score small { display: block; }
+  .rank { color: var(--dim); }
+  .market-chart { margin: 24px 0; }
+  .market-chart svg { width: 100%; height: auto; display: block; font-family: var(--font-mono); }
   .market-chart .grid { stroke: var(--rule); stroke-width: 0.7; }
   .market-chart .tick { fill: var(--muted); font-size: 11px; }
   .market-chart .axis { fill: var(--muted); font-size: 12px; font-family: var(--font-ui); }
@@ -228,78 +235,20 @@ const available = new Set(manifest.views);
   .chart-data caption { padding: 16px 12px; text-align: left; color: var(--muted); }
   .chart-data th[scope='row'] { font-weight: 400; min-width: 180px; }
   .chart-data td { white-space: nowrap; }
-  .reading-guide { padding-top: 56px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px 80px; }
-  .reading-guide h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
-  .guide-copy { color: var(--muted); }
-  .guide-copy strong { color: var(--text); font-weight: 500; }
-  .guide-copy p { margin-bottom: 20px; }
-  @media (max-width: 760px) {
-    .overview-hero { grid-template-columns: 1fr; gap: 32px; padding-top: 8px; padding-bottom: 32px; }
-    .hero-copy h1 { max-width: 14ch; font-size: clamp(3rem, 9vw, 4.5rem); }
-    .market-snapshot { max-width: none; }
-    .market-heading { align-items: start; flex-direction: column; gap: 8px; }
-    .market-heading .text-action { font-size: 0.875rem; }
-    .view-note { margin: 0; text-align: left; max-width: none; width: 100%; }
-    .market-chart { padding: 18px 8px; }
-    .market-chart figcaption { padding-inline: 8px; gap: 10px 16px; }
-    .reading-guide { grid-template-columns: 1fr; gap: 16px; padding-top: 40px; }
-  }
 
-  /* Chart-first workspace with a companion shortlist. */
-  .overview-hero { display: block; padding: 0 0 24px; }
-  .hero-copy { display: grid; grid-template-columns: 1fr auto; column-gap: 28px; align-items: center; }
-  .hero-copy h1 { font-size: clamp(2rem, 3vw, 3rem); line-height: 1.16; margin-bottom: 12px; max-width: 24ch; }
-  .hero-lede { font-size: .9375rem; max-width: 70ch; margin: 0; grid-column: 1; line-height: 1.6; }
-  .hero-actions { grid-column: 2; grid-row: 1 / 3; flex-direction: column; gap: 8px; margin: 0; }
-  .hero-actions .text-action { font-size: .8125rem; }
-  .hero-footnote { margin: 14px 0 0; grid-column: 1 / -1; font-size: .75rem; }
-  .price-context { border: 0; background: #202a23; border-radius: 8px; padding: 12px 16px; font-size: .75rem; }
-  .dashboard-grid { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 22px; margin-top: 28px; align-items: start; }
-  .market-section { padding: 24px; background: var(--raised); border: 1px solid var(--rule); border-radius: 14px; min-width: 0; }
-  .market-heading { gap: 10px; margin-bottom: 22px; align-items: start; }
-  .market-heading h2 { font-size: 1.35rem; margin-bottom: 7px; }
-  .market-heading p { font-size: .8125rem; }
-  .market-heading .text-action { font-size: .75rem; white-space: nowrap; min-height: 28px; }
-  .market-controls { gap: 12px 20px; margin-bottom: 12px; }
-  .control-label { font-size: .75rem; }
-  .market-controls .seg button { min-height: 36px; padding-inline: 11px; }
-  .view-note { margin: 0; text-align: left; max-width: none; flex-basis: 100%; font-size: .75rem; }
-  .market-chart { padding: 0; border: 0; border-radius: 0; }
-  .market-chart figcaption { gap: 9px 16px; font-size: .75rem; }
-  .market-chart figcaption b { display: inline; font-size: .6875rem; }
-  .chart-help { font-size: .75rem; }
-  .chart-data summary { font-size: .8125rem; padding: 12px 0; }
-  .market-snapshot { border: 1px solid var(--rule); border-radius: 14px; background: var(--raised); padding: 24px 20px; }
-  .market-snapshot h2 { font-size: 1.25rem; margin-bottom: 9px; }
-  .snapshot-context { font-size: .75rem; margin-bottom: 20px; }
-  .snapshot-row { flex-direction: column; align-items: stretch; gap: 10px; padding-block: 19px; }
-  .snapshot-card { gap: 5px; }
-  .snapshot-card strong { font-size: 1.125rem; }
-  .snapshot-label { font-size: .6875rem; }
-  .snapshot-score { display: flex; align-items: baseline; gap: 6px; }
-  .snapshot-score .num { font-size: 1.8rem; letter-spacing: -.035em; }
-  .snapshot-note { font-size: .75rem; line-height: 1.6; }
-  .reading-guide { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--rule); gap: 48px; }
-  .reading-guide h2 { font-size: 1.7rem; }
-  .guide-copy { font-size: .875rem; }
-  @media (max-width: 1200px) {
-    .dashboard-grid { grid-template-columns: minmax(0, 1fr); }
-    .snapshot-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .hero-copy { display: block; }
-    .hero-actions { flex-direction: row; margin-top: 20px; }
-  }
+  .reading-guide h2 { margin-bottom: 24px; }
+  .guide-copy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; color: var(--muted); }
+  .guide-copy strong { display: block; color: var(--text); margin-bottom: 8px; }
+  .guide-copy > a { grid-column: 1 / -1; }
   @media (max-width: 760px) {
-    .hero-copy h1 { font-size: 2.3rem; max-width: 20ch; }
-    .market-section { padding: 18px 12px; }
-    .market-heading { flex-direction: column; gap: 8px; }
-    .market-heading h2 { font-size: 1.3rem; }
-    .market-controls { gap: 12px; }
-    .market-controls .seg button { min-height: 44px; }
-    .snapshot-list { grid-template-columns: 1fr; gap: 0; }
-    .snapshot-row { flex-direction: row; align-items: center; }
-    .snapshot-score { display: grid; justify-items: end; }
-    .snapshot-score .num { font-size: 1.5rem; }
-    .reading-guide { grid-template-columns: 1fr; gap: 20px; }
+    .overview-hero h1 { margin-bottom: 20px; }
+    .snapshot-row { grid-template-columns: 1.5rem minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; }
+    .snapshot-row .rank { grid-column: 1; grid-row: 1; }
+    .snapshot-name { grid-column: 2 / 4; }
+    .snapshot-price { grid-column: 2; text-align: left; font-size: .875rem; }
+    .snapshot-fps { grid-column: 3; font-size: .875rem; }
+    .snapshot-score { grid-column: 2 / 4; text-align: left; }
+    .snapshot-score small { display: inline; margin-left: 12px; }
+    .guide-copy { grid-template-columns: 1fr; }
   }
-
 </style>
