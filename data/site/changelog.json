@@ -1,5 +1,30 @@
 [
  {
+  "run_id": "20260929T211510Z",
+  "generated_at": "2026-09-29T21:15:10Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [
+   {
+    "gpu_id": "nvidia-rtx-5070",
+    "from": 649.99,
+    "to": 849.99,
+    "pct": 30.8
+   },
+   {
+    "gpu_id": "nvidia-rtx-5060",
+    "from": 349.99,
+    "to": 379.99,
+    "pct": 8.6
+   }
+  ],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 0,
+  "notes": [
+   "Manual overrides applied: 2"
+  ]
+ },
+ {
   "run_id": "floor-2026-09-16",
   "generated_at": "2026-09-16T17:20:47Z",
   "added_gpus": [],
