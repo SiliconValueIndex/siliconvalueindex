@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { findMaxBudget } from '../lib/overview';
 import { manifest, rankings, gpuById, gpus } from '../lib/data';
 
-const maxPrice = Math.ceil(Math.max(...gpus.map((g) => g.current_price?.price ?? 0)) / 100) * 100;
+const maxPrice = findMaxBudget(gpus);
 const payload = {
   views: manifest.views,
   primary: manifest.primary_view,
@@ -147,7 +148,7 @@ const payload = {
 
 <style is:global>
   .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 32px; align-items: start; }
-  aside { position: sticky; top: 70px; background: var(--raised); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 18px; }
+  aside { position: sticky; top: 88px; border-top: 1px solid var(--rule); padding: 20px 0; display: grid; gap: 18px; }
   aside h2 { font-size: var(--t1); margin: 0; }
   .field label, .field .lbl { display: flex; justify-content: space-between; font-weight: 500; font-size: var(--t-1); color: var(--muted); margin-bottom: 6px; }
   .field label output { color: var(--text); font-family: var(--font-num); }
@@ -162,7 +163,7 @@ const payload = {
   .results h1 { font-size: clamp(var(--t2), 3.6vw, var(--t4)); margin-bottom: 4px; }
   .sub { margin-bottom: 20px; }
   .picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 30px; }
-  .pick { background: var(--raised); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 8px; align-content: start; }
+  .pick { border-top: 1px solid var(--rule); padding: 20px 0; display: grid; gap: 8px; align-content: start; }
   .pick.first { border-color: var(--link); }
   .pick .why { color: var(--muted); font-size: var(--t-1); font-weight: 500; }
   .pick .nm { font-family: var(--font-display); font-size: var(--t2); font-weight: 500; letter-spacing: -0.01em; }
@@ -171,7 +172,7 @@ const payload = {
   .pick .big small { display: block; font: 500 var(--t-1) var(--font-ui); color: var(--muted); margin-top: 6px; letter-spacing: 0; }
   .pick .stats { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: var(--t-1); }
   .pick .stats b { color: var(--text); font-weight: 500; }
-  .empty { grid-column: 1 / -1; color: var(--muted); padding: 28px; border: 1px dashed var(--rule-strong); border-radius: 10px; text-align: center; }
+  .empty { grid-column: 1 / -1; color: var(--muted); padding: 28px; border: 1px dashed var(--rule-strong); border-radius: var(--radius-panel); text-align: center; }
   h2.list { font-family: var(--font-ui); font-size: var(--t0); font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
   .table td a { color: var(--text); }
   .table .badge { margin-left: 6px; }

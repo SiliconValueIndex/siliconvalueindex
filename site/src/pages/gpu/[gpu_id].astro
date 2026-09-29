@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { gpus, manifest, priceHistory, money, fmtDate, viewLabel, splitView, VIEW_LABELS } from '../../lib/data';
+import { gpus, retailerName, manifest, priceHistory, money, fmtDate, viewLabel, splitView, VIEW_LABELS } from '../../lib/data';
 
 export function getStaticPaths() {
   return gpus.map((g) => ({ params: { gpu_id: g.gpu_id }, props: { gpu: g } }));
@@ -17,7 +17,6 @@ const transformFor = (resolution: string, mode: string) =>
 const benchRows = Object.entries(gpu.benchmarks).flatMap(([res, modes]) =>
   Object.entries(modes).map(([mode, cell]) => ({ res, mode, cell })),
 );
-const retailerNames: Record<string, string> = { bestbuy: 'Best Buy', newegg: 'Newegg', amazon: 'Amazon', manual: 'listed retailer' };
 const description = primary
   ? `${gpu.display_name}: ${money(primary.cost_per_fps, 2)} per frame at ${viewLabel(manifest.primary_view)}, rank ${primary.rank} of ${total}.`
   : `${gpu.display_name} specs, benchmarks and price history.`;
@@ -34,7 +33,7 @@ const description = primary
           <strong class={`num zone-${primary.zone}`}>{money(primary.cost_per_fps, 2)}</strong> per frame, {zoneWord[primary.zone]}.
         </p>
       ) : (
-        <p class="lede muted">Not ranked right now because there is no valid current price.</p>
+        <p class="lede muted">Not ranked because there is no valid current price.</p>
       )}
     </header>
 
@@ -45,7 +44,7 @@ const description = primary
           <>
             <p class="big num">{money(price.price, 2)}</p>
             <p class="muted small">
-              {retailerNames[price.retailer] ?? price.retailer}, {price.condition}, checked {fmtDate(price.fetched_at)}.
+              {retailerName(price.retailer)}, {price.condition}, checked {fmtDate(price.fetched_at)}.
               {gpu.price_stats.n_points > 1 && <> 90-day low {money(gpu.price_stats.min_90d ?? 0, 0)}, median {money(gpu.price_stats.median_90d ?? 0, 0)}.</>}
             </p>
             <div class="actions">
@@ -53,7 +52,7 @@ const description = primary
               <a class="btn" data-compare-link href="/compare/" hidden>Compare →</a>
               {price.url && <a class="btn btn-primary" href={price.url} rel="nofollow noopener" target="_blank">Open this listing</a>}
               {Object.entries(gpu.retailer_links).map(([k, url]) => (
-                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerNames[k] ?? k}</a>
+                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerName(k)}</a>
               ))}
             </div>
           </>
@@ -64,7 +63,7 @@ const description = primary
               <button type="button" class="btn" data-compare-add={gpu.gpu_id} disabled>Add to compare</button>
               <a class="btn" data-compare-link href="/compare/" hidden>Compare →</a>
               {Object.entries(gpu.retailer_links).map(([k, url]) => (
-                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerNames[k] ?? k}</a>
+                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerName(k)}</a>
               ))}
             </div>
           </>
@@ -204,15 +203,14 @@ const description = primary
   }
   .grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
     gap: 24px;
     margin: 24px 0 36px;
   }
   .panel {
-    background: var(--raised);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-    padding: 20px 22px;
+    min-width: 0;
+    border-top: 1px solid var(--rule);
+    padding: 24px 0;
   }
   .panel h2 {
     font-size: var(--t0);

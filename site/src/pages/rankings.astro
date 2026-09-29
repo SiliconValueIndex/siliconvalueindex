@@ -30,7 +30,7 @@ const description = `${stats?.count ?? 0} graphics cards ranked by cost per fram
     <h1>Every card, ranked by what a frame costs.</h1>
     <p class="lede">
       Current price divided by average FPS. Lower is better. Cards that cannot reach a playable frame rate at the chosen setting sit at the bottom, unscored.{" "}
-      {stats && <>Best value right now: the <a href={`/gpu/${stats.best.gpu_id}/`}>{gpuById[stats.best.gpu_id].display_name}</a> at {money(stats.best.cost_per_fps, 2)} per frame.</>}
+      {stats && <>Best value in this price snapshot: the <a href={`/gpu/${stats.best.gpu_id}/`}>{gpuById[stats.best.gpu_id].display_name}</a> at {money(stats.best.cost_per_fps, 2)} per frame.</>}
     </p>
   </section>
 
@@ -350,26 +350,17 @@ const description = `${stats?.count ?? 0} graphics cards ranked by cost per fram
   }
   .compare-selection[hidden] { display: none; }
 
-  @media (max-width: 720px) {
-    .board .head,
-    .board .row {
-      grid-template-columns: 1.8rem minmax(0, 1.5fr) minmax(0, 1fr) 4.6rem 2rem;
-      gap: 0 6px;
-    }
-    .board .head .price,
-    .board .head .fps,
-    .board .row .price,
-    .board .row .fps {
-      display: none;
-    }
-  }
-  @media (max-width: 480px) {
-    .board .head, .board .row {
-      grid-template-columns: 1.4rem minmax(0, 1fr) 4.6rem 2rem;
-      gap: 0 8px;
-    }
-    .board .head .bar, .board .row .bar { display: none; }
-    .board .row { min-height: 44px; }
-    .board .row .name { white-space: normal; }
+  @media (max-width: 760px) {
+    .board .head { display: none; }
+    .board .row { grid-template-columns: 1.5rem minmax(0, 1fr) minmax(0, 1fr) 44px; gap: 8px; padding-block: 16px; }
+    .board .row .rank { grid-column: 1; grid-row: 1; }
+    .board .row .name { grid-column: 2 / 4; grid-row: 1; white-space: normal; }
+    .board .row .bar { display: none; }
+    .board .row .cpf { grid-column: 2 / 4; grid-row: 2; text-align: left; }
+    .board .row .price { grid-column: 2; grid-row: 3; text-align: left; }
+    .board .row .fps { grid-column: 3; grid-row: 3; text-align: left; }
+    .board .row .price::before { content: 'Price '; font-family: var(--font-ui); }
+    .board .row .fps::after { content: ' FPS'; font-family: var(--font-ui); }
+    .board .row .compare-toggle { grid-column: 4; grid-row: 1 / 4; width: 44px; height: 44px; }
   }
 </style>
