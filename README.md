@@ -58,6 +58,20 @@ npm run dev           # http://localhost:4321
 Use `svi prices-check --retailer bestbuy` to verify the key without writing data.
 A missing key skips Best Buy without failing the run.
 
+### Manual prices
+
+`data/reference/price_overrides.csv` lists cards to price by hand. Rows with a blank price are ignored, so fill it in as you go:
+
+| column | what to put |
+|---|---|
+| `price` | lowest new, in-stock price in USD, before tax and shipping |
+| `url` | the listing |
+| `retailer` | `bestbuy`, `newegg` or `amazon` (blank shows as "listed retailer") |
+| `checked_on` | the date you saw the price, `YYYY-MM-DD`. The site's "checked N days ago" uses it; blank means the build time, which re-dates the price on every run |
+| `valid_until` | optional expiry date, for sale prices |
+
+Then run `svi build --offline` to see the result locally, or let the weekly refresh pick it up. Manual prices skip the automatic sanity checks, so double-check the model and VRAM.
+
 ### Trying the price pipeline without an API key
 
 The `mock` retailer reads made-up listings from `data/raw/prices/mock_bestbuy.json` and runs them through the real Best Buy normalizer, validation, history, scoring and export. `--gpu` limits which cards are priced (repeatable); scoring still covers every card.

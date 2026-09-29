@@ -42,6 +42,8 @@ def load_history(path=PRICES_HISTORY_PATH) -> pd.DataFrame:
 def append_history(new_rows: pd.DataFrame, path=PRICES_HISTORY_PATH) -> pd.DataFrame:
     history = load_history(path)
     combined = pd.concat([history, new_rows[PRICE_COLUMNS]], ignore_index=True)
+    # An empty history has an object column; keep fetched_at datetime for sorting.
+    combined["fetched_at"] = pd.to_datetime(combined["fetched_at"], utc=True)
     combined = combined.drop_duplicates(subset=["gpu_id", "retailer", "sku", "fetched_at", "price"])
     combined = combined.sort_values(["fetched_at", "gpu_id"]).reset_index(drop=True)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -83,17 +85,23 @@ def validate_observations(
 def load_overrides(path=PRICE_OVERRIDES_PATH, now: datetime | None = None) -> pd.DataFrame:
     """Manual prices for cards the APIs miss.
 
-    Columns: gpu_id, price, url, retailer, note, valid_until.
+    Columns: gpu_id, price, url, retailer, note, checked_on, valid_until.
+    Rows without a price are skipped, so the sheet can be filled in gradually.
+    checked_on is the date the price was seen; it becomes fetched_at so an old
+    entry is not re-dated on every run (and re-runs do not duplicate history).
     """
     if not path.exists():
         return pd.DataFrame(columns=PRICE_COLUMNS)
     now = now or datetime.now(UTC)
     ov = pd.read_csv(path, dtype=str).fillna("")
-    ov = ov[ov["gpu_id"] != ""]
+    if "checked_on" not in ov:
+        ov["checked_on"] = ""
+    ov = ov[(ov["gpu_id"] != "") & (ov["price"] != "")]
     if ov.empty:
         return pd.DataFrame(columns=PRICE_COLUMNS)
     valid_until = pd.to_datetime(ov["valid_until"].replace("", None), utc=True, errors="coerce")
     ov = ov[valid_until.isna() | (valid_until >= now)]
+    checked_on = pd.to_datetime(ov["checked_on"].replace("", None), utc=True, errors="coerce")
     rows = pd.DataFrame(
         {
             "gpu_id": ov["gpu_id"],
@@ -107,7 +115,7 @@ def load_overrides(path=PRICE_OVERRIDES_PATH, now: datetime | None = None) -> pd
             "in_stock": True,
             "is_valid": True,
             "invalid_reason": "",
-            "fetched_at": now,
+            "fetched_at": checked_on.fillna(now),
             "run_id": "override",
         }
     )
