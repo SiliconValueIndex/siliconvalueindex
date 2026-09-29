@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { gpus, manifest, priceHistory, money, fmtDate, viewLabel, splitView, VIEW_LABELS } from '../../lib/data';
+import { gpus, manifest, priceHistory, money, fmtDate, ageDays, STALE_DAYS, viewLabel, splitView, VIEW_LABELS } from '../../lib/data';
 
 export function getStaticPaths() {
   return gpus.map((g) => ({ params: { gpu_id: g.gpu_id }, props: { gpu: g } }));
@@ -8,6 +8,7 @@ export function getStaticPaths() {
 const { gpu } = Astro.props;
 const history = priceHistory[gpu.gpu_id] ?? [];
 const price = gpu.current_price;
+const stale = price ? ageDays(price.fetched_at) > STALE_DAYS : false;
 const rankEntries = Object.entries(gpu.rankings);
 const primary = gpu.rankings[manifest.primary_view];
 const total = manifest.ranked_counts[manifest.primary_view] ?? 0;
@@ -17,7 +18,7 @@ const transformFor = (resolution: string, mode: string) =>
 const benchRows = Object.entries(gpu.benchmarks).flatMap(([res, modes]) =>
   Object.entries(modes).map(([mode, cell]) => ({ res, mode, cell })),
 );
-const retailerNames: Record<string, string> = { bestbuy: 'Best Buy', newegg: 'Newegg', amazon: 'Amazon', manual: 'listed retailer' };
+const retailerNames: Record<string, string> = { bestbuy: 'Best Buy', newegg: 'Newegg', amazon: 'Amazon', manual: 'listed retailer', mock: 'Mock (test data)' };
 const description = primary
   ? `${gpu.display_name}: ${money(primary.cost_per_fps, 2)} per frame at ${viewLabel(manifest.primary_view)}, rank ${primary.rank} of ${total}.`
   : `${gpu.display_name} specs, benchmarks and price history.`;
@@ -45,7 +46,8 @@ const description = primary
           <>
             <p class="big num">{money(price.price, 2)}</p>
             <p class="muted small">
-              {retailerNames[price.retailer] ?? price.retailer}, {price.condition}, checked {fmtDate(price.fetched_at)}.
+              {retailerNames[price.retailer] ?? price.retailer}, {price.condition}, checked <time datetime={price.fetched_at} data-relative>{fmtDate(price.fetched_at)}</time>.
+              {stale && <> This price is over {STALE_DAYS} days old; check the retailer.</>}
               {gpu.price_stats.n_points > 1 && <> 90-day low {money(gpu.price_stats.min_90d ?? 0, 0)}, median {money(gpu.price_stats.median_90d ?? 0, 0)}.</>}
             </p>
             <div class="actions">

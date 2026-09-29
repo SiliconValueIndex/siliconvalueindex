@@ -15,8 +15,8 @@ def _parse_now(value: str | None) -> datetime | None:
     return dt if dt.tzinfo else dt.replace(tzinfo=UTC)
 
 
-def prices_check(retailer: str, limit: int) -> int:
-    from svi.build import load_registry
+def prices_check(retailer: str, limit: int, gpu_ids: list[str] | None = None) -> int:
+    from svi.build import load_registry, select_gpus
     from svi.config import get_config
     from svi.ids import Resolver
     from svi.prices import load_history, validate_observations
@@ -30,7 +30,7 @@ def prices_check(retailer: str, limit: int) -> int:
 
     try:
         registry = load_registry()
-        registry = registry[registry["is_active"].astype(str).str.lower() == "true"].head(limit)
+        registry = select_gpus(registry, gpu_ids).head(limit)
         cfg = get_config()
         now = datetime.now(UTC)
         obs, unresolved = adapter(
@@ -71,6 +71,7 @@ def main(argv: list[str] | None = None) -> int:
     b.add_argument("--skip-prices", action="store_true")
     b.add_argument("--retailers", default=None, help="comma-separated retailer names")
     b.add_argument("--run-id", default=None)
+    b.add_argument("--gpu", action="append", help="limit price fetches to this GPU ID; repeatable")
     b.add_argument("--now", default=None, help="ISO timestamp to evaluate 'now' as (tests)")
 
     sub.add_parser("schemas", help="write schemas/*.schema.json")
@@ -78,13 +79,14 @@ def main(argv: list[str] | None = None) -> int:
     check = sub.add_parser("prices-check", help="verify retailer prices without writing data")
     check.add_argument("--retailer", required=True)
     check.add_argument("--limit", type=int, default=3)
+    check.add_argument("--gpu", action="append", help="active GPU ID to preview; repeatable")
 
     args = parser.parse_args(argv)
 
     if args.cmd == "prices-check":
         if args.limit < 0:
             parser.error("--limit must be non-negative")
-        return prices_check(args.retailer, args.limit)
+        return prices_check(args.retailer, args.limit, args.gpu)
 
     if args.cmd == "seed":
         from svi.seed import run_seed
@@ -106,6 +108,7 @@ def main(argv: list[str] | None = None) -> int:
                 if args.retailers is not None
                 else None
             ),
+            gpu_ids=args.gpu,
         )
         print(json.dumps(result, indent=1, default=str))
         return 0

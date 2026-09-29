@@ -41,6 +41,17 @@ def load_registry() -> pd.DataFrame:
     return reg
 
 
+def select_gpus(registry: pd.DataFrame, gpu_ids: list[str] | None) -> pd.DataFrame:
+    """Active registry rows, limited to gpu_ids when given. Unknown IDs are an error."""
+    active = registry[registry["is_active"].astype(str).str.lower() == "true"]
+    if not gpu_ids:
+        return active
+    missing = set(gpu_ids) - set(active["gpu_id"])
+    if missing:
+        raise ValueError("Unknown or inactive GPU IDs: " + ", ".join(sorted(missing)))
+    return active[active["gpu_id"].isin(gpu_ids)]
+
+
 def load_benchmarks() -> pd.DataFrame:
     if not BENCHMARKS_PATH.exists():
         return pd.DataFrame(columns=BENCHMARK_COLUMNS)
@@ -84,7 +95,8 @@ def collect_retailer_prices(
     append=append_history,
 ) -> PriceCollection:
     result = PriceCollection(history)
-    for name in retailers:
+    # Duplicates would fetch and append the same retailer twice.
+    for name in dict.fromkeys(retailers):
         if name == "manual":
             continue
         if name not in adapters:
@@ -116,8 +128,10 @@ def run_build(
     skip_benchmarks: bool = False,
     skip_prices: bool = False,
     retailers: list[str] | None = None,
+    gpu_ids: list[str] | None = None,
     cfg: Config | None = None,
 ) -> dict:
+    """gpu_ids limits which cards the retailers are asked about; scoring still covers all."""
     cfg = cfg or get_config()
     now = now or datetime.now(UTC)
     run_id = run_id or now.strftime("%Y%m%dT%H%M%SZ")
@@ -125,6 +139,7 @@ def run_build(
 
     registry = load_registry()
     resolver = Resolver.from_files()
+    price_registry = select_gpus(registry, gpu_ids)  # fail fast on a typo
     active_ids = registry.loc[registry["is_active"].str.lower() == "true", "gpu_id"].tolist()
 
     unresolved: list[dict] = []
@@ -162,7 +177,7 @@ def run_build(
         prices = collect_retailer_prices(
             cfg.pricing.retailers if retailers is None else retailers,
             resolver,
-            registry,
+            price_registry,
             cfg,
             history,
             run_id=run_id,

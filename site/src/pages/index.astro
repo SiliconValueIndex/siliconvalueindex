@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { manifest, rankings, gpuById, money, fmtDate, splitView, VIEW_LABELS } from '../lib/data';
+import { manifest, rankings, gpuById, money, fmtDate, ageDays, STALE_DAYS, splitView, VIEW_LABELS } from '../lib/data';
 
 const view = manifest.primary_view;
 const { resolution, mode } = splitView(view);
@@ -11,8 +11,8 @@ const snapshot = [playable[0], playable[1], playable.at(-1)].filter((r, i, all) 
 const labels = ['Best value', 'Close second', 'Highest cost per FPS'];
 const priceDates = [...new Set(rows.map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at?.slice(0, 10)).filter((d): d is string => !!d))].sort();
 const priceDate = priceDates.length ? `${fmtDate(priceDates[0])}${priceDates.length > 1 ? ` – ${fmtDate(priceDates.at(-1)!)}` : ''}` : 'Date unavailable';
-const priceAge = priceDates.length ? Math.floor((Date.now() - new Date(priceDates[0]).getTime()) / 86400000) : null;
-const priceCaution = priceAge === null || priceAge > 60;
+const priceCaution = !priceDates.length || ageDays(priceDates[0]) > STALE_DAYS;
+const latestCheck = rows.map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at).filter((d): d is string => !!d).sort().at(-1);
 const payload = {
   views: manifest.views, primary: view, zones: manifest.zones, priceDate,
   rankings: Object.fromEntries(manifest.views.map((v) => [v, (rankings[v] ?? []).map((r) => ({
@@ -38,7 +38,7 @@ const available = new Set(manifest.views);
   </section>
 
   <div class="price-context">
-    <span>Prices recorded <strong>{priceDate}</strong></span>
+    <span>Prices recorded <strong>{priceDate}</strong>{latestCheck && <> · last updated <time datetime={latestCheck} data-relative>{fmtDate(latestCheck)}</time></>}</span>
     <span>{priceCaution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.'} <a href="/data/">Data &amp; sources</a></span>
   </div>
 

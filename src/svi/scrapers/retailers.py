@@ -37,8 +37,15 @@ def _newegg(resolver, registry, cfg, *, run_id, now):
     return scrape_newegg_prices(resolver, registry, cfg, run_id=run_id, now=now)
 
 
-ADAPTERS: dict[str, RetailerAdapter] = {"bestbuy": _bestbuy, "newegg": _newegg}
-DISPLAY_NAMES = {"bestbuy": "Best Buy", "newegg": "Newegg"}
+def _mock(resolver, registry, cfg, *, run_id, now):
+    from svi.scrapers.mock import scrape_prices
+
+    return scrape_prices(resolver, registry, cfg, run_id=run_id, now=now)
+
+
+# "mock" is offline test data: run it with --retailers mock, never list it in pricing.retailers.
+ADAPTERS: dict[str, RetailerAdapter] = {"bestbuy": _bestbuy, "newegg": _newegg, "mock": _mock}
+DISPLAY_NAMES = {"bestbuy": "Best Buy", "newegg": "Newegg", "mock": "Mock (test data)"}
 SECRET_ENV_VARS = ("BESTBUY_API_KEY", "RAKUTEN_CLIENT_SECRET", "RAKUTEN_CLIENT_ID")
 
 

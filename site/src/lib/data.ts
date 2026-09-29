@@ -133,6 +133,10 @@ export function viewLabel(view: string): string {
 export const money = (n: number, digits = 0) =>
   n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: digits, minimumFractionDigits: digits });
 
+// Matches pricing.stale_days in data/reference/config.yaml.
+export const STALE_DAYS = 60;
+export const ageDays = (iso: string) => Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+
 export const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 

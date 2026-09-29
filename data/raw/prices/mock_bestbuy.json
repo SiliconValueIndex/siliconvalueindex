@@ -1,0 +1,95 @@
+{
+  "_comment": "Made-up listings in the Best Buy Products API shape. Used only by the 'mock' retailer to exercise the pipeline without an API key. Never add 'mock' to pricing.retailers.",
+  "products": [
+    {
+      "sku": 9000001,
+      "name": "MSI - NVIDIA GeForce RTX 5070 Ventus 2X OC 12GB GDDR7 PCI Express 5.0 Graphics Card - Black",
+      "regularPrice": 609.99,
+      "salePrice": 579.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-rtx-5070-ventus/9000001.p",
+      "condition": "new",
+      "manufacturer": "MSI"
+    },
+    {
+      "sku": 9000002,
+      "name": "ASUS - NVIDIA GeForce RTX 5070 Prime OC 12GB GDDR7 Graphics Card",
+      "regularPrice": 629.99,
+      "salePrice": 629.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-rtx-5070-prime/9000002.p",
+      "condition": "new",
+      "manufacturer": "ASUS"
+    },
+    {
+      "sku": 9000003,
+      "name": "Gigabyte - NVIDIA GeForce RTX 5070 Windforce 12GB GDDR7 Graphics Card",
+      "regularPrice": 549.99,
+      "salePrice": 499.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-rtx-5070-windforce/9000003.p",
+      "condition": "refurbished",
+      "manufacturer": "Gigabyte"
+    },
+    {
+      "sku": 9000004,
+      "name": "PNY - NVIDIA GeForce RTX 5070 OC 12GB GDDR7 Graphics Card",
+      "regularPrice": 539.99,
+      "salePrice": 539.99,
+      "onlineAvailability": false,
+      "url": "https://www.bestbuy.com/site/mock-rtx-5070-pny/9000004.p",
+      "condition": "new",
+      "manufacturer": "PNY"
+    },
+    {
+      "sku": 9000005,
+      "name": "MSI - NVIDIA GeForce RTX 5070 12GB Graphics Card and Game Bundle",
+      "regularPrice": 689.99,
+      "salePrice": 689.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-rtx-5070-bundle/9000005.p",
+      "condition": "new",
+      "manufacturer": "MSI"
+    },
+    {
+      "sku": 9000011,
+      "name": "Zotac - NVIDIA GeForce RTX 5060 Ti 16GB GDDR7 Twin Edge Graphics Card",
+      "regularPrice": 479.99,
+      "salePrice": 459.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-rtx-5060-ti-16gb/9000011.p",
+      "condition": "new",
+      "manufacturer": "Zotac"
+    },
+    {
+      "sku": 9000021,
+      "name": "Sapphire - AMD Radeon RX 9070 XT Pulse 16GB GDDR6 Graphics Card",
+      "regularPrice": 699.99,
+      "salePrice": 669.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-rx-9070-xt/9000021.p",
+      "condition": "new",
+      "manufacturer": "Sapphire"
+    },
+    {
+      "sku": 9000031,
+      "name": "XFX - AMD Radeon RX 7800 XT Speedster QICK 319 16GB GDDR6 Graphics Card",
+      "regularPrice": 499.99,
+      "salePrice": 479.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-rx-7800-xt/9000031.p",
+      "condition": "new",
+      "manufacturer": "XFX"
+    },
+    {
+      "sku": 9000041,
+      "name": "Intel - Arc B580 Limited Edition 12GB GDDR6 Graphics Card",
+      "regularPrice": 269.99,
+      "salePrice": 259.99,
+      "onlineAvailability": true,
+      "url": "https://www.bestbuy.com/site/mock-arc-b580/9000041.p",
+      "condition": "new",
+      "manufacturer": "Intel"
+    }
+  ]
+}

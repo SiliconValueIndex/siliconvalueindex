@@ -58,6 +58,18 @@ npm run dev           # http://localhost:4321
 Use `svi prices-check --retailer bestbuy` to verify the key without writing data.
 A missing key skips Best Buy without failing the run.
 
+### Trying the price pipeline without an API key
+
+The `mock` retailer reads made-up listings from `data/raw/prices/mock_bestbuy.json` and runs them through the real Best Buy normalizer, validation, history, scoring and export. `--gpu` limits which cards are priced (repeatable); scoring still covers every card.
+
+```bash
+svi build --skip-benchmarks --retailers mock --gpu nvidia-rtx-5070 --run-id mock-local
+cd site && npm run dev    # the RTX 5070 page shows the mock price, "checked N minutes ago"
+git restore data/processed data/site site/public/data    # discard the mock run
+```
+
+Mock is never in `pricing.retailers`. Tests fail if mock prices are in the committed history or site data, and the refresh workflow runs those tests before it commits.
+
 Newegg prices come from Rakuten Advertising's Product Search API and need `RAKUTEN_CLIENT_ID`, `RAKUTEN_CLIENT_SECRET` and `RAKUTEN_SID`. Until the Newegg partnership on Rakuten is approved, Newegg is skipped with a note. `svi prices-check --retailer newegg` shows which state you are in.
 
 ## Automated refresh
