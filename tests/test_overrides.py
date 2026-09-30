@@ -119,3 +119,18 @@ def prices_rows(api_price):
 
 def test_committed_overrides_sheet_is_valid():
     load_overrides(PRICE_OVERRIDES_PATH, now=datetime.now(UTC))  # raises on a malformed row
+
+
+def test_rebuilding_with_an_unchanged_sheet_leaves_history_untouched(tmp_path):
+    path = write(tmp_path, "nvidia-rtx-5070,849.99,https://x.com/p,bestbuy,,2026-09-29,\n")
+    history = tmp_path / "history.csv"
+    prices.append_history(
+        load_overrides(path, now=NOW, run_id="first"), path=history, replace_manual=True
+    )
+    before = history.read_text(encoding="utf-8")
+    later = datetime(2026, 10, 6, tzinfo=UTC)
+    prices.append_history(
+        load_overrides(path, now=later, run_id="second"), path=history, replace_manual=True
+    )
+    assert history.read_text(encoding="utf-8") == before
+    assert "manual-first" in before

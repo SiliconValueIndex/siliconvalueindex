@@ -51,18 +51,23 @@ def append_history(
 ) -> pd.DataFrame:
     """Add observations to the append-only history and rewrite the CSV.
 
-    replace_manual: drop earlier manual rows for the same (gpu_id, fetched_at)
-    first. Without it, fixing a typo in the sheet on the same day would leave
-    both prices in history and the lower, wrong one would win."""
+    replace_manual: an earlier manual row for the same (gpu_id, fetched_at) is
+    dropped when the sheet now says something different. Without it, fixing a
+    typo on the same day would leave both prices in history and the lower,
+    wrong one would win. Unchanged rows are kept as they are, so re-running a
+    build does not rewrite history."""
     history = load_history(path)
     if replace_manual and not history.empty:
-        key = ["gpu_id", "fetched_at"]
-        new_keys = pd.MultiIndex.from_frame(
-            new_rows[key].astype({"fetched_at": "datetime64[ns, UTC]"})
-        )
-        same_key = pd.MultiIndex.from_frame(history[key]).isin(new_keys)
+
+        def ids(df: pd.DataFrame, cols: list[str]) -> pd.MultiIndex:
+            df = df[cols].astype({"fetched_at": "datetime64[ns, UTC]"})
+            return pd.MultiIndex.from_frame(df)
+
+        key, entry = ["gpu_id", "fetched_at"], ["gpu_id", "fetched_at", "retailer", "price", "url"]
         is_manual = history["run_id"].astype(str).str.startswith(MANUAL_RUN_PREFIX).to_numpy()
-        history = history[~(is_manual & same_key)]
+        same_key = ids(history, key).isin(ids(new_rows, key))
+        unchanged = ids(history, entry).isin(ids(new_rows, entry))
+        history = history[~(is_manual & same_key & ~unchanged)]
     combined = pd.concat([history, new_rows[PRICE_COLUMNS]], ignore_index=True)
     # An empty history has an object column; keep fetched_at datetime for sorting.
     combined["fetched_at"] = pd.to_datetime(combined["fetched_at"], utc=True)
