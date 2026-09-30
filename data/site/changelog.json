@@ -1,5 +1,17 @@
 [
  {
+  "run_id": "gh-36753274368",
+  "generated_at": "2026-09-30T17:42:31Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 0,
+  "notes": [
+   "Tom's Hardware: 288 cells parsed, suite 2026-09-16 (8% of cards moved; same suite as 2026-09-16)"
+  ]
+ },
+ {
   "run_id": "floor-2026-09-16",
   "generated_at": "2026-09-16T17:20:47Z",
   "added_gpus": [],

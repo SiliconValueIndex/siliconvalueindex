@@ -1,4 +1,4 @@
-# Refresh report `floor-2026-09-16`
+# Refresh report `gh-36753274368`
 **Needs review: YES**
 - 2 benchmark anomaly(ies)
 
@@ -39,3 +39,6 @@ _none_
 - `1440p_rt`: 43
 - `4k_raster`: 43
 - `4k_rt`: 43
+
+## Notes
+- Tom's Hardware: 288 cells parsed, suite 2026-09-16 (8% of cards moved; same suite as 2026-09-16)

@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-09-16T17:20:47Z",
- "run_id": "floor-2026-09-16",
+ "generated_at": "2026-09-30T17:42:31Z",
+ "run_id": "gh-36753274368",
  "primary_view": "1440p_raster",
  "views": [
   "1080p_raster",
@@ -482,7 +482,7 @@
    "name": "Tom's Hardware GPU Hierarchy",
    "url": "https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html",
    "kind": "benchmarks",
-   "fetched_at": null
+   "fetched_at": "2026-09-30T17:42:31Z"
   },
   {
    "name": "Best Buy Products API",
