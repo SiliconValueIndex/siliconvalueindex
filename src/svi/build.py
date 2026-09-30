@@ -8,7 +8,7 @@ from datetime import UTC, datetime
 
 import pandas as pd
 
-from svi.config import PROCESSED_DIR, SITE_DATA_DIR, Config, get_config
+from svi.config import PROCESSED_DIR, SITE_DATA_DIR, Config, InputError, get_config
 from svi.export.review_report import ReviewInputs, build_report, write_report
 from svi.export.schemas import write_schema_files
 from svi.export.site_json import (
@@ -48,7 +48,7 @@ def select_gpus(registry: pd.DataFrame, gpu_ids: list[str] | None) -> pd.DataFra
         return active
     missing = set(gpu_ids) - set(active["gpu_id"])
     if missing:
-        raise ValueError("Unknown or inactive GPU IDs: " + ", ".join(sorted(missing)))
+        raise InputError("Unknown or inactive GPU IDs: " + ", ".join(sorted(missing)))
     return active[active["gpu_id"].isin(gpu_ids)]
 
 
@@ -189,10 +189,9 @@ def run_build(
         fetch_failures += prices.fetch_failures
         source_fetched.update(prices.source_fetched)
 
-    overrides = load_overrides(now=now)
+    overrides = load_overrides(now=now, run_id=run_id)
     if not overrides.empty:
-        overrides["run_id"] = run_id
-        history = append_history(overrides)
+        history = append_history(overrides, replace_manual=True)
         source_fetched["manual"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
         notes.append(f"Manual overrides applied: {len(overrides)}")
 

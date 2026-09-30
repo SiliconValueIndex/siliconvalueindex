@@ -70,7 +70,15 @@ A missing key skips Best Buy without failing the run.
 | `checked_on` | the date you saw the price, `YYYY-MM-DD`. The site's "checked N days ago" uses it; blank means the build time, which re-dates the price on every run |
 | `valid_until` | optional expiry date, for sale prices |
 
-Then run `svi build --offline` to see the result locally, or let the weekly refresh pick it up. Manual prices skip the automatic sanity checks, so double-check the model and VRAM.
+Then run `svi build --offline` to see the result locally, or let the weekly refresh pick it up.
+
+The build stops with a list of lines to fix if a row is malformed:
+- a price with `$` or commas
+- a date that isn't `YYYY-MM-DD` or is in the future
+- a URL that doesn't start with `https://`
+- a retailer written as a name (`Best Buy`) instead of an id (`bestbuy`)
+
+The tests check the committed sheet the same way. Correcting a price with the same `checked_on` date replaces the earlier entry. Manual prices skip the automatic price-range checks, so double-check the model and VRAM.
 
 ### Trying the price pipeline without an API key
 

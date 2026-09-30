@@ -10,16 +10,22 @@ const UNITS: [Intl.RelativeTimeFormatUnit, number][] = [
 ];
 const rtf = new Intl.RelativeTimeFormat('en-US', { numeric: 'auto' });
 
+// Returns the input unchanged if it is not a valid date.
 export function relTime(iso: string, now = Date.now()): string {
-  const seconds = (new Date(iso).getTime() - now) / 1000;
+  const time = new Date(iso).getTime();
+  if (Number.isNaN(time)) return iso;
+  const seconds = (time - now) / 1000;
   for (const [unit, size] of UNITS) {
     if (Math.abs(seconds) >= size) return rtf.format(Math.round(seconds / size), unit);
   }
   return 'just now';
 }
 
+// Rewrites every <time data-relative datetime="..."> and keeps the absolute
+// date as a hover tooltip. Elements without a valid datetime are left alone.
 export function applyRelativeTimes(root: ParentNode = document) {
   root.querySelectorAll<HTMLTimeElement>('time[data-relative]').forEach((el) => {
+    if (Number.isNaN(new Date(el.dateTime).getTime())) return;
     if (!el.title) el.title = el.textContent ?? '';
     el.textContent = relTime(el.dateTime);
   });

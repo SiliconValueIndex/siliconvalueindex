@@ -5,7 +5,7 @@ import pandas as pd
 import pytest
 
 from svi import build, cli, prices
-from svi.config import SITE_DATA_DIR, get_config
+from svi.config import SITE_DATA_DIR, InputError, get_config
 from svi.ids import Resolver
 from svi.scrapers import mock
 
@@ -97,3 +97,18 @@ def test_committed_site_data_has_no_mock_prices():
     gpus = json.loads((SITE_DATA_DIR / "gpus.json").read_text(encoding="utf-8"))
     leaked = [g["gpu_id"] for g in gpus if (g.get("current_price") or {}).get("retailer") == "mock"]
     assert not leaked, "run `git restore data/` after a mock build"
+
+
+def test_build_cli_rejects_gpu_without_price_fetch(capsys):
+    with pytest.raises(SystemExit):
+        cli.main(["build", "--offline", "--gpu", "nvidia-rtx-5070"])
+    assert "no effect with --offline" in capsys.readouterr().err
+
+
+def test_build_cli_reports_input_errors_without_traceback(monkeypatch, capsys):
+    def bad_input(**kwargs):
+        raise InputError("price_overrides.csv has rows to fix")
+
+    monkeypatch.setattr(build, "run_build", bad_input)
+    assert cli.main(["build", "--skip-prices"]) == 1
+    assert "rows to fix" in capsys.readouterr().err

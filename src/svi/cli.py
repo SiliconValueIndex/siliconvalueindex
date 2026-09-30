@@ -96,20 +96,30 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "build":
         from svi.build import run_build
+        from svi.config import InputError
 
-        result = run_build(
-            offline=args.offline,
-            run_id=args.run_id,
-            now=_parse_now(args.now),
-            skip_benchmarks=args.skip_benchmarks,
-            skip_prices=args.skip_prices,
-            retailers=(
-                [name.strip() for name in args.retailers.split(",")]
-                if args.retailers is not None
-                else None
-            ),
-            gpu_ids=args.gpu,
-        )
+        if args.gpu and (args.offline or args.skip_prices):
+            parser.error(
+                "--gpu limits price fetches; it has no effect with --offline or --skip-prices"
+            )
+
+        try:
+            result = run_build(
+                offline=args.offline,
+                run_id=args.run_id,
+                now=_parse_now(args.now),
+                skip_benchmarks=args.skip_benchmarks,
+                skip_prices=args.skip_prices,
+                retailers=(
+                    [name.strip() for name in args.retailers.split(",")]
+                    if args.retailers is not None
+                    else None
+                ),
+                gpu_ids=args.gpu,
+            )
+        except InputError as exc:
+            print(exc, file=sys.stderr)
+            return 1
         print(json.dumps(result, indent=1, default=str))
         return 0
 
