@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-09-16T17:20:47Z",
- "run_id": "floor-2026-09-16",
+ "generated_at": "2026-09-30T17:15:36Z",
+ "run_id": "20260930T171536Z",
  "primary_view": "1440p_raster",
  "views": [
   "1080p_raster",
@@ -22,13 +22,13 @@
  "zones": {
   "1080p_raster": {
    "mode": "percentile",
-   "great_max": 5.07,
+   "great_max": 5.23,
    "fair_max": 6.82,
    "min_fps": 60.0
   },
   "1080p_rt": {
    "mode": "percentile",
-   "great_max": 11.0,
+   "great_max": 11.34,
    "fair_max": 15.11,
    "min_fps": 45.0
   },
@@ -40,13 +40,13 @@
   },
   "1440p_rt": {
    "mode": "percentile",
-   "great_max": 16.43,
+   "great_max": 16.5,
    "fair_max": 21.54,
    "min_fps": 40.0
   },
   "4k_raster": {
    "mode": "percentile",
-   "great_max": 15.03,
+   "great_max": 15.31,
    "fair_max": 17.53,
    "min_fps": 40.0
   },
@@ -494,7 +494,7 @@
    "name": "Manual price overrides",
    "url": "https://github.com/SiliconValueIndex/siliconvalueindex/blob/main/data/reference/price_overrides.csv",
    "kind": "prices",
-   "fetched_at": null
+   "fetched_at": "2026-09-30T17:15:36Z"
   }
  ],
  "anomalies": [

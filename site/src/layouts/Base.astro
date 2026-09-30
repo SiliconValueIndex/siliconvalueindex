@@ -73,5 +73,9 @@ const generated = manifest.generated_at.slice(0, 10);
         <span>Data run {generated} · <a href="https://github.com/SiliconValueIndex/siliconvalueindex">Source on GitHub</a></span>
       </div>
     </footer>
+    <script>
+      import { applyRelativeTimes } from '../lib/relTime';
+      applyRelativeTimes();
+    </script>
   </body>
 </html>

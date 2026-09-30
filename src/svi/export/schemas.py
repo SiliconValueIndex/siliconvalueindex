@@ -161,7 +161,8 @@ GPU = {
             "properties": {
                 "price": {"type": "number"},
                 "retailer": {"type": "string"},
-                "url": {"type": "string"},
+                # Empty, or an https link: anything else could run script in <a href>.
+                "url": {"type": "string", "pattern": "^(https://.*)?$"},
                 "condition": {"type": "string"},
                 "fetched_at": {"type": "string"},
             },

@@ -11,6 +11,7 @@ from svi.scrapers.bestbuy import (
     scrape_prices,
     search_query,
 )
+from svi.scrapers.retailers import RetailerSkipped
 
 NOW = datetime(2026, 9, 16, tzinfo=UTC)
 
@@ -104,7 +105,7 @@ def test_scrape_prices_uses_injected_fetch_and_requires_key(monkeypatch):
             },
         ]
     )
-    with pytest.raises(BestBuyError):
+    with pytest.raises(RetailerSkipped):
         scrape_prices(resolver, registry, get_config(), run_id="t", now=NOW, fetch=lambda *a: [])
 
     calls: list[str] = []
@@ -126,3 +127,18 @@ def test_scrape_prices_uses_injected_fetch_and_requires_key(monkeypatch):
     assert calls == ["search=GeForce&search=RTX&search=4070"]  # inactive card not searched
     assert len(df) == 2 and set(df["gpu_id"]) == {"nvidia-rtx-4070"}
     assert list(df.columns)[:3] == ["gpu_id", "retailer", "sku"]
+
+
+def test_fetch_connection_error_never_contains_key(monkeypatch):
+    import requests
+
+    from svi.scrapers import bestbuy
+
+    def get(*args, **kwargs):
+        raise requests.ConnectionError("https://example.test/?apiKey=DUMMYKEY123")
+
+    monkeypatch.setattr(bestbuy.requests, "get", get)
+    monkeypatch.setattr(bestbuy.time, "sleep", lambda _: None)
+    with pytest.raises(BestBuyError) as caught:
+        bestbuy.fetch_products("query", "category", "DUMMYKEY123")
+    assert str(caught.value) == "ConnectionError"

@@ -55,8 +55,50 @@ npm run dev           # http://localhost:4321
 ```
 
 `svi build` without `--offline` also fetches Tom's Hardware and Best Buy (needs `BESTBUY_API_KEY` in the environment).
+Use `svi prices-check --retailer bestbuy` to verify the key without writing data.
+A missing key skips Best Buy without failing the run.
+
+### Manual prices
+
+`data/reference/price_overrides.csv` lists cards to price by hand. Rows with a blank price are ignored, so fill it in as you go:
+
+| column | what to put |
+|---|---|
+| `price` | lowest new, in-stock price in USD, before tax and shipping |
+| `url` | the listing |
+| `retailer` | `bestbuy`, `newegg` or `amazon` (blank shows as "listed retailer") |
+| `checked_on` | the date you saw the price, `YYYY-MM-DD`. The site's "checked N days ago" uses it; blank means the build time, which re-dates the price on every run |
+| `valid_until` | optional expiry date, for sale prices |
+
+Then run `svi build --offline` to see the result locally, or let the weekly refresh pick it up.
+
+The build stops with a list of lines to fix if a row is malformed:
+- a price with `$` or commas
+- a date that isn't `YYYY-MM-DD` or is in the future
+- a URL that doesn't start with `https://`
+- a retailer written as a name (`Best Buy`) instead of an id (`bestbuy`)
+
+The tests check the committed sheet the same way. Correcting a price with the same `checked_on` date replaces the earlier entry. Manual prices skip the automatic price-range checks, so double-check the model and VRAM.
+
+### Trying the price pipeline without an API key
+
+The `mock` retailer reads made-up listings from `data/raw/prices/mock_bestbuy.json` and runs them through the real Best Buy normalizer, validation, history, scoring and export. `--gpu` limits which cards are priced (repeatable); scoring still covers every card.
+
+```bash
+svi build --skip-benchmarks --retailers mock --gpu nvidia-rtx-5070 --run-id mock-local
+cd site && npm run dev    # the RTX 5070 page shows the mock price, "checked N minutes ago"
+git restore data/processed data/site site/public/data    # discard the mock run
+```
+
+Mock is never in `pricing.retailers`. Tests fail if mock prices are in the committed history or site data, and the refresh workflow runs those tests before it commits.
+
+Newegg prices come from Rakuten Advertising's Product Search API and need `RAKUTEN_CLIENT_ID`, `RAKUTEN_CLIENT_SECRET` and `RAKUTEN_SID`. Until the Newegg partnership on Rakuten is approved, Newegg is skipped with a note. `svi prices-check --retailer newegg` shows which state you are in.
 
 ## Automated refresh
+
+Adding the `BESTBUY_API_KEY` secret enables weekly Best Buy prices; a missing key records a skip without failing the run.
+Verify the key locally with `svi prices-check --retailer bestbuy`.
+The three `RAKUTEN_*` secrets do the same for Newegg once the partnership is approved; its listing links are Rakuten affiliate links.
 
 `.github/workflows/refresh-data.yml` runs the pipeline on a schedule. A clean run commits the new data to `main` and the site redeploys. If anything needs a human (a name that could not be matched, a card with no valid price, a price move over 25%, a benchmark suite change, a fetch failure) the run opens a pull request with the review report as its body. Fixing it is a one-line edit to `aliases.csv`, `price_overrides.csv` or the registry.
 
@@ -70,4 +112,4 @@ npm run dev           # http://localhost:4321
 ## Data sources
 
 - Benchmarks: [Tom's Hardware GPU Hierarchy](https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html)
-- Prices: Best Buy Products API, manual overrides; Newegg and Amazon as search links
+- Prices: Best Buy Products API, Newegg via Rakuten Advertising Product Search, manual overrides; Amazon as a search link

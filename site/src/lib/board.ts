@@ -1,6 +1,7 @@
 // Client-side behaviour for the rankings board: switch view, filter, sort.
 // The server renders the primary view; this re-renders rows from embedded JSON.
 import * as compareSelection from './compareSelection';
+import { relTime } from './relTime';
 
 interface Row {
   gpu_id: string;
@@ -22,7 +23,6 @@ interface BoardData {
 
 const LABEL: Record<string, string> = { '1080p': '1080p', '1440p': '1440p', '4k': '4K', raster: 'rasterization', rt: 'ray tracing' };
 const money = (n: number, d = 0) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: d, minimumFractionDigits: d });
-const fmtDate = (iso: string) => new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 
 export function renderBoard() {
   const dataEl = document.getElementById('svi-board');
@@ -130,8 +130,8 @@ export function renderBoard() {
 
     const note = document.getElementById('view-note');
     if (note) {
-      const date = data.gpus[all[0]?.gpu_id]?.price_date;
-      note.textContent = `${all.length} cards at ${LABEL[state.res]}, ${LABEL[state.mode]}.${date ? ` Prices checked ${fmtDate(date)}.` : ''}`;
+      const date = all.map((r) => data.gpus[r.gpu_id]?.price_date).filter((d): d is string => !!d).sort().at(-1);
+      note.textContent = `${all.length} cards at ${LABEL[state.res]}, ${LABEL[state.mode]}.${date ? ` Prices last updated ${relTime(date)}.` : ''}`;
     }
     const legend = document.getElementById('legend');
     if (legend) {

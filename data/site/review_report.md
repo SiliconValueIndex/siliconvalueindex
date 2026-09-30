@@ -1,5 +1,6 @@
-# Refresh report `floor-2026-09-16`
+# Refresh report `20260930T171536Z`
 **Needs review: YES**
+- 1 price move(s) >= 25%
 - 2 benchmark anomaly(ies)
 
 ## Fetch failures
@@ -18,7 +19,9 @@ These drop out of the rankings. Add a row to `data/reference/price_overrides.csv
 - `nvidia-rtx-5050`
 
 ## Price moves >= 25%
-_none_
+| gpu_id | from | to | pct |
+|---|---|---|---|
+| nvidia-rtx-5070 | 649.99 | 849.99 | 30.8 |
 
 ## Benchmark anomalies
 | type | gpu_id | resolution | mode | residual | detail |
@@ -29,7 +32,7 @@ _none_
 ## Changes this run
 - Added GPUs: none
 - Removed GPUs: none
-- Price changes >= 5%: 0
+- Price changes >= 5%: 2
 - Benchmark suite changed: False
 
 ## Ranked counts
@@ -39,3 +42,6 @@ _none_
 - `1440p_rt`: 43
 - `4k_raster`: 43
 - `4k_rt`: 43
+
+## Notes
+- Manual overrides applied: 2

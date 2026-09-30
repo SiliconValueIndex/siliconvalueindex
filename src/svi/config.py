@@ -18,6 +18,13 @@ SITE_DATA_DIR = DATA_DIR / "site"
 SCHEMA_DIR = REPO_ROOT / "schemas"
 CONFIG_PATH = REFERENCE_DIR / "config.yaml"
 
+
+class InputError(ValueError):
+    """A problem in a hand-edited input (a CLI flag or a reference CSV).
+
+    The CLI prints the message without a traceback: it says what to fix."""
+
+
 Resolution = Literal["1080p", "1440p", "4k"]
 Mode = Literal["raster", "rt"]
 NormalizationMethod = Literal["linear", "ratio_trimmed", "piecewise"]
@@ -85,6 +92,8 @@ class PricingConfig(BaseModel):
     enforce_stale: bool = False
     review_move_pct: float = 25.0
     bestbuy_category_id: str = "abcat0507002"
+    # Newegg's advertiser id (MID) on Rakuten Advertising.
+    newegg_rakuten_mid: str = "44583"
 
 
 class GuardsConfig(BaseModel):

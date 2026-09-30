@@ -447,7 +447,7 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 17,
+    "rank": 16,
     "cost_per_fps": 5.512,
     "zone": "fair"
    },
@@ -472,7 +472,7 @@
     "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 15,
+    "rank": 14,
     "cost_per_fps": 35.684,
     "zone": "unplayable"
    }
@@ -783,7 +783,7 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 22,
+    "rank": 21,
     "cost_per_fps": 6.332,
     "zone": "fair"
    },
@@ -920,7 +920,7 @@
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 28,
+    "rank": 27,
     "cost_per_fps": 55.583,
     "zone": "unplayable"
    }
@@ -1391,7 +1391,7 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 21,
+    "rank": 20,
     "cost_per_fps": 5.874,
     "zone": "fair"
    },
@@ -1503,7 +1503,7 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 18,
+    "rank": 17,
     "cost_per_fps": 5.557,
     "zone": "fair"
    },
@@ -1513,7 +1513,7 @@
     "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 19,
+    "rank": 18,
     "cost_per_fps": 8.302,
     "zone": "fair"
    },
@@ -1727,17 +1727,17 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 20,
+    "rank": 19,
     "cost_per_fps": 5.874,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 6,
+    "rank": 5,
     "cost_per_fps": 10.266,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 20,
+    "rank": 19,
     "cost_per_fps": 8.419,
     "zone": "fair"
    },
@@ -1752,7 +1752,7 @@
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 13,
+    "rank": 12,
     "cost_per_fps": 33.938,
     "zone": "unplayable"
    }
@@ -1839,17 +1839,17 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 19,
+    "rank": 18,
     "cost_per_fps": 5.801,
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 5,
+    "rank": 4,
     "cost_per_fps": 10.138,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 18,
+    "rank": 17,
     "cost_per_fps": 8.059,
     "zone": "fair"
    },
@@ -1859,12 +1859,12 @@
     "zone": "fair"
    },
    "4k_raster": {
-    "rank": 8,
+    "rank": 7,
     "cost_per_fps": 14.939,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 12,
+    "rank": 11,
     "cost_per_fps": 33.258,
     "zone": "unplayable"
    }
@@ -1966,9 +1966,9 @@
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 6,
+    "rank": 5,
     "cost_per_fps": 16.453,
-    "zone": "fair"
+    "zone": "great"
    },
    "4k_raster": {
     "rank": 14,
@@ -2068,7 +2068,7 @@
     "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 7,
+    "rank": 6,
     "cost_per_fps": 10.737,
     "zone": "great"
    },
@@ -2078,7 +2078,7 @@
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 4,
+    "rank": 3,
     "cost_per_fps": 15.73,
     "zone": "great"
    },
@@ -2511,42 +2511,42 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 5,
-    "cost_per_fps": 3.955,
+    "rank": 7,
+    "cost_per_fps": 4.294,
     "zone": "great"
    },
    "1080p_rt": {
     "rank": 28,
-    "cost_per_fps": 8.557,
+    "cost_per_fps": 9.291,
     "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 6,
-    "cost_per_fps": 5.853,
+    "rank": 11,
+    "cost_per_fps": 6.354,
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 20,
-    "cost_per_fps": 14.227,
+    "rank": 21,
+    "cost_per_fps": 15.447,
     "zone": "unplayable"
    },
    "4k_raster": {
     "rank": 33,
-    "cost_per_fps": 16.055,
+    "cost_per_fps": 17.431,
     "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 24,
-    "cost_per_fps": 51.469,
+    "rank": 28,
+    "cost_per_fps": 55.881,
     "zone": "unplayable"
    }
   },
   "current_price": {
-   "price": 349.99,
-   "retailer": "newegg",
-   "url": "https://www.newegg.com/gigabyte-windforce-gv-n5060wf2oc-8gd-geforce-rtx-5060-8gb-graphics-card-double-fans/p/N82E16814932804?Item=N82E16814932804",
+   "price": 379.99,
+   "retailer": "bestbuy",
+   "url": "https://www.bestbuy.com/product/gigabyte-geforce-rtx-5060-windforce-oc-8g-graphics-card-8gb-128-bit-gddr7-pcie-5-0-windforce-cooling-system-black/J3ZW9X7388",
    "condition": "new",
-   "fetched_at": "2026-03-06T00:00:00Z"
+   "fetched_at": "2026-09-29T00:00:00Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5060&N=100007709",
@@ -2554,9 +2554,9 @@
    "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5060"
   },
   "price_stats": {
-   "min_90d": null,
-   "median_90d": null,
-   "n_points": 0
+   "min_90d": 379.99,
+   "median_90d": 379.99,
+   "n_points": 1
   }
  },
  {
@@ -2638,7 +2638,7 @@
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 21,
+    "rank": 20,
     "cost_per_fps": 14.285,
     "zone": "unplayable"
    },
@@ -2648,7 +2648,7 @@
     "zone": "unplayable"
    },
    "4k_rt": {
-    "rank": 25,
+    "rank": 24,
     "cost_per_fps": 52.776,
     "zone": "unplayable"
    }
@@ -2735,17 +2735,17 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 16,
+    "rank": 15,
     "cost_per_fps": 5.228,
-    "zone": "fair"
+    "zone": "great"
    },
    "1080p_rt": {
-    "rank": 4,
+    "rank": 3,
     "cost_per_fps": 9.786,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 16,
+    "rank": 15,
     "cost_per_fps": 7.493,
     "zone": "great"
    },
@@ -2755,7 +2755,7 @@
     "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 7,
+    "rank": 6,
     "cost_per_fps": 13.681,
     "zone": "great"
    },
@@ -2847,42 +2847,42 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 14,
-    "cost_per_fps": 4.902,
-    "zone": "great"
+    "rank": 22,
+    "cost_per_fps": 6.41,
+    "zone": "fair"
    },
    "1080p_rt": {
-    "rank": 2,
-    "cost_per_fps": 8.772,
-    "zone": "great"
+    "rank": 10,
+    "cost_per_fps": 11.471,
+    "zone": "fair"
    },
    "1440p_raster": {
-    "rank": 13,
-    "cost_per_fps": 6.743,
-    "zone": "great"
+    "rank": 21,
+    "cost_per_fps": 8.817,
+    "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 1,
-    "cost_per_fps": 12.621,
-    "zone": "great"
+    "rank": 6,
+    "cost_per_fps": 16.505,
+    "zone": "fair"
    },
    "4k_raster": {
-    "rank": 4,
-    "cost_per_fps": 11.97,
-    "zone": "great"
+    "rank": 10,
+    "cost_per_fps": 15.654,
+    "zone": "fair"
    },
    "4k_rt": {
-    "rank": 10,
-    "cost_per_fps": 28.634,
+    "rank": 16,
+    "cost_per_fps": 37.444,
     "zone": "unplayable"
    }
   },
   "current_price": {
-   "price": 649.99,
-   "retailer": "newegg",
-   "url": "https://www.newegg.com/msi-rtx-5070-12g-shadow-2x-oc-geforce-rtx-5070-12gb-graphics-card-double-fans/p/N82E16814137944?Item=N82E16814137944",
+   "price": 849.99,
+   "retailer": "bestbuy",
+   "url": "https://www.bestbuy.com/product/msi-nvidia-geforce-rtx-5070-12g-gaming-trio-oc-12gb-gddr7-pci-express-gen-5-graphics-card-black/J3P7TX65JH/sku/6619436",
    "condition": "new",
-   "fetched_at": "2026-03-06T00:00:00Z"
+   "fetched_at": "2026-09-29T00:00:00Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5070&N=100007709",
@@ -2890,9 +2890,9 @@
    "bestbuy": "https://www.bestbuy.com/site/searchpage.jsp?st=GeForce+RTX+5070"
   },
   "price_stats": {
-   "min_90d": null,
-   "median_90d": null,
-   "n_points": 0
+   "min_90d": 849.99,
+   "median_90d": 849.99,
+   "n_points": 1
   }
  },
  {
@@ -2974,12 +2974,12 @@
     "zone": "fair"
    },
    "1440p_rt": {
-    "rank": 5,
+    "rank": 4,
     "cost_per_fps": 16.012,
     "zone": "great"
    },
    "4k_raster": {
-    "rank": 10,
+    "rank": 9,
     "cost_per_fps": 15.452,
     "zone": "fair"
    },
@@ -3800,7 +3800,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 8,
+    "rank": 7,
     "cost_per_fps": 6.198,
     "zone": "great"
    }
@@ -3897,7 +3897,7 @@
     "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 10,
+    "rank": 9,
     "cost_per_fps": 6.269,
     "zone": "great"
    },
@@ -3912,7 +3912,7 @@
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 14,
+    "rank": 13,
     "cost_per_fps": 35.39,
     "zone": "unplayable"
    }
@@ -4024,7 +4024,7 @@
     "zone": "poor"
    },
    "4k_rt": {
-    "rank": 26,
+    "rank": 25,
     "cost_per_fps": 52.914,
     "zone": "unplayable"
    }
@@ -4136,7 +4136,7 @@
     "zone": "fair"
    },
    "4k_rt": {
-    "rank": 27,
+    "rank": 26,
     "cost_per_fps": 53.204,
     "zone": "unplayable"
    }
@@ -4223,7 +4223,7 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 6,
+    "rank": 5,
     "cost_per_fps": 3.991,
     "zone": "great"
    },
@@ -4233,7 +4233,7 @@
     "zone": "unplayable"
    },
    "1440p_raster": {
-    "rank": 7,
+    "rank": 6,
     "cost_per_fps": 6.145,
     "zone": "great"
    },
@@ -4564,7 +4564,7 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 10,
+    "rank": 9,
     "cost_per_fps": 11.363,
     "zone": "fair"
    },
@@ -4579,12 +4579,12 @@
     "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 5,
+    "rank": 4,
     "cost_per_fps": 12.195,
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 16,
+    "rank": 15,
     "cost_per_fps": 36.423,
     "zone": "unplayable"
    }
@@ -4632,7 +4632,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 15,
+    "rank": 14,
     "cost_per_fps": 7.334,
     "zone": "great"
    }
@@ -4724,17 +4724,17 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 9,
+    "rank": 8,
     "cost_per_fps": 11.021,
-    "zone": "fair"
+    "zone": "great"
    },
    "1440p_raster": {
-    "rank": 11,
+    "rank": 10,
     "cost_per_fps": 6.296,
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 3,
+    "rank": 2,
     "cost_per_fps": 15.632,
     "zone": "great"
    },
@@ -4744,7 +4744,7 @@
     "zone": "great"
    },
    "4k_rt": {
-    "rank": 11,
+    "rank": 10,
     "cost_per_fps": 29.437,
     "zone": "unplayable"
    }
@@ -4841,7 +4841,7 @@
     "zone": "poor"
    },
    "1440p_raster": {
-    "rank": 21,
+    "rank": 20,
     "cost_per_fps": 8.717,
     "zone": "fair"
    },
@@ -4851,9 +4851,9 @@
     "zone": "fair"
    },
    "4k_raster": {
-    "rank": 9,
+    "rank": 8,
     "cost_per_fps": 15.1,
-    "zone": "fair"
+    "zone": "great"
    },
    "4k_rt": {
     "rank": 18,
@@ -5055,17 +5055,17 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 15,
+    "rank": 14,
     "cost_per_fps": 5.224,
-    "zone": "fair"
+    "zone": "great"
    },
    "1080p_rt": {
-    "rank": 8,
+    "rank": 7,
     "cost_per_fps": 10.788,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 14,
+    "rank": 13,
     "cost_per_fps": 7.275,
     "zone": "great"
    },
@@ -5075,7 +5075,7 @@
     "zone": "unplayable"
    },
    "4k_raster": {
-    "rank": 6,
+    "rank": 5,
     "cost_per_fps": 13.607,
     "zone": "great"
    },
@@ -5172,17 +5172,17 @@
     "zone": "great"
    },
    "1080p_rt": {
-    "rank": 3,
+    "rank": 2,
     "cost_per_fps": 9.383,
     "zone": "great"
    },
    "1440p_raster": {
-    "rank": 9,
+    "rank": 8,
     "cost_per_fps": 6.266,
     "zone": "great"
    },
    "1440p_rt": {
-    "rank": 2,
+    "rank": 1,
     "cost_per_fps": 13.153,
     "zone": "great"
    },
@@ -5336,7 +5336,7 @@
   },
   "rankings": {
    "1440p_raster": {
-    "rank": 17,
+    "rank": 16,
     "cost_per_fps": 7.96,
     "zone": "great"
    }
@@ -5535,7 +5535,7 @@
   },
   "rankings": {
    "1080p_raster": {
-    "rank": 7,
+    "rank": 6,
     "cost_per_fps": 4.056,
     "zone": "great"
    },

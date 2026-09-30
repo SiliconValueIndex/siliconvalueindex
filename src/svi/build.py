@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import os
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 
 import pandas as pd
 
-from svi.config import PROCESSED_DIR, SITE_DATA_DIR, Config, get_config
+from svi.config import PROCESSED_DIR, SITE_DATA_DIR, Config, InputError, get_config
 from svi.export.review_report import ReviewInputs, build_report, write_report
 from svi.export.schemas import write_schema_files
 from svi.export.site_json import (
@@ -28,6 +29,7 @@ from svi.prices import (
     validate_observations,
 )
 from svi.scoring.cost_per_fps import score_all_views
+from svi.scrapers.retailers import ADAPTERS, RetailerSkipped, display_name, redact_secrets
 from svi.seed import BENCHMARK_COLUMNS, BENCHMARKS_PATH, write_benchmarks
 
 BENCHMARKS_PATH = BENCHMARKS_PATH  # re-export for callers
@@ -37,6 +39,17 @@ def load_registry() -> pd.DataFrame:
     reg = pd.read_csv(REGISTRY_PATH, dtype=str).fillna("")
     reg["msrp_usd"] = pd.to_numeric(reg["msrp_usd"], errors="coerce")
     return reg
+
+
+def select_gpus(registry: pd.DataFrame, gpu_ids: list[str] | None) -> pd.DataFrame:
+    """Active registry rows, limited to gpu_ids when given. Unknown IDs are an error."""
+    active = registry[registry["is_active"].astype(str).str.lower() == "true"]
+    if not gpu_ids:
+        return active
+    missing = set(gpu_ids) - set(active["gpu_id"])
+    if missing:
+        raise InputError("Unknown or inactive GPU IDs: " + ", ".join(sorted(missing)))
+    return active[active["gpu_id"].isin(gpu_ids)]
 
 
 def load_benchmarks() -> pd.DataFrame:
@@ -60,6 +73,53 @@ def append_benchmarks(new_rows: pd.DataFrame) -> pd.DataFrame:
     return load_benchmarks()
 
 
+@dataclass
+class PriceCollection:
+    history: pd.DataFrame
+    unresolved: list[dict] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)
+    fetch_failures: list[str] = field(default_factory=list)
+    source_fetched: dict[str, str] = field(default_factory=dict)
+
+
+def collect_retailer_prices(
+    retailers,
+    resolver,
+    registry,
+    cfg,
+    history,
+    *,
+    run_id,
+    now,
+    adapters=ADAPTERS,
+    append=append_history,
+) -> PriceCollection:
+    result = PriceCollection(history)
+    # Duplicates would fetch and append the same retailer twice.
+    for name in dict.fromkeys(retailers):
+        if name == "manual":
+            continue
+        if name not in adapters:
+            result.fetch_failures.append(f"{name}: unknown retailer")
+            continue
+        display = display_name(name)
+        try:
+            obs, unres = adapters[name](resolver, registry, cfg, run_id=run_id, now=now)
+            # Use history including earlier retailers, before appending this retailer.
+            obs = validate_observations(obs, result.history, cfg.pricing, now=now)
+            result.history = append(obs)
+            result.unresolved += [u.model_dump() for u in unres]
+            result.source_fetched[name] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+            result.notes.append(
+                f"{display}: {int(obs['is_valid'].sum())} valid of {len(obs)} observations"
+            )
+        except RetailerSkipped as exc:
+            result.notes.append(redact_secrets(f"{display} skipped: {exc}"))
+        except Exception as exc:
+            result.fetch_failures.append(redact_secrets(f"{name}: {exc}"))
+    return result
+
+
 def run_build(
     *,
     offline: bool = True,
@@ -67,8 +127,11 @@ def run_build(
     now: datetime | None = None,
     skip_benchmarks: bool = False,
     skip_prices: bool = False,
+    retailers: list[str] | None = None,
+    gpu_ids: list[str] | None = None,
     cfg: Config | None = None,
 ) -> dict:
+    """gpu_ids limits which cards the retailers are asked about; scoring still covers all."""
     cfg = cfg or get_config()
     now = now or datetime.now(UTC)
     run_id = run_id or now.strftime("%Y%m%dT%H%M%SZ")
@@ -76,6 +139,7 @@ def run_build(
 
     registry = load_registry()
     resolver = Resolver.from_files()
+    price_registry = select_gpus(registry, gpu_ids)  # fail fast on a typo
     active_ids = registry.loc[registry["is_active"].str.lower() == "true", "gpu_id"].tolist()
 
     unresolved: list[dict] = []
@@ -110,22 +174,24 @@ def run_build(
             fetch_failures.append(f"toms_hardware: {exc}")
 
     if not offline and not skip_prices:
-        from svi.scrapers.bestbuy import scrape_prices
+        prices = collect_retailer_prices(
+            cfg.pricing.retailers if retailers is None else retailers,
+            resolver,
+            price_registry,
+            cfg,
+            history,
+            run_id=run_id,
+            now=now,
+        )
+        history = prices.history
+        unresolved += prices.unresolved
+        notes += prices.notes
+        fetch_failures += prices.fetch_failures
+        source_fetched.update(prices.source_fetched)
 
-        try:
-            obs, unres = scrape_prices(resolver, registry, cfg, run_id=run_id, now=now)
-            unresolved += [u.model_dump() for u in unres]
-            obs = validate_observations(obs, history, cfg.pricing, now=now)
-            history = append_history(obs)
-            source_fetched["bestbuy"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-            notes.append(f"Best Buy: {int(obs['is_valid'].sum())} valid of {len(obs)} observations")
-        except Exception as exc:
-            fetch_failures.append(f"bestbuy: {exc}")
-
-    overrides = load_overrides(now=now)
+    overrides = load_overrides(now=now, run_id=run_id)
     if not overrides.empty:
-        overrides["run_id"] = run_id
-        history = append_history(overrides)
+        history = append_history(overrides, replace_manual=True)
         source_fetched["manual"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
         notes.append(f"Manual overrides applied: {len(overrides)}")
 

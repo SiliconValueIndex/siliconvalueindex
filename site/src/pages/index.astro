@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { manifest, rankings, gpus, retailerName, gpuById, ZONE_WORD, money, fmtDate, splitView, VIEW_LABELS } from '../lib/data';
+import { manifest, rankings, gpus, retailerName, gpuById, ZONE_WORD, money, fmtDate, ageDays, STALE_DAYS, splitView, VIEW_LABELS } from '../lib/data';
 
 import { pickVerdict, topList, picksHref } from '../lib/overview';
 
@@ -12,11 +12,15 @@ const zones = manifest.zones[view];
 const verdict = pickVerdict(rows, null);
 const shortlist = topList(rows, null);
 const priceContext = Object.fromEntries(manifest.views.map((v) => {
-  const dates = [...new Set((rankings[v] ?? []).map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at?.slice(0, 10)).filter((d): d is string => !!d))].sort();
-  const age = dates.length ? Math.floor((Date.now() - new Date(dates[0]).getTime()) / 86400000) : null;
-  return [v, { date: dates.length ? fmtDate(dates[0]) + (dates.length > 1 ? ' – ' + fmtDate(dates.at(-1)!) : '') : 'Date unavailable', caution: age === null || age > 60 }];
+  const stamps = (rankings[v] ?? []).map((r) => gpuById[r.gpu_id]?.current_price?.fetched_at).filter((d): d is string => !!d).sort();
+  const dates = [...new Set(stamps.map((d) => d.slice(0, 10)))];
+  return [v, {
+    date: dates.length ? fmtDate(dates[0]) + (dates.length > 1 ? ' – ' + fmtDate(dates.at(-1)!) : '') : 'Date unavailable',
+    caution: !dates.length || ageDays(dates[0]) > STALE_DAYS,
+    latest: stamps.at(-1) ?? null,
+  }];
 }));
-const { date: priceDate, caution: priceCaution } = priceContext[view];
+const { date: priceDate, caution: priceCaution, latest: latestCheck } = priceContext[view];
 const payload = {
   views: manifest.views, primary: view, zones: manifest.zones,
   gpus: gpus.map((g) => ({ current_price: g.current_price })),
@@ -43,7 +47,7 @@ const available = new Set(manifest.views);
         {verdict.runnerUp && <p class="runner-up">Close second: <a href={`/gpu/${verdict.runnerUp.gpu_id}/`}>{gpuById[verdict.runnerUp.gpu_id].display_name}</a> · {money(verdict.runnerUp.cost_per_fps, 2)}/FPS</p>}
       </> : <p>No playable cards at this setting. <a href={picksHref(view, null, gpus)}>Find a card</a></p>}
     </div>
-    <div class="price-context"><span>Prices recorded <strong id="price-date">{priceDate}</strong>.</span> <span id="price-caution">{priceCaution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.'}</span> <a href="/data/">Data &amp; sources</a></div>
+    <div class="price-context"><span>Prices recorded <strong id="price-date">{priceDate}</strong><span id="price-latest" hidden={!latestCheck}>, last updated <time datetime={latestCheck ?? ''} data-relative>{latestCheck ? fmtDate(latestCheck) : ''}</time></span>.</span> <span id="price-caution">{priceCaution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.'}</span> <a href="/data/">Data &amp; sources</a></div>
     <div class="market-controls">
       <div class="control-field"><span class="control-label">Resolution</span><div class="seg" role="group" aria-label="Resolution">
         {resolutions.map((r) => <button type="button" data-res={r} aria-pressed={r === resolution} disabled={!modes.some((m) => available.has(`${r}_${m}`))}>{VIEW_LABELS[r]}</button>)}
@@ -104,12 +108,13 @@ const available = new Set(manifest.views);
 <script>
   import { renderScatter, attachTooltip, type ScatterRow, type ScatterZones } from '../lib/scatter';
   import { pickVerdict, topList, picksHref } from '../lib/overview';
+  import { relTime } from '../lib/relTime';
   import type { RankingRow, CurrentPrice } from '../lib/data';
   type OverviewRow = ScatterRow & RankingRow & { current_price: CurrentPrice | null; retailer_name: string };
   const zoneWords = { great: 'great value', fair: 'fair value', poor: 'poor value', unplayable: 'below playable' };
   let budget: number | null = null;
   const data = JSON.parse(document.getElementById('svi-overview')!.textContent || '{}') as {
-    views: string[]; primary: string; zones: Record<string, ScatterZones>; rankings: Record<string, OverviewRow[]>; gpus: { current_price: CurrentPrice | null }[]; priceContext: Record<string, { date: string; caution: boolean }>;
+    views: string[]; primary: string; zones: Record<string, ScatterZones>; rankings: Record<string, OverviewRow[]>; gpus: { current_price: CurrentPrice | null }[]; priceContext: Record<string, { date: string; caution: boolean; latest: string | null }>;
   };
   const svg = document.getElementById('scatter') as unknown as SVGSVGElement;
   const tip = document.getElementById('tip')!;
@@ -130,6 +135,9 @@ const available = new Set(manifest.views);
     document.getElementById('overview-title')!.textContent = `Best value at ${labels[res]}${mode === 'rt' ? ', ray tracing' : ''}`;
     document.getElementById('picks-link')!.setAttribute('href', href);
     document.getElementById('price-date')!.textContent = data.priceContext[view].date;
+    const latest = data.priceContext[view].latest, latestEl = document.getElementById('price-latest')!;
+    latestEl.hidden = !latest;
+    if (latest) { const t = latestEl.querySelector('time')!; t.dateTime = latest; t.textContent = relTime(latest); }
     document.getElementById('price-caution')!.textContent = data.priceContext[view].caution ? 'Older price snapshot. Check the retailer before buying.' : 'Prices can change. Check the retailer before buying.';
     const empty = budget === null ? 'No playable cards at this setting.' : `No playable card under ${money(budget, 0)} at this setting.`;
     if (verdict) {

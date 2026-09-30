@@ -1,1 +1,27 @@
-gpu_id,price,url,retailer,note,valid_until
+gpu_id,price,url,retailer,note,checked_on,valid_until
+nvidia-rtx-3050,,,,RTX 3050,,
+nvidia-rtx-5050,,,,RTX 5050,,
+amd-rx-6650-xt,,,,RX 6650 XT,,
+nvidia-rtx-5060,379.99,https://www.bestbuy.com/product/gigabyte-geforce-rtx-5060-windforce-oc-8g-graphics-card-8gb-128-bit-gddr7-pcie-5-0-windforce-cooling-system-black/J3ZW9X7388,bestbuy,RTX 5060,2026-09-29,2027-09-29
+nvidia-rtx-5060-ti-8gb,,,,RTX 5060 Ti 8GB,,
+nvidia-rtx-5060-ti-16gb,,,,RTX 5060 Ti 16GB,,
+nvidia-rtx-5070,849.99,https://www.bestbuy.com/product/msi-nvidia-geforce-rtx-5070-12g-gaming-trio-oc-12gb-gddr7-pci-express-gen-5-graphics-card-black/J3P7TX65JH/sku/6619436,bestbuy,RTX 5070,2026-09-29,2027-09-29
+nvidia-rtx-5070-ti,,,,RTX 5070 Ti,,
+nvidia-rtx-5080,,,,RTX 5080,,
+nvidia-rtx-5090,,,,RTX 5090,,
+amd-rx-9060-xt,,,,RX 9060 XT,,
+amd-rx-9070,,,,RX 9070,,
+amd-rx-9070-xt,,,,RX 9070 XT,,
+intel-arc-b570,,,,Intel Arc B570,,
+intel-arc-b580,,,,Intel Arc B580,,
+nvidia-rtx-4060,,,,RTX 4060,,
+nvidia-rtx-4060-ti-8gb,,,,RTX 4060 Ti 8GB,,
+nvidia-rtx-3060,,,,RTX 3060,,
+amd-rx-6600,,,,RX 6600,,
+amd-rx-7600,,,,RX 7600,,
+amd-rx-7600-xt,,,,RX 7600 XT,,
+amd-rx-7700-xt,,,,RX 7700 XT,,
+amd-rx-7800-xt,,,,RX 7800 XT,,
+amd-rx-7900-gre,,,,RX 7900 GRE,,
+amd-rx-7900-xt,,,,RX 7900 XT,,
+amd-rx-7900-xtx,,,,RX 7900 XTX,,

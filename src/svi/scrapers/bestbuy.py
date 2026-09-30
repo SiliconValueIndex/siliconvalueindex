@@ -25,6 +25,7 @@ from svi.ids import Resolver, has_negative_token
 from svi.models import UnresolvedName
 from svi.prices import PRICE_COLUMNS
 from svi.scrapers.base import USER_AGENT
+from svi.scrapers.retailers import RetailerSkipped
 
 API_URL = "https://api.bestbuy.com/v1/products"
 SHOW = "sku,name,regularPrice,salePrice,onlineAvailability,url,condition,manufacturer"
@@ -44,7 +45,7 @@ def search_query(vendor: str, display_name: str) -> str:
 def fetch_products(query: str, category_id: str, api_key: str, *, timeout: int = 30) -> list[dict]:
     url = f"{API_URL}(({query})&categoryPath.id={category_id})"
     params = {"apiKey": api_key, "format": "json", "show": SHOW, "pageSize": 50}
-    last: Exception | None = None
+    last = "BestBuyError"
     for attempt in range(3):
         try:
             r = requests.get(
@@ -53,12 +54,14 @@ def fetch_products(query: str, category_id: str, api_key: str, *, timeout: int =
             if r.status_code == 200:
                 return r.json().get("products", [])
             if r.status_code == 403:
-                raise BestBuyError("Best Buy API rejected the key (403)")
-            last = BestBuyError(f"HTTP {r.status_code}: {r.text[:200]}")
+                raise BestBuyError("Best Buy API rejected the key (HTTP 403)")
+            last = f"BestBuyError: HTTP {r.status_code}"
         except requests.RequestException as exc:
-            last = exc
+            last = type(exc).__name__
+            if exc.response is not None:
+                last += f": HTTP {exc.response.status_code}"
         time.sleep(1 + attempt)
-    raise BestBuyError(f"search failed for {query}: {last}")
+    raise BestBuyError(last) from None
 
 
 def products_to_observations(
@@ -120,7 +123,7 @@ def scrape_prices(
     now = now or datetime.now(UTC)
     api_key = api_key or os.environ.get("BESTBUY_API_KEY", "")
     if not api_key:
-        raise BestBuyError("BESTBUY_API_KEY is not set")
+        raise RetailerSkipped("BESTBUY_API_KEY is not set")
     active = registry[registry["is_active"].astype(str).str.lower() == "true"]
     rows: list[dict] = []
     unresolved: dict[str, UnresolvedName] = {}

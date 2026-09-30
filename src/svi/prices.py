@@ -2,14 +2,21 @@
 
 from __future__ import annotations
 
+import re
 from datetime import UTC, datetime, timedelta
 
 import pandas as pd
 
-from svi.config import PROCESSED_DIR, REFERENCE_DIR, PricingConfig
+from svi.config import PROCESSED_DIR, REFERENCE_DIR, InputError, PricingConfig
 
 PRICES_HISTORY_PATH = PROCESSED_DIR / "prices_history.csv"
 PRICE_OVERRIDES_PATH = REFERENCE_DIR / "price_overrides.csv"
+
+# run_id prefix for rows that came from price_overrides.csv, so a corrected
+# manual price can replace the one entered earlier for the same card and date.
+MANUAL_RUN_PREFIX = "manual-"
+_ISO_DATE = "%Y-%m-%d"
+_RETAILER_ID = re.compile(r"[a-z0-9]+")
 
 PRICE_COLUMNS = [
     "gpu_id",
@@ -39,9 +46,31 @@ def load_history(path=PRICES_HISTORY_PATH) -> pd.DataFrame:
     return df.fillna({"sku": "", "invalid_reason": "", "url": "", "title_raw": ""})
 
 
-def append_history(new_rows: pd.DataFrame, path=PRICES_HISTORY_PATH) -> pd.DataFrame:
+def append_history(
+    new_rows: pd.DataFrame, path=PRICES_HISTORY_PATH, *, replace_manual: bool = False
+) -> pd.DataFrame:
+    """Add observations to the append-only history and rewrite the CSV.
+
+    replace_manual: an earlier manual row for the same (gpu_id, fetched_at) is
+    dropped when the sheet now says something different. Without it, fixing a
+    typo on the same day would leave both prices in history and the lower,
+    wrong one would win. Unchanged rows are kept as they are, so re-running a
+    build does not rewrite history."""
     history = load_history(path)
+    if replace_manual and not history.empty:
+
+        def ids(df: pd.DataFrame, cols: list[str]) -> pd.MultiIndex:
+            df = df[cols].astype({"fetched_at": "datetime64[ns, UTC]"})
+            return pd.MultiIndex.from_frame(df)
+
+        key, entry = ["gpu_id", "fetched_at"], ["gpu_id", "fetched_at", "retailer", "price", "url"]
+        is_manual = history["run_id"].astype(str).str.startswith(MANUAL_RUN_PREFIX).to_numpy()
+        same_key = ids(history, key).isin(ids(new_rows, key))
+        unchanged = ids(history, entry).isin(ids(new_rows, entry))
+        history = history[~(is_manual & same_key & ~unchanged)]
     combined = pd.concat([history, new_rows[PRICE_COLUMNS]], ignore_index=True)
+    # An empty history has an object column; keep fetched_at datetime for sorting.
+    combined["fetched_at"] = pd.to_datetime(combined["fetched_at"], utc=True)
     combined = combined.drop_duplicates(subset=["gpu_id", "retailer", "sku", "fetched_at", "price"])
     combined = combined.sort_values(["fetched_at", "gpu_id"]).reset_index(drop=True)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -80,38 +109,77 @@ def validate_observations(
     return out
 
 
-def load_overrides(path=PRICE_OVERRIDES_PATH, now: datetime | None = None) -> pd.DataFrame:
+def load_overrides(
+    path=PRICE_OVERRIDES_PATH, now: datetime | None = None, run_id: str = ""
+) -> pd.DataFrame:
     """Manual prices for cards the APIs miss.
 
-    Columns: gpu_id, price, url, retailer, note, valid_until.
+    Columns: gpu_id, price, url, retailer, note, checked_on, valid_until.
+    Rows without a price are skipped, so the sheet can be filled in gradually.
+    checked_on is the date the price was seen; it becomes fetched_at so an old
+    entry is not re-dated on every run (and re-runs do not duplicate history).
+
+    Raises InputError listing every malformed row. Manual prices skip the
+    automatic sanity checks, so a typo must stop the build rather than be
+    silently dropped or published.
     """
     if not path.exists():
         return pd.DataFrame(columns=PRICE_COLUMNS)
     now = now or datetime.now(UTC)
     ov = pd.read_csv(path, dtype=str).fillna("")
-    ov = ov[ov["gpu_id"] != ""]
+    if "checked_on" not in ov:  # sheets written before the column existed
+        ov["checked_on"] = ""
+    ov = ov[(ov["gpu_id"] != "") & (ov["price"] != "")]
     if ov.empty:
         return pd.DataFrame(columns=PRICE_COLUMNS)
-    valid_until = pd.to_datetime(ov["valid_until"].replace("", None), utc=True, errors="coerce")
-    ov = ov[valid_until.isna() | (valid_until >= now)]
+    price = pd.to_numeric(ov["price"], errors="coerce")
+    checked_on = pd.to_datetime(ov["checked_on"], format=_ISO_DATE, utc=True, errors="coerce")
+    valid_until = pd.to_datetime(ov["valid_until"], format=_ISO_DATE, utc=True, errors="coerce")
+    problems = _override_problems(ov, price, checked_on, valid_until, now)
+    if problems:
+        raise InputError(f"{path.name} has rows to fix:\n" + "\n".join(problems))
+    keep = valid_until.isna() | (valid_until >= now)
+    ov, price, checked_on = ov[keep], price[keep], checked_on[keep]
     rows = pd.DataFrame(
         {
             "gpu_id": ov["gpu_id"],
             "retailer": ov["retailer"].replace("", "manual"),
             "sku": "",
             "title_raw": ov["note"],
-            "price": pd.to_numeric(ov["price"], errors="coerce"),
+            "price": price,
             "currency": "USD",
             "url": ov["url"],
             "condition": "new",
             "in_stock": True,
             "is_valid": True,
             "invalid_reason": "",
-            "fetched_at": now,
-            "run_id": "override",
+            "fetched_at": checked_on.fillna(now),
+            "run_id": MANUAL_RUN_PREFIX + run_id,
         }
     )
     return rows
+
+
+def _override_problems(ov, price, checked_on, valid_until, now) -> list[str]:
+    """One message per malformed field, naming the CSV line (header is line 1)."""
+    problems = []
+    for i, row in ov.iterrows():
+        where = f"  line {i + 2} ({row['gpu_id']}):"
+        if not price[i] > 0:
+            problems.append(f"{where} price {row['price']!r} must be a plain number like 849.99")
+        if row["checked_on"] and pd.isna(checked_on[i]):
+            problems.append(f"{where} checked_on {row['checked_on']!r} must be YYYY-MM-DD")
+        elif checked_on[i] > now:
+            problems.append(f"{where} checked_on {row['checked_on']} is in the future")
+        if row["valid_until"] and pd.isna(valid_until[i]):
+            problems.append(f"{where} valid_until {row['valid_until']!r} must be YYYY-MM-DD")
+        if row["url"] and not row["url"].startswith("https://"):
+            problems.append(f"{where} url must start with https://")
+        if row["retailer"] and not _RETAILER_ID.fullmatch(row["retailer"]):
+            problems.append(
+                f"{where} retailer {row['retailer']!r} must be an id like bestbuy, newegg or amazon"
+            )
+    return problems
 
 
 def select_current_prices(
