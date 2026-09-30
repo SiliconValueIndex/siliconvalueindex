@@ -155,7 +155,8 @@
             "type": "string"
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(https://.*)?$"
           },
           "condition": {
             "type": "string"

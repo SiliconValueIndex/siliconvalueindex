@@ -43,6 +43,14 @@ def _int_or_none(v):
     return int(float(v))
 
 
+def listing_url(url) -> str:
+    """The listing link shown on the site, or "" if it is not an https URL.
+
+    Links come from retailer APIs and the hand-edited price sheet. The site puts
+    them in <a href>, so a javascript: or data: URL would run script on click."""
+    return url if isinstance(url, str) and url.startswith("https://") else ""
+
+
 def retailer_links(vendor: str, display_name: str) -> dict[str, str]:
     q = quote_plus(f"{VENDOR_PREFIX.get(vendor, '')} {display_name}".strip())
     return {
@@ -97,7 +105,7 @@ def build_gpus(ctx: BuildContext) -> list[dict]:
             {
                 "price": float(p.price),
                 "retailer": str(p.retailer),
-                "url": str(p.url) if isinstance(p.url, str) else "",
+                "url": listing_url(p.url),
                 "condition": str(p.condition),
                 "fetched_at": _clean(p.fetched_at),
             }

@@ -112,3 +112,34 @@ def test_build_cli_reports_input_errors_without_traceback(monkeypatch, capsys):
     monkeypatch.setattr(build, "run_build", bad_input)
     assert cli.main(["build", "--skip-prices"]) == 1
     assert "rows to fix" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(
+    ("url", "shown"),
+    [
+        ("https://www.bestbuy.com/site/x/123.p", "https://www.bestbuy.com/site/x/123.p"),
+        ("http://www.bestbuy.com/site/x/123.p", ""),
+        ("javascript:alert(1)", ""),
+        (" JavaScript:alert(1)", ""),
+        ("data:text/html,<script>alert(1)</script>", ""),
+        ("", ""),
+        (float("nan"), ""),  # a missing url read from CSV
+    ],
+)
+def test_only_https_listing_links_reach_the_site(url, shown):
+    from svi.export.site_json import listing_url
+
+    assert listing_url(url) == shown
+
+
+def test_site_schema_rejects_non_https_listing_links():
+    from jsonschema import Draft202012Validator
+
+    from svi.export.schemas import SCHEMAS
+
+    price = SCHEMAS["gpus"]["items"]["properties"]["current_price"]
+    schema = {"$schema": "https://json-schema.org/draft/2020-12/schema", **price}
+    base = {"price": 1.0, "retailer": "bestbuy", "condition": "new", "fetched_at": "2026-09-29"}
+    assert Draft202012Validator(schema).is_valid({**base, "url": "https://x.com/p"})
+    assert Draft202012Validator(schema).is_valid({**base, "url": ""})
+    assert not Draft202012Validator(schema).is_valid({**base, "url": "javascript:alert(1)"})
