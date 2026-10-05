@@ -1,6 +1,5 @@
-# Refresh report `20260930T171536Z`
+# Refresh report `gh-37363256193`
 **Needs review: YES**
-- 1 price move(s) >= 25%
 - 2 benchmark anomaly(ies)
 
 ## Fetch failures
@@ -19,9 +18,7 @@ These drop out of the rankings. Add a row to `data/reference/price_overrides.csv
 - `nvidia-rtx-5050`
 
 ## Price moves >= 25%
-| gpu_id | from | to | pct |
-|---|---|---|---|
-| nvidia-rtx-5070 | 649.99 | 849.99 | 30.8 |
+_none_
 
 ## Benchmark anomalies
 | type | gpu_id | resolution | mode | residual | detail |
@@ -32,7 +29,7 @@ These drop out of the rankings. Add a row to `data/reference/price_overrides.csv
 ## Changes this run
 - Added GPUs: none
 - Removed GPUs: none
-- Price changes >= 5%: 2
+- Price changes >= 5%: 0
 - Benchmark suite changed: False
 
 ## Ranked counts
@@ -44,4 +41,7 @@ These drop out of the rankings. Add a row to `data/reference/price_overrides.csv
 - `4k_rt`: 43
 
 ## Notes
+- Tom's Hardware: 288 cells parsed, suite 2026-09-16 (8% of cards moved; same suite as 2026-09-16)
+- Best Buy skipped: BESTBUY_API_KEY is not set
+- Newegg skipped: RAKUTEN_CLIENT_ID, RAKUTEN_CLIENT_SECRET and RAKUTEN_SID are not all set
 - Manual overrides applied: 2
