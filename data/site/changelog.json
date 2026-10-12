@@ -1,5 +1,20 @@
 [
  {
+  "run_id": "gh-38301553024",
+  "generated_at": "2026-10-12T20:02:17Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 0,
+  "notes": [
+   "Tom's Hardware: 288 cells parsed, suite 2026-09-16 (8% of cards moved; same suite as 2026-09-16)",
+   "Best Buy skipped: BESTBUY_API_KEY is not set",
+   "Newegg skipped: RAKUTEN_CLIENT_ID, RAKUTEN_CLIENT_SECRET and RAKUTEN_SID are not all set",
+   "Manual overrides applied: 2"
+  ]
+ },
+ {
   "run_id": "20260930T171536Z",
   "generated_at": "2026-09-30T17:15:36Z",
   "added_gpus": [],
