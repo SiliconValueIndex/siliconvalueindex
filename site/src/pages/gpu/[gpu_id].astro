@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { retailerLink, visibleRetailers } from '../../lib/retailerLinks';
 import { gpus, retailerName, manifest, priceHistory, money, fmtDate, ageDays, STALE_DAYS, viewLabel, splitView, VIEW_LABELS } from '../../lib/data';
 
 export function getStaticPaths() {
@@ -8,6 +9,9 @@ export function getStaticPaths() {
 const { gpu } = Astro.props;
 const history = priceHistory[gpu.gpu_id] ?? [];
 const price = gpu.current_price;
+const listingLink = price?.url && visibleRetailers.has(price.retailer) ? retailerLink(price.url) : null;
+const retailerLinks = Object.entries(gpu.retailer_links).filter(([key]) => visibleRetailers.has(key)).map(([key, url]) => ({ key, ...retailerLink(url) }));
+const hasAffiliateLinks = listingLink?.affiliate || retailerLinks.some((link) => link.affiliate);
 const stale = price ? ageDays(price.fetched_at) > STALE_DAYS : false;
 const rankEntries = Object.entries(gpu.rankings);
 const primary = gpu.rankings[manifest.primary_view];
@@ -40,7 +44,7 @@ const description = primary
 
     <div class="grid">
       <section class="panel">
-        <h2>Price</h2>
+        <h2>Recorded price</h2>
         {price ? (
           <>
             <p class="big num">{money(price.price, 2)}</p>
@@ -49,12 +53,13 @@ const description = primary
               {stale && <> This price is over {STALE_DAYS} days old; check the retailer.</>}
               {gpu.price_stats.n_points > 1 && <> 90-day low {money(gpu.price_stats.min_90d ?? 0, 0)}, median {money(gpu.price_stats.median_90d ?? 0, 0)}.</>}
             </p>
+            <p class="muted small">This recorded price is used for rankings. Check Newegg for its current price and availability.</p>
             <div class="actions">
               <button type="button" class="btn" data-compare-add={gpu.gpu_id} disabled>Add to compare</button>
               <a class="btn" data-compare-link href="/compare/" hidden>Compare →</a>
-              {price.url && <a class="btn btn-primary" href={price.url} rel="nofollow noopener" target="_blank">Open this listing</a>}
-              {Object.entries(gpu.retailer_links).map(([k, url]) => (
-                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerName(k)}</a>
+              {listingLink && <a class="btn btn-primary" href={listingLink.href} rel={listingLink.rel} target="_blank">View recorded listing at {retailerName(price.retailer)}</a>}
+              {retailerLinks.map(({ key: k, href, rel }) => (
+                <a class="btn" href={href} rel={rel} target="_blank">Check prices at {retailerName(k)}</a>
               ))}
             </div>
           </>
@@ -64,12 +69,13 @@ const description = primary
             <div class="actions">
               <button type="button" class="btn" data-compare-add={gpu.gpu_id} disabled>Add to compare</button>
               <a class="btn" data-compare-link href="/compare/" hidden>Compare →</a>
-              {Object.entries(gpu.retailer_links).map(([k, url]) => (
-                <a class="btn" href={url} rel="nofollow noopener" target="_blank">Search {retailerName(k)}</a>
+              {retailerLinks.map(({ key: k, href, rel }) => (
+                <a class="btn" href={href} rel={rel} target="_blank">Check prices at {retailerName(k)}</a>
               ))}
             </div>
           </>
         )}
+        {hasAffiliateLinks && <p class="muted small">Affiliate disclosure: We may earn a commission when you buy through our Newegg links. Rankings are based on price and benchmark FPS, not commissions.</p>}
         {history.length > 1 ? (
           <figure>
             <canvas id="spark" height="120" aria-label="Price history"></canvas>

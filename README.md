@@ -113,3 +113,9 @@ The three `RAKUTEN_*` secrets do the same for Newegg once the partnership is app
 
 - Benchmarks: [Tom's Hardware GPU Hierarchy](https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html)
 - Prices: Best Buy Products API, Newegg via Rakuten Advertising Product Search, manual overrides; Amazon as a search link
+
+## Newegg affiliate shopping links
+
+GPU shopping buttons use Rakuten deep links with the site owner’s public tracking ID and Newegg MID 44583. `visibleRetailers` in `site/src/lib/retailerLinks.ts` currently shows Newegg only; add `amazon` or `bestbuy` to restore their buttons. Original URLs and price-source attribution remain in the data. Recorded ranking prices are distinguished from current retailer offers, with a disclosure beside the buttons and sponsored link attributes. No impression pixel is loaded.
+
+The generated link format matches a Newegg search deep link supplied from the owner’s Rakuten dashboard. Commission attribution must be confirmed in Rakuten reporting.
