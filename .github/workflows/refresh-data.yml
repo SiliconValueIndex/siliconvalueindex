@@ -75,11 +75,13 @@ jobs:
         run: pytest -q
 
       - name: Upload report and snapshots
+        if: ${{ always() && steps.build.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
           name: refresh-${{ github.run_id }}
           path: |
             data/site/review_report.md
+            data/raw/prices/
             data/raw/benchmarks/toms/*.html
           retention-days: 90
           if-no-files-found: ignore
