@@ -249,3 +249,30 @@ def test_config_enables_newegg():
     cfg = get_config()
     assert cfg.pricing.retailers == ["bestbuy", "newegg", "manual"]
     assert cfg.pricing.newegg_rakuten_mid == "44583"
+
+
+@pytest.mark.parametrize("first_status", [429, 503, None])
+def test_retry_preserves_authorization(monkeypatch, first_status):
+    calls = []
+    monkeypatch.setattr(rakuten.time, "sleep", lambda seconds: None)
+
+    def request(*args, **kwargs):
+        calls.append(dict(kwargs["headers"]))
+        if len(calls) == 1 and first_status is None:
+            raise requests.ConnectionError("temporary connection failure")
+        response = requests.Response()
+        response.status_code = first_status if len(calls) == 1 else 200
+        return response
+
+    monkeypatch.setattr(rakuten.requests, "request", request)
+    response = rakuten._request(
+        "GET",
+        rakuten.SEARCH_URL,
+        what="product search",
+        headers={"Authorization": "Bearer test-token", "Accept": "application/xml"},
+    )
+    assert response.status_code == 200
+    assert len(calls) == 2
+    assert calls[0] == calls[1]
+    assert calls[1]["Authorization"] == "Bearer test-token"
+    assert calls[1]["Accept"] == "application/xml"

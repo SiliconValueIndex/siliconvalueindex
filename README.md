@@ -96,11 +96,19 @@ Newegg prices come from Rakuten Advertising's Product Search API and need `RAKUT
 
 ## Automated refresh
 
-Adding the `BESTBUY_API_KEY` secret enables weekly Best Buy prices; a missing key records a skip without failing the run.
-Verify the key locally with `svi prices-check --retailer bestbuy`.
-The three `RAKUTEN_*` secrets do the same for Newegg once the partnership is approved; its listing links are Rakuten affiliate links.
+The refresh workflow fetches Newegg catalog prices daily at 11:00 UTC and benchmarks on Mondays. Manual overrides remain enabled; Best Buy fetching is available locally but excluded from the scheduled Newegg launch.
 
-`.github/workflows/refresh-data.yml` runs the pipeline on a schedule. A clean run commits the new data to `main` and the site redeploys. If anything needs a human (a name that could not be matched, a card with no valid price, a price move over 25%, a benchmark suite change, a fetch failure) the run opens a pull request with the review report as its body. Fixing it is a one-line edit to `aliases.csv`, `price_overrides.csv` or the registry.
+Before enabling live prices, add these **repository Actions secrets** in Settings > Secrets and variables > Actions:
+
+- `RAKUTEN_CLIENT_ID`: your Rakuten Developer Portal client ID.
+- `RAKUTEN_CLIENT_SECRET`: the corresponding client secret.
+- `RAKUTEN_SID`: `4673430` (publisher site ID, not merchant ID).
+
+The application needs Product Search access and an approved Newegg partnership (MID `44583`). Never commit credentials or paste them into issues. Missing credentials fail the workflow visibly instead of silently skipping all automated prices. A local check is `svi prices-check --retailer newegg` with credentials supplied through environment variables; it does not save observations.
+
+For the first GitHub run, use Actions > Refresh data > Run workflow, enable **skip_benchmarks** and **dry_run**, and inspect the uploaded review report for Newegg fetch results before allowing publication. Catalog prices do not verify live inventory; confirm availability at Newegg.
+
+A clean run commits data to the selected branch; on `main`, it explicitly dispatches deployment because bot pushes do not trigger another push workflow. A run that needs review updates the single `refresh/data` PR instead of creating a branch on every run. Review unresolved names, missing prices, price jumps, benchmark changes, and fetch failures before merging. Correct aliases or overrides only when supported by the source; benchmark anomalies require investigation.
 
 ## Roadmap
 

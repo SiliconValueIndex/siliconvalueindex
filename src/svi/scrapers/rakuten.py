@@ -73,13 +73,14 @@ def credentials_from_env() -> Credentials | None:
 def _request(method: str, url: str, *, what: str, timeout: int = 30, **kwargs) -> requests.Response:
     """HTTP with retries. Errors carry the exception class and status only: never the URL,
     headers, or body, which could contain credentials."""
+    headers = {"User-Agent": USER_AGENT, **kwargs.pop("headers", {})}
     last = "RakutenError"
     for attempt in range(3):
         try:
             r = requests.request(
                 method,
                 url,
-                headers={"User-Agent": USER_AGENT, **kwargs.pop("headers", {})},
+                headers=headers,
                 timeout=timeout,
                 **kwargs,
             )
