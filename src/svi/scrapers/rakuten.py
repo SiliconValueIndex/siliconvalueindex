@@ -232,7 +232,7 @@ def items_to_observations(
             continue
         # A model name alone can be a cooling product (e.g. Bitspower Nebula).
         # Uncertain types remain visible for review, never become prices.
-        if not re.search(r"graphics\s+card|video\s+card|gddr\d|\b\d{1,2}\s*gb\b", title, re.I):
+        if not re.search(r"graphics?\s+card|video\s+card|gddr\d|\b\d{1,2}\s*gb\b", title, re.I):
             unresolved.append(
                 UnresolvedName(
                     source="newegg", raw_name=title, canonical=title.lower(), candidates=[]

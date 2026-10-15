@@ -311,6 +311,7 @@ def test_systems_and_parts_never_become_prices_or_unresolved(title):
         "Gigabyte GeForce RTX 4070 12GB WINDFORCE Cooling System",
         "GeForce RTX 4070 12GB Water Cooled Graphics Card",
         "MSI GeForce RTX 4070 12GB VENTUS 3X OC",
+        "ZOTAC Gaming GeForce RTX 4070 AMP Graphic Cards",
     ],
 )
 def test_standalone_cards_keep_cooling_and_desktop_descriptions(title):
