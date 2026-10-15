@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-09-30T17:15:36Z",
- "run_id": "20260930T171536Z",
+ "generated_at": "2026-10-15T00:08:47Z",
+ "run_id": "gh-38658277574-reviewed",
  "primary_view": "1440p_raster",
  "views": [
   "1080p_raster",
@@ -12,24 +12,24 @@
  ],
  "gpu_count": 62,
  "ranked_counts": {
-  "1080p_raster": 43,
-  "1080p_rt": 43,
-  "1440p_raster": 59,
-  "1440p_rt": 43,
-  "4k_raster": 43,
-  "4k_rt": 43
+  "1080p_raster": 45,
+  "1080p_rt": 45,
+  "1440p_raster": 61,
+  "1440p_rt": 45,
+  "4k_raster": 45,
+  "4k_rt": 45
  },
  "zones": {
   "1080p_raster": {
    "mode": "percentile",
-   "great_max": 5.23,
-   "fair_max": 6.82,
+   "great_max": 5.8,
+   "fair_max": 7.52,
    "min_fps": 60.0
   },
   "1080p_rt": {
    "mode": "percentile",
-   "great_max": 11.34,
-   "fair_max": 15.11,
+   "great_max": 11.59,
+   "fair_max": 17.07,
    "min_fps": 45.0
   },
   "1440p_raster": {
@@ -40,20 +40,20 @@
   },
   "1440p_rt": {
    "mode": "percentile",
-   "great_max": 16.5,
-   "fair_max": 21.54,
+   "great_max": 16.84,
+   "fair_max": 24.6,
    "min_fps": 40.0
   },
   "4k_raster": {
    "mode": "percentile",
-   "great_max": 15.31,
-   "fair_max": 17.53,
+   "great_max": 16.02,
+   "fair_max": 20.21,
    "min_fps": 40.0
   },
   "4k_rt": {
    "mode": "percentile",
-   "great_max": 29.43,
-   "fair_max": 37.19,
+   "great_max": 32.63,
+   "fair_max": 39.84,
    "min_fps": 30.0
   }
  },
@@ -494,7 +494,7 @@
    "name": "Manual price overrides",
    "url": "https://github.com/SiliconValueIndex/siliconvalueindex/blob/main/data/reference/price_overrides.csv",
    "kind": "prices",
-   "fetched_at": "2026-09-30T17:15:36Z"
+   "fetched_at": "2026-10-15T00:08:47Z"
   }
  ],
  "anomalies": [
@@ -515,6 +515,187 @@
    "detail": "2022->2026-09-16 fit residual exceeds 2.5 sd (3.9)"
   }
  ],
- "unresolved": [],
+ "unresolved": [
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE AORUS GeForce RTX 5060 Graphics AORUS GeForce RTX 5060 ARI",
+   "canonical": "gigabyte aorus geforce rtx 5060 graphics aorus geforce rtx 5060 ari",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G GAMING OC",
+   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 8g gaming oc",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEOC ICE-16GD",
+   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teagleoc ice-16gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G VENTUS 3X OC",
+   "canonical": "msi ventus geforce rtx 5060 ti graphics card rtx 5060 ti 8g ventus 3x oc",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ZOTAC Twin Edge OC GeForce RTX 5060 Ti Video Card ZT-B50620H-10A",
+   "canonical": "zotac twin edge oc geforce rtx 5060 ti video card zt-b50620h-10a",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2OC-16GD",
+   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2oc-16gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE WINDFORCE GeForce RTX 5060 Ti Graphics Card GV-N506TWF2MAX-8GD",
+   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2max-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card (RTX 5060 Ti 16G VENTUS 2X OC BLACK PLUS)",
+   "canonical": "msi ventus geforce rtx 5060 ti graphics card (rtx 5060 ti 16g ventus 2x oc black plus)",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS T1 GeForce RTX 5060 Ti Graphics Card T1-RTX5060TI-O8G-GAMING",
+   "canonical": "asus t1 geforce rtx 5060 ti graphics card t1-rtx5060ti-o8g-gaming",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEMAX OC-16GD",
+   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teaglemax oc-16gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS Dual GeForce RTX 5060 Ti Graphics Card DUAL-RTX5060TI-O8G",
+   "canonical": "asus dual geforce rtx 5060 ti graphics card dual-rtx5060ti-o8g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEMAX OC-8GD",
+   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teaglemax oc-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Gaming GeForce RTX 5060 Ti Graphics Card GV-N506TGAMING OC-8GD",
+   "canonical": "gigabyte gaming geforce rtx 5060 ti graphics card gv-n506tgaming oc-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEOC ICE-8GD",
+   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teagleoc ice-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2-8GD",
+   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G GAMING OC",
+   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 16g gaming oc",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G VENTUS 3X OC",
+   "canonical": "msi ventus geforce rtx 5060 ti graphics card rtx 5060 ti 16g ventus 3x oc",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLE OC-8GD",
+   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teagle oc-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Gaming GeForce RTX 5060 Ti Graphics Card GV-N506TGAMING OC-16GD",
+   "canonical": "gigabyte gaming geforce rtx 5060 ti graphics card gv-n506tgaming oc-16gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G GAMING TRIO OC",
+   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 16g gaming trio oc",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G GAMING TRIO OC",
+   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 8g gaming trio oc",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2OC-8GD",
+   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2oc-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G VENTUS 2X OC PLUS",
+   "canonical": "msi ventus geforce rtx 5060 ti graphics card rtx 5060 ti 16g ventus 2x oc plus",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE AERO GeForce RTX 5060 Ti Graphics Card GV-N506TAERO OC-8GD",
+   "canonical": "gigabyte aero geforce rtx 5060 ti graphics card gv-n506taero oc-8gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI SHADOW GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G SHADOW 2X OC PLUS",
+   "canonical": "msi shadow geforce rtx 5060 ti graphics card rtx 5060 ti 16g shadow 2x oc plus",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE AORUS GeForce RTX 5060 Ti Graphics card AORUS RTX 5060 TI AI BOX",
+   "canonical": "gigabyte aorus geforce rtx 5060 ti graphics card aorus rtx 5060 ti ai box",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Bitspower NEBULA GeForce RTX 5090 MSI Suprim / Gaming Trio / Vanguard",
+   "canonical": "bitspower nebula geforce rtx 5090 msi suprim / gaming trio / vanguard",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BITSPOWER NEBULA CLASSIC GeForce RTX 5090 VENTUS",
+   "canonical": "bitspower nebula classic geforce rtx 5090 ventus",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Bitspower Nebula Classic GeForce RTX 5090 Founders Edition",
+   "canonical": "bitspower nebula classic geforce rtx 5090 founders edition",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Bitspower NEBULA GeForce RTX 5090 ASUS TUF Gaming",
+   "canonical": "bitspower nebula geforce rtx 5090 asus tuf gaming",
+   "candidates": []
+  }
+ ],
  "needs_review": true
 }

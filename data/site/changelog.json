@@ -1,5 +1,133 @@
 [
  {
+  "run_id": "gh-38658277574-reviewed",
+  "generated_at": "2026-10-15T00:08:47Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [
+   {
+    "gpu_id": "nvidia-rtx-3070",
+    "from": 325.0,
+    "to": 645.0,
+    "pct": 98.5
+   },
+   {
+    "gpu_id": "amd-rx-7900-xtx",
+    "from": 1066.03,
+    "to": 1799.0,
+    "pct": 68.8
+   },
+   {
+    "gpu_id": "amd-rx-9060-xt",
+    "from": 345.99,
+    "to": 509.99,
+    "pct": 47.4
+   },
+   {
+    "gpu_id": "nvidia-rtx-5060-ti-16gb",
+    "from": 549.99,
+    "to": 799.99,
+    "pct": 45.5
+   },
+   {
+    "gpu_id": "nvidia-rtx-5060-ti-8gb",
+    "from": 379.99,
+    "to": 529.99,
+    "pct": 39.5
+   },
+   {
+    "gpu_id": "nvidia-rtx-5080",
+    "from": 1249.99,
+    "to": 1699.99,
+    "pct": 36.0
+   },
+   {
+    "gpu_id": "nvidia-rtx-3060",
+    "from": 339.0,
+    "to": 459.99,
+    "pct": 35.7
+   },
+   {
+    "gpu_id": "nvidia-rtx-2080-ti",
+    "from": 695.0,
+    "to": 895.0,
+    "pct": 28.8
+   },
+   {
+    "gpu_id": "nvidia-rtx-2060",
+    "from": 469.0,
+    "to": 599.0,
+    "pct": 27.7
+   },
+   {
+    "gpu_id": "nvidia-rtx-2070",
+    "from": 675.0,
+    "to": 495.0,
+    "pct": -26.7
+   },
+   {
+    "gpu_id": "intel-arc-a750",
+    "from": 279.0,
+    "to": 209.99,
+    "pct": -24.7
+   },
+   {
+    "gpu_id": "nvidia-rtx-5060",
+    "from": 379.99,
+    "to": 469.99,
+    "pct": 23.7
+   },
+   {
+    "gpu_id": "amd-rx-7600",
+    "from": 279.0,
+    "to": 339.97,
+    "pct": 21.9
+   },
+   {
+    "gpu_id": "amd-rx-9070-xt",
+    "from": 729.99,
+    "to": 879.99,
+    "pct": 20.5
+   },
+   {
+    "gpu_id": "nvidia-rtx-2080",
+    "from": 725.0,
+    "to": 849.0,
+    "pct": 17.1
+   },
+   {
+    "gpu_id": "intel-arc-b580",
+    "from": 289.99,
+    "to": 329.99,
+    "pct": 13.8
+   },
+   {
+    "gpu_id": "amd-rx-9070",
+    "from": 629.99,
+    "to": 699.99,
+    "pct": 11.1
+   },
+   {
+    "gpu_id": "nvidia-rtx-5070-ti",
+    "from": 1059.99,
+    "to": 1169.99,
+    "pct": 10.4
+   },
+   {
+    "gpu_id": "nvidia-rtx-2080-super",
+    "from": 799.0,
+    "to": 849.0,
+    "pct": 6.3
+   }
+  ],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 30,
+  "notes": [
+   "Newegg: 83 valid of 85 observations",
+   "Manual overrides applied: 2"
+  ]
+ },
+ {
   "run_id": "20260930T171536Z",
   "generated_at": "2026-09-30T17:15:36Z",
   "added_gpus": [],

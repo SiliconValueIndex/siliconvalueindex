@@ -213,6 +213,7 @@ def items_to_observations(
     *,
     now: datetime,
     run_id: str,
+    expected_vram: int | None = None,
 ) -> tuple[list[dict], list[UnresolvedName]]:
     """Keep listings that resolve to gpu_id. Returns (observations, unresolved_titles)."""
     obs: list[dict] = []
@@ -238,6 +239,11 @@ def items_to_observations(
                     source="newegg", raw_name=title, canonical=title.lower(), candidates=[]
                 )
             )
+            continue
+        memory = {
+            int(v) for v in re.findall(r"(?:\b|[-_])O?(\d{1,2})(?:GB|GD|GO|G)\b", title, re.I)
+        }
+        if expected_vram and memory and memory != {expected_vram}:
             continue
         hit = resolver.resolve(title, source="newegg")
         if isinstance(hit, UnresolvedName):
@@ -296,7 +302,14 @@ def scrape_newegg_prices(
     unresolved: dict[str, UnresolvedName] = {}
     for r in active.itertuples(index=False):
         items = search_fn(token, search_keyword(r.vendor, r.display_name), mid)
-        obs, unres = items_to_observations(items, r.gpu_id, resolver, now=now, run_id=run_id)
+        obs, unres = items_to_observations(
+            items,
+            r.gpu_id,
+            resolver,
+            now=now,
+            run_id=run_id,
+            expected_vram=int(r.vram_gb) if getattr(r, "vram_gb", None) else None,
+        )
         rows += obs
         for u in unres:
             unresolved.setdefault(u.raw_name, u)

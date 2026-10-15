@@ -358,3 +358,19 @@ def test_unknown_model_suffix_cannot_fuzzy_match_plain_card():
         [item], "amd-rx-9070", Resolver.from_files(), now=NOW, run_id="test"
     )
     assert obs == []
+
+
+@pytest.mark.parametrize("memory,expected", [("6GB", 0), ("GV-N3050WF2-6GD", 0), ("8GB", 1)])
+def test_memory_must_match_benchmarked_variant(memory, expected):
+    item = parse_search_xml(SEARCH_4070)[0][0] | {
+        "productname": f"GIGABYTE GeForce RTX 3050 Graphics Card {memory}"
+    }
+    obs, _ = items_to_observations(
+        [item],
+        "nvidia-rtx-3050",
+        Resolver.from_files(),
+        now=NOW,
+        run_id="test",
+        expected_vram=8,
+    )
+    assert len(obs) == expected
