@@ -82,6 +82,7 @@ jobs:
           path: |
             data/site/review_report.md
             data/raw/prices/
+            data/processed/prices_history.csv
             data/raw/benchmarks/toms/*.html
           retention-days: 90
           if-no-files-found: ignore

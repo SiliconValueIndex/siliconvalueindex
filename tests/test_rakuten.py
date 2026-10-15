@@ -276,3 +276,48 @@ def test_retry_preserves_authorization(monkeypatch, first_status):
     assert calls[0] == calls[1]
     assert calls[1]["Authorization"] == "Bearer test-token"
     assert calls[1]["Accept"] == "application/xml"
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "Dell Tower Plus Desktop PC Intel Core Ultra 9 RTX 4070 32GB DDR5",
+        "CLX Gaming Desktop GeForce RTX 4070 12GB 1TB NVMe SSD",
+        "HAJAAN Gaming Desktop Tower PC GeForce RTX 4070 Windows 11",
+        "ADAMANT Workstation Ryzen 9 9950X GeForce RTX 4070",
+        "Mini PC GeForce RTX 4070 12GB",
+        "95mm GPU Cooling Fan for GeForce RTX 4070",
+        "VGA Graphics Card Cooler Replacement Fan GeForce RTX 4070",
+        "RTX 4070 replacement cooling fans",
+        "RTX 4070 thermal pad kit",
+        "GeForce RTX 4070 water-block",
+        "GeForce RTX 4070 capture card",
+    ],
+)
+def test_systems_and_parts_never_become_prices_or_unresolved(title):
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"productname": title}
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-4070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == []
+    assert unresolved == []
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "MSI Gaming GeForce RTX 4070 12GB Graphics Card Twin Fan",
+        "ASUS Dual GeForce RTX 4070 12GB Desktop Graphics Card",
+        "Gigabyte GeForce RTX 4070 12GB WINDFORCE Cooling System",
+        "GeForce RTX 4070 12GB Water Cooled Graphics Card",
+        "MSI GeForce RTX 4070 12GB VENTUS 3X OC",
+    ],
+)
+def test_standalone_cards_keep_cooling_and_desktop_descriptions(title):
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"productname": title}
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-4070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert len(obs) == 1
+    assert obs[0]["title_raw"] == title
+    assert unresolved == []
