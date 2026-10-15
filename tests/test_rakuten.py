@@ -321,3 +321,39 @@ def test_standalone_cards_keep_cooling_and_desktop_descriptions(title):
     assert len(obs) == 1
     assert obs[0]["title_raw"] == title
     assert unresolved == []
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "Two FY09015M12LPA fans per set, suitable for GeForce RTX 4070 12GB graphics cards",
+        "Bitspower Titan GPU Cooling Expansion Kit for MSI GeForce RTX 4070",
+        "Phanteks Glacier ASUS GPU Block for RTX 4070 Full Cover copper block",
+    ],
+)
+def test_live_accessory_titles_are_excluded(title):
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"productname": title}
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-4070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == [] and unresolved == []
+
+
+def test_model_only_product_is_held_for_review():
+    item = parse_search_xml(SEARCH_4070)[0][0] | {
+        "productname": "BITSPOWER NEBULA CLASSIC GeForce RTX 5090 VENTUS"
+    }
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-5090", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == [] and len(unresolved) == 1
+
+
+def test_unknown_model_suffix_cannot_fuzzy_match_plain_card():
+    item = parse_search_xml(SEARCH_4070)[0][0] | {
+        "productname": "SAPPHIRE PULSE Radeon RX 9070 GRE Graphics Card"
+    }
+    obs, _ = items_to_observations(
+        [item], "amd-rx-9070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == []

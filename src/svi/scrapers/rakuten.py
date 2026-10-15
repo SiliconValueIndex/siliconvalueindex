@@ -33,7 +33,7 @@ import pandas as pd
 import requests
 
 from svi.config import Config
-from svi.ids import Resolver, has_negative_token
+from svi.ids import Resolver, extract_model, has_negative_token
 from svi.models import UnresolvedName
 from svi.prices import PRICE_COLUMNS
 from svi.scrapers.base import USER_AGENT
@@ -59,6 +59,8 @@ _NON_GPU = re.compile(
     r"(?:nvme|sata)\s+ssd|(?:replacement|spare)\s+(?:cooling\s+)?fans?|"
     r"(?:gpu|vga|graphics\s+card|video\s+card)\s+(?:cooling\s+)?fans?|"
     r"(?:fan|cooler)\s+(?:replacement|for)|capture\s+(?:card|box)|"
+    r"gpu\s+block|cooling\s+expansion\s+kit|fans?\s+per\s+set|"
+    r"fans?[^.]*\b(?:suitable|replacement|for)\b|"
     r"thermal\s+(?:pad|paste)|heatsink|heat\s+sink|water[ -]?block|back[ -]?plate)\b",
     re.IGNORECASE,
 )
@@ -218,6 +220,24 @@ def items_to_observations(
     for it in items:
         title = it["productname"]
         if excluded_product(title) or it["currency"] != "USD":
+            continue
+        # Never let fuzzy fallback erase suffixes such as GRE, Ti or Super.
+        model = extract_model(title)
+        requested = extract_model(resolver.display_names[gpu_id])
+        if (
+            model
+            and requested
+            and any(model[key] != requested[key] for key in ("family", "number", "suffix"))
+        ):
+            continue
+        # A model name alone can be a cooling product (e.g. Bitspower Nebula).
+        # Uncertain types remain visible for review, never become prices.
+        if not re.search(r"graphics\s+card|video\s+card|gddr\d|\b\d{1,2}\s*gb\b", title, re.I):
+            unresolved.append(
+                UnresolvedName(
+                    source="newegg", raw_name=title, canonical=title.lower(), candidates=[]
+                )
+            )
             continue
         hit = resolver.resolve(title, source="newegg")
         if isinstance(hit, UnresolvedName):
