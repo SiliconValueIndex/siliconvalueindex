@@ -249,3 +249,112 @@ def test_config_enables_newegg():
     cfg = get_config()
     assert cfg.pricing.retailers == ["bestbuy", "newegg", "manual"]
     assert cfg.pricing.newegg_rakuten_mid == "44583"
+
+
+@pytest.mark.parametrize("first_status", [429, 503, None])
+def test_retry_preserves_authorization(monkeypatch, first_status):
+    calls = []
+    monkeypatch.setattr(rakuten.time, "sleep", lambda seconds: None)
+
+    def request(*args, **kwargs):
+        calls.append(dict(kwargs["headers"]))
+        if len(calls) == 1 and first_status is None:
+            raise requests.ConnectionError("temporary connection failure")
+        response = requests.Response()
+        response.status_code = first_status if len(calls) == 1 else 200
+        return response
+
+    monkeypatch.setattr(rakuten.requests, "request", request)
+    response = rakuten._request(
+        "GET",
+        rakuten.SEARCH_URL,
+        what="product search",
+        headers={"Authorization": "Bearer test-token", "Accept": "application/xml"},
+    )
+    assert response.status_code == 200
+    assert len(calls) == 2
+    assert calls[0] == calls[1]
+    assert calls[1]["Authorization"] == "Bearer test-token"
+    assert calls[1]["Accept"] == "application/xml"
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "Dell Tower Plus Desktop PC Intel Core Ultra 9 RTX 4070 32GB DDR5",
+        "CLX Gaming Desktop GeForce RTX 4070 12GB 1TB NVMe SSD",
+        "HAJAAN Gaming Desktop Tower PC GeForce RTX 4070 Windows 11",
+        "ADAMANT Workstation Ryzen 9 9950X GeForce RTX 4070",
+        "Mini PC GeForce RTX 4070 12GB",
+        "95mm GPU Cooling Fan for GeForce RTX 4070",
+        "VGA Graphics Card Cooler Replacement Fan GeForce RTX 4070",
+        "RTX 4070 replacement cooling fans",
+        "RTX 4070 thermal pad kit",
+        "GeForce RTX 4070 water-block",
+        "GeForce RTX 4070 capture card",
+    ],
+)
+def test_systems_and_parts_never_become_prices_or_unresolved(title):
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"productname": title}
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-4070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == []
+    assert unresolved == []
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "MSI Gaming GeForce RTX 4070 12GB Graphics Card Twin Fan",
+        "ASUS Dual GeForce RTX 4070 12GB Desktop Graphics Card",
+        "Gigabyte GeForce RTX 4070 12GB WINDFORCE Cooling System",
+        "GeForce RTX 4070 12GB Water Cooled Graphics Card",
+        "MSI GeForce RTX 4070 12GB VENTUS 3X OC",
+        "ZOTAC Gaming GeForce RTX 4070 AMP Graphic Cards",
+    ],
+)
+def test_standalone_cards_keep_cooling_and_desktop_descriptions(title):
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"productname": title}
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-4070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert len(obs) == 1
+    assert obs[0]["title_raw"] == title
+    assert unresolved == []
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "Two FY09015M12LPA fans per set, suitable for GeForce RTX 4070 12GB graphics cards",
+        "Bitspower Titan GPU Cooling Expansion Kit for MSI GeForce RTX 4070",
+        "Phanteks Glacier ASUS GPU Block for RTX 4070 Full Cover copper block",
+    ],
+)
+def test_live_accessory_titles_are_excluded(title):
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"productname": title}
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-4070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == [] and unresolved == []
+
+
+def test_model_only_product_is_held_for_review():
+    item = parse_search_xml(SEARCH_4070)[0][0] | {
+        "productname": "BITSPOWER NEBULA CLASSIC GeForce RTX 5090 VENTUS"
+    }
+    obs, unresolved = items_to_observations(
+        [item], "nvidia-rtx-5090", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == [] and len(unresolved) == 1
+
+
+def test_unknown_model_suffix_cannot_fuzzy_match_plain_card():
+    item = parse_search_xml(SEARCH_4070)[0][0] | {
+        "productname": "SAPPHIRE PULSE Radeon RX 9070 GRE Graphics Card"
+    }
+    obs, _ = items_to_observations(
+        [item], "amd-rx-9070", Resolver.from_files(), now=NOW, run_id="test"
+    )
+    assert obs == []

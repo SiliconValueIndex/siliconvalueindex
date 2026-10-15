@@ -33,7 +33,7 @@ import pandas as pd
 import requests
 
 from svi.config import Config
-from svi.ids import Resolver, has_negative_token
+from svi.ids import Resolver, extract_model, has_negative_token
 from svi.models import UnresolvedName
 from svi.prices import PRICE_COLUMNS
 from svi.scrapers.base import USER_AGENT
@@ -49,6 +49,26 @@ APPROVED_STATUSES = {"active", "extended"}
 # Product Search answers "no results" with this error document rather than an empty list.
 NO_MATCHES_ERROR_ID = "7186919"
 _NOT_NEW = re.compile(r"\bopen[\s-]?box\b|\brefurb", re.IGNORECASE)
+
+# Match system/part context rather than bare fan, desktop, gaming or water cooled,
+# which also describe legitimate standalone graphics cards.
+_NON_GPU = re.compile(
+    r"\b(?:desktop\s+(?:pc|computer|tower)|gaming\s+(?:desktop|pc|computer)|"
+    r"workstation|mini[ -]?pc|all[ -]in[ -]one|barebone|windows\s+(?:10|11)|"
+    r"(?:intel\s+)?core\s+(?:i[3579]|ultra)\b|ryzen\s+[3579]\b|"
+    r"(?:nvme|sata)\s+ssd|(?:replacement|spare)\s+(?:cooling\s+)?fans?|"
+    r"(?:gpu|vga|graphics\s+card|video\s+card)\s+(?:cooling\s+)?fans?|"
+    r"(?:fan|cooler)\s+(?:replacement|for)|capture\s+(?:card|box)|"
+    r"gpu\s+block|cooling\s+expansion\s+kit|fans?\s+per\s+set|"
+    r"fans?[^.]*\b(?:suitable|replacement|for)\b|"
+    r"thermal\s+(?:pad|paste)|heatsink|heat\s+sink|water[ -]?block|back[ -]?plate)\b",
+    re.IGNORECASE,
+)
+
+
+def excluded_product(title: str) -> bool:
+    """Reject complete systems/accessories before GPU model resolution."""
+    return has_negative_token(title) or bool(_NON_GPU.search(title))
 
 
 class RakutenError(RuntimeError):
@@ -73,13 +93,14 @@ def credentials_from_env() -> Credentials | None:
 def _request(method: str, url: str, *, what: str, timeout: int = 30, **kwargs) -> requests.Response:
     """HTTP with retries. Errors carry the exception class and status only: never the URL,
     headers, or body, which could contain credentials."""
+    headers = {"User-Agent": USER_AGENT, **kwargs.pop("headers", {})}
     last = "RakutenError"
     for attempt in range(3):
         try:
             r = requests.request(
                 method,
                 url,
-                headers={"User-Agent": USER_AGENT, **kwargs.pop("headers", {})},
+                headers=headers,
                 timeout=timeout,
                 **kwargs,
             )
@@ -198,7 +219,25 @@ def items_to_observations(
     unresolved: list[UnresolvedName] = []
     for it in items:
         title = it["productname"]
-        if has_negative_token(title) or it["currency"] != "USD":
+        if excluded_product(title) or it["currency"] != "USD":
+            continue
+        # Never let fuzzy fallback erase suffixes such as GRE, Ti or Super.
+        model = extract_model(title)
+        requested = extract_model(resolver.display_names[gpu_id])
+        if (
+            model
+            and requested
+            and any(model[key] != requested[key] for key in ("family", "number", "suffix"))
+        ):
+            continue
+        # A model name alone can be a cooling product (e.g. Bitspower Nebula).
+        # Uncertain types remain visible for review, never become prices.
+        if not re.search(r"graphics?\s+card|video\s+card|gddr\d|\b\d{1,2}\s*gb\b", title, re.I):
+            unresolved.append(
+                UnresolvedName(
+                    source="newegg", raw_name=title, canonical=title.lower(), candidates=[]
+                )
+            )
             continue
         hit = resolver.resolve(title, source="newegg")
         if isinstance(hit, UnresolvedName):

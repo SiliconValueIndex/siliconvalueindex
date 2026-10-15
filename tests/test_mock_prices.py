@@ -21,7 +21,9 @@ def test_mock_runs_fixture_through_bestbuy_normalizer():
     obs, unresolved = mock.scrape_prices(
         Resolver.from_files(), one_gpu(), cfg, run_id="test", now=NOW
     )
-    obs = prices.validate_observations(obs, prices.load_history(), cfg.pricing, now=NOW)
+    # Normalizer expectations must not depend on changing live retailer history.
+    history = pd.DataFrame(columns=prices.PRICE_COLUMNS)
+    obs = prices.validate_observations(obs, history, cfg.pricing, now=NOW)
     assert set(obs["retailer"]) == {"mock"}
     assert set(obs["gpu_id"]) == {"nvidia-rtx-5070"}
     # The bundle is dropped before it becomes an observation.
