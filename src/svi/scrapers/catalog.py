@@ -13,7 +13,10 @@ from pathlib import Path
 from svi.ids import extract_model
 
 HOST = "aftp.linksynergy.com"
-HOST_KEY = "aftp.linksynergy.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINwrS54V0yc+9UnhjYlffU8qjCl9Z30AH4oHQQ8+mVTo"
+HOST_KEY = (
+    "aftp.linksynergy.com ssh-ed25519 "
+    "AAAAC3NzaC1lZDI1NTE5AAAAINwrS54V0yc+9UnhjYlffU8qjCl9Z30AH4oHQQ8+mVTo"
+)
 
 
 def parse_catalog(lines, *, mid="44583"):

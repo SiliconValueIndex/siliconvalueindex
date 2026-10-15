@@ -7,6 +7,10 @@ on:
     - cron: "0 11 * * 0,2-6"
   workflow_dispatch:
     inputs:
+      catalog_probe:
+        description: "Read catalog availability without publishing"
+        type: boolean
+        default: false
       skip_prices:
         description: "Skip retailer price fetching"
         type: boolean
@@ -50,6 +54,8 @@ jobs:
           RAKUTEN_CLIENT_ID: ${{ secrets.RAKUTEN_CLIENT_ID }}
           RAKUTEN_CLIENT_SECRET: ${{ secrets.RAKUTEN_CLIENT_SECRET }}
           RAKUTEN_SID: ${{ secrets.RAKUTEN_SID }}
+          RAKUTEN_SFTP_USERNAME: ${{ secrets.RAKUTEN_SFTP_USERNAME }}
+          RAKUTEN_SFTP_PASSWORD: ${{ secrets.RAKUTEN_SFTP_PASSWORD }}
         run: |
           for name in RAKUTEN_CLIENT_ID RAKUTEN_CLIENT_SECRET RAKUTEN_SID; do
             if [ -z "${!name}" ]; then
@@ -64,7 +70,10 @@ jobs:
           RAKUTEN_CLIENT_ID: ${{ secrets.RAKUTEN_CLIENT_ID }}
           RAKUTEN_CLIENT_SECRET: ${{ secrets.RAKUTEN_CLIENT_SECRET }}
           RAKUTEN_SID: ${{ secrets.RAKUTEN_SID }}
+          RAKUTEN_SFTP_USERNAME: ${{ secrets.RAKUTEN_SFTP_USERNAME }}
+          RAKUTEN_SFTP_PASSWORD: ${{ secrets.RAKUTEN_SFTP_PASSWORD }}
         run: |
+          if [ "${{ inputs.catalog_probe }}" = "true" ]; then python -m svi.scrapers.catalog; exit 0; fi
           ARGS="--run-id gh-${{ github.run_id }} --retailers newegg,manual"
           if [ "${{ inputs.skip_prices }}" = "true" ]; then ARGS="$ARGS --skip-prices"; fi
           if [ "${{ inputs.skip_benchmarks }}" = "true" ]; then ARGS="$ARGS --skip-benchmarks"; fi
@@ -80,6 +89,7 @@ jobs:
         with:
           name: refresh-${{ github.run_id }}
           path: |
+            catalog-check.json
             data/site/review_report.md
             data/raw/prices/
             data/processed/prices_history.csv
