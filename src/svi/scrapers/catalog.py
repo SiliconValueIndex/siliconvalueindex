@@ -95,6 +95,12 @@ def fetch_catalog():
         )
         with client.open_sftp() as sftp, tempfile.TemporaryDirectory() as folder:
             sftp.get_channel().settimeout(120)
+            files = sftp.listdir(".")
+            expected = f"44583_{sid}_mp.txt.gz"
+            if expected not in files:
+                matching = [name for name in files if name.startswith("44583")]
+                print("Newegg catalog entries:", matching)
+                raise FileNotFoundError("Expected Newegg text catalog is not available")
             path = Path(folder) / "catalog.txt.gz"
             sftp.get(f"44583_{sid}_mp.txt.gz", str(path), max_concurrent_prefetch_requests=32)
             with gzip.open(path, "rt", encoding="utf-8-sig", newline="") as stream:
