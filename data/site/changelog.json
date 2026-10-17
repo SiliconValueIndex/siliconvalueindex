@@ -1,5 +1,25 @@
 [
  {
+  "run_id": "gh-39039129310",
+  "generated_at": "2026-10-17T14:03:50Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [
+   {
+    "gpu_id": "nvidia-rtx-5080",
+    "from": 1699.99,
+    "to": 1799.99,
+    "pct": 5.9
+   }
+  ],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 28,
+  "notes": [
+   "Newegg: 75 valid of 77 observations",
+   "Manual overrides applied: 2"
+  ]
+ },
+ {
   "run_id": "gh-38658277574-reviewed",
   "generated_at": "2026-10-15T00:08:47Z",
   "added_gpus": [],
