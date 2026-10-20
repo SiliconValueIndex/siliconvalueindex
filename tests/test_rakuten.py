@@ -292,6 +292,10 @@ def test_retry_preserves_authorization(monkeypatch, first_status):
         "RTX 4070 thermal pad kit",
         "GeForce RTX 4070 water-block",
         "GeForce RTX 4070 capture card",
+        "MINISFORUM eGPU Dock for RTX 4070 Graphics Card",
+        "90 Degree Power Connector for RTX 4070 Graphics Card",
+        "Three GPU coolers for RTX 4070 graphics cards",
+        "RTX 4070 Artisan Keycap",
     ],
 )
 def test_systems_and_parts_never_become_prices_or_unresolved(title):
