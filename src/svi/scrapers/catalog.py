@@ -26,6 +26,7 @@ def parse_catalog(lines, *, mid="44583"):
     reader = csv.reader(lines, delimiter="|")
     header = next(reader, [])
     if len(header) != 4 or header[:2] != ["HDR", mid]:
+        print("Catalog header fields:", len(header), header[:2])
         raise ValueError("Catalog header is missing or advertiser does not match")
     created = datetime.strptime(header[3], "%m/%d/%Y %H:%M:%S").replace(tzinfo=UTC)
     count = 0
