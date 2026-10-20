@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-20T21:19:59Z",
- "run_id": "gh-39499427774",
+ "generated_at": "2026-10-20T22:07:26Z",
+ "run_id": "gh-39505682915",
  "primary_view": "1440p_raster",
  "views": [
   "1080p_raster",
@@ -12,24 +12,24 @@
  ],
  "gpu_count": 62,
  "ranked_counts": {
-  "1080p_raster": 45,
-  "1080p_rt": 45,
-  "1440p_raster": 61,
-  "1440p_rt": 45,
-  "4k_raster": 45,
-  "4k_rt": 45
+  "1080p_raster": 18,
+  "1080p_rt": 18,
+  "1440p_raster": 25,
+  "1440p_rt": 18,
+  "4k_raster": 18,
+  "4k_rt": 18
  },
  "zones": {
   "1080p_raster": {
    "mode": "percentile",
-   "great_max": 5.87,
-   "fair_max": 7.6,
+   "great_max": 5.41,
+   "fair_max": 7.29,
    "min_fps": 60.0
   },
   "1080p_rt": {
    "mode": "percentile",
-   "great_max": 11.6,
-   "fair_max": 17.39,
+   "great_max": 11.94,
+   "fair_max": 13.79,
    "min_fps": 45.0
   },
   "1440p_raster": {
@@ -40,20 +40,20 @@
   },
   "1440p_rt": {
    "mode": "percentile",
-   "great_max": 16.85,
-   "fair_max": 24.74,
+   "great_max": 17.06,
+   "fair_max": 21.98,
    "min_fps": 40.0
   },
   "4k_raster": {
    "mode": "percentile",
-   "great_max": 16.07,
-   "fair_max": 20.21,
+   "great_max": 15.98,
+   "fair_max": 19.79,
    "min_fps": 40.0
   },
   "4k_rt": {
    "mode": "percentile",
-   "great_max": 32.82,
-   "fair_max": 41.31,
+   "great_max": 31.39,
+   "fair_max": 35.54,
    "min_fps": 30.0
   }
  },
@@ -494,7 +494,7 @@
    "name": "Manual price overrides",
    "url": "https://github.com/SiliconValueIndex/siliconvalueindex/blob/main/data/reference/price_overrides.csv",
    "kind": "prices",
-   "fetched_at": "2026-10-20T21:19:59Z"
+   "fetched_at": "2026-10-20T22:07:26Z"
   }
  ],
  "anomalies": [
