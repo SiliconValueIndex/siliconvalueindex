@@ -261,7 +261,9 @@ def items_to_observations(
                 "currency": "USD",
                 "url": it["linkurl"],  # Rakuten tracking link: the affiliate link
                 "condition": "refurb" if _NOT_NEW.search(title) else "new",
-                "in_stock": True,  # the feed has no availability field; see module docstring
+                # Product Search does not provide availability. Catalog observations
+                # overwrite this value with its explicit status.
+                "in_stock": True,
                 "is_valid": True,
                 "invalid_reason": "",
                 "fetched_at": now,
@@ -269,6 +271,44 @@ def items_to_observations(
             }
         )
     return obs, unresolved
+
+
+def catalog_items_to_observations(
+    items: list[dict],
+    resolver: Resolver,
+    registry: pd.DataFrame,
+    *,
+    now: datetime,
+    run_id: str,
+) -> tuple[pd.DataFrame, list[UnresolvedName]]:
+    """Resolve a full catalog while retaining unavailable offers for audit history."""
+    vram = registry.set_index("gpu_id")["vram_gb"].to_dict() if "vram_gb" in registry else {}
+    rows: list[dict] = []
+    unresolved: dict[str, UnresolvedName] = {}
+    for item in items:
+        title = item["productname"]
+        if excluded_product(title) or item["currency"] != "USD":
+            continue
+        hit = resolver.resolve(title, source="newegg")
+        if isinstance(hit, UnresolvedName):
+            unresolved.setdefault(hit.raw_name, hit)
+            continue
+        observations, names = items_to_observations(
+            [item],
+            hit,
+            resolver,
+            now=now,
+            run_id=run_id,
+            expected_vram=int(vram[hit]) if pd.notna(vram.get(hit)) else None,
+        )
+        for observation in observations:
+            # The catalog exposes in-stock, out-of-stock, preorder and backorder.
+            # Only in-stock listings can influence current-price selection.
+            observation["in_stock"] = item.get("availability", "").lower() == "in-stock"
+            rows.append(observation)
+        for name in names:
+            unresolved.setdefault(name.raw_name, name)
+    return pd.DataFrame(rows, columns=PRICE_COLUMNS), list(unresolved.values())
 
 
 def scrape_newegg_prices(
@@ -282,10 +322,18 @@ def scrape_newegg_prices(
     token_fn=fetch_token,
     status_fn=partnership_status,
     search_fn=search_products,
+    catalog_fn=None,
     pause: float = 1.0,
 ) -> tuple[pd.DataFrame, list[UnresolvedName]]:
     """One search per active GPU. Network functions are injectable for tests."""
     now = now or datetime.now(UTC)
+    if catalog_fn is None and os.environ.get("RAKUTEN_SFTP_USERNAME", "").strip():
+        from svi.scrapers.catalog import fetch_catalog
+
+        catalog_fn = fetch_catalog
+    if catalog_fn is not None:
+        items, _summary = catalog_fn()
+        return catalog_items_to_observations(items, resolver, registry, now=now, run_id=run_id)
     creds = creds or credentials_from_env()
     if creds is None:
         raise RetailerSkipped(

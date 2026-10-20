@@ -41,3 +41,9 @@ def test_catalog_requires_correct_merchant_and_complete_trailer():
 def test_catalog_rejects_trailing_records():
     with pytest.raises(ValueError, match="after"):
         parse_catalog(io.StringIO(catalog() + "TRL|1\n"))
+
+
+def test_catalog_accepts_provider_timestamp_with_timezone():
+    raw = catalog().replace("10/15/2026 12:00:00", "2026-10-15T12:00:00Z")
+    _, summary = parse_catalog(io.StringIO(raw))
+    assert summary["created_at"] == "2026-10-15T12:00:00+00:00"

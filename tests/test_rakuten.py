@@ -374,3 +374,24 @@ def test_memory_must_match_benchmarked_variant(memory, expected):
         expected_vram=8,
     )
     assert len(obs) == expected
+
+
+def test_catalog_marks_unavailable_offer_invalid_but_keeps_it_for_history():
+    from svi.scrapers.rakuten import catalog_items_to_observations
+
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"availability": "out-of-stock"}
+    rows, unresolved = catalog_items_to_observations(
+        [item],
+        Resolver.from_files(),
+        registry(("nvidia-rtx-4070", "NVIDIA", "RTX 4070")),
+        now=NOW,
+        run_id="catalog",
+    )
+    assert len(rows) == 1
+    assert not rows.iloc[0]["in_stock"]
+    checked = prices.validate_observations(
+        rows, pd.DataFrame(columns=prices.PRICE_COLUMNS), get_config().pricing, now=NOW
+    )
+    assert not checked.iloc[0]["is_valid"]
+    assert checked.iloc[0]["invalid_reason"] == "not_in_stock"
+    assert unresolved == []
