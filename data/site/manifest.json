@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-15T00:08:47Z",
- "run_id": "gh-38658277574-reviewed",
+ "generated_at": "2026-10-20T21:19:59Z",
+ "run_id": "gh-39499427774",
  "primary_view": "1440p_raster",
  "views": [
   "1080p_raster",
@@ -22,14 +22,14 @@
  "zones": {
   "1080p_raster": {
    "mode": "percentile",
-   "great_max": 5.8,
-   "fair_max": 7.52,
+   "great_max": 5.87,
+   "fair_max": 7.6,
    "min_fps": 60.0
   },
   "1080p_rt": {
    "mode": "percentile",
-   "great_max": 11.59,
-   "fair_max": 17.07,
+   "great_max": 11.6,
+   "fair_max": 17.39,
    "min_fps": 45.0
   },
   "1440p_raster": {
@@ -40,20 +40,20 @@
   },
   "1440p_rt": {
    "mode": "percentile",
-   "great_max": 16.84,
-   "fair_max": 24.6,
+   "great_max": 16.85,
+   "fair_max": 24.74,
    "min_fps": 40.0
   },
   "4k_raster": {
    "mode": "percentile",
-   "great_max": 16.02,
+   "great_max": 16.07,
    "fair_max": 20.21,
    "min_fps": 40.0
   },
   "4k_rt": {
    "mode": "percentile",
-   "great_max": 32.63,
-   "fair_max": 39.84,
+   "great_max": 32.82,
+   "fair_max": 41.31,
    "min_fps": 30.0
   }
  },
@@ -494,7 +494,7 @@
    "name": "Manual price overrides",
    "url": "https://github.com/SiliconValueIndex/siliconvalueindex/blob/main/data/reference/price_overrides.csv",
    "kind": "prices",
-   "fetched_at": "2026-10-15T00:08:47Z"
+   "fetched_at": "2026-10-20T21:19:59Z"
   }
  ],
  "anomalies": [
@@ -518,170 +518,747 @@
  "unresolved": [
   {
    "source": "newegg",
-   "raw_name": "GIGABYTE AORUS GeForce RTX 5060 Graphics AORUS GeForce RTX 5060 ARI",
-   "canonical": "gigabyte aorus geforce rtx 5060 graphics aorus geforce rtx 5060 ari",
+   "raw_name": "PNY Technologies NVIDIA RTX A1000 Professional Graphics Board NVIDIA RTX A1000 Small Form Factor NVIDIA Ampere Architecture 8GB GDDR6 GPU Memory",
+   "canonical": "pny technologies rtx a1000 professional graphics board rtx a1000 small form factor ampere architecture 8gb gddr6 gpu memory",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     63.63636363636363
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     63.63636363636363
+    ],
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Lenovo NVIDIA RTX A400 Graphic Card - 4 GB GDDR6 - 4 x Mini DisplayPort - Mini DisplayPort",
+   "canonical": "lenovo rtx a400 graphic card 4gb gddr6 4 x mini displayport mini displayport",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Waste King Garbage Disposal Air Switch Base and Control Unit - ARC-4200",
+   "canonical": "waste king garbage disposal air switch base and control unit arc 4200",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Bridgestone Tour B RX 2024 Golf Balls",
+   "canonical": "bridgestone tour b rx 2024 golf balls",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "TANK Battery Streamlight Flashlight RX1019 SL20 SL20S SL20X SL-20 SL-20S SL-20X",
+   "canonical": "tank battery streamlight flashlight rx1019 sl20 sl20s sl20x sl 20 sl 20s sl 20x",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     24.444444444444443
+    ],
+    [
+     "nvidia-rtx-2080-ti",
+     23.80952380952381
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     22.98850574712644
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Battery for HP iPAQ RX1900 35H00063-00M 399858-001 HSTNN-H09C-WL PE2018AS 1200mA",
+   "canonical": "battery for hp ipaq rx1900 35h00063 00m 399858 001 hstnn h09c wl pe2018as 1200ma",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     23.15789473684211
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     21.505376344086017
+    ],
+    [
+     "nvidia-rtx-3080",
+     21.505376344086017
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "1700mAh 430128-001, FA8277A, FA827AA, HSTNH-L12B Battery for HP iPAQ rx5000, rx5700, rx5710, rx5720, rx5725",
+   "canonical": "1700mah 430128 001, fa8277a, fa827aa, hstnh l12b battery for hp ipaq rx5000, rx5700, rx5710, rx5720, rx5725",
+   "candidates": [
+    [
+     "amd-rx-6700-10gb",
+     16.806722689075627
+    ],
+    [
+     "nvidia-rtx-3080",
+     16.66666666666667
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     16.393442622950815
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Battery for HP Compaq iPAQ 114 111 110 112 116 Pocket PC PDA RX4240 RX4540 100 RX4200 RX4000 RX4500",
+   "canonical": "battery for hp compaq ipaq 114 111 110 112 116 pocket pc pda rx4240 rx4540 100 rx4200 rx4000 rx4500",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     19.130434782608702
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     17.391304347826093
+    ],
+    [
+     "amd-rx-6700-10gb",
+     16.21621621621621
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Battery for HP Compaq iPAQ 300 310 312 314 316 Pocket PC PDA rx5700 rx5710 rx5720 rx5725 rx5730",
+   "canonical": "battery for hp compaq ipaq 300 310 312 314 316 pocket pc pda rx5700 rx5710 rx5720 rx5725 rx5730",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     19.819819819819813
+    ],
+    [
+     "amd-rx-6700-10gb",
+     18.691588785046733
+    ],
+    [
+     "intel-arc-a770",
+     18.51851851851852
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Thermal Grizzly TG-GG-01 TG GPU Guard Gasket for RTX 4090/5080/5090 Highly Compressible, Protection, 9Piece",
+   "canonical": "thermal grizzly tg-gg-01 tg gpu guard gasket for rtx 4090/5080/5090 highly compressible, protection, 9piece",
    "candidates": []
   },
   {
    "source": "newegg",
-   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G GAMING OC",
-   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 8g gaming oc",
+   "raw_name": "Synology RX1217 Expansion for RackStation (Diskless)",
+   "canonical": "synology rx1217 expansion for rackstation (diskless)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.289855072463766
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     18.181818181818187
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     18.181818181818187
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PYRAMEX RX6400 Prescription Insert Holder, Nylon, Clear, Clip, Works With V2G",
+   "canonical": "pyramex rx6400 prescription insert holder, nylon, clear, clip, works with v2g",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.276595744680847
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     17.582417582417577
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     17.582417582417577
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Quartet ARC2414 Magnetic Dry Erase Board, Painted Steel, 14 x 24, White/Aluminum Frame",
+   "canonical": "quartet arc2414 magnetic dry erase board, painted steel, 14 x 24, white/aluminum frame",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.359223300970868
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     17.821782178217816
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     17.647058823529406
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Stens 265-473 Belt Fits Cub Cadet 954-04055 GT2042 GT2050 GT2148 GT2554 GTX2154",
+   "canonical": "stens 265 473 belt fits cub cadet 954 04055 gt2042 gt2050 gt2148 gt2554 gtx2154",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.531914893617028
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     23.40425531914893
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     23.15789473684211
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Gold 6246 (24 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A1000 8GB Graphics,...",
+   "canonical": "dell precision 7920 rack server, dual xeon gold 6246 (24 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a1000 8gb graphics,...",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     63.63636363636363
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     63.63636363636363
+    ],
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Gold 6246 (24 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A4000 16GB Graphics,...",
+   "canonical": "dell precision 7920 rack server, dual xeon gold 6246 (24 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a4000 16gb graphics,...",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Gold 6246 (24 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A4500 20GB Graphics,...",
+   "canonical": "dell precision 7920 rack server, dual xeon gold 6246 (24 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a4500 20gb graphics,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Gold 6246 (24 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX 4000 ADA 20GB Graphics,...",
+   "canonical": "dell precision 7920 rack server, dual xeon gold 6246 (24 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx 4000 ada 20gb graphics,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Gold 6246 (24 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A5000 24GB Graphics,...",
+   "canonical": "dell precision 7920 rack server, dual xeon gold 6246 (24 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a5000 24gb graphics,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Gold 6246 (24 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A6000 48GB Graphics,...",
+   "canonical": "dell precision 7920 rack server, dual xeon gold 6246 (24 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a6000 48gb graphics,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260M (48 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A1000 8GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260m (48 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a1000 8gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260M (48 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX 4000 ADA 20GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260m (48 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx 4000 ada 20gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260M (48 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A4000 16GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260m (48 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a4000 16gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260M (48 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A4500 20GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260m (48 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a4500 20gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260M (48 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A5000 24GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260m (48 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a5000 24gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260M (48 Cores Total), 256GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A6000 48GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260m (48 cores total), 256gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a6000 48gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260 (48 Cores Total), 512GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A4000 16GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260 (48 cores total), 512gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a4000 16gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260 (48 Cores Total), 512GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A1000 8GB, Windows...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260 (48 cores total), 512gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a1000 8gb, windows...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260 (48 Cores Total), 512GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A4500 20GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260 (48 cores total), 512gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a4500 20gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260 (48 Cores Total), 512GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX 4000 ADA 20GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260 (48 cores total), 512gb ram, 4x 4tb 2.5' ssd, raid 5, rtx 4000 ada 20gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260 (48 Cores Total), 512GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A5000 24GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260 (48 cores total), 512gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a5000 24gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Dell Precision 7920 Rack Server, Dual Intel Xeon Platinum 8260 (48 Cores Total), 512GB RAM, 4x 4TB 2.5' SSD, Raid 5, Nvidia RTX A6000 48GB,...",
+   "canonical": "dell precision 7920 rack server, dual xeon platinum 8260 (48 cores total), 512gb ram, 4x 4tb 2.5' ssd, raid 5, rtx a6000 48gb,...",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Thermaltake CL-W254-CU00SW-A Pacific V-RTX 2070 Plus (ASUS ROG)",
+   "canonical": "thermaltake cl-w254-cu00sw-a pacific v-rtx 2070 plus (asus rog)",
    "candidates": []
   },
   {
    "source": "newegg",
-   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEOC ICE-16GD",
-   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teagleoc ice-16gd",
+   "raw_name": "Synology 60-bay Rackmount High Density Storage Expansion Unit (Diskless) RX6025SAS",
+   "canonical": "synology 60 bay rackmount high density storage expansion unit (diskless) rx6025sas",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     22.680412371134025
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     22.680412371134025
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     20.40816326530613
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Alphacool Spare Parts for Eisblock RTX 4090 Reference Design (13442)",
+   "canonical": "alphacool spare parts for eisblock rtx 4090 reference design (13442)",
    "candidates": []
   },
   {
    "source": "newegg",
-   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G VENTUS 3X OC",
-   "canonical": "msi ventus geforce rtx 5060 ti graphics card rtx 5060 ti 8g ventus 3x oc",
+   "raw_name": "Alphacool ES RTX 6000 Ada 48GB (13725)",
+   "canonical": "alphacool es rtx 6000 ada 48gb (13725)",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Watercool HEATKILLER V Sideport Terminal for ASUS RTX 5090 TUF (79337)",
+   "canonical": "watercool heatkiller v sideport terminal for asus rtx 5090 tuf (79337)",
    "candidates": []
   },
   {
    "source": "newegg",
-   "raw_name": "ZOTAC Twin Edge OC GeForce RTX 5060 Ti Video Card ZT-B50620H-10A",
-   "canonical": "zotac twin edge oc geforce rtx 5060 ti video card zt-b50620h-10a",
+   "raw_name": "Alphacool ES RTX 6000 Pro Server Edition 1-Slot-Design (19450)",
+   "canonical": "alphacool es rtx 6000 pro server edition 1 slot design (19450)",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "areca ARC-1220 PCI-Express x8 SATA II (3.0Gb/s) Controller Card",
+   "canonical": "areca arc 1220 pci express x8 sata ii (3.0gb/s) controller card",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RT134012 RT134024 RX134024 Power Relay 12A 250VAC 4 Pins(RT134012)",
+   "canonical": "rt134012 rt134024 rx134024 power relay 12a 250vac 4 pins(rt134012)",
+   "candidates": [
+    [
+     "nvidia-rtx-3080-12gb",
+     25.31645569620254
+    ],
+    [
+     "nvidia-rtx-3080",
+     25.31645569620254
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     24.390243902439025
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Watercool HEATKILLER V ULTRA for RTX 5090 ASUS TUF ACRYL Ni-Bl aRGB (15686)",
+   "canonical": "watercool heatkiller v ultra for rtx 5090 asus tuf acryl ni-bl argb (15686)",
    "candidates": []
   },
   {
    "source": "newegg",
-   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2OC-16GD",
-   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2oc-16gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE WINDFORCE GeForce RTX 5060 Ti Graphics Card GV-N506TWF2MAX-8GD",
-   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2max-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card (RTX 5060 Ti 16G VENTUS 2X OC BLACK PLUS)",
-   "canonical": "msi ventus geforce rtx 5060 ti graphics card (rtx 5060 ti 16g ventus 2x oc black plus)",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "ASUS T1 GeForce RTX 5060 Ti Graphics Card T1-RTX5060TI-O8G-GAMING",
-   "canonical": "asus t1 geforce rtx 5060 ti graphics card t1-rtx5060ti-o8g-gaming",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEMAX OC-16GD",
-   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teaglemax oc-16gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "ASUS Dual GeForce RTX 5060 Ti Graphics Card DUAL-RTX5060TI-O8G",
-   "canonical": "asus dual geforce rtx 5060 ti graphics card dual-rtx5060ti-o8g",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEMAX OC-8GD",
-   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teaglemax oc-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE Gaming GeForce RTX 5060 Ti Graphics Card GV-N506TGAMING OC-8GD",
-   "canonical": "gigabyte gaming geforce rtx 5060 ti graphics card gv-n506tgaming oc-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEOC ICE-8GD",
-   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teagleoc ice-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2-8GD",
-   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G GAMING OC",
-   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 16g gaming oc",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G VENTUS 3X OC",
-   "canonical": "msi ventus geforce rtx 5060 ti graphics card rtx 5060 ti 16g ventus 3x oc",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLE OC-8GD",
-   "canonical": "gigabyte eagle geforce rtx 5060 ti graphics card gv-n506teagle oc-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE Gaming GeForce RTX 5060 Ti Graphics Card GV-N506TGAMING OC-16GD",
-   "canonical": "gigabyte gaming geforce rtx 5060 ti graphics card gv-n506tgaming oc-16gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G GAMING TRIO OC",
-   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 16g gaming trio oc",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G GAMING TRIO OC",
-   "canonical": "msi gaming geforce rtx 5060 ti graphics card rtx 5060 ti 8g gaming trio oc",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2OC-8GD",
-   "canonical": "gigabyte windforce geforce rtx 5060 ti graphics card gv-n506twf2oc-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G VENTUS 2X OC PLUS",
-   "canonical": "msi ventus geforce rtx 5060 ti graphics card rtx 5060 ti 16g ventus 2x oc plus",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE AERO GeForce RTX 5060 Ti Graphics Card GV-N506TAERO OC-8GD",
-   "canonical": "gigabyte aero geforce rtx 5060 ti graphics card gv-n506taero oc-8gd",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "MSI SHADOW GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G SHADOW 2X OC PLUS",
-   "canonical": "msi shadow geforce rtx 5060 ti graphics card rtx 5060 ti 16g shadow 2x oc plus",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "GIGABYTE AORUS GeForce RTX 5060 Ti Graphics card AORUS RTX 5060 TI AI BOX",
-   "canonical": "gigabyte aorus geforce rtx 5060 ti graphics card aorus rtx 5060 ti ai box",
-   "candidates": []
-  },
-  {
-   "source": "newegg",
-   "raw_name": "Bitspower NEBULA GeForce RTX 5090 MSI Suprim / Gaming Trio / Vanguard",
-   "canonical": "bitspower nebula geforce rtx 5090 msi suprim / gaming trio / vanguard",
-   "candidates": []
+   "raw_name": "Bitspower Nvidia GTX 1060 Reference Acrylic (Clear)",
+   "canonical": "bitspower gtx 1060 reference acrylic (clear)",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     36.0655737704918
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     34.48275862068965
+    ]
+   ]
   },
   {
    "source": "newegg",
    "raw_name": "BITSPOWER NEBULA CLASSIC GeForce RTX 5090 VENTUS",
    "canonical": "bitspower nebula classic geforce rtx 5090 ventus",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Bitspower NEBULA GeForce RTX 5090 ASUS TUF Gaming",
+   "canonical": "bitspower nebula geforce rtx 5090 asus tuf gaming",
    "candidates": []
   },
   {
@@ -692,9 +1269,5140 @@
   },
   {
    "source": "newegg",
-   "raw_name": "Bitspower NEBULA GeForce RTX 5090 ASUS TUF Gaming",
-   "canonical": "bitspower nebula geforce rtx 5090 asus tuf gaming",
+   "raw_name": "Bitspower NEBULA GeForce RTX 5090 MSI Suprim / Gaming Trio / Vanguard",
+   "canonical": "bitspower nebula geforce rtx 5090 msi suprim / gaming trio / vanguard",
    "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Rain X RX30222 22-in Weatherbeater Wiper Blade",
+   "canonical": "rain x rx30222 22 in weatherbeater wiper blade",
+   "candidates": [
+    [
+     "nvidia-rtx-3080-12gb",
+     30.508474576271183
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     30.0
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     30.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Synology RX1217RP Redundant Power Expansion for RackStation (Diskless)",
+   "canonical": "synology rx1217rp redundant power expansion for rackstation (diskless)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.689655172413794
+    ],
+    [
+     "amd-rx-7900-gre",
+     14.81481481481481
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     14.285714285714292
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Synology 12 Bay Rackmount NAS Expansion Unit RX1222sas (Diskless)",
+   "canonical": "synology 12 bay rackmount nas expansion unit rx1222sas (diskless)",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     22.22222222222223
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     22.22222222222223
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     20.51282051282051
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Synology 12-Bay Rackmount Storage Expansion Unit RX1223RP (Diskless)",
+   "canonical": "synology 12 bay rackmount storage expansion unit rx1223rp (diskless)",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     23.80952380952381
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     23.80952380952381
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     21.686746987951807
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "HIDevolution MSI Prestige 14 A10SC 14\" UHD Grey with Blue Diamond Cut 1.1 GHz i7-10710U, GTX 1650 Max-Q, 16GB 2133MHz RAM, 1TB PCIe SSD ...",
+   "canonical": "hidevolution msi prestige 14 a10sc 14\" uhd grey with blue diamond cut 1.1 ghz i7 10710u, gtx 1650 max q, 16gb 2133mhz ram, 1tb pcie ssd ...",
+   "candidates": [
+    [
+     "intel-arc-a770",
+     47.05882352941177
+    ],
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     40.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "HIDevolution MSI Prestige 14 A10SC 14\" UHD Grey with Blue Diamond Cut 1.1 GHz i7-10710U, GTX 1650 Max-Q, 16GB 2133MHz RAM, 2TB PCIe SSD ...",
+   "canonical": "hidevolution msi prestige 14 a10sc 14\" uhd grey with blue diamond cut 1.1 ghz i7 10710u, gtx 1650 max q, 16gb 2133mhz ram, 2tb pcie ssd ...",
+   "candidates": [
+    [
+     "intel-arc-a770",
+     47.05882352941177
+    ],
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     40.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "HIDevolution MSI Prestige 14 A10SC 14\" UHD Grey with Blue Diamond Cut 1.1 GHz i7-10710U, GTX 1650 Max-Q, 16GB 2133MHz RAM, 4TB PCIe SSD ...",
+   "canonical": "hidevolution msi prestige 14 a10sc 14\" uhd grey with blue diamond cut 1.1 ghz i7 10710u, gtx 1650 max q, 16gb 2133mhz ram, 4tb pcie ssd ...",
+   "candidates": [
+    [
+     "intel-arc-a770",
+     47.05882352941177
+    ],
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     40.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP Transceiver 2.5G 80KM Tx1490nm / Rx1550nm Brand Compatible Optic Module For IDC (Commercial Temperature)",
+   "canonical": "bidi sfp transceiver 2.5g 80km tx1490nm / rx1550nm brand compatible optic module for idc (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.0
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     18.897637795275585
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     17.32283464566929
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 125M 155M SMF 20KM Tx1310nm / Rx1550nm Compatible Fiber Optic Transceiver Module (Commercial Temperature)",
+   "canonical": "bidi sfp 125m 155m smf 20km tx1310nm / rx1550nm compatible fiber optic transceiver module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.847328244274806
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     17.1875
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     17.1875
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 125M 155M SMF 20KM Tx1550nm / Rx1310nm Compatible Fiber Optic Transceiver Module (Commercial Temperature)",
+   "canonical": "bidi sfp 125m 155m smf 20km tx1550nm / rx1310nm compatible fiber optic transceiver module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.847328244274806
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     17.1875
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     17.1875
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 125M 155M SMF 60KM Tx1310nm / Rx1550nm Compatible Fiber Optic Transceiver Module (Commercial Temperature)",
+   "canonical": "bidi sfp 125m 155m smf 60km tx1310nm / rx1550nm compatible fiber optic transceiver module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.847328244274806
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     18.75
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     18.604651162790702
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 125M 155M SMF 60KM Tx1550nm / Rx1310nm Compatible Fiber Optic Transceiver Module (Commercial Temperature)",
+   "canonical": "bidi sfp 125m 155m smf 60km tx1550nm / rx1310nm compatible fiber optic transceiver module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.847328244274806
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     18.75
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     18.604651162790702
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 1.25G 10KM Tx1310nm / Rx1490nm Taiwan Optic Transmitter Module (Commercial Temperature)",
+   "canonical": "bidi sfp 1.25g 10km tx1310nm / rx1490nm taiwan optic transmitter module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     21.42857142857143
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.238938053097343
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     19.64285714285714
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 1.25G 10KM Tx1490nm / Rx1310nm Taiwan Optic Transmitter Module (Commercial Temperature)",
+   "canonical": "bidi sfp 1.25g 10km tx1490nm / rx1310nm taiwan optic transmitter module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.238938053097343
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     20.18348623853211
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     19.64285714285714
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 1.25G 60KM Tx1310nm / Rx1550nm Taiwan Optic Transmitter Module (Commercial Temperature)",
+   "canonical": "bidi sfp 1.25g 60km tx1310nm / rx1550nm taiwan optic transmitter module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     21.42857142857143
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.238938053097343
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     20.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BIDI SFP 1.25G 80KM Tx1550nm / Rx1490nm Taiwan Optic Transmitter Module (Commercial Temperature)",
+   "canonical": "bidi sfp 1.25g 80km tx1550nm / rx1490nm taiwan optic transmitter module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     21.42857142857143
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.238938053097343
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     20.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "10G BIDI SFP+ Fiber Optic Transceiver, Tx1270nm / Rx1330nm, SMF 20KM, Compatible SFP Module (Commercial Temperature)",
+   "canonical": "10g bidi sfp+ fiber optic transceiver, tx1270nm / rx1330nm, smf 20km, compatible sfp module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.05263157894737
+    ],
+    [
+     "nvidia-rtx-3080",
+     17.054263565891475
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     16.92307692307692
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "10G BIDI SFP+ Fiber Optic Transceiver, Tx1270nm / Rx1330nm, SMF 40KM, Compatible SFP Module (Commercial Temperature)",
+   "canonical": "10g bidi sfp+ fiber optic transceiver, tx1270nm / rx1330nm, smf 40km, compatible sfp module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.05263157894737
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     18.181818181818187
+    ],
+    [
+     "nvidia-rtx-3080",
+     17.054263565891475
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "10G BIDI SFP+ Fiber Optic Transceiver, Tx1330nm / Rx1270nm, SMF 40KM, Compatible SFP Module (Commercial Temperature)",
+   "canonical": "10g bidi sfp+ fiber optic transceiver, tx1330nm / rx1270nm, smf 40km, compatible sfp module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.05263157894737
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     18.181818181818187
+    ],
+    [
+     "intel-arc-a770",
+     17.054263565891475
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "25G SFP28 BIDI Fiber Optic Transceiver, Tx1270nm / Rx1330nm, SMF 10KM, Compatible SFP Module (Commercial Temperature)",
+   "canonical": "25g sfp28 bidi fiber optic transceiver, tx1270nm / rx1330nm, smf 10km, compatible sfp module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.40298507462687
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     18.461538461538467
+    ],
+    [
+     "nvidia-rtx-3080",
+     18.461538461538467
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "25G SFP28 BIDI Fiber Optic Transceiver, Tx1330nm / Rx1270nm, SMF 10KM, Compatible SFP Module (Commercial Temperature)",
+   "canonical": "25g sfp28 bidi fiber optic transceiver, tx1330nm / rx1270nm, smf 10km, compatible sfp module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.40298507462687
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     16.92307692307692
+    ],
+    [
+     "intel-arc-a770",
+     16.92307692307692
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "25G SFP28 BIDI Fiber Optic Transceiver, Tx1270nm / Rx1330nm, SMF 20KM, Compatible SFP Module (Commercial Temperature)",
+   "canonical": "25g sfp28 bidi fiber optic transceiver, tx1270nm / rx1330nm, smf 20km, compatible sfp module (commercial temperature)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.40298507462687
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     16.92307692307692
+    ],
+    [
+     "nvidia-rtx-3080",
+     16.92307692307692
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "FOR Grey Black Cooler Radiator for RTX4070 RTX4070Ti 2X Super 12G 16G",
+   "canonical": "for grey black cooler radiator for rtx4070 rtx4070ti 2x super 12g 16g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "XFX Speedster SWFT105 Radeon RX 6400 Gaming Graphics Card with 4GB GDDR6, AMD RDNA 2 RX-64XL4SFG2",
+   "canonical": "xfx speedster swft105 rx 6400 gaming graphics card with 4gb gddr6, rdna 2 rx 64xl4sfg2",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GTX1060-3GD5 GTX1050ti GA91S2H 6G game graphics card cooling double fan",
+   "canonical": "gtx1060 3gd5 gtx1050ti ga91s2h 6g game graphics card cooling double fan",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     25.581395348837205
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     23.25581395348837
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     22.98850574712644
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GTX1060-6GD5 GTX950 960 graphics card cooling double fan",
+   "canonical": "gtx1060 6gd5 gtx950 960 graphics card cooling double fan",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.80281690140845
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     30.985915492957744
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     30.555555555555557
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "T129215SU 12V 0.50A GTX 1050 1060 1070 RX580 graphics card cooling double fan",
+   "canonical": "t129215su 12v 0.50a gtx 1050 1060 1070 rx580 graphics card cooling double fan",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     28.26086956521739
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     26.086956521739125
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Pavilion 15-BC 15-AX Motherboard Mainboard L60212-601 DAG35NMB8C0 I5-9300H GTX1050 3G Graphic Working Perfect",
+   "canonical": "pavilion 15 bc 15 ax motherboard mainboard l60212 601 dag35nmb8c0 i5 9300h gtx1050 3g graphic working perfect",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     24.59016393442623
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     22.950819672131146
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     21.48760330578513
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Gaming 15-EC Motherboard M03074-601 L91092-601 DAG3HDMB8D0 R5 4600H GTX1650 4G",
+   "canonical": "gaming 15 ec motherboard m03074 601 l91092 601 dag3hdmb8d0 r5 4600h gtx1650 4g",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     26.966292134831463
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     26.966292134831463
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     24.444444444444443
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Gaming 15-EC Motherboard M03074-601 L91092-601 DAG3HDMB8D0 R7 4800H GTX1650 4G",
+   "canonical": "gaming 15 ec motherboard m03074 601 l91092 601 dag3hdmb8d0 r7 4800h gtx1650 4g",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     26.966292134831463
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     26.966292134831463
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     24.444444444444443
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "15-ep 15T-EP Motherboard L97395-601 DA0G3FMBCD0 i9-10885H RTX2060 6G",
+   "canonical": "15-ep 15t-ep motherboard l97395-601 da0g3fmbcd0 i9-10885h rtx2060 6g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Power G10 Motherboard DAXW5IMBCE0 i7-13800H RTX2000",
+   "canonical": "power g10 motherboard daxw5imbce0 i7 13800h rtx2000",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     29.411764705882348
+    ],
+    [
+     "amd-rx-7900-gre",
+     29.032258064516128
+    ],
+    [
+     "nvidia-rtx-3080",
+     28.125
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "DAG3HEMBCD0 Gaming 15-EC Motherboard L91095-601 R7 4800 GTX1660Ti 6GB",
+   "canonical": "dag3hembcd0 gaming 15 ec motherboard l91095 601 r7 4800 gtx1660ti 6gb",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     28.57142857142857
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     28.57142857142857
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     25.882352941176464
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OMEN 17T-CB 17-CB Motherboard FPC72 LA-H492P L59774-601 L59776-601 L59777-601 i7-9750H RTX2070 8G",
+   "canonical": "omen 17t-cb 17-cb motherboard fpc72 la-h492p l59774-601 l59776-601 l59777-601 i7-9750h rtx2070 8g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OMEN 17T-CB 17-CB Motherboard FPC72 LA-H492P L59774-601 L59776-601 L59777-601 i7-9750H RTX2080 8G",
+   "canonical": "omen 17t-cb 17-cb motherboard fpc72 la-h492p l59774-601 l59776-601 l59777-601 i7-9750h rtx2080 8g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "DAM00 LA-F541P Precision 5530 XPS 15 9570 Motherboard I5-8300H GTX1050 4G With Graphic 090HJ6 0PJWNT 0YYW9X",
+   "canonical": "dam00 la f541p precision 5530 xps 15 9570 motherboard i5 8300h gtx1050 4g with graphic 090hj6 0pjwnt 0yyw9x",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     21.138211382113823
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.967741935483872
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.67213114754098
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "DAM00 LA-F541P Precision 5530 XPS 15 9570 Motherboard I7-8750 GTX1050TI 4G With Graphic 090HJ6 0PJWNT 0YYW9X",
+   "canonical": "dam00 la f541p precision 5530 xps 15 9570 motherboard i7 8750 gtx1050ti 4g with graphic 090hj6 0pjwnt 0yyw9x",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     20.967741935483872
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.799999999999997
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.512195121951223
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "15 Gaming 7567 Motherboard BBV00 LA-D993P 0KD43Y 0P84C9 0JG23N i5-7300HQ GTX1050TI With Graphic",
+   "canonical": "15 gaming 7567 motherboard bbv00 la d993p 0kd43y 0p84c9 0jg23n i5 7300hq gtx1050ti with graphic",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     23.63636363636364
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     23.63636363636364
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     23.42342342342343
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "m15 m17 Motherboard 0RI0N-AW-MB-12L 0WCNK6 0CNR45 I7-8750H GTX1060 6G",
+   "canonical": "m15 m17 motherboard 0ri0n aw mb 12l 0wcnk6 0cnr45 i7 8750h gtx1060 6g",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     25.882352941176464
+    ],
+    [
+     "intel-arc-a770",
+     24.390243902439025
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     24.096385542168676
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "15 Gaming 7567 Motherboard BBV00 LA-D993P 0KD43Y 0P84C9 0JG23N i7-7700HQ GTX1050TI With Graphic",
+   "canonical": "15 gaming 7567 motherboard bbv00 la d993p 0kd43y 0p84c9 0jg23n i7 7700hq gtx1050ti with graphic",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     23.63636363636364
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     23.42342342342343
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     23.214285714285708
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "m15 m17 Motherboard 0RI0N-AW-MB-12L 0WCNK6 0CNR45 i7-8750H GTX1070 8G",
+   "canonical": "m15 m17 motherboard 0ri0n aw mb 12l 0wcnk6 0cnr45 i7 8750h gtx1070 8g",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     28.57142857142857
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     28.57142857142857
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     24.096385542168676
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "m15 m17 Motherboard 0RI0B_MB_N18E 0900DH 01F1MV 0GW6VK 0TTKRP i5-8300H GTX1660TI",
+   "canonical": "m15 m17 motherboard 0ri0b_mb_n18e 0900dh 01f1mv 0gw6vk 0ttkrp i5 8300h gtx1660ti",
+   "candidates": [
+    [
+     "nvidia-rtx-3080",
+     23.655913978494624
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     23.15789473684211
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     23.15789473684211
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "m15 m17 Motherboard 0RI0B_MB_N18E 0900DH 01F1MV 0GW6VK 0TTKRP i7-8750H RTX2060 6G",
+   "canonical": "m15 m17 motherboard 0ri0b_mb_n18e 0900dh 01f1mv 0gw6vk 0ttkrp i7-8750h rtx2060 6g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "m15 m17 Motherboard 0RI0B_MB_N18E 0900DH 01F1MV 0GW6VK 0TTKRP i7-8750H GTX1660TI",
+   "canonical": "m15 m17 motherboard 0ri0b_mb_n18e 0900dh 01f1mv 0gw6vk 0ttkrp i7 8750h gtx1660ti",
+   "candidates": [
+    [
+     "nvidia-rtx-3080",
+     23.655913978494624
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     23.15789473684211
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     23.15789473684211
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "m15 m17 Motherboard 0RI0B_MB_N18E 0900DH 01F1MV 0GW6VK 0TTKRP i7-8750H RTX2070 8G",
+   "canonical": "m15 m17 motherboard 0ri0b_mb_n18e 0900dh 01f1mv 0gw6vk 0ttkrp i7-8750h rtx2070 8g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Envy x360 15-EW Motherboard N09659-601 IPA52 LA-M021P LA-M141P i7-1255U RTX2050 4GB",
+   "canonical": "envy x360 15 ew motherboard n09659 601 ipa52 la m021p la m141p i7 1255u rtx2050 4gb",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     25.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     25.0
+    ],
+    [
+     "amd-rx-6700-10gb",
+     23.913043478260875
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Omen 15-DH Motherboard FPC54 LA-H482P L59767-601 L59769-601 L59764-601 i7-9750H RTX2070 8G",
+   "canonical": "omen 15-dh motherboard fpc54 la-h482p l59767-601 l59769-601 l59764-601 i7-9750h rtx2070 8g",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For HP RX6600 4-port Gigabit minicomputer network card HP AD339A AD339-60001",
+   "canonical": "for hp rx6600 4-port gigabit minicomputer network card hp ad339a ad339-60001",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For HP RX3600 RX6600 MP Card AB463-60003 AB463-60004",
+   "canonical": "for hp rx3600 rx6600 mp card ab463 60003 ab463 60004",
+   "candidates": [
+    [
+     "amd-rx-6600-xt",
+     32.14285714285714
+    ],
+    [
+     "amd-rx-6700-10gb",
+     31.034482758620683
+    ],
+    [
+     "nvidia-rtx-3080",
+     30.508474576271183
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For HP AT110A 708395-001 628974-381 RX2800 i4 16GB RAM",
+   "canonical": "for hp at110a 708395 001 628974 381 rx2800 i4 16gb ram",
+   "candidates": [
+    [
+     "intel-arc-a770",
+     47.05882352941177
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     40.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     40.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For HP RX2800 i2 Server CPU AH399A AH339-2029A 9340 AH395-2101C",
+   "canonical": "for hp rx2800 i2 server cpu ah399a ah339 2029a 9340 ah395 2101c",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     25.974025974025977
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     25.974025974025977
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     25.974025974025977
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ARC-1226-8i (12 Gb/s SAS RAID Adapters)",
+   "canonical": "arc 1226 8i (12gb/s sas raid adapters)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "HAJAAN Gaming Tower PC Desktop - Intel i3 Quad-Core Processor 3.6GHz, 32GB DDR4 RAM, 512GB SSD, NVIDIA GeForce GTX 1650 4GB GDDR5, WiFi Ready,...",
+   "canonical": "hajaan gaming tower pc desktop i3 quad core processor 3.6ghz, 32gb ddr4 ram, 512gb ssd, gtx 1650 4gb gddr5, wifi ready,...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     18.978102189781026
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     18.840579710144922
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "NVIDIA GEFORCE GTX 1080 FOUNDERS EDITION",
+   "canonical": "gtx 1080 founders edition",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     84.21052631578948
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     47.61904761904762
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     46.15384615384615
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Quadro RTX 5000 Dell Nvidia Geforce RTX5000 16GB GDDR6 Pcie X16 3.0 DP Video Card 7XK5H PCI-EXPRESS Video Cards",
+   "canonical": "quadro rtx 5000 dell rtx5000 16gb gddr6 pcie x16 3.0 dp video card 7xk5h pci express video cards",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY Video Card VCNRTXA6000-SB NVIDIA RTX A6000 GCARD SB 48GB",
+   "canonical": "pny video card vcnrtxa6000 sb rtx a6000 gcard sb 48gb",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For GIGABYTE RTX2080 2080ti GTX1080 1080ti BFB1012SHA01 GPU Graphics Turbo Fan",
+   "canonical": "for gigabyte rtx2080 2080ti gtx1080 1080ti bfb1012sha01 gpu graphics turbo fan",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Gtx5030 Metal Detector Accurate Measurement Underground Gold Detector Headset Archaeologists Treasure Hunter",
+   "canonical": "gtx5030 metal detector accurate measurement underground gold detector headset archaeologists treasure hunter",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     18.965517241379317
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     17.69911504424779
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     17.69911504424779
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "2022 Graphics Card 192Bit GDDR5 PCIE 16X 3.0 GTX 1060 6GB Video Card For nVIDIA Cards Strong Than GTX960 4GB",
+   "canonical": "2022 graphics card 192bit gddr5 pcie 16x 3.0 gtx 1060 6gb video card for cards strong than gtx960 4gb",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     23.42342342342343
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     23.42342342342343
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GAMING Video Cards GPU Graphic Card GTX 1660 Super 6GB Suitable For Efficient Game Playing, Desktop Management And Office",
+   "canonical": "gaming video cards gpu graphic card gtx 1660 super 6gb suitable for efficient game playing, desktop management and office",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     52.63157894736842
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "230W Charger for R. azer Blade 14, Blade Pro 17 Blade 15 Advanced Model 2019 2020 2021 RTX 3060 3070 3080 2060 2070 2080",
+   "canonical": "230w charger for r. azer blade 14, blade pro 17 blade 15 advanced model 2019 2020 2021 rtx 3060 3070 3080 2060 2070 2080",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV542 ZP60170 RX-A1050 RX-A1060 remote",
+   "canonical": "yamaha rav542 zp60170 rx a1050 rx a1060 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV517 ZK06670 RX-A1040 RXA1040 remote",
+   "canonical": "yamaha rav517 zk06670 rx a1040 rxa1040 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV508 ZF72510 RX-A1030 RXA1030 remote",
+   "canonical": "yamaha rav508 zf72510 rx a1030 rxa1030 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV563 ZZ48380 RX-A680 RXA680 remote",
+   "canonical": "yamaha rav563 zz48380 rx a680 rxa680 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV560 ZW91710 RX-A3070 remote",
+   "canonical": "yamaha rav560 zw91710 rx a3070 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV519 ZK06690 RX-A2040 RX-A3040 RXA2040 remote",
+   "canonical": "yamaha rav519 zk06690 rx a2040 rx a3040 rxa2040 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV41 WY19980 RX-A2010 RX-A2010BL RX-A3010 remote",
+   "canonical": "yamaha rav41 wy19980 rx a2010 rx a2010bl rx a3010 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV570 ZZ47560 RX-A780 RX-V685 TSR-7850 RX-A880 remote",
+   "canonical": "yamaha rav570 zz47560 rx a780 rx v685 tsr 7850 rx a880 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "SHERWOOD RX4109, RC107 remote",
+   "canonical": "sherwood rx4109, rc107 remote",
+   "candidates": [
+    [
+     "nvidia-rtx-2070-super",
+     46.51162790697674
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     46.51162790697674
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     43.47826086956522
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "SHERWOOD RC101, RX4105 remote",
+   "canonical": "sherwood rc101, rx4105 remote",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     41.86046511627907
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     41.86046511627907
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     41.86046511627907
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "SHERWOOD RC-157, RX-4208, RX-4508 remote",
+   "canonical": "sherwood rc 157, rx 4208, rx 4508 remote",
+   "candidates": [
+    [
+     "nvidia-rtx-2080-super",
+     47.05882352941177
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     47.05882352941177
+    ],
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ROTEL RR-939B RX-975 RX-1050 remote",
+   "canonical": "rotel rr 939b rx 975 rx 1050 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA HTR-6068 RAV536 RX-A750 RX-V679 RX-V779 TSR-7790 remote",
+   "canonical": "yamaha htr 6068 rav536 rx a750 rx v679 rx v779 tsr 7790 remote",
+   "candidates": [
+    [
+     "intel-arc-a750",
+     66.66666666666666
+    ],
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "SHERWOOD RM101, RX4103, RX4100 remote",
+   "canonical": "sherwood rm101, rx4103, rx4100 remote",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-super",
+     39.21568627450981
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     39.21568627450981
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     37.03703703703704
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ROTEL RX1052, RRAT95 remote",
+   "canonical": "rotel rx1052, rrat95 remote",
+   "candidates": [
+    [
+     "amd-rx-7900-gre",
+     31.578947368421055
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     27.272727272727266
+    ],
+    [
+     "amd-rx-6950-xt",
+     27.02702702702703
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RX-A760 RX-V681 RX-V781 TSR-7810 remote",
+   "canonical": "yamaha rx a760 rx v681 rx v781 tsr 7810 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV572 ZZ47580 RX-A1080 remote",
+   "canonical": "yamaha rav572 zz47580 rx a1080 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "SHERWOOD RX4503, RC126 remote",
+   "canonical": "sherwood rx4503, rc126 remote",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     46.51162790697674
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     41.86046511627907
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     41.86046511627907
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PIONEER RX721, RX520, RX512, RX1190, CURX013 remote",
+   "canonical": "pioneer rx721, rx520, rx512, rx1190, curx013 remote",
+   "candidates": [
+    [
+     "amd-rx-7900-xtx",
+     25.80645161290323
+    ],
+    [
+     "nvidia-rtx-3050",
+     23.728813559322035
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     23.529411764705884
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PIONEER AXD1141, RX740, RX1320, CURX008, RX730 remote",
+   "canonical": "pioneer axd1141, rx740, rx1320, curx008, rx730 remote",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     28.57142857142857
+    ],
+    [
+     "nvidia-rtx-3080",
+     27.272727272727266
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     26.86567164179104
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV553 ZW69510 RX-A770 RX-V683 remote",
+   "canonical": "yamaha rav553 zw69510 rx a770 rx v683 remote",
+   "candidates": [
+    [
+     "intel-arc-a770",
+     66.66666666666666
+    ],
+    [
+     "intel-arc-a770",
+     47.05882352941177
+    ],
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA RAV554 RX-A870 RX-A870BL ZW69520 remote",
+   "canonical": "yamaha rav554 rx a870 rx a870bl zw69520 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "YAMAHA YHT-899U MT-8650 HTR-6066 RX-A730 RX-V675 remote",
+   "canonical": "yamaha yht 899u mt 8650 htr 6066 rx a730 rx v675 remote",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For POWERUP 1000W RGB Dual CPU ATX Gaming PSU, Supports RTX 3070/3080/3090",
+   "canonical": "for powerup 1000w rgb dual cpu atx gaming psu, supports rtx 3070/3080/3090",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Generic For A3C40152045 3.5 HDD Caddy Tray For RX2530 RX2540 M2 M3 M4 TX1330 TX2550 LOT",
+   "canonical": "generic for a3c40152045 3.5 hdd caddy tray for rx2530 rx2540 m2 m3 m4 tx1330 tx2550 lot",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     24.24242424242425
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     24.24242424242425
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     22.91666666666667
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Air Filter For Cub Cadet LT1045 LT1050 GT1554 LT1046 GTX1054 SLT1554 LTX1046 Tractors",
+   "canonical": "air filter for cub cadet lt1045 lt1050 gt1554 lt1046 gtx1054 slt1554 ltx1046 tractors",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     23.76237623762377
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     23.76237623762377
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.607843137254903
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Spindle For Cub Cadet GT1054 GTX1054 LGT1054 LGTX1054 RZT54 Tractors",
+   "canonical": "spindle for cub cadet gt1054 gtx1054 lgt1054 lgtx1054 rzt54 tractors",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     28.235294117647058
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     26.829268292682926
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     26.829268292682926
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Spindle For Cub Cadet GT2050 GT2148 GT2544 GT2550 GT2554 GTX2154 Tractors",
+   "canonical": "spindle for cub cadet gt2050 gt2148 gt2544 gt2550 gt2554 gtx2154 tractors",
+   "candidates": [
+    [
+     "nvidia-rtx-2080-super",
+     27.58620689655173
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     25.287356321839084
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     25.287356321839084
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PTO Switch For Cub Cadet LTX1050 GT3100 GT3200 GTX1054 GT1054 GT1554 Tractor Mowers",
+   "canonical": "pto switch for cub cadet ltx1050 gt3100 gt3200 gtx1054 gt1054 gt1554 tractor mowers",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     24.0
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     22.448979591836732
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     22.448979591836732
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Original NEW Chicony 230W 20V 11.5A A17-230P1B For M. SI GE76 Raider 10UG/RTX3070",
+   "canonical": "original new chicony 230w 20v 11.5a a17-230p1b for m. si ge76 raider 10ug/rtx3070",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "2pcs/set PLA09215B12HH for EVGA GTX1050TI/1070/1080 4pin 0.55A Graphics fan",
+   "canonical": "2pcs/set pla09215b12hh for evga gtx1050ti/1070/1080 4pin 0.55a graphics fan",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.73913043478261
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     20.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     20.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For MSI GeForce GTX 1050 2GT LP Graphics Card Cooling Double Fan With Frame 2pin",
+   "canonical": "for msi gtx 1050 2gt lp graphics card cooling double fan with frame 2pin",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.287356321839084
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     25.287356321839084
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For MSI GTX 1050 1050TI 750TI Graphics Card Cooling Double Fan With Frame 2pin",
+   "canonical": "for msi gtx 1050 1050ti 750ti graphics card cooling double fan with frame 2pin",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     25.80645161290323
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     25.263157894736835
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Barrow BS-ZOZ1080T-PA ZOTAC Plus GTX1080TI plug-in cold head",
+   "canonical": "barrow bs-zoz1080t-pa zotac plus gtx1080ti plug-in cold head",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Barrow BS-MSA1070I-PA MSI GTX1070 AERO ITX 8G OC full coverage graphics cold head",
+   "canonical": "barrow bs msa1070i pa msi gtx1070 aero itx 8g oc full coverage graphics cold head",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     20.83333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     20.83333333333333
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     20.618556701030926
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BARROW BS-COG1050T-PA Colorful Tomahawk GTX1050Ti/1050 graphics card full coverage cold head",
+   "canonical": "barrow bs cog1050t pa colorful tomahawk gtx1050ti/1050 graphics card full coverage cold head",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     18.691588785046733
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     18.691588785046733
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     18.51851851851852
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BARROW BS-MSD1060-PA MSI GTX1060 Dark Dragon Full Coverage Graphics Cold Head",
+   "canonical": "barrow bs msd1060 pa msi gtx1060 dark dragon full coverage graphics cold head",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     17.391304347826093
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     17.391304347826093
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     17.204301075268816
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Barrow BS-COI2070-PA Colorful Flame God of War RTX2070 Full Coverage Graphics Cold Head Aurora",
+   "canonical": "barrow bs-coi2070-pa colorful flame god of war rtx2070 full coverage graphics cold head aurora",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Barrow BS-MSG2080M-PA, bloc d'eau graphique complet LRC 2.0 pour MSI RTX2080 GAMING X TRIO / SEA HAWK EK X",
+   "canonical": "barrow bs-msg2080m-pa, bloc d'eau graphique complet lrc 2.0 pour msi rtx2080 gaming x trio / sea hawk ek x",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "BARROW BS-GIG2080S-PA Gigabyte RTX 2080 SUPER Gaming OC Windforce GPU water cooling box with full coverage of GPU radiator",
+   "canonical": "barrow bs-gig2080s-pa gigabyte rtx 2080 super gaming oc windforce gpu water cooling box with full coverage of gpu radiator",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Barrow BS-ZOZ2080-PA2 For Zotac RTX2080/2070 8GD6 PGF OC12/OC8/OC14 Full Coverage Graphics Cool Head",
+   "canonical": "barrow bs-zoz2080-pa2 for zotac rtx2080/2070 8gd6 pgf oc12/oc8/oc14 full coverage graphics cool head",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Barrow BS-MSG3070M-PA MSI Magic Dragon RTX3070 Full Coverage Graphics Cooling Head Radiator",
+   "canonical": "barrow bs-msg3070m-pa msi magic dragon rtx3070 full coverage graphics cooling head radiator",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Front Bezel For MSI GT62 GT62VR 7RE-417CN i7 GTX1070 MS-16L1 MS-16L2 MS-16L3 3076L1B224Y31",
+   "canonical": "front bezel for msi gt62 gt62vr 7re 417cn i7 gtx1070 ms 16l1 ms 16l2 ms 16l3 3076l1b224y31",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     24.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     22.0
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     20.202020202020208
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Backlit Keyboard For Gigabyte Sabre 15 Sabre 15 GTX1050 15 GTX1050TI Sabre 15 W8 G8 K8 15-G 15-K Sabre 17 German GR Black Frame",
+   "canonical": "backlit keyboard for gigabyte sabre 15 sabre 15 gtx1050 15 gtx1050ti sabre 15 w8 g8 k8 15 g 15 k sabre 17 german gr black frame",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     22.018348623853214
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     20.18348623853211
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     20.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Zotac GeForce GTX 1060 Graphic Card - 1.51 GHz Core - 1.71 GHz Boost Clock - 3 GB GDDR5 - PCI Express 3.0 - Dual Slot Space Required - 192 bit Bus...",
+   "canonical": "zotac gtx 1060 graphic card 1.51 ghz core 1.71 ghz boost clock 3gb gddr5 pci express 3.0 dual slot space required 192 bit bus...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     18.705035971223026
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     18.43971631205673
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Zotac GeForce GTX 1080 Graphic Card - 1.61 GHz Core - 1.73 GHz Boost Clock - 8 GB GDDR5X - PCI Express 3.0 - Dual Slot Space Required - 256 bit Bus...",
+   "canonical": "zotac gtx 1080 graphic card 1.61 ghz core 1.73 ghz boost clock 8gb gddr5x pci express 3.0 dual slot space required 256 bit bus...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     84.21052631578948
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Asus TURBO-GTX1070-8G GeForce GTX 1070 Graphic Card - 1.51 GHz Core - 1.68 GHz Boost Clock - 8 GB GDDR5 - PCI Express 3.0 - Dual Slot Space...",
+   "canonical": "asus turbo gtx1070 8g gtx 1070 graphic card 1.51 ghz core 1.68 ghz boost clock 8gb gddr5 pci express 3.0 dual slot space...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Asus TURBO-GTX1060-6G GeForce GTX 1060 Graphic Card - 1.51 GHz Core - 1.71 GHz Boost Clock - 6 GB GDDR5 - PCI Express 3.0 - Dual Slot Space...",
+   "canonical": "asus turbo gtx1060 6g gtx 1060 graphic card 1.51 ghz core 1.71 ghz boost clock 6gb gddr5 pci express 3.0 dual slot space...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     20.895522388059703
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.40298507462687
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ROG STRIX-GTX1060-6G-GAMING GeForce GTX 1060 Graphic Card - 1.53 GHz Core - 1.75 GHz Boost Clock - 6 GB GDDR5 - PCI Express 3.0 - Dual Slot Space...",
+   "canonical": "rog strix gtx1060 6g gaming gtx 1060 graphic card 1.53 ghz core 1.75 ghz boost clock 6gb gddr5 pci express 3.0 dual slot space...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     21.276595744680847
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     20.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Asus TURBO-GTX1080-8G GeForce GTX 1080 Graphic Card - 1.61 GHz Core - 1.73 GHz Boost Clock - 8 GB GDDR5X - PCI Express 3.0 - Dual Slot Space...",
+   "canonical": "asus turbo gtx1080 8g gtx 1080 graphic card 1.61 ghz core 1.73 ghz boost clock 8gb gddr5x pci express 3.0 dual slot space...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     84.21052631578948
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Video Card GTX 1070 AERO 8G OC G1070AE8C Geforce GTX 1070 8GB GDDR5 256-Bit",
+   "canonical": "msi video card gtx 1070 aero 8g oc g1070ae8c gtx 1070 8gb gddr5 256 bit",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.76623376623377
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.76623376623377
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI GeForce GTX 1650 AERO ITX 4G OC Graphics Card [Domestic Authentic Distributor]",
+   "canonical": "msi gtx 1650 aero itx 4g oc graphics card [domestic authentic distributor]",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     26.966292134831463
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     26.966292134831463
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY GeForce GTX 1650 4GB XLR8 Gaming Overclocked Edition Single Fan Graphics Card",
+   "canonical": "pny gtx 1650 4gb xlr8 gaming overclocked edition single fan graphics card",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     25.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS TUF Gaming 3 AMD Radeon RX 5600XT OC Edition Gaming Graphics Card (PCIEe 4.0, 6GB, GDDR6, HDMI, DisplayPort, 1080p Gaming, Axial-tech Fan...",
+   "canonical": "asus tuf gaming 3 rx 5600xt oc edition gaming graphics card (pciee 4.0, 6gb, gddr6, hdmi, displayport, 1080p gaming, axial tech fan...",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY GeForce GTX 1650 4GB XLR8 Gaming Overclocked Edition Graphics Card",
+   "canonical": "pny gtx 1650 4gb xlr8 gaming overclocked edition graphics card",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "intel-arc-a770",
+     26.66666666666667
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.974025974025977
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "EVGA GeForce GTX 1080 FTW2 GAMING, 8GB GDDR5X, iCX Technology - 9 Thermal Sensors & RGB LED G/P/M, Aysnch Fan, Optimized Airflow Design Graphics...",
+   "canonical": "evga gtx 1080 ftw2 gaming, 8gb gddr5x, icx technology 9 thermal sensors & rgb led g/p/m, aysnch fan, optimized airflow design graphics...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     84.21052631578948
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "EVGA GeForce GTX 1080 FTW2 DT Gaming 8GB GDDR5X iCX - 9 Thermal Sensors & RGB G/P/M Graphic Cards (08G-P4-6684-KR)",
+   "canonical": "evga gtx 1080 ftw2 dt gaming 8gb gddr5x icx 9 thermal sensors & rgb g/p/m graphic cards (08g p4 6684 kr)",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     84.21052631578948
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GTX 1660 Super 6GB XLR8 Gaming OC Dual Fan",
+   "canonical": "gtx 1660 super 6gb xlr8 gaming oc dual fan",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     52.63157894736842
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY GeForce GTX 1660 Super 6GB Single Fan Graphics Card (VCG16606SSFPPB)",
+   "canonical": "pny gtx 1660 super 6gb single fan graphics card (vcg16606ssfppb)",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     52.63157894736842
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY GeForce GTX 1660 6GB XLR8 Gaming Overclocked Edition Graphics Card",
+   "canonical": "pny gtx 1660 6gb xlr8 gaming overclocked edition graphics card",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "intel-arc-a770",
+     26.66666666666667
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.974025974025977
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "EVGA GeForce GTX 1060 SC GAMING, ACX 2.0 (Single Fan), 6GB GDDR5, DX12 OSD Suppo",
+   "canonical": "evga gtx 1060 sc gaming, acx 2.0 (single fan), 6gb gddr5, dx12 osd suppo",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     25.581395348837205
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.287356321839084
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ZOTAC GeForce GTX 1080 AMP! Edition, ZT-P10800C-10P, 8GB GDDR5X IceStorm Cooling, Metal Wraparound Carbon ExoArmor exterior, Ultra-wide 100mm Fans...",
+   "canonical": "zotac gtx 1080 amp! edition, zt p10800c 10p, 8gb gddr5x icestorm cooling, metal wraparound carbon exoarmor exterior, ultra wide 100mm fans...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     84.21052631578948
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "EVGA NVIDIA GeForce GTX 1070 FTW2 DT GAMING 8GB GDDR5 DVI/HDMI/3DisplayPort",
+   "canonical": "evga gtx 1070 ftw2 dt gaming 8gb gddr5 dvi/hdmi/3displayport",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY GeForce GTX 1080 8GB Graphic Card (VCGGTX10808PB)",
+   "canonical": "pny gtx 1080 8gb graphic card (vcggtx10808pb)",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     84.21052631578948
+    ],
+    [
+     "nvidia-rtx-3080",
+     37.93103448275862
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     36.666666666666664
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Nvidia GeForce GTX 1070 Founders Edition",
+   "canonical": "gtx 1070 founders edition",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     55.55555555555556
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     52.38095238095238
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     46.15384615384615
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS PH-GTX1660S-O6G VCX PH-GTX1660S-O6G GeForce GTX 1660 Super Phoenix 6GB OC GDDR6 Retail",
+   "canonical": "asus ph gtx1660s o6g vcx ph gtx1660s o6g gtx 1660 super phoenix 6gb oc gddr6 retail",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     52.63157894736842
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ZOTAC Gaming GeForce GTX 1660 6GB GDDR5 192-bit Gaming Graphics Card, Super Compact, ZT-T16600F-10L",
+   "canonical": "zotac gaming gtx 1660 6gb gddr5 192 bit gaming graphics card, super compact, zt t16600f 10l",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     52.63157894736842
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     52.63157894736842
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Asus DUAL-GTX1070-O8G GeForce GTX 1070 Graphic Card - 1.58 GHz Core - 1.77 GHz Boost Clock - 8 GB GDDR5 - PCI Express 3.0 - 256 bit Bus Width - SLI...",
+   "canonical": "asus dual gtx1070 o8g gtx 1070 graphic card 1.58 ghz core 1.77 ghz boost clock 8gb gddr5 pci express 3.0 256 bit bus width sli...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Asus DUAL-GTX1060-O6G GeForce GTX 1060 Graphic Card - 1.59 GHz Core - 1.81 GHz Boost Clock - 6 GB GDDR5 - PCI Express 3.0 - Dual Slot Space...",
+   "canonical": "asus dual gtx1060 o6g gtx 1060 graphic card 1.59 ghz core 1.81 ghz boost clock 6gb gddr5 pci express 3.0 dual slot space...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     21.705426356589143
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     20.155038759689916
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY GeForce GTX 1050 Ti 4GB Graphics Card (VCGGTX10504PB)",
+   "canonical": "pny gtx 1050 ti 4gb graphics card (vcggtx10504pb)",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     70.58823529411765
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     40.625
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     40.625
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "EVGA GeForce GTX 1050 Ti SC GAMING, 4GB GDDR5, DX12 OSD Support (PXOC) (04G-P4-6253-KR)",
+   "canonical": "evga gtx 1050 ti sc gaming, 4gb gddr5, dx12 osd support (pxoc) (04g p4 6253 kr)",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     70.58823529411765
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     31.25
+    ],
+    [
+     "nvidia-rtx-2080-ti",
+     30.769230769230774
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Asus ROG Strix GeForce GTX 1050 Ti 4GB GDDR5 PCIe 3.0 Graphics Card",
+   "canonical": "asus rog strix gtx 1050 ti 4gb gddr5 pcie 3.0 graphics card",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     70.58823529411765
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     35.13513513513513
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     34.21052631578948
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS Geforce GTX 1050Ti 4GB ROG STRIX OC Edition HDMI 2.0 DP 1.4 Gaming Graphics Card (STRIX-GTX1050TI-O4G-GAMING) Graphic Cards",
+   "canonical": "asus gtx 1050ti 4gb rog strix oc edition hdmi 2.0 dp 1.4 gaming graphics card (strix gtx1050ti o4g gaming) graphic cards",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.259259259259252
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     19.259259259259252
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS Geforce GTX 1050 OC Edition 2GB GDDR5 DVI-D HDMI DP 1.4 Gaming Graphics Card Graphic Cards CERBERUS-GTX1050-O2G",
+   "canonical": "asus gtx 1050 oc edition 2gb gddr5 dvi d hdmi dp 1.4 gaming graphics card graphic cards cerberus gtx1050 o2g",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     22.400000000000006
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     21.138211382113823
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GEFORCE GTX 1060 GDDR5 3GB TWIN FROZR OC PCI-E HDMI DP DVI-D - GTX 1060 GAMING X 3G",
+   "canonical": "gtx 1060 gddr5 3gb twin frozr oc pci e hdmi dp dvi d gtx 1060 gaming x 3g",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     32.911392405063296
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     32.911392405063296
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Video Card GTX 1060 GAMING X 6G G1060GX6 Geforce GTX 1060 6GB 192Bit PCI",
+   "canonical": "msi video card gtx 1060 gaming x 6g g1060gx6 gtx 1060 6gb 192bit pci",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     34.66666666666667
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     34.66666666666667
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI NVIDIA GEFORCE GTX 1060 6GT OCV1 6GB GDDR5 DVI/HDMI/DisplayPort pci-e Video",
+   "canonical": "msi gtx 1060 6gt ocv1 6gb gddr5 dvi/hdmi/displayport pci e video",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     30.379746835443044
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     30.379746835443044
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Video Card GTX 1070 TI TITANIUM 8G G1070TT8 8GB GDDR5 256Bit 3xDisplayPort/",
+   "canonical": "msi video card gtx 1070 ti titanium 8g g1070tt8 8gb gddr5 256bit 3xdisplayport/",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     70.58823529411765
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     57.142857142857146
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     57.142857142857146
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GEFORCE GTX 1060 FTW+ DT GAMING ACX 3.0 PCIE 3GB GDDR5 5PORT - 03G-P4-6365-KR",
+   "canonical": "gtx 1060 ftw+ dt gaming acx 3.0 pcie 3gb gddr5 5port 03g p4 6365 kr",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     31.707317073170728
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     31.707317073170728
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "EVGA GeForce GTX 1060 SC GAMING, ACX 2.0 (Single Fan), 03G-P4-6162-KR, 3GB GDDR5",
+   "canonical": "evga gtx 1060 sc gaming, acx 2.0 (single fan), 03g p4 6162 kr, 3gb gddr5",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.287356321839084
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     25.287356321839084
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Sapphire 11294-01-20G PULSE AMD Radeon RX 5700 8GB GDDR6 HDMI/3DisplayPort PCI-Express 4.0 Video Card",
+   "canonical": "sapphire 11294 01 20g pulse rx 5700 8gb gddr6 hdmi/3displayport pci express 4.0 video card",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS GeForce GTX 1060 3GB Dual-Fan OC Edition Graphics Card (DUAL-GTX1060-O3G)",
+   "canonical": "asus gtx 1060 3gb dual fan oc edition graphics card (dual gtx1060 o3g)",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     28.235294117647058
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     28.235294117647058
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Sapphire 11315-01-20G Pulse AMD Radeon RX 6400 Low Profile Gaming Graphics Card with 4GB GDDR6, AMD RDNA 2, Black",
+   "canonical": "sapphire 11315 01 20g pulse rx 6400 low profile gaming graphics card with 4gb gddr6, rdna 2, black",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ruth's sister Adopts HD2/HD3 5.8G RX5808 Receiver Fast Frequency Adjustment Enhances",
+   "canonical": "ruth's sister adopts hd2/hd3 5.8g rx5808 receiver fast frequency adjustment enhances",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.801980198019805
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     18.367346938775512
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     18.367346938775512
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "95mm 6Pin PLD10010B12HH FDC10U12D9-C for GTX1650 PHGTX1650-O4GD6-P Graphics Card",
+   "canonical": "95mm 6pin pld10010b12hh fdc10u12d9 c for gtx1650 phgtx1650 o4gd6 p graphics card",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     21.05263157894737
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     20.83333333333333
+    ],
+    [
+     "amd-rx-6950-xt",
+     20.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For RX2540 M1 USB Portable Tape Drive RMN-D-01-11 RDX-514B-USB3",
+   "canonical": "for rx2540 m1 usb portable tape drive rmn d 01 11 rdx 514b usb3",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     23.07692307692308
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     23.07692307692308
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     22.784810126582272
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1886-6N2I (PCIe Gen 4.0 M.2 NVMe Hardware RAID controller)",
+   "canonical": "areca arc 1886 6n2i (pcie gen 4.0 m.2 nvme hardware raid controller)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1886-16i (16 Port PCIe Gen 4.0 Tri-Mode RAID Adapters)",
+   "canonical": "areca arc 1886 16i (16 port pcie gen 4.0 tri mode raid adapters)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1203-2i (2 Port internal PCIe 2.0 6Gbps SATA Hardware RAID Controller)",
+   "canonical": "areca arc 1203 2i (2 port internal pcie 2.0 6gbps sata hardware raid controller)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ARC-1330-8x (PCIe 3.0 12Gb/s SAS Host Adapters)",
+   "canonical": "arc 1330 8x (pcie 3.0 12gb/s sas host adapters)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1883i SAS Controller",
+   "canonical": "areca arc 1883i sas controller",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1883x SAS Controller",
+   "canonical": "areca arc 1883x sas controller",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1883ix-16-4GB (16 Port SAS RAID Controller)",
+   "canonical": "areca arc 1883ix 16 4gb (16 port sas raid controller)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1883ix-16-8GB (16 Port SAS RAID Controller)",
+   "canonical": "areca arc 1883ix 16 8gb (16 port sas raid controller)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1883ix-24-4GB (24 Port SAS RAID Controller)",
+   "canonical": "areca arc 1883ix 24 4gb (24 port sas raid controller)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1883ix-24-8GB (24 Port SAS RAID Controller)",
+   "canonical": "areca arc 1883ix 24 8gb (24 port sas raid controller)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ARC-1886-8X (8-Ports External PCIe Gen 4.0 Tri-Mode RAID Adapters)",
+   "canonical": "arc 1886 8x (8 ports external pcie gen 4.0 tri mode raid adapters)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1686-8I (8 Ports PCIe Gen 4.0 Cost-Effective RAID Adapters)",
+   "canonical": "areca arc 1686 8i (8 ports pcie gen 4.0 cost effective raid adapters)",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1883-CAP Flash-based Cache Protection Module For ARC-1883 Series",
+   "canonical": "areca arc 1883 cap flash based cache protection module for arc 1883 series",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca ARC-1886-CBM Cache Protection Module For ARC-1886 Series & ARC-1886-6N2I",
+   "canonical": "areca arc 1886 cbm cache protection module for arc 1886 series & arc 1886 6n2i",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GTX 1070M MXM TYPE-B Video Graphics Card GTX1070M GTX 1070 8GB N17E-G2-A1 GDDR5 MXM Card For clevo",
+   "canonical": "gtx 1070m mxm type b video graphics card gtx1070m gtx 1070 8gb n17e g2 a1 gddr5 mxm card for clevo",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     33.33333333333333
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "AROMA Commercial 60-Cup (Cooked) / 14Qt. Rice & Grain Cooker (ARC-1430E)",
+   "canonical": "aroma commercial 60 cup (cooked) / 14qt. rice & grain cooker (arc 1430e)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     24.719101123595507
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     20.930232558139537
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     20.930232558139537
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Aroma Housewares ARC-5200SB 2O2O Model Rice & Grain Cooker, Sauté, Slow Cook, Steam, Stew, Oatmeal, Risotto, Soup, 20 Cup 10 Cup uncooked,...",
+   "canonical": "aroma housewares arc 5200sb 2o2o model rice & grain cooker, sauté, slow cook, steam, stew, oatmeal, risotto, soup, 20 cup 10 cup uncooked,...",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Aroma Housewares ARC-6106 Aroma Professional 6 Cups Uncooked Rice, Slow Cooker, Food Steamer, MultiCooker, Champagne",
+   "canonical": "aroma housewares arc 6106 aroma professional 6 cups uncooked rice, slow cooker, food steamer, multicooker, champagne",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "AROMA Professional 12-Cup (Cooked) / 3Qt. Purple Clay Rice & Grain Multicooker (ARC-7206P)",
+   "canonical": "aroma professional 12 cup (cooked) / 3qt. purple clay rice & grain multicooker (arc 7206p)",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     23.07692307692308
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     23.07692307692308
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     22.429906542056074
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "AROMA ARC1020SB Silver 20-Cup Rice Cooker Steamer",
+   "canonical": "aroma arc1020sb silver 20 cup rice cooker steamer",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     33.33333333333333
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     31.746031746031747
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     31.746031746031747
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "AROMA ARC1120SBL Black/Stainless Steel 20-Cup SmartCarb Rice Cooker",
+   "canonical": "aroma arc1120sbl black/stainless steel 20 cup smartcarb rice cooker",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     28.57142857142857
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     27.160493827160494
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     27.160493827160494
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "AROMA Housewares 20-Cup (Cooked) / 5Qt. Digital Rice & Grain Multicooker (ARC-5200SG), Gray",
+   "canonical": "aroma housewares 20 cup (cooked) / 5qt. digital rice & grain multicooker (arc 5200sg), gray",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     22.22222222222223
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     20.95238095238095
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     20.95238095238095
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "15.6' Screen Replacement for ASUS Rog GL531GW-AZ GL531GW-RTX20701 GU502 GU502DU GU502G GU502GU GU502GU-AZ GU502GU-XH74 GU502GV GU502L FHD 1920 *...",
+   "canonical": "15.6' screen replacement for asus rog gl531gw-az gl531gw-rtx20701 gu502 gu502du gu502g gu502gu gu502gu-az gu502gu-xh74 gu502gv gu502l fhd 1920 *...",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For Thunderbot 911 E1 T1 S2 S1 S2B M2 911M-M1C 911M 911-M6C NL8E GTX1060 DFS531005PL0T FHDG BC07511LMSPAA 5V 0.5A",
+   "canonical": "for thunderbot 911 e1 t1 s2 s1 s2b m2 911m m1c 911m 911 m6c nl8e gtx1060 dfs531005pl0t fhdg bc07511lmspaa 5v 0.5a",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.48760330578513
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     20.33898305084746
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     20.33898305084746
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Intellinet Gigabit Fiber WDM Bi-Directional SFP Optical Transceiver Module, 1000Base-LX (LC) Single-Mode Port, 10 km (6.2 mi.), WDM (RX1310/TX1550)",
+   "canonical": "intellinet gigabit fiber wdm bi directional sfp optical transceiver module, 1000base lx (lc) single mode port, 10 km (6.2 mi.), wdm (rx1310/tx1550)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     16.25
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     15.28662420382166
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     15.28662420382166
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Intellinet Gigabit Fiber WDM Bi-Directional SFP Optical Transceiver Module, 1000Base-LX (LC) Single-Mode Port, 10 km (6.2 mi.), WDM (RX1550/TX1310)",
+   "canonical": "intellinet gigabit fiber wdm bi directional sfp optical transceiver module, 1000base lx (lc) single mode port, 10 km (6.2 mi.), wdm (rx1550/tx1310)",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     16.25
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     15.28662420382166
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     15.28662420382166
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 64GB DDR4 2933 PC4-23400 CL21 2Rx4 288-pin 1.2V ECC Registered DIMM Memory RAM Module Upgrade Compatible with Fujitsu PRIMERGY RX2520 M5 TX2550 M5",
+   "canonical": "owc 64gb ddr4 2933 pc4 23400 cl21 2rx4 288 pin 1.2v ecc registered dimm memory ram module upgrade compatible with fujitsu primergy rx2520 m5 tx2550 m5",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     18.292682926829272
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     17.28395061728395
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     16.04938271604938
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 64GB DDR4 2666 PC4-21300 CL19 4Rx4 288-pin 1.2V ECC Registered DIMM Memory RAM Module Upgrade Compatible with Fujitsu PRIMERGY RX4770 M4",
+   "canonical": "owc 64gb ddr4 2666 pc4 21300 cl19 4rx4 288 pin 1.2v ecc registered dimm memory ram module upgrade compatible with fujitsu primergy rx4770 m4",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.834394904458605
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     15.58441558441558
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     15.58441558441558
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 64GB DDR5 5600 PC5-44800 CL46 2Rx4 288-pin 1.1V ECC Registered DIMM Memory RAM Module Upgrade Compatible with Fujitsu PRIMERGY RX2450 M2 RX2530...",
+   "canonical": "owc 64gb ddr5 5600 pc5 44800 cl46 2rx4 288 pin 1.1v ecc registered dimm memory ram module upgrade compatible with fujitsu primergy rx2450 m2 rx2530...",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     16.76646706586827
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     15.75757575757575
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     15.662650602409641
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 128GB DDR4 2666 PC4-21300 CL19 8Rx4 288-pin 1.2V ECC Registered DIMM Memory RAM Module Upgrade Compatible with Fujitsu PRIMERGY RX4770 M4",
+   "canonical": "owc 128gb ddr4 2666 pc4 21300 cl19 8rx4 288 pin 1.2v ecc registered dimm memory ram module upgrade compatible with fujitsu primergy rx4770 m4",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.721518987341767
+    ],
+    [
+     "nvidia-rtx-3080-12gb",
+     15.58441558441558
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     15.483870967741936
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 128GB DDR5 6400 PC5-51200 CL32 4Rx4 288-pin 1.1V ECC Registered DIMM Memory RAM Module Upgrade Compat with Fujitsu PRIMERGY RX2530 M8 RX2540 M8",
+   "canonical": "owc 128gb ddr5 6400 pc5 51200 cl32 4rx4 288 pin 1.1v ecc registered dimm memory ram module upgrade compat with fujitsu primergy rx2530 m8 rx2540 m8",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     17.5
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     17.5
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.391304347826093
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 32GB DDR5 6400 PC5-51200 CL32 1Rx4 288-pin 1.1V ECC Registered DIMM Memory RAM Module Upgrade Compat with Fujitsu PRIMERGY RX2530 M8 RX2540 M8",
+   "canonical": "owc 32gb ddr5 6400 pc5 51200 cl32 1rx4 288 pin 1.1v ecc registered dimm memory ram module upgrade compat with fujitsu primergy rx2530 m8 rx2540 m8",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     17.61006289308176
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.5
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     16.45569620253164
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 16GB DDR5 6400 PC5-51200 CL32 1Rx8 288-pin 1.1V ECC Registered DIMM Memory RAM Module Upgrade Compat with Fujitsu PRIMERGY RX2530 M8 RX2540 M8",
+   "canonical": "owc 16gb ddr5 6400 pc5 51200 cl32 1rx8 288 pin 1.1v ecc registered dimm memory ram module upgrade compat with fujitsu primergy rx2530 m8 rx2540 m8",
+   "candidates": [
+    [
+     "intel-arc-a770",
+     47.05882352941177
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     40.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     40.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 64GB DDR5 6400 PC5-51200 CL32 2Rx4 288-pin 1.1V ECC Registered DIMM Memory RAM Module Upgrade Compat with Fujitsu PRIMERGY RX2530 M8 RX2540 M8",
+   "canonical": "owc 64gb ddr5 6400 pc5 51200 cl32 2rx4 288 pin 1.1v ecc registered dimm memory ram module upgrade compat with fujitsu primergy rx2530 m8 rx2540 m8",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.5
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     16.45569620253164
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     16.45569620253164
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 96GB DDR5 5600 PC5-44800 CL46 2Rx4 288-pin 1.1V ECC Registered DIMM Memory RAM Module Upgrade Compat with Fujitsu PRIMERGY RX2450 M2 RX2530 M7...",
+   "canonical": "owc 96gb ddr5 5600 pc5 44800 cl46 2rx4 288 pin 1.1v ecc registered dimm memory ram module upgrade compat with fujitsu primergy rx2450 m2 rx2530 m7...",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     16.86746987951807
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     15.853658536585371
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     15.75757575757575
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OWC 96GB DDR5 6400 PC5-51200 CL32 2Rx4 288-pin 1.1V ECC Registered DIMM Memory RAM Module Upgrade Compat with Fujitsu PRIMERGY RX2530 M8 RX2540 M8",
+   "canonical": "owc 96gb ddr5 6400 pc5 51200 cl32 2rx4 288 pin 1.1v ecc registered dimm memory ram module upgrade compat with fujitsu primergy rx2530 m8 rx2540 m8",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.5
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     16.45569620253164
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     16.45569620253164
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "90 Degree 16pin to 4x8pin PCI-e 12V WR for RTX4090",
+   "canonical": "90 degree 16pin to 4x8pin pci-e 12v wr for rtx4090",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PLA09215B12H diameter 85mm hole pitch 42mm RTX2060 2070 Ultra OCV2 Vulcan graphics cooling fan",
+   "canonical": "pla09215b12h diameter 85mm hole pitch 42mm rtx2060 2070 ultra ocv2 vulcan graphics cooling fan",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Aroma Professional ARC-1230R Cool Touch Glass Lid, Food Steamer, Slow Cooker, Multicooker with 11 Preset Functions, Steam Tray, Measuring Cup, Rice...",
+   "canonical": "aroma professional arc 1230r cool touch glass lid, food steamer, slow cooker, multicooker with 11 preset functions, steam tray, measuring cup, rice...",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Aroma Housewares Professional 12-Cups (Cooked) / 3Qt. 360° Induction Rice Cooker & Multicooker (ARC-7606B), Black, 12 Cup",
+   "canonical": "aroma housewares professional 12 cups (cooked) / 3qt. 360° induction rice cooker & multicooker (arc 7606b), black, 12 cup",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.259259259259252
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     18.181818181818187
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     18.181818181818187
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "0D51CG For 17 R4 15 R3 Motherboard I7-7700HQ GTX1070",
+   "canonical": "0d51cg for 17 r4 15 r3 motherboard i7 7700hq gtx1070",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     35.294117647058826
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     32.352941176470594
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     31.8840579710145
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Front 4K & Rear 1080p Dash Cam Custom for Lexus RX 2018 2019 2020 2021 2022 (Model B),RX 350 450h 350L F Sport Luxury,OEM Look, UHD 2160P...",
+   "canonical": "front 4k & rear 1080p dash cam custom for lexus rx 2018 2019 2020 2021 2022 (model b),rx 350 450h 350l f sport luxury,oem look, uhd 2160p...",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "8cm 8050 12V 0.47A GFB0812HHG RX2620 RX2600 sever case fan A7231-04033",
+   "canonical": "8cm 8050 12v 0.47a gfb0812hhg rx2620 rx2600 sever case fan a7231 04033",
+   "candidates": [
+    [
+     "amd-rx-6700-10gb",
+     26.829268292682926
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     26.19047619047619
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     26.19047619047619
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "FOR GTX1080 GTX1070TI GTX1070 Graphics Video Card LED Sign Light - Enhance Your Gaming Rig with Vibrant Custom Lighting",
+   "canonical": "for gtx1080 gtx1070ti gtx1070 graphics video card led sign light enhance your gaming rig with vibrant custom lighting",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.910447761194035
+    ],
+    [
+     "nvidia-gtx-1080-ti",
+     15.625
+    ],
+    [
+     "nvidia-rtx-3080",
+     15.384615384615387
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "the Cooler Radiator for GTX1060 ITX Graphics Video Card",
+   "canonical": "the cooler radiator for gtx1060 itx graphics video card",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     30.985915492957744
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     30.985915492957744
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     28.57142857142857
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "The Cooler Radiator for GTX1650 OC 4G Graphics Video Card",
+   "canonical": "the cooler radiator for gtx1650 oc 4g graphics video card",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     27.77777777777777
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     27.397260273972606
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     27.397260273972606
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Rc30-0220 Battery For Razer Blade Pro 17Inch (2017) (2019) I7-7700Hk I7-7700Hq Gtx 1060 Gtx1060 Rz09-0220 Rz09-02202 Rz09-02202E75...",
+   "canonical": "rc30 0220 battery for razer blade pro 17inch (2017) (2019) i7 7700hk i7 7700hq gtx 1060 gtx1060 rz09 0220 rz09 02202 rz09 02202e75...",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     20.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     19.847328244274806
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Graphics cards compatible with GTX 1070 MINI graphics cards",
+   "canonical": "graphics cards compatible with gtx 1070 mini graphics cards",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     39.34426229508197
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     33.89830508474576
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "LED light boards for GTX 1080, GTX 1070 Ti, and GTX 1070 graphics cards",
+   "canonical": "led light boards for gtx 1080, gtx 1070 ti, and gtx 1070 graphics cards",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     32.87671232876713
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     32.87671232876713
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GTX 1070 Ti graphics card casing and fan",
+   "canonical": "gtx 1070 ti graphics card casing and fan",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     70.58823529411765
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     40.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     40.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Y540-15IRH 81SX Y7000-2019 81NS (GTX1660Ti) series CPU cooling fan (DFS5M325063B11)",
+   "canonical": "y540 15irh 81sx y7000 2019 81ns (gtx1660ti) series cpu cooling fan (dfs5m325063b11)",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     22.680412371134025
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     20.618556701030926
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     20.618556701030926
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "95mm, T129215BU, GPU VGA cooler, suitable for GTX 1070 Xtreme Edition and GTX 1080 Ti 8G 11GB graphics card cooling.",
+   "canonical": "95mm, t129215bu, gpu vga cooler, suitable for gtx 1070 xtreme edition and gtx 1080 ti 8g 11gb graphics card cooling.",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     100.0
+    ],
+    [
+     "nvidia-rtx-2080-ti",
+     30.769230769230774
+    ],
+    [
+     "nvidia-rtx-3060-ti",
+     30.769230769230774
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "A 47mm FS1250-S2053A fan, 3-pin 0.19A 12V, for the GTX 1650 1630 4GB OC low-profile graphics card.",
+   "canonical": "a 47mm fs1250 s2053a fan, 3 pin 0.19a 12v, for the gtx 1650 1630 4gb oc low profile graphics card.",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     22.807017543859644
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     21.238938053097343
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For Rescuer R9000P2021 RTX3050/TI Fan radiator 5H40S20356",
+   "canonical": "for rescuer r9000p2021 rtx3050/ti fan radiator 5h40s20356",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "TX1310+ RX 1550Nm TTL Up To 4 Channel 2 Analog Video+ 2 TTL Data Over Fiber Optic Converter LC Optical Module",
+   "canonical": "tx1310+ rx 1550nm ttl up to 4 channel 2 analog video+ 2 ttl data over fiber optic converter lc optical module",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Image Transmission Module RX3364 Transmission Module Transmission And Reception Module",
+   "canonical": "image transmission module rx3364 transmission module transmission and reception module",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     29.508196721311478
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     29.508196721311478
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     29.032258064516128
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Video Receiver Module RX8200 1PCS 6G-8.2Ghz VRX FPV Analog Video Receiver Module SPI Mode",
+   "canonical": "video receiver module rx8200 1pcs 6g 8.2ghz vrx fpv analog video receiver module spi mode",
+   "candidates": [
+    [
+     "nvidia-rtx-3080-12gb",
+     22.5
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     22.22222222222223
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     22.22222222222223
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX8200 Analog Video Transmission Receiver Module 6G- 8.2Ghz FPV High Sensitivity Clear Signal SPI RSSI Signal",
+   "canonical": "rx8200 analog video transmission receiver module 6g 8.2ghz fpv high sensitivity clear signal spi rssi signal",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     17.241379310344826
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     17.241379310344826
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     17.09401709401709
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "20K RXN435KC RXB325LC Thermistor Temperature Sensor for Daikin Air Conditioning Hanging Probe",
+   "canonical": "20k rxn435kc rxb325lc thermistor temperature sensor for daikin air conditioning hanging probe",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     23.63636363636364
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     20.560747663551396
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     20.560747663551396
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For Colorful Shark 2G D5 low-power graphics card GTX1050",
+   "canonical": "for colorful shark 2g d5 low power graphics card gtx1050",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     25.714285714285708
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     25.714285714285708
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     25.714285714285708
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX2800 Mini Machine 10G Fiber Network Card AM225A AM255-67001 AM225-60001",
+   "canonical": "rx2800 mini machine 10g fiber network card am225a am255 67001 am225 60001",
+   "candidates": [
+    [
+     "amd-rx-6700-10gb",
+     25.882352941176464
+    ],
+    [
+     "nvidia-rtx-3080",
+     23.25581395348837
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     22.471910112359552
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Center Console Cup Holder Panel Cover Trim Sticker For Lexus RX 2016-2019 Carbon Fiber Accessories",
+   "canonical": "center console cup holder panel cover trim sticker for lexus rx 2016 2019 carbon fiber accessories",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For G3 G3-3579 3779 G5-5587 G3 3776 GTX1060 CPU Fan",
+   "canonical": "for g3 g3 3579 3779 g5 5587 g3 3776 gtx1060 cpu fan",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     26.66666666666667
+    ],
+    [
+     "amd-rx-6750-xt",
+     25.454545454545453
+    ],
+    [
+     "amd-rx-6950-xt",
+     25.454545454545453
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "for SFP-25G-TX1270/RX1330-10km-SM-BIDI-BBU 25G SFP28 BIDI 1270Tx/1330Rx 10km Single Fiber LC SMF DOM",
+   "canonical": "for sfp 25g tx1270/rx1330 10km sm bidi bbu 25g sfp28 bidi 1270tx/1330rx 10km single fiber lc smf dom",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.359223300970868
+    ],
+    [
+     "amd-rx-7900-gre",
+     20.618556701030926
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     20.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "for RTX A2000 Board Cooling Fan Graphics Card NO Video Card",
+   "canonical": "for rtx a2000 board cooling fan graphics card no video card",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "for Legion R7000P 2025 RTX5060/70 fan L+R",
+   "canonical": "for legion r7000p 2025 rtx5060/70 fan l+r",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "5.8G FPV Mini Audio Video Receiver Module RX5808 For FPV System RC Helicopter RC Parts",
+   "canonical": "5.8g fpv mini audio video receiver module rx5808 for fpv system rc helicopter rc parts",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     22.91666666666667
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     21.276595744680847
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     19.354838709677423
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "for Legion y9000p 2025 Ultimate Edition RTX5090 fan L+R",
+   "canonical": "for legion y9000p 2025 ultimate edition rtx5090 fan l+r",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX5808 4.9G 5.8G 6.1G PLUS Dual Antenna Receiver Module For SKYZONE/Fatshark /V1 V2 Glasses,",
+   "canonical": "rx5808 4.9g 5.8g 6.1g plus dual antenna receiver module for skyzone/fatshark /v1 v2 glasses,",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.18348623853211
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     18.867924528301884
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     18.51851851851852
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RAV540 Audio/Video Receiver Remote Control for RX-A850, RX-A860 (ZP60150)",
+   "canonical": "rav540 audio/video receiver remote control for rx a850, rx a860 (zp60150)",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RAV553 AV Receiver Remote Control for RX-A770, RX-V683 (ZW69510)",
+   "canonical": "rav553 av receiver remote control for rx a770, rx v683 (zw69510)",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "for SFP-GE-LX-SM1550-BIDI 1.25G BIDI 20km TX1550/RX1310nm LC",
+   "canonical": "for sfp ge lx sm1550 bidi 1.25g bidi 20km tx1550/rx1310nm lc",
+   "candidates": [
+    [
+     "nvidia-rtx-3080-12gb",
+     26.470588235294116
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     26.086956521739125
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     26.086956521739125
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "64.31WH SQU-2002 battery for zero 2021 RTX3060",
+   "canonical": "64.31wh squ-2002 battery for zero 2021 rtx3060",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RCMOY 7.2GHz Video Receiver Module RX7500 6000~7500MHz 6SPI signal level 3.3V, up to 100K rate For RC Model Parts",
+   "canonical": "rcmoy 7.2ghz video receiver module rx7500 6000~7500mhz 6spi signal level 3.3v, up to 100k rate for rc model parts",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.0
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     18.897637795275585
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     18.897637795275585
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX4500-SPI 4.5G Video Receiving Module FPV Image Transmission Analog Audio Video Transmission Reception Module",
+   "canonical": "rx4500 spi 4.5g video receiving module fpv image transmission analog audio video transmission reception module",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.78217821782178
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     20.202020202020208
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     20.202020202020208
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "1080~2200MHz RX1264-CPB FPV Image Transmission Module 1.2G 64CH FM Analog Audio And Video Transmission Sensor",
+   "canonical": "1080~2200mhz rx1264 cpb fpv image transmission module 1.2g 64ch fm analog audio and video transmission sensor",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.238938053097343
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     20.0
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.819819819819813
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "480MHz RX3364 3.3G FPV Image Transmission Module Audio Video Transmission Reception Bpard Electronic Kit",
+   "canonical": "480mhz rx3364 3.3g fpv image transmission module audio video transmission reception bpard electronic kit",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     22.22222222222223
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     20.754716981132077
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     20.560747663551396
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "3.3G RX3364-CPB FPV Image Transmission Module Analog Audio & Video Receiver Module Electronic Kit",
+   "canonical": "3.3g rx3364 cpb fpv image transmission module analog audio & video receiver module electronic kit",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.04761904761905
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     19.04761904761905
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     18.691588785046733
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OEM Yamaha Remote Control Specifically for Yamaha HTR6065, HTR-6065, RXA720, RX-A720",
+   "canonical": "oem yamaha remote control specifically for yamaha htr6065, htr 6065, rxa720, rx a720",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Microphone Compatible with Yamaha Model Numbers HTR-6090, HTR-6190, HTR-6290, RX-A2000, RX-V1400, RX-V1500",
+   "canonical": "microphone compatible with yamaha model numbers htr 6090, htr 6190, htr 6290, rx a2000, rx v1400, rx v1500",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Replacement Remote Control Compatible with Yamaha 9.2 Channel AVENTAGE Receiver Models RXA2040, RX-A2040, RXA3040, RX-A3040",
+   "canonical": "replacement remote control compatible with yamaha 9.2 channel aventage receiver models rxa2040, rx a2040, rxa3040, rx a3040",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Replacement Remote Control Controller for Yamaha AV Receiver RXA780, RXV685, TSR7850, RXA880",
+   "canonical": "replacement remote control controller for yamaha av receiver rxa780, rxv685, tsr7850, rxa880",
+   "candidates": [
+    [
+     "amd-rx-7800-xt",
+     17.647058823529406
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     16.98113207547169
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     16.98113207547169
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Antenna Compatible with Yamaha Model Numbers HTR-4068, HTR-6068, RX-A1050, RX-A1060, RX-A1070, RX-A2050, RX-A3050",
+   "canonical": "antenna compatible with yamaha model numbers htr 4068, htr 6068, rx a1050, rx a1060, rx a1070, rx a2050, rx a3050",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Replacement Remote Control Controller for Yamaha AVENTAGE RXA1080 RX-A1080 7.2 Channel A/V Receiver",
+   "canonical": "replacement remote control controller for yamaha aventage rxa1080 rx a1080 7.2 channel a/v receiver",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Remote Control Controller Replacement for Yamaha AV Receiver RXA2080, RX-A2080, RXA3080, RX-A3080, RX-V2085, RXV2085",
+   "canonical": "remote control controller replacement for yamaha av receiver rxa2080, rx a2080, rxa3080, rx a3080, rx v2085, rxv2085",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Replacement Remote Control for Sherwood RC101, RX4105",
+   "canonical": "replacement remote control for sherwood rc101, rx4105",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     26.86567164179104
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     26.86567164179104
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     26.86567164179104
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "OEM Remote Control: RX-A470, RX-A470, RX-A470BL, RX-A470BL, RX-V677, RXV677",
+   "canonical": "oem remote control: rx a470, rx a470, rx a470bl, rx a470bl, rx v677, rxv677",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX7264 FPV Transmitter Receiver Module 6110-7210MHz Video Transmission High Sensitivity for Drones And DIY Projects",
+   "canonical": "rx7264 fpv transmitter receiver module 6110 7210mhz video transmission high sensitivity for drones and diy projects",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.212121212121218
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     17.054263565891475
+    ],
+    [
+     "nvidia-rtx-4070-super",
+     17.054263565891475
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX8200 6G-8.2GHz Video Receiver Module with Low Latency for FPV Drones and Professional Aerial Photography",
+   "canonical": "rx8200 6g 8.2ghz video receiver module with low latency for fpv drones and professional aerial photography",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     16.52892561983471
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     16.52892561983471
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     16.26016260162602
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Gtx 1060 6Gb Dual Graphics Cooling Fan Ga91S2UCompatible with Palit Gtx1060 Gtx1080 Gtx1070",
+   "canonical": "gtx 1060 6gb dual graphics cooling fan ga91s2ucompatible with palit gtx1060 gtx1080 gtx1070",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     26.168224299065415
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     26.168224299065415
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "For 2019 Y540-15IRH Y540-17IRH GTX1660Ti Y7000 Multi-Function Convenient Practical Cooling Fan,CPU+GPU",
+   "canonical": "for 2019 y540 15irh y540 17irh gtx1660ti y7000 multi function convenient practical cooling fan,cpu+gpu",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.05263157894737
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     19.64285714285714
+    ],
+    [
+     "nvidia-rtx-5070-ti",
+     18.51851851851852
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "3.3G FPV VTX Module RX3364 Module Analog FPV Audio Video Transmission Receiver Module",
+   "canonical": "3.3g fpv vtx module rx3364 module analog fpv audio video transmission receiver module",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.42857142857143
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.512195121951223
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     19.512195121951223
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "5.8Ghz RX5808 Audio Video Receiver Module Audio Video Receiver Module SPI Mode Without Audio",
+   "canonical": "5.8ghz rx5808 audio video receiver module audio video receiver module spi mode without audio",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     24.0
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     22.22222222222223
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     22.22222222222223
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "3.3G RX3364Pro FPV VRX Module Receiver Module Analog Receiver RSSI FPV Audio Video Transmission Module",
+   "canonical": "3.3g rx3364pro fpv vrx module receiver module analog receiver rssi fpv audio video transmission module",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     19.565217391304344
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     17.77777777777777
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     17.77777777777777
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RAV336 WT92720US Replace Remote for Yamaha AV Receiver RX-A700 RX-V667 RX-A700BL HTR-6063 Sub Remote RAV337 RAV338",
+   "canonical": "rav336 wt92720us replace remote for yamaha av receiver rx a700 rx v667 rx a700bl htr 6063 sub remote rav337 rav338",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GTX1050TI GeForce GTX 1050 Ti 4GB Phoenix Fan Edition Graphics Card",
+   "canonical": "gtx1050ti gtx 1050 ti 4gb phoenix fan edition graphics card",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     70.58823529411765
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     32.432432432432435
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     32.432432432432435
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GAMING GeForce GTX 1060 3GB GDRR5 192-bit HDCP Support DirectX 12 Dual Fan VR Ready OC Graphics Card (GTX 1060 ARMOR 3G OC)",
+   "canonical": "gaming gtx 1060 3gb gdrr5 192 bit hdcp support directx 12 dual fan vr ready oc graphics card (gtx 1060 armor 3g oc)",
+   "candidates": [
+    [
+     "nvidia-gtx-1080-ti",
+     42.857142857142854
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     19.354838709677423
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.200000000000003
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GeForce Dual-GTX1050TI-O4G OC Edition 4GB GDDR5 PCI-Express Graphics Card",
+   "canonical": "dual gtx1050ti o4g oc edition 4gb gddr5 pci express graphics card",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     26.829268292682926
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     25.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     24.691358024691354
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RC30-0248 Battery Replacement for Razer Blade Advanced 15 2018 2019 2020 2021 RTX 2060 2070 2080 RZ09-02385 RZ09-02386 RZ09-02386E92 RZ09-02486...",
+   "canonical": "rc30-0248 battery replacement for razer blade advanced 15 2018 2019 2020 2021 rtx 2060 2070 2080 rz09-02385 rz09-02386 rz09-02386e92 rz09-02486...",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX5808 5.8G FPV Video Receiver 4.9-5.8GHz Dual Antenna for FPV Goggles",
+   "canonical": "rx5808 5.8g fpv video receiver 4.9 5.8ghz dual antenna for fpv goggles",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     24.096385542168676
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     22.5
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     22.22222222222223
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "uyuy TX+RX 2CH 20KM TTL Optical Module Kits DC 5.5-26V Optical Terminal Module TX 1310 RX 1550nm",
+   "canonical": "uyuy tx+rx 2ch 20km ttl optical module kits dc 5.5 26v optical terminal module tx 1310 rx 1550nm",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "1PCS RX7500 6000-7500MHz Video Receiving Module 7.2GHz VRX with RSSI Output Analog Voltage Signal for Monitoring System",
+   "canonical": "1pcs rx7500 6000 7500mhz video receiving module 7.2ghz vrx with rssi output analog voltage signal for monitoring system",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     20.740740740740748
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.588235294117652
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     19.259259259259252
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "1PCS FPV Video Receiver RX3364 5V 3.3GHz 8 Channels Receiving VRX Module 480MHz Intermediate Frequency PLL LO Control",
+   "canonical": "1pcs fpv video receiver rx3364 5v 3.3ghz 8 channels receiving vrx module 480mhz intermediate frequency pll lo control",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     17.910447761194035
+    ],
+    [
+     "nvidia-rtx-4080-super",
+     16.793893129770993
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     16.54135338345864
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "1PCS RX1264-CPB 1.2G VRX Module 12V 120mA FPV Video Receiver 64-Channel Button-Selectable Support NTSC/PAL Video Format",
+   "canonical": "1pcs rx1264 cpb 1.2g vrx module 12v 120ma fpv video receiver 64 channel button selectable support ntsc/pal video format",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     20.472440944881896
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     18.897637795275585
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     18.897637795275585
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "1PCS RX8200 6G-8.2GHz VRX FPV Video Receiver Module with SPI 1.2~0.6V RSSI Output Dip Switch Support 16 Frequency Points",
+   "canonical": "1pcs rx8200 6g 8.2ghz vrx fpv video receiver module with spi 1.2~0.6v rssi output dip switch support 16 frequency points",
+   "candidates": [
+    [
+     "nvidia-rtx-2060-super",
+     19.40298507462687
+    ],
+    [
+     "nvidia-rtx-2080-super",
+     19.40298507462687
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     18.978102189781026
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MM238RW 4.9G 5.8G 6.0G FPV Image Transmission Open Source Receiving SPI High Sensitivity Replacement RX5808",
+   "canonical": "mm238rw 4.9g 5.8g 6.0g fpv image transmission open source receiving spi high sensitivity replacement rx5808",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     21.311475409836063
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     21.311475409836063
+    ],
+    [
+     "nvidia-rtx-4070-ti-super",
+     20.967741935483872
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RX8200 6G-8.2G Analog Video Transmission Module FPV High Sensitivity Clear Signal SPI RSSI Receiver",
+   "canonical": "rx8200 6g 8.2g analog video transmission module fpv high sensitivity clear signal spi rssi receiver",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     17.54385964912281
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     17.54385964912281
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     17.391304347826093
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RTX2060 6G Display card GV N2060WF2OC 6GD",
+   "canonical": "rtx2060 6g display card gv n2060wf2oc 6gd",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "RAV537 ZP60120 Replacement Remote Control for Yamaha AV Receiver for modelRX-A760 RX-A760BL RX-V681 RX-V781 RXA760 RXA760BL RXV681 RXV781 TSR7810",
+   "canonical": "rav537 zp60120 replacement remote control for yamaha av receiver for modelrx a760 rx a760bl rx v681 rx v781 rxa760 rxa760bl rxv681 rxv781 tsr7810",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Replacement Remote for Whynter NEX Portable Air Conditioner Compatible Models: ARC-1230WN ARC-1030WN ARC-1230WNH ARC-1050XP ARC-0850XP ARC-0850XP...",
+   "canonical": "replacement remote for whynter nex portable air conditioner compatible models: arc 1230wn arc 1030wn arc 1230wnh arc 1050xp arc 0850xp arc 0850xp...",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Replacement Remote Control Universal for Yamaha RX-V871 RAV444 WW51160 RX-V575 RAV334 WT92700 HTR-5066 RX-A810 RAV290 WR00240 RX-V665 RX-V765...",
+   "canonical": "replacement remote control universal for yamaha rx v871 rav444 ww51160 rx v575 rav334 wt92700 htr 5066 rx a810 rav290 wr00240 rx v665 rx v765...",
+   "candidates": [
+    [
+     "amd-rx-6600",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-6800",
+     44.44444444444444
+    ],
+    [
+     "amd-rx-7600",
+     44.44444444444444
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "200W AC Charger Fit for Asus TUF F15 F17 A15 A17 Dash F15 FX516 FA506 FA507 FX506 FX507 FX706 FX707 FA706 FA707 i5 i7 RTX3050 3050Ti 3060 3070 4050...",
+   "canonical": "200w ac charger fit for asus tuf f15 f17 a15 a17 dash f15 fx516 fa506 fa507 fx506 fx507 fx706 fx707 fa706 fa707 i5 i7 rtx3050 3050ti 3060 3070 4050...",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Areca Technology Corporation ARC-1883IX-16",
+   "canonical": "areca technology corporation arc 1883ix 16",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "3.5/2.5 inch HDD Tray for NAS RX1216sas, RX1217, RX1217sas, RXD1215sas, RS18016xs+, RS18 017xs+, RS2416+, RS2418+, RS2818RP+, RS3617RPxs,...",
+   "canonical": "3.5/2.5 inch hdd tray for nas rx1216sas, rx1217, rx1217sas, rxd1215sas, rs18016xs+, rs18 017xs+, rs2416+, rs2418+, rs2818rp+, rs3617rpxs,...",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     14.01273885350318
+    ],
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     12.903225806451616
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     12.820512820512818
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Cooler Master HAF 700 EVO E-ATX High Airflow Case, IRIS LCD Display, Tempered Glass, Dual 200mm Fans, USB-C, USB 3.2 Ports, Compatible with RX 9070...",
+   "canonical": "cooler master haf 700 evo e-atx high airflow case, iris lcd display, tempered glass, dual 200mm fans, usb-c, usb 3.2 ports, compatible with rx 9070...",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS Dual GeForce RTX 5060 Ti Graphics Card DUAL-RTX5060TI-O8G",
+   "canonical": "asus dual rtx 5060 ti graphics card dual rtx5060ti o8g",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASUS T1 GeForce RTX 5060 Ti Graphics Card T1-RTX5060TI-O8G-GAMING",
+   "canonical": "asus t1 rtx 5060 ti graphics card t1 rtx5060ti o8g gaming",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY RTX 4000 Ada VCNRTX4000ADA-PB 20GB 20GB 160-bit GDDR6 PCI Express 4.0 x16 Graphics Card",
+   "canonical": "pny rtx 4000 ada vcnrtx4000ada pb 20gb 20gb 160 bit gddr6 pci express 4.0 x16 graphics card",
+   "candidates": [
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2070",
+     54.54545454545455
+    ],
+    [
+     "nvidia-rtx-2080",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY RTX 2000 VCNRTX2000ADA-PB 16GB 128-bit GDDR6 PCI Express 4.0 x8 Graphics Card",
+   "canonical": "pny rtx 2000 vcnrtx2000ada pb 16gb 128 bit gddr6 pci express 4.0 x8 graphics card",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "PNY RTX 2000E ADA VCNRTX2000ADAS-LLP 16GB 128-bit GDDR6 PCI Express 4.0 x8 Graphics Card",
+   "canonical": "pny rtx 2000e ada vcnrtx2000adas llp 16gb 128 bit gddr6 pci express 4.0 x8 graphics card",
+   "candidates": [
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     66.66666666666666
+    ],
+    [
+     "nvidia-rtx-2060",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G GAMING TRIO OC",
+   "canonical": "msi gaming rtx 5060 ti graphics card rtx 5060 ti 16g gaming trio oc",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G GAMING OC",
+   "canonical": "msi gaming rtx 5060 ti graphics card rtx 5060 ti 16g gaming oc",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G VENTUS 3X OC",
+   "canonical": "msi ventus rtx 5060 ti graphics card rtx 5060 ti 16g ventus 3x oc",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G VENTUS 2X OC PLUS",
+   "canonical": "msi ventus rtx 5060 ti graphics card rtx 5060 ti 16g ventus 2x oc plus",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Gaming GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G GAMING TRIO OC",
+   "canonical": "msi gaming rtx 5060 ti graphics card rtx 5060 ti 8g gaming trio oc",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI SHADOW GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 16G SHADOW 2X OC PLUS",
+   "canonical": "msi shadow rtx 5060 ti graphics card rtx 5060 ti 16g shadow 2x oc plus",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card (RTX 5060 Ti 16G VENTUS 2X OC BLACK PLUS)",
+   "canonical": "msi ventus rtx 5060 ti graphics card (rtx 5060 ti 16g ventus 2x oc black plus)",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ZOTAC Twin Edge OC GeForce RTX 5060 Ti Video Card ZT-B50620H-10A",
+   "canonical": "zotac twin edge oc rtx 5060 ti video card zt b50620h 10a",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "ASRock Challenger Arc A380 Video Card A380 CLI 6G OC",
+   "canonical": "asrock challenger arc a380 video card a380 cli 6g oc",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE AERO GeForce RTX 5060 Ti Graphics Card GV-N506TAERO OC-16GD",
+   "canonical": "gigabyte aero rtx 5060 ti graphics card gv n506taero oc 16gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Gaming GeForce RTX 5060 Ti Graphics Card GV-N506TGAMING OC-16GD",
+   "canonical": "gigabyte gaming rtx 5060 ti graphics card gv n506tgaming oc 16gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEOC ICE-16GD",
+   "canonical": "gigabyte eagle rtx 5060 ti graphics card gv n506teagleoc ice 16gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2OC-16GD",
+   "canonical": "gigabyte windforce rtx 5060 ti graphics card gv n506twf2oc 16gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE AERO GeForce RTX 5060 Ti Graphics Card GV-N506TAERO OC-8GD",
+   "canonical": "gigabyte aero rtx 5060 ti graphics card gv n506taero oc 8gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Gaming GeForce RTX 5060 Ti Graphics Card GV-N506TGAMING OC-8GD",
+   "canonical": "gigabyte gaming rtx 5060 ti graphics card gv n506tgaming oc 8gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEOC ICE-8GD",
+   "canonical": "gigabyte eagle rtx 5060 ti graphics card gv n506teagleoc ice 8gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLE OC-8GD",
+   "canonical": "gigabyte eagle rtx 5060 ti graphics card gv n506teagle oc 8gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2OC-8GD",
+   "canonical": "gigabyte windforce rtx 5060 ti graphics card gv n506twf2oc 8gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE WindForce GeForce RTX 5060 Ti Graphics Card GV-N506TWF2-8GD",
+   "canonical": "gigabyte windforce rtx 5060 ti graphics card gv n506twf2 8gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEMAX OC-8GD",
+   "canonical": "gigabyte eagle rtx 5060 ti graphics card gv n506teaglemax oc 8gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE AORUS GeForce RTX 5060 Ti Graphics card AORUS RTX 5060 TI AI BOX",
+   "canonical": "gigabyte aorus rtx 5060 ti graphics card aorus rtx 5060 ti ai box",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE AORUS GeForce RTX 5060 Graphics AORUS GeForce RTX 5060 ARI",
+   "canonical": "gigabyte aorus geforce rtx 5060 graphics aorus geforce rtx 5060 ari",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "GIGABYTE Eagle GeForce RTX 5060 Ti Graphics Card GV-N506TEAGLEMAX OC-16GD",
+   "canonical": "gigabyte eagle rtx 5060 ti graphics card gv n506teaglemax oc 16gd",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "MSI Ventus GeForce RTX 5060 Ti Graphics Card RTX 5060 Ti 8G VENTUS 3X OC",
+   "canonical": "msi ventus rtx 5060 ti graphics card rtx 5060 ti 8g ventus 3x oc",
+   "candidates": [
+    [
+     "nvidia-rtx-5060-ti-8gb",
+     100.0
+    ],
+    [
+     "nvidia-rtx-5060-ti-16gb",
+     100.0
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Phanteks Glacier G4090 GIGABYTE for GIGABYTE AORUS MASTER/ GAMING RTX 4090, Nickel-Plated copper block, Acrylic, Aluminum Cover plate, Digital-RGB,...",
+   "canonical": "phanteks glacier g4090 gigabyte for gigabyte aorus master/ gaming rtx 4090, nickel-plated copper block, acrylic, aluminum cover plate, digital-rgb,...",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Phanteks Glacier G4090 GIGABYTE for GIGABYTE AORUS MASTER / GAMING RTX 4090, Nickel-Plated copper block, Acrylic, Aluminum Cover plate,...",
+   "canonical": "phanteks glacier g4090 gigabyte for gigabyte aorus master / gaming rtx 4090, nickel-plated copper block, acrylic, aluminum cover plate,...",
+   "candidates": []
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Quartet ARCB3018 Cubicle Arc Frame Colored Cork Board, 18 x 30, Tan, Aluminum Frame",
+   "canonical": "quartet arcb3018 cubicle arc frame colored cork board, 18 x 30, tan, aluminum frame",
+   "candidates": [
+    [
+     "intel-arc-a580",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a750",
+     54.54545454545455
+    ],
+    [
+     "intel-arc-a770",
+     54.54545454545455
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Quartet ARC1411 Magnetic Dry Erase Board, Painted Steel, 11 x 14, White/Aluminum Frame",
+   "canonical": "quartet arc1411 magnetic dry erase board, painted steel, 11 x 14, white/aluminum frame",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     21.359223300970868
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     17.821782178217816
+    ],
+    [
+     "nvidia-rtx-4060-ti-16gb",
+     17.647058823529406
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Quartet ARC3018 Magnetic Dry Erase Board, Painted Steel, 18 x 30, White/Aluminum Frame",
+   "canonical": "quartet arc3018 magnetic dry erase board, painted steel, 18 x 30, white/aluminum frame",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     23.30097087378641
+    ],
+    [
+     "nvidia-rtx-3080",
+     20.202020202020208
+    ],
+    [
+     "nvidia-rtx-4060-ti-8gb",
+     19.801980198019805
+    ]
+   ]
+  },
+  {
+   "source": "newegg",
+   "raw_name": "Open Box - Vivotek RX9502 32-Channel Video Receiver",
+   "canonical": "open box vivotek rx9502 32 channel video receiver",
+   "candidates": [
+    [
+     "nvidia-rtx-4070-ti-super",
+     24.24242424242425
+    ],
+    [
+     "nvidia-rtx-2060-super",
+     22.22222222222223
+    ],
+    [
+     "nvidia-rtx-2070-super",
+     22.22222222222223
+    ]
+   ]
   }
  ],
  "needs_review": true
