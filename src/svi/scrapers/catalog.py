@@ -83,6 +83,7 @@ def fetch_catalog():
     entry = paramiko.hostkeys.HostKeyEntry.from_line(HOST_KEY)
     client.get_host_keys().add(HOST, entry.key.get_name(), entry.key)
     client.set_missing_host_key_policy(paramiko.RejectPolicy())
+    stage = "connect"
     try:
         client.connect(
             HOST,
@@ -94,7 +95,9 @@ def fetch_catalog():
             look_for_keys=False,
             allow_agent=False,
         )
+        stage = "open SFTP"
         with client.open_sftp() as sftp, tempfile.TemporaryDirectory() as folder:
+            stage = "list catalog files"
             sftp.get_channel().settimeout(120)
             files = sftp.listdir(".")
             expected = f"44583_{sid}_mp.txt.gz"
@@ -103,12 +106,16 @@ def fetch_catalog():
                 print("Newegg catalog entries:", matching)
                 raise FileNotFoundError("Expected Newegg text catalog is not available")
             path = Path(folder) / "catalog.txt.gz"
+            stage = "download catalog"
             sftp.get(f"44583_{sid}_mp.txt.gz", str(path), max_concurrent_prefetch_requests=32)
+            stage = "parse catalog"
             with gzip.open(path, "rt", encoding="utf-8-sig", newline="") as stream:
                 return parse_catalog(stream)
     except Exception as exc:
         # Do not expose usernames, passwords, private paths or server responses.
-        raise RuntimeError(f"Rakuten catalog fetch failed ({type(exc).__name__})") from None
+        raise RuntimeError(
+            f"Rakuten catalog fetch failed during {stage} ({type(exc).__name__})"
+        ) from None
     finally:
         client.close()
 
