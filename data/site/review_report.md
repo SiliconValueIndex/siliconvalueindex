@@ -1,7 +1,6 @@
-# Refresh report `gh-39499427774`
+# Refresh report `gh-39505682915`
 **Needs review: YES**
 - 343 unresolved name(s)
-- 1 price move(s) >= 25%
 - 2 benchmark anomaly(ies)
 
 ## Fetch failures
@@ -359,12 +358,46 @@ Add a row to `data/reference/aliases.csv` (alias,gpu_id,source) or a new registr
 ## Active GPUs with no valid current price
 These drop out of the rankings. Add a row to `data/reference/price_overrides.csv` if needed.
 
+- `amd-rx-6500-xt`
+- `amd-rx-6600`
+- `amd-rx-6600-xt`
 - `amd-rx-6650-xt`
+- `amd-rx-6700-10gb`
+- `amd-rx-6700-xt`
+- `amd-rx-6750-xt`
+- `amd-rx-6800`
+- `amd-rx-6800-xt`
+- `amd-rx-6900-xt`
+- `amd-rx-6950-xt`
+- `amd-rx-7600-xt`
+- `amd-rx-7700-xt`
+- `amd-rx-7800-xt`
+- `amd-rx-7900-gre`
+- `amd-rx-7900-xt`
+- `intel-arc-a580`
+- `intel-arc-a770`
+- `nvidia-rtx-2060-super`
+- `nvidia-rtx-2070-super`
+- `nvidia-rtx-3060-ti`
+- `nvidia-rtx-3070-ti`
+- `nvidia-rtx-3080`
+- `nvidia-rtx-3080-12gb`
+- `nvidia-rtx-3080-ti`
+- `nvidia-rtx-3090`
+- `nvidia-rtx-3090-ti`
+- `nvidia-rtx-4060`
+- `nvidia-rtx-4060-ti-16gb`
+- `nvidia-rtx-4070`
+- `nvidia-rtx-4070-super`
+- `nvidia-rtx-4070-ti`
+- `nvidia-rtx-4070-ti-super`
+- `nvidia-rtx-4080`
+- `nvidia-rtx-4080-super`
+- `nvidia-rtx-4090`
+- `nvidia-rtx-5090`
 
 ## Price moves >= 25%
-| gpu_id | from | to | pct |
-|---|---|---|---|
-| nvidia-rtx-4060-ti-8gb | 489.0 | 949.0 | 94.1 |
+_none_
 
 ## Benchmark anomalies
 | type | gpu_id | resolution | mode | residual | detail |
@@ -375,17 +408,17 @@ These drop out of the rankings. Add a row to `data/reference/price_overrides.csv
 ## Changes this run
 - Added GPUs: none
 - Removed GPUs: none
-- Price changes >= 5%: 4
+- Price changes >= 5%: 0
 - Benchmark suite changed: False
 
 ## Ranked counts
-- `1080p_raster`: 45
-- `1080p_rt`: 45
-- `1440p_raster`: 61
-- `1440p_rt`: 45
-- `4k_raster`: 45
-- `4k_rt`: 45
+- `1080p_raster`: 18
+- `1080p_rt`: 18
+- `1440p_raster`: 25
+- `1440p_rt`: 18
+- `4k_raster`: 18
+- `4k_rt`: 18
 
 ## Notes
-- Newegg: 83 valid of 93 observations
+- Newegg: 83 valid of 130 observations
 - Manual overrides applied: 2

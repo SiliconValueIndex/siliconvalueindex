@@ -1,5 +1,18 @@
 [
  {
+  "run_id": "gh-39505682915",
+  "generated_at": "2026-10-20T22:07:26Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 343,
+  "notes": [
+   "Newegg: 83 valid of 130 observations",
+   "Manual overrides applied: 2"
+  ]
+ },
+ {
   "run_id": "gh-39499427774",
   "generated_at": "2026-10-20T21:19:59Z",
   "added_gpus": [],
