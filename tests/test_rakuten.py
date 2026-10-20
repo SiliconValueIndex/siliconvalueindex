@@ -300,6 +300,8 @@ def test_retry_preserves_authorization(monkeypatch, first_status):
         "Monitors compatible with RTX 4070 graphics cards",
         "A cooler set for RTX 4070 graphics cards",
         "Blocking MOS for RTX 4070 graphics cards",
+        "CyberPowerPC Gamer Master with RTX 4070",
+        "ASUS ROG Zephyrus laptop with RTX 4070",
     ],
 )
 def test_systems_and_parts_never_become_prices_or_unresolved(title):

@@ -55,6 +55,7 @@ _NOT_NEW = re.compile(r"\bopen[\s-]?box\b|\brefurb", re.IGNORECASE)
 _NON_GPU = re.compile(
     r"\b(?:desktop\s+(?:pc|computer|tower)|gaming\s+(?:desktop|pc|computer)|"
     r"workstation|mini[ -]?pc|all[ -]in[ -]one|barebone|windows\s+(?:10|11)|"
+    r"(?:cyberpowerpc|zephyrus|laptop|notebook|gamer\s+(?:master|xtreme|supreme))|"
     r"(?:intel\s+)?core\s+(?:i[3579]|ultra)\b|ryzen\s+[3579]\b|"
     r"(?:nvme|sata)\s+ssd|(?:replacement|spare)\s+(?:cooling\s+)?fans?|"
     r"(?:gpu|vga|graphics\s+card|video\s+card)\s+(?:cooling\s+)?fans?|"
