@@ -95,8 +95,8 @@ def validate_observations(
         out.loc[sel, "is_valid"] = False
         out.loc[sel, "invalid_reason"] = reason
 
-    flag(out["price"].isna() | (out["price"] <= 0), "no_price")
     flag(~out["in_stock"].astype(bool), "not_in_stock")
+    flag(out["price"].isna() | (out["price"] <= 0), "no_price")
     flag(out["condition"] != "new", "not_new")
 
     if not history.empty:
