@@ -291,6 +291,7 @@ def catalog_items_to_observations(
     """Resolve a full catalog while retaining unavailable offers for audit history."""
     vram = registry.set_index("gpu_id")["vram_gb"].to_dict() if "vram_gb" in registry else {}
     rows: list[dict] = []
+    seen_ids: set[str] = set()
     unresolved: dict[str, UnresolvedName] = {}
     for item in items:
         title = item["productname"]
@@ -313,8 +314,30 @@ def catalog_items_to_observations(
             # Only in-stock listings can influence current-price selection.
             observation["in_stock"] = item.get("availability", "").lower() == "in-stock"
             rows.append(observation)
+            seen_ids.add(hit)
         for name in names:
             unresolved.setdefault(name.raw_name, name)
+    active = registry[registry["is_active"].astype(str).str.lower() == "true"]
+    for row in active.itertuples(index=False):
+        if row.gpu_id in seen_ids:
+            continue
+        rows.append(
+            {
+                "gpu_id": row.gpu_id,
+                "retailer": "newegg",
+                "sku": "",
+                "title_raw": f"No current Newegg catalog offer for {row.display_name}",
+                "price": None,
+                "currency": "USD",
+                "url": "",
+                "condition": "new",
+                "in_stock": False,
+                "is_valid": True,
+                "invalid_reason": "",
+                "fetched_at": now,
+                "run_id": run_id,
+            }
+        )
     return pd.DataFrame(rows, columns=PRICE_COLUMNS), list(unresolved.values())
 
 
