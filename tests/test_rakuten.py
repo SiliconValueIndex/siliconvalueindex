@@ -292,6 +292,16 @@ def test_retry_preserves_authorization(monkeypatch, first_status):
         "RTX 4070 thermal pad kit",
         "GeForce RTX 4070 water-block",
         "GeForce RTX 4070 capture card",
+        "MINISFORUM eGPU Dock for RTX 4070 Graphics Card",
+        "90 Degree Power Connector for RTX 4070 Graphics Card",
+        "Three GPU coolers for RTX 4070 graphics cards",
+        "RTX 4070 Artisan Keycap",
+        "Full Cover Graphics Card Water Cooling Block for RTX 4070",
+        "Monitors compatible with RTX 4070 graphics cards",
+        "A cooler set for RTX 4070 graphics cards",
+        "Blocking MOS for RTX 4070 graphics cards",
+        "CyberPowerPC Gamer Master with RTX 4070",
+        "ASUS ROG Zephyrus laptop with RTX 4070",
     ],
 )
 def test_systems_and_parts_never_become_prices_or_unresolved(title):
@@ -374,3 +384,24 @@ def test_memory_must_match_benchmarked_variant(memory, expected):
         expected_vram=8,
     )
     assert len(obs) == expected
+
+
+def test_catalog_marks_unavailable_offer_invalid_but_keeps_it_for_history():
+    from svi.scrapers.rakuten import catalog_items_to_observations
+
+    item = parse_search_xml(SEARCH_4070)[0][0] | {"availability": "out-of-stock"}
+    rows, unresolved = catalog_items_to_observations(
+        [item],
+        Resolver.from_files(),
+        registry(("nvidia-rtx-4070", "NVIDIA", "RTX 4070")),
+        now=NOW,
+        run_id="catalog",
+    )
+    assert len(rows) == 1
+    assert not rows.iloc[0]["in_stock"]
+    checked = prices.validate_observations(
+        rows, pd.DataFrame(columns=prices.PRICE_COLUMNS), get_config().pricing, now=NOW
+    )
+    assert not checked.iloc[0]["is_valid"]
+    assert checked.iloc[0]["invalid_reason"] == "not_in_stock"
+    assert unresolved == []

@@ -55,9 +55,16 @@ _NOT_NEW = re.compile(r"\bopen[\s-]?box\b|\brefurb", re.IGNORECASE)
 _NON_GPU = re.compile(
     r"\b(?:desktop\s+(?:pc|computer|tower)|gaming\s+(?:desktop|pc|computer)|"
     r"workstation|mini[ -]?pc|all[ -]in[ -]one|barebone|windows\s+(?:10|11)|"
+    r"(?:cyberpowerpc|zephyrus|laptop|notebook|gamer\s+(?:master|xtreme|supreme))|"
     r"(?:intel\s+)?core\s+(?:i[3579]|ultra)\b|ryzen\s+[3579]\b|"
     r"(?:nvme|sata)\s+ssd|(?:replacement|spare)\s+(?:cooling\s+)?fans?|"
     r"(?:gpu|vga|graphics\s+card|video\s+card)\s+(?:cooling\s+)?fans?|"
+    r"(?:e?gpu\s+)?(?:dock|docking\s+station|enclosure|riser|adapter|connector|"
+    r"cable|extension|power\s+(?:supply|connector)|conversion\s+head|keycap)|"
+    r"(?:cooling\s+pad|graphics\s+card\s+coolers?|gpu\s+coolers?|"
+    r"\b\w+\s+coolers?\s+for\s+rtx|cooler\s+set|"
+    r"(?:full\s+cover\s+)?graphics\s+card\s+water\s+cooling\s+blocks?|"
+    r"water\s+cooling\s+blocks?|monitors?\s+(?:compatible|for)|blocking\s+mos)|"
     r"(?:fan|cooler)\s+(?:replacement|for)|capture\s+(?:card|box)|"
     r"gpu\s+block|cooling\s+expansion\s+kit|fans?\s+per\s+set|"
     r"fans?[^.]*\b(?:suitable|replacement|for)\b|"
@@ -261,7 +268,9 @@ def items_to_observations(
                 "currency": "USD",
                 "url": it["linkurl"],  # Rakuten tracking link: the affiliate link
                 "condition": "refurb" if _NOT_NEW.search(title) else "new",
-                "in_stock": True,  # the feed has no availability field; see module docstring
+                # Product Search does not provide availability. Catalog observations
+                # overwrite this value with its explicit status.
+                "in_stock": True,
                 "is_valid": True,
                 "invalid_reason": "",
                 "fetched_at": now,
@@ -269,6 +278,44 @@ def items_to_observations(
             }
         )
     return obs, unresolved
+
+
+def catalog_items_to_observations(
+    items: list[dict],
+    resolver: Resolver,
+    registry: pd.DataFrame,
+    *,
+    now: datetime,
+    run_id: str,
+) -> tuple[pd.DataFrame, list[UnresolvedName]]:
+    """Resolve a full catalog while retaining unavailable offers for audit history."""
+    vram = registry.set_index("gpu_id")["vram_gb"].to_dict() if "vram_gb" in registry else {}
+    rows: list[dict] = []
+    unresolved: dict[str, UnresolvedName] = {}
+    for item in items:
+        title = item["productname"]
+        if excluded_product(title) or item["currency"] != "USD":
+            continue
+        hit = resolver.resolve(title, source="newegg")
+        if isinstance(hit, UnresolvedName):
+            unresolved.setdefault(hit.raw_name, hit)
+            continue
+        observations, names = items_to_observations(
+            [item],
+            hit,
+            resolver,
+            now=now,
+            run_id=run_id,
+            expected_vram=int(vram[hit]) if pd.notna(vram.get(hit)) else None,
+        )
+        for observation in observations:
+            # The catalog exposes in-stock, out-of-stock, preorder and backorder.
+            # Only in-stock listings can influence current-price selection.
+            observation["in_stock"] = item.get("availability", "").lower() == "in-stock"
+            rows.append(observation)
+        for name in names:
+            unresolved.setdefault(name.raw_name, name)
+    return pd.DataFrame(rows, columns=PRICE_COLUMNS), list(unresolved.values())
 
 
 def scrape_newegg_prices(
@@ -282,10 +329,18 @@ def scrape_newegg_prices(
     token_fn=fetch_token,
     status_fn=partnership_status,
     search_fn=search_products,
+    catalog_fn=None,
     pause: float = 1.0,
 ) -> tuple[pd.DataFrame, list[UnresolvedName]]:
     """One search per active GPU. Network functions are injectable for tests."""
     now = now or datetime.now(UTC)
+    if catalog_fn is None and os.environ.get("RAKUTEN_SFTP_USERNAME", "").strip():
+        from svi.scrapers.catalog import fetch_catalog
+
+        catalog_fn = fetch_catalog
+    if catalog_fn is not None:
+        items, _summary = catalog_fn()
+        return catalog_items_to_observations(items, resolver, registry, now=now, run_id=run_id)
     creds = creds or credentials_from_env()
     if creds is None:
         raise RetailerSkipped(

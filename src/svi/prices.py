@@ -205,13 +205,13 @@ def select_current_prices(
             ]
         )
     valid = history[history["is_valid"] & history["price"].notna()]
-    fresh = valid
+    # Choose the newest observation batch before filtering validity. Otherwise a
+    # newer out-of-stock result can resurrect yesterday's cheap, valid offer.
+    latest_time = history.groupby("gpu_id")["fetched_at"].transform("max")
+    latest = history[history["fetched_at"] == latest_time]
+    latest = latest[latest["is_valid"] & latest["price"].notna()]
     if cfg.enforce_stale:
-        fresh = valid[valid["fetched_at"] >= now - timedelta(days=cfg.stale_days)]
-    # For each GPU use only observations from its latest fetch day so an old low price
-    # cannot outlive newer, higher observations.
-    latest_day = fresh.groupby("gpu_id")["fetched_at"].transform("max").dt.floor("D")
-    latest = fresh[fresh["fetched_at"].dt.floor("D") == latest_day]
+        latest = latest[latest["fetched_at"] >= now - timedelta(days=cfg.stale_days)]
     current = latest.sort_values(["gpu_id", "price"]).drop_duplicates("gpu_id", keep="first")
     current = current[["gpu_id", "price", "retailer", "url", "condition", "fetched_at"]]
 

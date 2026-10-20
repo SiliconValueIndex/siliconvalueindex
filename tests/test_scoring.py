@@ -168,3 +168,41 @@ def test_playability_floor_ranks_last_and_gets_no_zone():
     assert ranked["gpu_id"].tolist() == ["ok", "slow"]
     assert ranked["zone"].tolist()[1] == "unplayable"
     assert ranked["playable"].tolist() == [True, False]
+
+
+def test_new_unavailable_batch_does_not_revive_old_price():
+    now = datetime(2026, 9, 16, tzinfo=UTC)
+    hist = _hist(
+        [
+            ("g", "newegg", 400, True, "2026-09-14"),
+            ("g", "newegg", 400, False, "2026-09-15"),
+        ]
+    )
+    assert select_current_prices(hist, get_config().pricing, now=now).empty
+
+
+def test_new_batch_chooses_available_alternative_and_keeps_history():
+    now = datetime(2026, 9, 16, tzinfo=UTC)
+    hist = _hist(
+        [
+            ("g", "newegg", 400, True, "2026-09-14"),
+            ("g", "newegg", 400, False, "2026-09-15"),
+            ("g", "newegg", 450, True, "2026-09-15"),
+        ]
+    )
+    current = select_current_prices(hist, get_config().pricing, now=now)
+    assert current.iloc[0]["price"] == 450
+    assert current.iloc[0]["min_90d"] == 400
+    assert len(hist) == 3
+
+
+def test_same_day_unavailability_supersedes_morning_price():
+    now = datetime(2026, 9, 16, tzinfo=UTC)
+    hist = _hist(
+        [
+            ("g", "newegg", 400, True, "2026-09-15"),
+            ("g", "newegg", 400, False, "2026-09-15"),
+        ]
+    )
+    hist.loc[1, "fetched_at"] += pd.Timedelta(hours=6)
+    assert select_current_prices(hist, get_config().pricing, now=now).empty
