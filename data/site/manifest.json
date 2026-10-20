@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-20T22:07:26Z",
- "run_id": "gh-39505682915",
+ "generated_at": "2026-10-20T22:27:22Z",
+ "run_id": "gh-39508179808",
  "primary_view": "1440p_raster",
  "views": [
   "1080p_raster",
@@ -494,7 +494,7 @@
    "name": "Manual price overrides",
    "url": "https://github.com/SiliconValueIndex/siliconvalueindex/blob/main/data/reference/price_overrides.csv",
    "kind": "prices",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   }
  ],
  "anomalies": [

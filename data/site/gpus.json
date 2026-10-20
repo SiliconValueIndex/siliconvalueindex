@@ -34,7 +34,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445832532149954141489024&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F13K-00BU-007G0%3Fitem%3D9SIB4VJG5T1259",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+GTX+1080+Ti&N=100007709",
@@ -44,7 +44,7 @@
   "price_stats": {
    "min_90d": 399.0,
    "median_90d": 419.0,
-   "n_points": 6
+   "n_points": 8
   }
  },
  {
@@ -82,7 +82,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445836279660597431036477&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F231-00CW-000B3%3Fitem%3D9SIB4VJG5T0704",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2060&N=100007709",
@@ -92,7 +92,7 @@
   "price_stats": {
    "min_90d": 599.0,
    "median_90d": 599.0,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -166,7 +166,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445831359151214423997595&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F1B4-00GA-000P2%3Fitem%3D9SIB1PGH884535",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2070&N=100007709",
@@ -176,7 +176,7 @@
   "price_stats": {
    "min_90d": 495.0,
    "median_90d": 495.0,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -250,7 +250,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.44583905684453609714148&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F231-00BC-001D9%3Fitem%3D9SIB4VJG5T0528",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2080&N=100007709",
@@ -260,7 +260,7 @@
   "price_stats": {
    "min_90d": 849.0,
    "median_90d": 855.0,
-   "n_points": 6
+   "n_points": 8
   }
  },
  {
@@ -298,7 +298,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458313762729352055953985&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F0ZK-010N-000F8%3Fitem%3D9SIB4VJG5T0014",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2080+Super&N=100007709",
@@ -308,7 +308,7 @@
   "price_stats": {
    "min_90d": 849.0,
    "median_90d": 849.0,
-   "n_points": 4
+   "n_points": 5
   }
  },
  {
@@ -346,7 +346,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445836455928980405271927&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F2CX-005T-00004%3Fitem%3D9SIB4VJK367042",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+2080+Ti&N=100007709",
@@ -356,7 +356,7 @@
   "price_stats": {
    "min_90d": 895.0,
    "median_90d": 995.0,
-   "n_points": 15
+   "n_points": 20
   }
  },
  {
@@ -458,7 +458,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458316257384564348278019&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fmsi-rtx-3060-ventus-2x-12g-oc-geforce-rtx-3060-12gb-graphics-card-double-fans%2Fp%2FN82E16814982013%3Fitem%3DN82E16814982013",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3060&N=100007709",
@@ -468,7 +468,7 @@
   "price_stats": {
    "min_90d": 439.99,
    "median_90d": 459.99,
-   "n_points": 9
+   "n_points": 12
   }
  },
  {
@@ -645,7 +645,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458318293538013852400412&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F1B9-00BG-00035%3Fitem%3D9SIB4VJK8G4430",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3070&N=100007709",
@@ -655,7 +655,7 @@
   "price_stats": {
    "min_90d": 645.0,
    "median_90d": 645.0,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -1243,7 +1243,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445837998649397043890688&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fp%2F36F-00VC-00003%3Fitem%3D9SIB4VJKP93140",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+4060+Ti+8GB&N=100007709",
@@ -1253,7 +1253,7 @@
   "price_stats": {
    "min_90d": 949.0,
    "median_90d": 949.0,
-   "n_points": 4
+   "n_points": 6
   }
  },
  {
@@ -1955,7 +1955,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445838385655040606450694&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fgigabyte-windforce-gv-n5060wf2oc-8gd-geforce-rtx-5060-8gb-graphics-card-double-fans%2Fp%2FN82E16814932828%3Fitem%3DN82E16814932828",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5060&N=100007709",
@@ -1965,7 +1965,7 @@
   "price_stats": {
    "min_90d": 379.99,
    "median_90d": 469.99,
-   "n_points": 30
+   "n_points": 42
   }
  },
  {
@@ -2067,7 +2067,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445832181352699775361422&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fpny-technologies-inc-rtx-5060-ti-8gb-triple-fan-argb-oc-geforce-rtx-5060-ti-graphics-card-triple-fans%2Fp%2FN82E16814133994%3Fitem%3DN82E16814133994",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5060+Ti+8GB&N=100007709",
@@ -2077,7 +2077,7 @@
   "price_stats": {
    "min_90d": 529.99,
    "median_90d": 529.99,
-   "n_points": 15
+   "n_points": 20
   }
  },
  {
@@ -2179,7 +2179,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445835544716960406231374&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasus-dual-rtx5060ti-o16g-geforce-rtx-5060-ti-16gb-graphics-card-double-fans%2Fp%2FN82E16814126798%3Fitem%3DN82E16814126798",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5060+Ti+16GB&N=100007709",
@@ -2189,7 +2189,7 @@
   "price_stats": {
    "min_90d": 799.99,
    "median_90d": 809.99,
-   "n_points": 9
+   "n_points": 12
   }
  },
  {
@@ -2291,7 +2291,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.44583657789006434423596&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fgigabyte-gv-n5070eagleoc-ice-12gd-geforce-rtx-5070-12gb-graphics-card-triple-fans%2Fp%2FN82E16814932775%3Fitem%3DN82E16814932775",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5070&N=100007709",
@@ -2301,7 +2301,7 @@
   "price_stats": {
    "min_90d": 829.99,
    "median_90d": 899.99,
-   "n_points": 25
+   "n_points": 34
   }
  },
  {
@@ -2403,7 +2403,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458315112060008078983284&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fgigabyte-gv-n507teagleoc-ice-16gd-geforce-rtx-5070-ti-16gb-graphics-card-triple-fans%2Fp%2FN82E16814932769%3Fitem%3DN82E16814932769",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5070+Ti&N=100007709",
@@ -2412,8 +2412,8 @@
   },
   "price_stats": {
    "min_90d": 1169.99,
-   "median_90d": 1239.99,
-   "n_points": 36
+   "median_90d": 1249.99,
+   "n_points": 46
   }
  },
  {
@@ -2515,7 +2515,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445833433688408193519454&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fgigabyte-gv-n5080gaming-oc-16gd-geforce-rtx-5080-16gb-graphics-card%2Fp%2FN82E16814932753%3Fitem%3DN82E16814932753",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5080&N=100007709",
@@ -2524,8 +2524,8 @@
   },
   "price_stats": {
    "min_90d": 1699.99,
-   "median_90d": 1874.99,
-   "n_points": 18
+   "median_90d": 1924.99,
+   "n_points": 22
   }
  },
  {
@@ -3335,7 +3335,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445838653437639129988289&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasrock-challenger-rx7600-cl-8go-radeon-rx-7600-8gb-graphics-card-double-fans%2Fp%2FN82E16814930093%3Fitem%3DN82E16814930093",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7600&N=100007709",
@@ -3345,7 +3345,7 @@
   "price_stats": {
    "min_90d": 339.97,
    "median_90d": 519.495,
-   "n_points": 6
+   "n_points": 8
   }
  },
  {
@@ -3783,7 +3783,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445835081970311777856986&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasus-90yv0ig0-m0na00%2Fp%2F2W9-001D-00005%3Fitem%3D9SIB4VJKNP3777",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+7900+XTX&N=100007709",
@@ -3793,7 +3793,7 @@
   "price_stats": {
    "min_90d": 1799.0,
    "median_90d": 1799.0,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -3895,7 +3895,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445831609502042468404093&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fgigabyte-gv-r9060xtgaming-oc-8gd-radeon-rx-9060-xt-8gb-graphics-card-triple-fans%2Fp%2FN82E16814932807%3Fitem%3DN82E16814932807",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+9060+XT&N=100007709",
@@ -3905,7 +3905,7 @@
   "price_stats": {
    "min_90d": 459.99,
    "median_90d": 459.99,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -4007,7 +4007,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458314502936242964945173&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasus-prime-rx9070-o16g-radeon-rx-9070-16gb-graphics-card-triple-fans%2Fp%2FN82E16814126748%3Fitem%3DN82E16814126748",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+9070&N=100007709",
@@ -4017,7 +4017,7 @@
   "price_stats": {
    "min_90d": 699.99,
    "median_90d": 739.99,
-   "n_points": 7
+   "n_points": 9
   }
  },
  {
@@ -4119,7 +4119,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445833896333950487910827&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasrock-steel-legend-rx9070xt-sl-16g-radeon-rx-9070-xt-16gb-graphics-card-triple-fans%2Fp%2FN82E16814930136%3Fitem%3DN82E16814930136",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Radeon+RX+9070+XT&N=100007709",
@@ -4128,8 +4128,8 @@
   },
   "price_stats": {
    "min_90d": 879.99,
-   "median_90d": 929.99,
-   "n_points": 31
+   "median_90d": 939.99,
+   "n_points": 42
   }
  },
  {
@@ -4203,7 +4203,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458312723044874817285343&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasrock-challenger-a750-cld-8go-arc-a750-8gb-graphics-card-double-fans%2Fp%2FN82E16814930078%3Fitem%3DN82E16814930078",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+A750&N=100007709",
@@ -4213,7 +4213,7 @@
   "price_stats": {
    "min_90d": 209.99,
    "median_90d": 209.99,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -4351,7 +4351,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458314021598184013363696&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasrock-challenger-b570-cl-10go-arc-b570-10gb-graphics-card-double-fans%2Fp%2FN82E16814930134%3Fitem%3DN82E16814930134",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+B570&N=100007709",
@@ -4361,7 +4361,7 @@
   "price_stats": {
    "min_90d": 289.99,
    "median_90d": 289.99,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -4463,7 +4463,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.44583749909230223947948&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fasrock-challenger-b580-cl-12go-arc-b580-12gb-graphics-card-double-fans%2Fp%2FN82E16814930131%3Fitem%3DN82E16814930131",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=Intel+Intel+Arc+B580&N=100007709",
@@ -4473,7 +4473,7 @@
   "price_stats": {
    "min_90d": 329.99,
    "median_90d": 329.99,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -4575,7 +4575,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.445834397359187188858593&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fmsi-rtx-3050-ventus-2x-xs-8g-oc-geforce-rtx-3050-8gb-graphics-card-double-fans%2Fp%2FN82E16814137810%3Fitem%3DN82E16814137810",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+3050&N=100007709",
@@ -4585,7 +4585,7 @@
   "price_stats": {
    "min_90d": 349.99,
    "median_90d": 349.99,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
@@ -4687,7 +4687,7 @@
    "retailer": "newegg",
    "url": "https://click.linksynergy.com/link?id=vnDw7makTWM&offerid=2142385.4458312844861525430544795&type=15&murl=https%3A%2F%2Fwww.newegg.com%2Fmsi-rtx-5050-8g-shadow-2x-oc-geforce-rtx-5050-8gb-graphics-card-double-fans%2Fp%2FN82E16814137982%3Fitem%3DN82E16814137982",
    "condition": "new",
-   "fetched_at": "2026-10-20T22:07:26Z"
+   "fetched_at": "2026-10-20T22:27:22Z"
   },
   "retailer_links": {
    "newegg": "https://www.newegg.com/p/pl?d=GeForce+RTX+5050&N=100007709",
@@ -4697,7 +4697,7 @@
   "price_stats": {
    "min_90d": 419.99,
    "median_90d": 419.99,
-   "n_points": 3
+   "n_points": 4
   }
  },
  {
