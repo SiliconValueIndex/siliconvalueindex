@@ -1,5 +1,61 @@
 [
  {
+  "run_id": "gh-41217271028",
+  "generated_at": "2026-10-31T15:57:28Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [
+   {
+    "gpu_id": "nvidia-rtx-4060-ti-8gb",
+    "from": 949.0,
+    "to": 1099.0,
+    "pct": 15.8
+   },
+   {
+    "gpu_id": "amd-rx-7600",
+    "from": 339.99,
+    "to": 389.99,
+    "pct": 14.7
+   },
+   {
+    "gpu_id": "nvidia-rtx-5070-ti",
+    "from": 1179.99,
+    "to": 1349.99,
+    "pct": 14.4
+   },
+   {
+    "gpu_id": "amd-rx-7900-xtx",
+    "from": 1799.0,
+    "to": 1999.0,
+    "pct": 11.1
+   },
+   {
+    "gpu_id": "amd-rx-9060-xt",
+    "from": 459.99,
+    "to": 409.0,
+    "pct": -11.1
+   },
+   {
+    "gpu_id": "nvidia-rtx-3070",
+    "from": 645.0,
+    "to": 699.0,
+    "pct": 8.4
+   },
+   {
+    "gpu_id": "nvidia-rtx-5080",
+    "from": 1799.99,
+    "to": 1949.99,
+    "pct": 8.3
+   }
+  ],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 318,
+  "notes": [
+   "Newegg: 69 valid of 114 observations",
+   "Manual overrides applied: 2"
+  ]
+ },
+ {
   "run_id": "gh-39508179808",
   "generated_at": "2026-10-20T22:27:22Z",
   "added_gpus": [],
