@@ -1,5 +1,79 @@
 [
  {
+  "run_id": "gh-43617808338",
+  "generated_at": "2026-11-14T16:50:56Z",
+  "added_gpus": [],
+  "removed_gpus": [],
+  "price_changes": [
+   {
+    "gpu_id": "amd-rx-9060-xt",
+    "from": 459.99,
+    "to": 729.99,
+    "pct": 58.7
+   },
+   {
+    "gpu_id": "amd-rx-7900-xtx",
+    "from": 1799.0,
+    "to": 2399.0,
+    "pct": 33.4
+   },
+   {
+    "gpu_id": "amd-rx-9070",
+    "from": 739.99,
+    "to": 934.99,
+    "pct": 26.4
+   },
+   {
+    "gpu_id": "nvidia-rtx-5080",
+    "from": 1799.99,
+    "to": 2199.99,
+    "pct": 22.2
+   },
+   {
+    "gpu_id": "nvidia-rtx-5070-ti",
+    "from": 1179.99,
+    "to": 1409.99,
+    "pct": 19.5
+   },
+   {
+    "gpu_id": "nvidia-rtx-4060-ti-8gb",
+    "from": 949.0,
+    "to": 1099.0,
+    "pct": 15.8
+   },
+   {
+    "gpu_id": "amd-rx-7600",
+    "from": 339.99,
+    "to": 389.97,
+    "pct": 14.7
+   },
+   {
+    "gpu_id": "nvidia-rtx-3070",
+    "from": 645.0,
+    "to": 699.0,
+    "pct": 8.4
+   },
+   {
+    "gpu_id": "nvidia-rtx-2070",
+    "from": 495.0,
+    "to": 525.0,
+    "pct": 6.1
+   },
+   {
+    "gpu_id": "amd-rx-9070-xt",
+    "from": 899.99,
+    "to": 949.99,
+    "pct": 5.6
+   }
+  ],
+  "benchmark_suite_changed": false,
+  "unresolved_count": 298,
+  "notes": [
+   "Newegg: 100 valid of 146 observations",
+   "Manual overrides applied: 2"
+  ]
+ },
+ {
   "run_id": "gh-39508179808",
   "generated_at": "2026-10-20T22:27:22Z",
   "added_gpus": [],
